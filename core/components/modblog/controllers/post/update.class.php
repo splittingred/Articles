@@ -3,7 +3,7 @@ require_once $modx->getOption('manager_path',null,MODX_MANAGER_PATH).'controller
 /**
  * @package modblog
  */
-class BlogUpdateManagerController extends ResourceUpdateManagerController {
+class BlogPostUpdateManagerController extends ResourceUpdateManagerController {
 
     public function loadCustomCssJs() {
         $managerUrl = $this->context->getOption('manager_url', MODX_MANAGER_URL, $this->modx->_userConfig);
@@ -17,8 +17,7 @@ class BlogUpdateManagerController extends ResourceUpdateManagerController {
         $this->addJavascript($managerUrl.'assets/modext/widgets/resource/modx.panel.resource.js');
         $this->addJavascript($managerUrl.'assets/modext/sections/resource/update.js');
         $this->addJavascript($blogJsUrl.'modblog.js');
-        $this->addJavascript($blogJsUrl.'blog/blog.posts.grid.js');
-        $this->addLastJavascript($blogJsUrl.'blog/update.js');
+        $this->addLastJavascript($blogJsUrl.'post/update.js');
         $this->addHtml('
         <script type="text/javascript">
         // <![CDATA[
@@ -28,7 +27,7 @@ class BlogUpdateManagerController extends ResourceUpdateManagerController {
         MODx.ctx = "'.$this->resource->get('context_key').'";
         Ext.onReady(function() {
             MODx.load({
-                xtype: "modblog-page-blog-update"
+                xtype: "modblog-page-blog-post-update"
                 ,resource: "'.$this->resource->get('id').'"
                 ,record: '.$this->modx->toJSON($this->resourceArray).'
                 ,access_permissions: "'.$this->showAccessPermissions.'"
@@ -52,5 +51,15 @@ class BlogUpdateManagerController extends ResourceUpdateManagerController {
     }
     public function getLanguageTopics() {
         return array('resource','modblog:default');
+    }
+
+
+    public function process(array $scriptProperties = array()) {
+        $placeholders = parent::process($scriptProperties);
+        $this->resourceArray['richtext'] = 1;
+        $this->resourceArray['tags'] = 'blogs,fun,modx';
+        $this->resourceArray['categories'] = 'Technology';
+
+        return $placeholders;
     }
 }
