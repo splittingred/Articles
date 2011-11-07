@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="modBlog" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM">
+    <object class="modBlog" extends="modResource">
+
+    </object>
+    <object class="modBlogPost" extends="modResource">
+
+    </object>
+</model>

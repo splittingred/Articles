@@ -1,0 +1,5 @@
+Changelog for modBlog.
+
+modBlog 1.0.0
+===============================
+- Initial release.
