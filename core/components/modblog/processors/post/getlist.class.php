@@ -38,6 +38,7 @@ class modBlogPostGetListProcessor extends modObjectGetListProcessor {
         }
         $c->where(array(
             'class_key' => 'modBlogPost',
+            'deleted' => $this->getProperty('deleted',false),
         ));
         $c->innerJoin('modUser','CreatedBy');
         return $c;

@@ -26,5 +26,6 @@ $_lang['modblog.posts'] = 'Search Posts...';
 $_lang['modblog.published'] = 'Published';
 $_lang['modblog.publishing_information'] = 'Publishing Information';
 $_lang['modblog.statistics'] = 'Statistics';
+$_lang['modblog.status'] = 'Status';
 $_lang['modblog.tags'] = 'Tags';
 $_lang['modblog.unpublished'] = 'Not Published';

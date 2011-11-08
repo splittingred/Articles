@@ -148,7 +148,20 @@ Ext.extend(modBlog.grid.BlogPosts,MODx.grid.Grid,{
         location.href = 'index.php?a='+MODx.request.a+'&id='+this.menu.record.id;
     }
     ,createPost: function(btn,e) {
-        location.href = 'index.php?a='+MODx.action['resource/create']+'&parent='+MODx.request.id+'&class_key=modBlogPost';
+        location.href = 'index.php?a='+MODx.action['resource/create']+'&class_key=modBlogPost&parent='+MODx.request.id;
+    }
+
+    ,deletePost: function(btn,e) {
+        MODx.Ajax.request({
+            url: MODx.config.connectors_url+'resource/index.php'
+            ,params: {
+                action: 'delete'
+                ,id: this.menu.record.id
+            }
+            ,listeners: {
+                'success':{fn:this.refresh,scope:this}
+            }
+        });
     }
 
 
@@ -158,12 +171,12 @@ Ext.extend(modBlog.grid.BlogPosts,MODx.grid.Grid,{
 		if(elm == 'controlBtn') {
 			var action = t.className.split(' ')[1];
 			var record = this.getSelectionModel().getSelected();
+            this.menu.record = record;
 			switch (action) {
                 case 'delete':
-                    this.onDelete(this, record);
+                    this.deletePost();
                     break;
                 case 'edit':
-                    this.menu.record = record;
 					this.editPost();
                     break;
 				case 'publish':

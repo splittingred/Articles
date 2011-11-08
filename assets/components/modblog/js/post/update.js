@@ -230,12 +230,10 @@ Ext.extend(modBlog.panel.BlogPost,MODx.panel.Resource,{
             xtype: 'fieldset'
             ,title: _('modblog.publishing_information')
             ,items: [{
-                xtype: 'combo'
-                ,store: [[0,_('modblog.published')],[1,_('modblog.unpublished')]]
-                ,triggerAction: 'all'
-                ,editable: false
+                xtype: 'modblog-combo-publish-status'
                 ,name: 'published'
-                ,fieldLabel: 'Status'
+                ,hiddenName: 'published'
+                ,fieldLabel: _('modblog.status')
             },{
                 xtype: 'xdatetime'
                 ,fieldLabel: _('resource_publishedon')
@@ -338,11 +336,6 @@ Ext.extend(modBlog.panel.BlogPost,MODx.panel.Resource,{
                 ,id: 'modx-resource-hidemenu'
                 ,value: config.record.hidemenu
 
-            },{
-                xtype: 'hidden'
-                ,name: 'published'
-                ,id: 'modx-resource-published'
-                ,value: parseInt(config.record.published)
             }]
         }]
     }
