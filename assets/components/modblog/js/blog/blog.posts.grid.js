@@ -148,7 +148,7 @@ Ext.extend(modBlog.grid.BlogPosts,MODx.grid.Grid,{
         location.href = 'index.php?a='+MODx.request.a+'&id='+this.menu.record.id;
     }
     ,createPost: function(btn,e) {
-        
+        location.href = 'index.php?a='+MODx.action['resource/create']+'&parent='+MODx.request.id+'&class_key=modBlogPost';
     }
 
 

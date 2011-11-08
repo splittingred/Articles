@@ -8,6 +8,7 @@ class BlogPostUpdateManagerController extends ResourceUpdateManagerController {
     public function loadCustomCssJs() {
         $managerUrl = $this->context->getOption('manager_url', MODX_MANAGER_URL, $this->modx->_userConfig);
         $blogAssetsUrl = $this->modx->getOption('modblog.assets_url',$this->modx->getOption('assets_url',null,MODX_ASSETS_URL).'components/modblog/');
+        $quipAssetsUrl = $this->modx->getOption('quip.assets_url',$this->modx->getOption('assets_url',null,MODX_ASSETS_URL).'components/quip/');
         $connectorUrl = $blogAssetsUrl.'connector.php';
         $blogJsUrl = $blogAssetsUrl.'js/';
         $this->addJavascript($managerUrl.'assets/modext/util/datetime.js');
@@ -17,6 +18,17 @@ class BlogPostUpdateManagerController extends ResourceUpdateManagerController {
         $this->addJavascript($managerUrl.'assets/modext/widgets/resource/modx.panel.resource.js');
         $this->addJavascript($managerUrl.'assets/modext/sections/resource/update.js');
         $this->addJavascript($blogJsUrl.'modblog.js');
+
+        $this->addCss($quipAssetsUrl.'css/mgr.css');
+        $this->addJavascript($quipAssetsUrl.'js/quip.js');
+        $this->addJavascript($quipAssetsUrl.'js/widgets/comments.grid.js');
+        $this->addHtml('<script type="text/javascript">
+        Ext.onReady(function() {
+            Quip.config = '.$this->modx->toJSON(array()).';
+            Quip.config.connector_url = "'.$quipAssetsUrl.'connector.php";
+            Quip.request = '.$this->modx->toJSON($_GET).';
+        });
+        </script>');
         $this->addLastJavascript($blogJsUrl.'post/update.js');
         $this->addHtml('
         <script type="text/javascript">
@@ -50,7 +62,7 @@ class BlogPostUpdateManagerController extends ResourceUpdateManagerController {
         $this->loadRichTextEditor();
     }
     public function getLanguageTopics() {
-        return array('resource','modblog:default');
+        return array('resource','modblog:default','quip:default');
     }
 
 

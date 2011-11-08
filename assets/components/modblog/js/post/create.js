@@ -1,5 +1,5 @@
 
-modBlog.page.UpdateBlogPost = function(config) {
+modBlog.page.CreateBlogPost = function(config) {
     config = config || {record:{}};
     config.record = config.record || {};
     Ext.applyIf(config,{
@@ -7,72 +7,12 @@ modBlog.page.UpdateBlogPost = function(config) {
     });
     config.canDuplicate = false;
     config.canDelete = false;
-    modBlog.page.UpdateBlogPost.superclass.constructor.call(this,config);
+    modBlog.page.CreateBlogPost.superclass.constructor.call(this,config);
 };
-Ext.extend(modBlog.page.UpdateBlogPost,MODx.page.UpdateResource,{
+Ext.extend(modBlog.page.CreateBlogPost,MODx.page.CreateResource,{
 
-    getButtons: function(cfg) {
-        var btns = [];
-        if (cfg.canSave == 1) {
-            btns.push({
-                process: 'update'
-                ,text: _('save')
-                ,method: 'remote'
-                ,checkDirty: cfg.richtext || MODx.request.activeSave == 1 ? false : true
-                ,keys: [{
-                    key: MODx.config.keymap_save || 's'
-                    ,ctrl: true
-                }]
-            });
-            btns.push('-');
-        } else if (cfg.locked) {
-            btns.push({
-                text: cfg.lockedText || _('locked')
-                ,handler: Ext.emptyFn
-                ,disabled: true
-            });
-            btns.push('-');
-        }
-        if (cfg.record.published) {
-            btns.push({
-                text: _('modblog.post_publish')
-                ,handler: this.publishPost
-            });
-        } else {
-            btns.push({
-                text: _('modblog.post_unpublish')
-                ,handler: this.unpublishPost
-            });
-        }
-        btns.push('-');
-        btns.push({
-            process: 'preview'
-            ,text: _('view')
-            ,handler: this.preview
-            ,scope: this
-        });
-        btns.push('-');
-        btns.push({
-            process: 'cancel'
-            ,text: _('cancel')
-            ,handler: this.cancel
-            ,scope: this
-        });
-        btns.push('-');
-        btns.push({
-            text: _('help_ex')
-            ,handler: MODx.loadHelpPane
-        });
-        return btns;
-    }
-    ,publishPost: function() {
-
-
-    }
 });
-Ext.reg('modblog-page-blog-post-update',modBlog.page.UpdateBlogPost);
-
-
+Ext.reg('modblog-page-blog-post-create',modBlog.page.CreateBlogPost);
 
 modBlog.panel.BlogPost = function(config) {
     config = config || {};
@@ -99,47 +39,6 @@ Ext.extend(modBlog.panel.BlogPost,MODx.panel.Resource,{
             }
             ,items: this.getMainFields(config)
         });
-        it.push({
-            title: _('modblog.comments')
-            ,autoHeight: true
-            ,items: [{
-                html: _('modblog.comments.intro_msg')
-                ,border: false
-                ,bodyCssClass: 'panel-desc'
-            },{
-                xtype: 'panel'
-                ,bodyCssClass: 'main-wrapper'
-                ,autoHeight: true
-                ,border: false
-                ,items: [{
-                    xtype: 'quip-grid-comments'
-                    ,cls: 'quip-thread-grid'
-                    ,thread: 'modblogpost-'+config.record.id
-                    ,preventRender: true
-                    ,width: '98%'
-                    ,bodyStyle: 'padding: 0'
-                }]
-            }]
-        });
-        /*
-        it.push({
-            title: _('modblog.statistics')
-            ,autoHeight: true
-            ,items: [{
-                html: _('modblog.statistics.intro_msg')
-                ,border: false
-                ,bodyCssClass: 'panel-desc'
-            },{
-                xtype: 'panel'
-                ,bodyCssClass: 'main-wrapper'
-                ,autoHeight: true
-                ,border: false
-                ,items: [{
-                    html: '<p>Statistics goes here.</p>'
-                    ,border: false
-                }]
-            }]
-        });*/
         if (config.show_tvs && MODx.config.tvs_below_content != 1) {
             it.push(this.getTemplateVariablesPanel(config));
         }
@@ -156,7 +55,7 @@ Ext.extend(modBlog.panel.BlogPost,MODx.panel.Resource,{
             ,itemId: 'tabs'
             ,items: it
         });
-        
+
         if (MODx.config.tvs_below_content == 1) {
             var tvs = this.getTemplateVariablesPanel(config);
             tvs.style = 'margin-top: 10px';
@@ -164,7 +63,7 @@ Ext.extend(modBlog.panel.BlogPost,MODx.panel.Resource,{
         }
         return its;
     }
-    
+
     ,getMainLeftFields: function(config) {
         config = config || {record:{}};
         var mlf = [{
@@ -343,10 +242,13 @@ Ext.extend(modBlog.panel.BlogPost,MODx.panel.Resource,{
                 ,name: 'published'
                 ,id: 'modx-resource-published'
                 ,value: parseInt(config.record.published)
+            },{
+                xtype: 'hidden'
+                ,name: 'class_key'
+                ,value: 'modBlogPost'
             }]
         }]
     }
-
 
 });
 Ext.reg('modx-panel-blog-post',modBlog.panel.BlogPost);
