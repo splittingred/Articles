@@ -21,8 +21,11 @@ class modBlogPostGetListProcessor extends modObjectGetListProcessor {
     public function prepareQueryBeforeCount(xPDOQuery $c) {
         $parent = $this->getProperty('parent',null);
         if ($parent !== null) {
+            /** @var modResource $parent */
+            $parent = $this->modx->getObject('modResource',$parent);
+            $ids = $this->modx->getChildIds($parent->get('id'),5,array('context' => $parent->get('context_key')));
             $c->where(array(
-                'parent' => $parent,
+                'id:IN' => $ids,
             ));
         }
         $query = $this->getProperty('query',null);
@@ -33,6 +36,9 @@ class modBlogPostGetListProcessor extends modObjectGetListProcessor {
                 'OR:introtext:LIKE' => '%'.$query.'%',
             ));
         }
+        $c->where(array(
+            'class_key' => 'modBlogPost',
+        ));
         $c->innerJoin('modUser','CreatedBy');
         return $c;
     }

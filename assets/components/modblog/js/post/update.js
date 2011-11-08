@@ -76,6 +76,8 @@ Ext.reg('modblog-page-blog-post-update',modBlog.page.UpdateBlogPost);
 
 modBlog.panel.BlogPost = function(config) {
     config = config || {};
+    Ext.applyIf(config,{
+    });
     modBlog.panel.BlogPost.superclass.constructor.call(this,config);
 };
 Ext.extend(modBlog.panel.BlogPost,MODx.panel.Resource,{
@@ -92,7 +94,7 @@ Ext.extend(modBlog.panel.BlogPost,MODx.panel.Resource,{
             ,autoHeight: true
             ,defaults: {
                 border: false
-                ,msgTarget: 'side'
+                ,msgTarget: 'under'
                 ,width: 400
             }
             ,items: this.getMainFields(config)
