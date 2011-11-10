@@ -29,7 +29,6 @@ class BlogPostCreateManagerController extends ResourceCreateManagerController {
             MODx.load({
                 xtype: "modblog-page-blog-post-create"
                 ,record: '.$this->modx->toJSON($this->resourceArray).'
-                ,access_permissions: "'.$this->showAccessPermissions.'"
                 ,publish_document: "'.$this->canPublish.'"
                 ,canSave: "'.($this->modx->hasPermission('save_document') ? 1 : 0).'"
                 ,show_tvs: '.(!empty($this->tvCounts) ? 1 : 0).'
@@ -53,6 +52,18 @@ class BlogPostCreateManagerController extends ResourceCreateManagerController {
         $this->resourceArray['tags'] = 'blogs,fun,modx';
         $this->resourceArray['categories'] = 'Technology';
 
+        $this->getDefaultBlogSettings();
         return $placeholders;
+    }
+
+    public function getDefaultBlogSettings() {
+        /** @var modBlog $blog */
+        $blog = $this->modx->getObject('modBlog',array(
+            'id' => $this->parent->get('id'),
+        ));
+        if ($blog) {
+            $settings = $blog->get('blog_settings');
+            $this->resourceArray['template'] = $this->modx->getOption('post_template',$settings,0);
+        }
     }
 }

@@ -1,6 +1,6 @@
 <?php
 class modBlogPostGetListProcessor extends modObjectGetListProcessor {
-    public $classKey = 'modResource';
+    public $classKey = 'modBlogPost';
     public $defaultSortField = 'pagetitle';
     public $defaultSortDirection = 'ASC';
     public $checkListPermission = true;
@@ -22,7 +22,7 @@ class modBlogPostGetListProcessor extends modObjectGetListProcessor {
         $parent = $this->getProperty('parent',null);
         if ($parent !== null) {
             /** @var modResource $parent */
-            $parent = $this->modx->getObject('modResource',$parent);
+            $parent = $this->modx->getObject('modBlog',$parent);
             $ids = $this->modx->getChildIds($parent->get('id'),5,array('context' => $parent->get('context_key')));
             $c->where(array(
                 'id:IN' => $ids,
@@ -45,7 +45,7 @@ class modBlogPostGetListProcessor extends modObjectGetListProcessor {
     }
 
     public function prepareQueryAfterCount(xPDOQuery $c) {
-        $c->select($this->modx->getSelectColumns('modResource','modResource'));
+        $c->select($this->modx->getSelectColumns('modBlogPost','modBlogPost'));
         $c->select(array(
             'createdby_username' => 'CreatedBy.username'
         ));
@@ -54,9 +54,11 @@ class modBlogPostGetListProcessor extends modObjectGetListProcessor {
 
     public function prepareRow(xPDOObject $object) {
         $resourceArray = parent::prepareRow($object);
-        $resourceArray['publishedon'] = strftime('%b %d, %Y %H:%I %p',strtotime($resourceArray['publishedon']));
-        $resourceArray['publishedon_date'] = strftime('%b %d',strtotime($resourceArray['publishedon']));
-        $resourceArray['publishedon_time'] = strftime('%H:%I %p',strtotime($resourceArray['publishedon']));
+        if (!empty($resourceArray['publishedon'])) {
+            $resourceArray['publishedon'] = strftime('%b %d, %Y %H:%I %p',strtotime($resourceArray['publishedon']));
+            $resourceArray['publishedon_date'] = strftime('%b %d',strtotime($resourceArray['publishedon']));
+            $resourceArray['publishedon_time'] = strftime('%H:%I %p',strtotime($resourceArray['publishedon']));
+        }
         $resourceArray['action_edit'] = '?a='.$this->editAction->get('id').'&action=post/update&id='.$resourceArray['id'];
         $resourceArray['tags'] = 'blogs,fun,modx';
         $resourceArray['categories'] = 'Technology';
@@ -64,21 +66,21 @@ class modBlogPostGetListProcessor extends modObjectGetListProcessor {
         $resourceArray['actions'] = array();
         $resourceArray['actions'][] = array(
             'className' => 'edit',
-            'text' => 'Edit',
+            'text' => $this->modx->lexicon('edit'),
         );
         $resourceArray['actions'][] = array(
             'className' => 'delete',
-            'text' => 'Delete',
+            'text' => $this->modx->lexicon('delete'),
         );
         if (!empty($resourceArray['published'])) {
             $resourceArray['actions'][] = array(
                 'className' => 'unpublish',
-                'text' => 'Unpublish',
+                'text' => $this->modx->lexicon('unpublish'),
             );
         } else {
             $resourceArray['actions'][] = array(
                 'className' => 'publish orange',
-                'text' => 'Publish',
+                'text' => $this->modx->lexicon('publish'),
             );
         }
         return $resourceArray;

@@ -31,7 +31,6 @@ class BlogUpdateManagerController extends ResourceUpdateManagerController {
                 xtype: "modblog-page-blog-update"
                 ,resource: "'.$this->resource->get('id').'"
                 ,record: '.$this->modx->toJSON($this->resourceArray).'
-                ,access_permissions: "'.$this->showAccessPermissions.'"
                 ,publish_document: "'.$this->canPublish.'"
                 ,preview_url: "'.$this->previewUrl.'"
                 ,locked: '.($this->locked ? 1 : 0).'
@@ -52,5 +51,17 @@ class BlogUpdateManagerController extends ResourceUpdateManagerController {
     }
     public function getLanguageTopics() {
         return array('resource','modblog:default');
+    }
+
+    /**
+     * Used to set values on the resource record sent to the template for derivative classes
+     *
+     * @return void
+     */
+    public function prepareResource() {
+        $settings = $this->resource->get('blog_settings');
+        foreach ($settings as $k => $v) {
+            $this->resourceArray['setting_'.$k] = $v;
+        }
     }
 }

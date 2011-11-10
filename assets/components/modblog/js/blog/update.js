@@ -24,7 +24,7 @@ Ext.extend(modBlog.panel.Blog,MODx.panel.Resource,{
     getFields: function(config) {
         var it = [];
         it.push({
-            title: _('modblog.blog_settings')
+            title: _('modblog.blog')
             ,id: 'modx-resource-settings'
             ,cls: 'modx-resource-tab'
             ,layout: 'form'
@@ -40,6 +40,22 @@ Ext.extend(modBlog.panel.Blog,MODx.panel.Resource,{
             ,items: this.getMainFields(config)
         });
         it.push({
+            title: _('modblog.settings')
+            ,id: 'modx-blog-settings'
+            ,cls: 'modx-resource-tab'
+            ,layout: 'form'
+            ,labelAlign: 'top'
+            ,labelSeparator: ''
+            ,bodyCssClass: 'tab-panel-wrapper main-wrapper'
+            ,autoHeight: true
+            ,defaults: {
+                border: false
+                ,msgTarget: 'side'
+                ,width: 400
+            }
+            ,items: this.getBlogSettings(config)
+        });
+        it.push({
             title: _('modblog.comments')
             ,autoHeight: true
             ,items: [{
@@ -53,24 +69,6 @@ Ext.extend(modBlog.panel.Blog,MODx.panel.Resource,{
                 ,border: false
                 ,items: [{
                     html: '<p>Comments grid goes here.</p>'
-                    ,border: false
-                }]
-            }]
-        });
-        it.push({
-            title: _('modblog.statistics')
-            ,autoHeight: true
-            ,items: [{
-                html: _('modblog.statistics.intro_msg')
-                ,border: false
-                ,bodyCssClass: 'panel-desc'
-            },{
-                xtype: 'panel'
-                ,bodyCssClass: 'main-wrapper'
-                ,autoHeight: true
-                ,border: false
-                ,items: [{
-                    html: '<p>Statistics goes here.</p>'
                     ,border: false
                 }]
             }]
@@ -114,22 +112,32 @@ Ext.extend(modBlog.panel.Blog,MODx.panel.Resource,{
     }
     ,getPosts: function(config) {
         return [{
-            id: 'modx-content-above'
-            ,border: false
-        },{
             xtype: 'modblog-grid-blog-posts'
             ,resource: config.resource
             ,border: false
+        }];
+    }
+
+    ,getBlogSettings: function(config) {
+        return [{
+            xtype: 'modx-combo-template'
+            ,name: 'setting_post_template'
+            ,hiddenName: 'setting_post_template'
+            ,id: 'modblog-setting-post-template'
+            ,fieldLabel: _('modblog.setting.post_template')
+            ,description: MODx.expandHelp ? '' : _('modblog.setting.post_template_desc')
         },{
-            id: 'modx-content-below'
-            ,border: false
+            xtype: 'label'
+            ,forId: 'modblog-setting-post-template'
+            ,html: _('modblog.setting.post_template_desc')
+            ,cls: 'desc-under'
         }];
     }
 
 
     ,getMainLeftFields: function(config) {
         config = config || {record:{}};
-        return [{
+        var flds = [{
             xtype: 'textfield'
             ,fieldLabel: _('modblog.blog_title')+'<span class="required">*</span>'
             ,description: '<b>[[*pagetitle]]</b><br />'+_('modblog.blog_title_help')
@@ -158,7 +166,38 @@ Ext.extend(modBlog.panel.Blog,MODx.panel.Resource,{
             ,value: config.record.description || ''
 
         }];
+
+        /*flds.push({
+            id: 'modx-content-above'
+            ,border: false
+        });*/
+        var ct = this.getContentField(config);
+        for (var f in ct) {
+            flds.push(ct[f]);
+        }
+        return flds;
     }
+
+    ,getContentField: function(config) {
+        return [{
+            id: 'modx-content-above'
+            ,border: false
+        },{
+            xtype: 'textarea'
+            ,name: 'ta'
+            ,id: 'ta'
+            ,fieldLabel: _('modblog.content')
+            ,anchor: '100%'
+            ,height: 300
+            ,grow: false
+            ,value: (config.record.content || config.record.ta) || ''
+            ,border: false
+        },{
+            id: 'modx-content-below'
+            ,border: false
+        }];
+    }
+
 
 
     ,getMainRightFields: function(config) {

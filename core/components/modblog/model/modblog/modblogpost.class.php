@@ -17,7 +17,7 @@ class modBlogPost extends modResource {
         return $modx->getOption('modblog.core_path',null,$modx->getOption('core_path').'components/modblog/').'controllers/post/';
     }
 
-    public function getContent(array $options) {
+    public function getContent(array $options = array()) {
         $content = parent::getContent($options);
         return $content;
     }
@@ -75,6 +75,7 @@ class modBlogPostCreateProcessor extends modResourceCreateProcessor {
                 return false;
             }
         }
+        $this->object->set('blog',$this->parentResource->get('id'));
 
         /* if the alias of the parent is a number, we're good */
         $alias = $this->parentResource->get('alias');
@@ -200,6 +201,11 @@ class modBlogPostUpdateProcessor extends modResourceUpdateProcessor {
     public $monthParent;
     /** @var modResource $dayParent */
     public $dayParent;
+
+    public function beforeSet() {
+        $this->setProperty('clearCache',true);
+        return parent::beforeSet();
+    }
 
     /**
      * Override modResourceUpdateProcessor::afterSave to provide archiving

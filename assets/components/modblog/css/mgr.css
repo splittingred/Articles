@@ -122,24 +122,3 @@
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#fee1a0,endColorstr=#fec95b,GradientType=0);
   background:linear-gradient(center bottom,#fec95b 0%,#fee1a0 100%);
 }
-
-
-.customsearchfield.desc {
-  color:#575757;
-  font-weight:bold;
-  margin-right:3px;
-}
-.customsearchfield.x-btn {
-}
-.customsearchfield .x-form-field-trigger-wrap {
-  margin-left:-1px;
-}
-.customsearchfield .x-form-field-trigger-wrap .x-form-text {
-  background-color:#ffffff;
-  background-image:none;
-  border-right:1px solid #d0d0d0 !important;
-}
-.customsearchfield .x-form-field-trigger-wrap .x-form-trigger-over { background-position:8px 8px !important; }
-.customsearchfield .x-form-field-trigger-wrap .x-form-trigger-click { background-position:10px 8px !important; }
-.x-small-editor .x-form-field-wrap .x-form-trigger { background:url("../images/glyphicons_009_search.png") no-repeat scroll center 8px transparent; }
-.x-small-editor .x-form-field-wrap .x-form-trigger-over { background-position:8px 8px; }

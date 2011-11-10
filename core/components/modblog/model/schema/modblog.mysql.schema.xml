@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model package="modBlog" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM">
     <object class="modBlog" extends="modResource">
+        <field key="blog_settings" dbtype="mediumtext" phptype="json" null="true" />
 
+        <composite alias="Posts" class="modBlogPost" local="id" foreign="blog" cardinality="many" owner="local" />
     </object>
     <object class="modBlogPost" extends="modResource">
+        <field key="blog" dbtype="int" precision="10" phptype="integer" null="false" default="0" index="index" />
 
+        <index alias="blog" name="blog" primary="false" unique="false" type="BTREE">
+            <column key="blog" length="" collation="A" null="false" />
+        </index>
+
+        <aggregate alias="Blog" class="modBlog" local="blog" foreign="id" cardinality="one" owner="foreign" />
     </object>
 </model>

@@ -1,4 +1,7 @@
 <?php
+require_once MODX_CORE_PATH.'model/modx/modprocessor.class.php';
+require_once MODX_CORE_PATH.'model/modx/processors/resource/create.class.php';
+require_once MODX_CORE_PATH.'model/modx/processors/resource/update.class.php';
 /**
  * @package modBlog
  */
@@ -30,5 +33,53 @@ class modBlog extends modResource {
     public function getContent(array $options = array()) {
         $content = parent::getContent($options);
         return $content;
+    }
+
+    public function getBlogSettings() {
+        $settings = $this->get('settings');
+        if (!empty($settings)) {
+            $settings = $this->xpdo->fromJSON($settings);
+        }
+        return !empty($settings) ? $settings : array();
+    }
+}
+
+/**
+ * Overrides the modResourceCreateProcessor to provide custom processor functionality for the modBlog type
+ *
+ * @package modblog
+ */
+class modBlogCreateProcessor extends modResourceCreateProcessor {
+    public function beforeSave() {
+        $properties = $this->getProperties();
+        $settings = $this->object->get('blog_settings');
+        foreach ($properties as $k => $v) {
+            if (substr($k,0,8) == 'setting_') {
+                $key = substr($k,8);
+                $settings[$key] = $v;
+            }
+        }
+        $this->object->set('blog_settings',$settings);
+        return parent::beforeSave();
+    }
+}
+
+/**
+ * Overrides the modResourceUpdateProcessor to provide custom processor functionality for the modBlog type
+ *
+ * @package modblog
+ */
+class modBlogUpdateProcessor extends modResourceUpdateProcessor {
+    public function beforeSave() {
+        $properties = $this->getProperties();
+        $settings = $this->object->get('blog_settings');
+        foreach ($properties as $k => $v) {
+            if (substr($k,0,8) == 'setting_') {
+                $key = substr($k,8);
+                $settings[$key] = $v;
+            }
+        }
+        $this->object->set('blog_settings',$settings);
+        return parent::beforeSave();
     }
 }

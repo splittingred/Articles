@@ -164,6 +164,32 @@ Ext.extend(modBlog.grid.BlogPosts,MODx.grid.Grid,{
         });
     }
 
+    ,publishPost: function(btn,e) {
+        MODx.Ajax.request({
+            url: MODx.config.connectors_url+'resource/index.php'
+            ,params: {
+                action: 'publish'
+                ,id: this.menu.record.id
+            }
+            ,listeners: {
+                'success':{fn:this.refresh,scope:this}
+            }
+        });
+    }
+
+    ,unpublishPost: function(btn,e) {
+        MODx.Ajax.request({
+            url: MODx.config.connectors_url+'resource/index.php'
+            ,params: {
+                action: 'unpublish'
+                ,id: this.menu.record.id
+            }
+            ,listeners: {
+                'success':{fn:this.refresh,scope:this}
+            }
+        });
+    }
+
 
 	,onClick: function(e){
 		var t = e.getTarget();
@@ -180,10 +206,10 @@ Ext.extend(modBlog.grid.BlogPosts,MODx.grid.Grid,{
 					this.editPost();
                     break;
 				case 'publish':
-					this.onPublishArticle(this, record);
+					this.publishPost();
 					break;
 				case 'unpublish':
-					this.onUnPublishArticle(this, record);
+					this.unpublishPost();
 					break;
 				default:
 					window.location = record.data.edit_action;

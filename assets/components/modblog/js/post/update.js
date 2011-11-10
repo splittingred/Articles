@@ -169,7 +169,7 @@ Ext.extend(modBlog.panel.BlogPost,MODx.panel.Resource,{
         config = config || {record:{}};
         var mlf = [{
             xtype: 'textfield'
-            ,fieldLabel: _('modblog.blog_title')+'<span class="required">*</span>'
+            ,fieldLabel: _('modblog.post_title')+'<span class="required">*</span>'
             ,description: '<b>[[*pagetitle]]</b><br />'+_('modblog.blog_title_help')
             ,name: 'pagetitle'
             ,id: 'modx-resource-pagetitle'

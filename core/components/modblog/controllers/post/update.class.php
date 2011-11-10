@@ -42,7 +42,6 @@ class BlogPostUpdateManagerController extends ResourceUpdateManagerController {
                 xtype: "modblog-page-blog-post-update"
                 ,resource: "'.$this->resource->get('id').'"
                 ,record: '.$this->modx->toJSON($this->resourceArray).'
-                ,access_permissions: "'.$this->showAccessPermissions.'"
                 ,publish_document: "'.$this->canPublish.'"
                 ,preview_url: "'.$this->previewUrl.'"
                 ,locked: '.($this->locked ? 1 : 0).'
