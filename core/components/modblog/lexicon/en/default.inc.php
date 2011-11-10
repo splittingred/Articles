@@ -34,3 +34,5 @@ $_lang['modblog.unpublished'] = 'Not Published';
 
 $_lang['modblog.setting.post_template'] = 'Blog Post Template';
 $_lang['modblog.setting.post_template_desc'] = 'The default Template for Blog Posts to use.';
+$_lang['modblog.setting.tplPost'] = 'Post Row Chunk';
+$_lang['modblog.setting.tplPost_desc'] = 'The Chunk to use when displaying posts on the front page or archive pages.';

@@ -131,6 +131,18 @@ Ext.extend(modBlog.panel.Blog,MODx.panel.Resource,{
             ,forId: 'modblog-setting-post-template'
             ,html: _('modblog.setting.post_template_desc')
             ,cls: 'desc-under'
+        },{
+            xtype: 'textfield'
+            ,name: 'setting_tplPost'
+            ,hiddenName: 'setting_tplPost'
+            ,id: 'modblog-setting-tplPost'
+            ,fieldLabel: _('modblog.setting.tplPost')
+            ,description: MODx.expandHelp ? '' : _('modblog.setting.tplPost_desc')
+        },{
+            xtype: 'label'
+            ,forId: 'modblog-setting-tplPost'
+            ,html: _('modblog.setting.tplPost_desc')
+            ,cls: 'desc-under'
         }];
     }
 
@@ -167,10 +179,6 @@ Ext.extend(modBlog.panel.Blog,MODx.panel.Resource,{
 
         }];
 
-        /*flds.push({
-            id: 'modx-content-above'
-            ,border: false
-        });*/
         var ct = this.getContentField(config);
         for (var f in ct) {
             flds.push(ct[f]);
@@ -188,7 +196,7 @@ Ext.extend(modBlog.panel.Blog,MODx.panel.Resource,{
             ,id: 'ta'
             ,fieldLabel: _('modblog.content')
             ,anchor: '100%'
-            ,height: 300
+            ,height: 250
             ,grow: false
             ,value: (config.record.content || config.record.ta) || ''
             ,border: false

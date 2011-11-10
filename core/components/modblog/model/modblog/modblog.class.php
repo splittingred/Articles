@@ -30,9 +30,46 @@ class modBlog extends modResource {
         return $this->xpdo->lexicon('modblog.blog');
     }
 
+    public function process() {
+        $this->xpdo->lexicon->load('modblog:frontend');
+        $this->getPosts();
+        $this->getArchives();
+        return parent::process();
+    }
     public function getContent(array $options = array()) {
         $content = parent::getContent($options);
+
         return $content;
+    }
+
+    public function getPosts() {
+        $settings = $this->getBlogSettings();
+        
+        $output = '[getArchives?
+          &parents=`[[*id]]`
+          &where=`{"class_key":"modBlogPost"}`
+          &limit=`10`
+          &showHidden=`1`
+          &includeContent=`1`
+          &tpl=`'.$this->xpdo->getOption('tplPost',$settings,'modBlogPostRowTpl').'`
+        ]';
+        $this->xpdo->setPlaceholder('posts',' ['.$output.']');
+    }
+
+    public function getArchives() {
+    /** @var modBlogPost $post */
+        $settings = $this->getBlogSettings();
+        $tpl = $this->xpdo->getOption('tplArchiveMonth',$settings,'modBlogArchiveMonthTpl');
+        $output = '[[Archivist?
+            &tpl=`'.$tpl.'`
+            &target=`'.$this->get('id').'`
+            &parents=`'.$this->get('id').'`
+            &depth=`4`
+            &limit=`10`
+            &useMonth=`1`
+            &useFurls=`1`
+        ]]';
+        $this->xpdo->setPlaceholder('archives',$output);
     }
 
     public function getBlogSettings() {
@@ -62,6 +99,34 @@ class modBlogCreateProcessor extends modResourceCreateProcessor {
         $this->object->set('blog_settings',$settings);
         return parent::beforeSave();
     }
+
+    public function afterSave() {
+        $this->addArchivistArchive();
+        return parent::afterSave();
+    }
+
+    public function addArchivistArchive() {
+        $saved = true;
+        /** @var modSystemSetting $setting */
+        $setting = $this->modx->getObject('modSystemSetting',array('key' => 'archivist.archive_ids'));
+        if (!$setting) {
+            $setting = $this->modx->newObject('modSystemSetting');
+            $setting->set('key','archivist.archive_ids');
+            $setting->set('namespace','archivist');
+            $setting->set('area','furls');
+            $setting->set('xtype','textfield');
+        }
+        $value = $setting->get('value');
+        $archiveKey = $this->object->get('id').':arc_';
+        $value = is_array($value) ? $value : explode(',',$value);
+        if (!in_array($archiveKey,$value)) {
+            $value[] = $archiveKey;
+            $value = array_unique($value);
+            $setting->set('value',implode(',',$value));
+            $saved = $setting->save();
+        }
+        return $saved;
+    }
 }
 
 /**
@@ -81,5 +146,33 @@ class modBlogUpdateProcessor extends modResourceUpdateProcessor {
         }
         $this->object->set('blog_settings',$settings);
         return parent::beforeSave();
+    }
+
+    public function afterSave() {
+        $this->addArchivistArchive();
+        return parent::afterSave();
+    }
+
+    public function addArchivistArchive() {
+        $saved = true;
+        /** @var modSystemSetting $setting */
+        $setting = $this->modx->getObject('modSystemSetting',array('key' => 'archivist.archive_ids'));
+        if (!$setting) {
+            $setting = $this->modx->newObject('modSystemSetting');
+            $setting->set('key','archivist.archive_ids');
+            $setting->set('namespace','archivist');
+            $setting->set('area','furls');
+            $setting->set('xtype','textfield');
+        }
+        $value = $setting->get('value');
+        $archiveKey = $this->object->get('id').':arc_';
+        $value = is_array($value) ? $value : explode(',',$value);
+        if (!in_array($archiveKey,$value)) {
+            $value[] = $archiveKey;
+            $value = array_unique($value);
+            $setting->set('value',implode(',',$value));
+            $saved = $setting->save();
+        }
+        return $saved;
     }
 }
