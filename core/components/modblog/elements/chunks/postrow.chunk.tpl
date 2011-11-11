@@ -1,6 +1,6 @@
 <div class="post">
     <h2 class="title"><a href="[[~[[+id]]]]">[[+pagetitle]]</a></h2>
-    <p class="post-info">[[%modblog.posted_by]] [[+createdby:userinfo=`username`]] [[+tv.modblogtags:notempty=` | <span class="tags">[[%modblog.tags]]: [[!tolinks? &items=`[[+tv.modblogtags]]` &key=`tag` &target=`[[*id]]`]]</span>`]]</p>
+    <p class="post-info">[[%modblog.posted_by]] [[+createdby:userinfo=`username`]] [[+tv.modblogtags:notempty=` | <span class="tags">[[%modblog.tags]]: [[!tolinks? &items=`[[+tv.modblogtags]]` &key=`tag` &tagKey=`modblogtags` &target=`[[*id]]`]]</span>`]]</p>
     <div class="entry">
 	    <p>[[+introtext:default=`[[+content:ellipsis=`400`]]`]]</p>
     </div>

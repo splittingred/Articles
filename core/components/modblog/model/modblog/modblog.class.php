@@ -51,6 +51,9 @@ class modBlog extends modResource {
           &limit=`10`
           &showHidden=`1`
           &includeContent=`1`
+          &includeTVs=`1`
+          &tagKey=`modblogtags`
+          &tagSearchType=`contains`
           &tpl=`'.$this->xpdo->getOption('tplPost',$settings,'modBlogPostRowTpl').'`
         ]';
         $this->xpdo->setPlaceholder('posts',' ['.$output.']');

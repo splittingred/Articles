@@ -39,11 +39,6 @@ modBlog.grid.BlogPosts = function(config) {
             ,sortable: false
             ,renderer: {fn:this._renderAuthor,scope:this}
         },{
-            header: _('modblog.categories')
-            ,dataIndex: 'categories'
-            ,width: 200
-            ,sortable: true
-        },{
             header: _('modblog.tags')
             ,dataIndex: 'tags'
             ,width: 200

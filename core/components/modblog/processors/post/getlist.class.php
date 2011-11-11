@@ -52,16 +52,20 @@ class modBlogPostGetListProcessor extends modObjectGetListProcessor {
         return $c;
     }
 
+    /**
+     * @param xPDOObject|modBlogPost $object
+     * @return array
+     */
     public function prepareRow(xPDOObject $object) {
         $resourceArray = parent::prepareRow($object);
+        $resourceArray['tags'] = $object->getTVValue('modblogtags');
+
         if (!empty($resourceArray['publishedon'])) {
             $resourceArray['publishedon'] = strftime('%b %d, %Y %H:%I %p',strtotime($resourceArray['publishedon']));
             $resourceArray['publishedon_date'] = strftime('%b %d',strtotime($resourceArray['publishedon']));
             $resourceArray['publishedon_time'] = strftime('%H:%I %p',strtotime($resourceArray['publishedon']));
         }
         $resourceArray['action_edit'] = '?a='.$this->editAction->get('id').'&action=post/update&id='.$resourceArray['id'];
-        $resourceArray['tags'] = 'blogs,fun,modx';
-        $resourceArray['categories'] = 'Technology';
 
         $resourceArray['actions'] = array();
         $resourceArray['actions'][] = array(

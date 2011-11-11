@@ -68,9 +68,21 @@ class BlogPostUpdateManagerController extends ResourceUpdateManagerController {
     public function process(array $scriptProperties = array()) {
         $placeholders = parent::process($scriptProperties);
         $this->resourceArray['richtext'] = 1;
-        $this->resourceArray['tags'] = 'blogs,fun,modx';
-        $this->resourceArray['categories'] = 'Technology';
+        //$this->resourceArray['categories'] = 'Technology';
+        $this->getTagsTV();
 
         return $placeholders;
+    }
+
+    public function getTagsTV() {
+        /** @var modTemplateVar $tv */
+        $tv = $this->modx->getObject('modTemplateVar',array(
+            'name' => 'modblogtags',
+        ));
+        if ($tv) {
+            $this->resourceArray['tags'] = $this->resource->getTVValue('modblogtags');
+            $this->resourceArray['tagsId'] = $tv->get('id');
+        }
+        return $tv;
     }
 }
