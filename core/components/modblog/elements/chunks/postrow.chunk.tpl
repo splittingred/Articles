@@ -7,7 +7,7 @@
     <p class="postmeta">
       <span class="links">
         <a href="[[~[[+id]]]]" class="readmore">[[%modblog.read_more]]</a>
-        | <a href="[[~[[+id]]]]#comments" class="comments">[[%modblog.comments]] ([[!QuipCount? &thread=`modblogpost-[[+id]]`]])</a>
+        | <a href="[[~[[+id]]]]#comments" class="comments">[[%modblog.comments]] ([[!QuipCount? &thread=`modblogpost-b[[+blog]]-[[+id]]`]])</a>
         | <span class="date">[[+publishedon:strtotime:date=`%b %d, %Y`]]</span>
       </span>
     </p>

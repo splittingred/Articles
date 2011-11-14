@@ -68,8 +68,12 @@ Ext.extend(modBlog.panel.Blog,MODx.panel.Resource,{
                 ,autoHeight: true
                 ,border: false
                 ,items: [{
-                    html: '<p>Comments grid goes here.</p>'
-                    ,border: false
+                    xtype: 'quip-grid-comments'
+                    ,cls: 'quip-thread-grid'
+                    ,family: 'b'+config.record.id
+                    ,preventRender: true
+                    ,width: '98%'
+                    ,bodyStyle: 'padding: 0'
                 }]
             }]
         });

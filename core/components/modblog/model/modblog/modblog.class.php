@@ -61,6 +61,14 @@ class modBlog extends modResource {
           &tpl=`'.$this->xpdo->getOption('tplPost',$settings,'modBlogPostRowTpl').'`
         ]]';
         $this->xpdo->setPlaceholder('posts',$output);
+
+        $this->xpdo->setPlaceholder('paging','[[!+page.nav:notempty=`
+<div class="paging">
+<ul class="pageList">
+  [[!+page.nav]]
+</ul>
+</div>
+`]]');
     }
 
     public function getArchives() {
@@ -107,6 +115,7 @@ class modBlogCreateProcessor extends modResourceCreateProcessor {
         $this->object->set('blog_settings',$settings);
 
         $this->object->set('cacheable',true);
+        $this->object->set('isfolder',true);
         return parent::beforeSave();
     }
 
@@ -164,6 +173,7 @@ class modBlogUpdateProcessor extends modResourceUpdateProcessor {
     public function afterSave() {
         $this->addArchivistArchive();
         $this->setProperty('clearCache',true);
+        $this->object->set('isfolder',true);
         return parent::afterSave();
     }
 
