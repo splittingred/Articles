@@ -120,19 +120,19 @@ class modBlogCreateProcessor extends modResourceCreateProcessor {
     }
 
     public function afterSave() {
-        $this->addArchivistArchive();
+        $this->addBlogId();
         $this->setProperty('clearCache',true);
         return parent::afterSave();
     }
 
-    public function addArchivistArchive() {
+    public function addBlogId() {
         $saved = true;
         /** @var modSystemSetting $setting */
-        $setting = $this->modx->getObject('modSystemSetting',array('key' => 'archivist.archive_ids'));
+        $setting = $this->modx->getObject('modSystemSetting',array('key' => 'modblog.blog_ids'));
         if (!$setting) {
             $setting = $this->modx->newObject('modSystemSetting');
-            $setting->set('key','archivist.archive_ids');
-            $setting->set('namespace','archivist');
+            $setting->set('key','modblog.blog_ids');
+            $setting->set('namespace','modblog');
             $setting->set('area','furls');
             $setting->set('xtype','textfield');
         }
@@ -180,11 +180,11 @@ class modBlogUpdateProcessor extends modResourceUpdateProcessor {
     public function addArchivistArchive() {
         $saved = true;
         /** @var modSystemSetting $setting */
-        $setting = $this->modx->getObject('modSystemSetting',array('key' => 'archivist.archive_ids'));
+        $setting = $this->modx->getObject('modSystemSetting',array('key' => 'modblog.blog_ids'));
         if (!$setting) {
             $setting = $this->modx->newObject('modSystemSetting');
-            $setting->set('key','archivist.archive_ids');
-            $setting->set('namespace','archivist');
+            $setting->set('key','modblog.blog_ids');
+            $setting->set('namespace','modblog');
             $setting->set('area','furls');
             $setting->set('xtype','textfield');
         }
