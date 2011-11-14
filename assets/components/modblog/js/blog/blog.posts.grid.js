@@ -132,7 +132,6 @@ Ext.extend(modBlog.grid.BlogPosts,MODx.grid.Grid,{
     }
 
 	,_renderPublished:function(v,md,rec) {
-	    console.log(rec.data);
 		return this.tplPublished.apply(rec.data);
 	}
 	,_renderPageTitle:function(v,md,rec) {

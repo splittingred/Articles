@@ -1,4 +1,7 @@
 <?php
+/**
+ * @var modX $modx
+ */
 require_once $modx->getOption('manager_path',null,MODX_MANAGER_PATH).'controllers/'.$modx->getOption('manager_theme',null,'default').'/resource/update.class.php';
 /**
  * @package modblog

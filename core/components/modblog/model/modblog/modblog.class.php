@@ -44,41 +44,44 @@ class modBlog extends modResource {
 
     public function getPosts() {
         $settings = $this->getBlogSettings();
-        
-        $output = '[getArchives?
+
+        $output = '[[!getPage?
+          &elementClass=`modSnippet`
+          &element=`getArchives`
+          &cache=`0`
+          &pageVarKey=`page`
           &parents=`[[*id]]`
           &where=`{"class_key":"modBlogPost"}`
-          &limit=`10`
+          &limit=`'.$this->xpdo->getOption('postsPerPage',$settings,10).'`
           &showHidden=`1`
           &includeContent=`1`
           &includeTVs=`1`
           &tagKey=`modblogtags`
           &tagSearchType=`contains`
           &tpl=`'.$this->xpdo->getOption('tplPost',$settings,'modBlogPostRowTpl').'`
-        ]';
-        $this->xpdo->setPlaceholder('posts',' ['.$output.']');
+        ]]';
+        $this->xpdo->setPlaceholder('posts',$output);
     }
 
     public function getArchives() {
-    /** @var modBlogPost $post */
         $settings = $this->getBlogSettings();
-        $tpl = $this->xpdo->getOption('tplArchiveMonth',$settings,'modBlogArchiveMonthTpl');
-        $output = '[[Archivist?
-            &tpl=`'.$tpl.'`
+        $output = '[[!Archivist?
+            &tpl=`'.$this->xpdo->getOption('tplArchiveMonth',$settings,'modBlogArchiveMonthTpl').'`
             &target=`'.$this->get('id').'`
             &parents=`'.$this->get('id').'`
             &depth=`4`
-            &limit=`10`
-            &useMonth=`1`
-            &useFurls=`1`
+            &limit=`'.$this->xpdo->getOption('archiveListingsLimit',$settings,10).'`
+            &useMonth=`'.$this->xpdo->getOption('archiveByMonth',$settings,1).'`
+            &useFurls=`'.$this->xpdo->getOption('archiveWithFurls',$settings,1).'`
         ]]';
         $this->xpdo->setPlaceholder('archives',$output);
     }
 
     public function getBlogSettings() {
-        $settings = $this->get('settings');
+        $settings = $this->get('blog_settings');
+        $this->xpdo->setDebug(false);
         if (!empty($settings)) {
-            $settings = $this->xpdo->fromJSON($settings);
+            $settings = is_array($settings) ? $settings : $this->xpdo->fromJSON($settings);
         }
         return !empty($settings) ? $settings : array();
     }
@@ -96,15 +99,20 @@ class modBlogCreateProcessor extends modResourceCreateProcessor {
         foreach ($properties as $k => $v) {
             if (substr($k,0,8) == 'setting_') {
                 $key = substr($k,8);
+                if ($v === 'false') $v = 0;
+                if ($v === 'true') $v = 1;
                 $settings[$key] = $v;
             }
         }
         $this->object->set('blog_settings',$settings);
+
+        $this->object->set('cacheable',true);
         return parent::beforeSave();
     }
 
     public function afterSave() {
         $this->addArchivistArchive();
+        $this->setProperty('clearCache',true);
         return parent::afterSave();
     }
 
@@ -144,6 +152,8 @@ class modBlogUpdateProcessor extends modResourceUpdateProcessor {
         foreach ($properties as $k => $v) {
             if (substr($k,0,8) == 'setting_') {
                 $key = substr($k,8);
+                if ($v === 'false') $v = 0;
+                if ($v === 'true') $v = 1;
                 $settings[$key] = $v;
             }
         }
@@ -153,6 +163,7 @@ class modBlogUpdateProcessor extends modResourceUpdateProcessor {
 
     public function afterSave() {
         $this->addArchivistArchive();
+        $this->setProperty('clearCache',true);
         return parent::afterSave();
     }
 

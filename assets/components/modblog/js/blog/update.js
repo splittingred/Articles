@@ -120,29 +120,96 @@ Ext.extend(modBlog.panel.Blog,MODx.panel.Resource,{
 
     ,getBlogSettings: function(config) {
         return [{
-            xtype: 'modx-combo-template'
-            ,name: 'setting_post_template'
-            ,hiddenName: 'setting_post_template'
-            ,id: 'modblog-setting-post-template'
-            ,fieldLabel: _('modblog.setting.post_template')
-            ,description: MODx.expandHelp ? '' : _('modblog.setting.post_template_desc')
-        },{
-            xtype: 'label'
-            ,forId: 'modblog-setting-post-template'
-            ,html: _('modblog.setting.post_template_desc')
-            ,cls: 'desc-under'
-        },{
-            xtype: 'textfield'
-            ,name: 'setting_tplPost'
-            ,hiddenName: 'setting_tplPost'
-            ,id: 'modblog-setting-tplPost'
-            ,fieldLabel: _('modblog.setting.tplPost')
-            ,description: MODx.expandHelp ? '' : _('modblog.setting.tplPost_desc')
-        },{
-            xtype: 'label'
-            ,forId: 'modblog-setting-tplPost'
-            ,html: _('modblog.setting.tplPost_desc')
-            ,cls: 'desc-under'
+            layout: 'column'
+            ,border: false
+            ,anchor: '100%'
+            ,defaults: {
+                layout: 'form'
+                ,labelAlign: 'top'
+                ,anchor: '100%'
+                ,border: false
+                ,labelSeparator: ''
+            }
+            ,items: [{
+                columnWidth: .5
+                ,items: [{
+                    xtype: 'modx-combo-template'
+                    ,name: 'setting_postTemplate'
+                    ,hiddenName: 'setting_postTemplate'
+                    ,id: 'modblog-setting-postTemplate'
+                    ,fieldLabel: _('modblog.setting.postTemplate')
+                    ,description: MODx.expandHelp ? '' : _('modblog.setting.postTemplate_desc')
+                    ,anchor: '100%'
+                },{
+                    xtype: 'label'
+                    ,forId: 'modblog-setting-postTemplate'
+                    ,html: _('modblog.setting.postTemplate_desc')
+                    ,cls: 'desc-under'
+
+                },{
+                    xtype: 'textfield'
+                    ,name: 'setting_tplPostRow'
+                    ,hiddenName: 'setting_tplPostRow'
+                    ,id: 'modblog-setting-tplPostRow'
+                    ,fieldLabel: _('modblog.setting.tplPostRow')
+                    ,description: MODx.expandHelp ? '' : _('modblog.setting.tplPostRow_desc')
+                    ,anchor: '100%'
+                },{
+                    xtype: 'label'
+                    ,forId: 'modblog-setting-tplPostRow'
+                    ,html: _('modblog.setting.tplPostRow_desc')
+                    ,cls: 'desc-under'
+
+                },{
+                    xtype: 'numberfield'
+                    ,name: 'setting_postsPerPage'
+                    ,hiddenName: 'setting_postsPerPage'
+                    ,id: 'modblog-setting-postsPerPage'
+                    ,fieldLabel: _('modblog.setting.postsPerPage')
+                    ,description: MODx.expandHelp ? '' : _('modblog.setting.postsPerPage_desc')
+                    ,allowNegative: false
+                    ,allowDecimals: false
+                    ,width: 120
+                },{
+                    xtype: 'label'
+                    ,forId: 'modblog-setting-postsPerPage'
+                    ,html: _('modblog.setting.postsPerPage_desc')
+                    ,cls: 'desc-under'
+
+                }]
+            },{
+                columnWidth: .5
+                ,items: [{
+                    xtype: 'combo-boolean'
+                    ,name: 'setting_archiveByMonth'
+                    ,hiddenName: 'setting_archiveByMonth'
+                    ,id: 'modblog-setting-archiveByMonth'
+                    ,fieldLabel: _('modblog.setting.archiveByMonth')
+                    ,description: MODx.expandHelp ? '' : _('modblog.setting.archiveByMonth_desc')
+                    ,width: 120
+                },{
+                    xtype: 'label'
+                    ,forId: 'modblog-setting-archiveByMonth'
+                    ,html: _('modblog.setting.archiveByMonth_desc')
+                    ,cls: 'desc-under'
+
+                },{
+                    xtype: 'numberfield'
+                    ,name: 'setting_archiveListingsLimit'
+                    ,hiddenName: 'archiveListingsLimit'
+                    ,id: 'modblog-setting-archiveListingsLimit'
+                    ,fieldLabel: _('modblog.setting.archiveListingsLimit')
+                    ,description: MODx.expandHelp ? '' : _('modblog.setting.archiveListingsLimit_desc')
+                    ,allowNegative: false
+                    ,allowDecimals: false
+                    ,width: 120
+                },{
+                    xtype: 'label'
+                    ,forId: 'modblog-setting-archiveListingsLimit'
+                    ,html: _('modblog.setting.archiveListingsLimit_desc')
+                    ,cls: 'desc-under'
+                }]
+            }]
         }];
     }
 
