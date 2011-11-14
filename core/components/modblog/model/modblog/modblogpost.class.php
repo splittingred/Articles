@@ -19,8 +19,42 @@ class modBlogPost extends modResource {
 
     public function getContent(array $options = array()) {
         $content = parent::getContent($options);
+        /*
+        if ($this->xpdo instanceof modX) {
+            $settings = $this->get('blog_settings');
+            $this->getCommentsCall($settings);
+            $this->getCommentsReplyCall($settings);
+        }*/
         return $content;
     }
+
+    /*
+     * Delayed for a future release...
+     * 
+    public function getCommentsCall(array $settings = array()) {
+        $call = '[[!Quip?
+  &thread=`modblogpost-b'.$this->get('blog').'-'.$this->get('id').'`
+  &replyResourceId=`19`
+  &closeAfter=`'.$this->xpdo->getOption('commentsCloseAfter',$settings,0).'`
+  &threaded=`'.$this->xpdo->getOption('commentsThreaded',$settings,1).'`
+  &maxDepth=`'.$this->xpdo->getOption('commentsMaxDepth',$settings,5).'`
+  &dateFormat=`'.$this->xpdo->getOption('commentsDateFormat',$settings,'%b %d, %Y at %I:%M %p').'`
+  &requireAuth=`'.$this->xpdo->getOption('commentsRequireAuth',$settings,0).'`
+  &useCss=`'.$this->xpdo->getOption('commentsUseCss',$settings,1).'`
+]]';
+        $this->xpdo->setPlaceholder('comments',$call);
+    }
+
+    public function getCommentsReplyCall(array $settings = array()) {
+        $call = '[[!QuipReply?
+   &thread=`modblogpost-b'.$this->get('blog').'-'.$this->get('id').'`
+   &recaptcha=`'.$this->xpdo->getOption('commentsReCaptcha',$settings,0).'`
+   &moderate=`'.$this->xpdo->getOption('commentsModerate',$settings,1).'`
+   &closeAfter=`'.$this->xpdo->getOption('commentsCloseAfter',$settings,0).'`
+]]';
+        $this->xpdo->setPlaceholder('comments_form',$call);
+    }
+    */
 }
 
 /**
@@ -43,6 +77,7 @@ class modBlogPostCreateProcessor extends modResourceCreateProcessor {
         $this->setProperty('isfolder',false);
         $this->setProperty('cacheable',true);
         $this->setProperty('clearCache',true);
+        $this->unsetProperty('blog_settings');
         return parent::beforeSet();
     }
     
@@ -53,13 +88,19 @@ class modBlogPostCreateProcessor extends modResourceCreateProcessor {
      * @return boolean
      */
     public function beforeSave() {
-        $afterSave = parent::beforeSave();
+        $beforeSave = parent::beforeSave();
         if ($this->object->get('published')) {
             if (!$this->setArchiveUri()) {
                 $this->modx->log(modX::LOG_LEVEL_ERROR,'Failed to set URI for new post.');
             }
         }
-        return $afterSave;
+        
+        /** @var modBlog $blog */
+        $blog = $this->modx->getObject('modBlog',$this->object->get('blog'));
+        if ($blog) {
+            $this->object->set('blog_settings',$blog->get('blog_settings'));
+        }
+        return $beforeSave;
     }
 
     public function setArchiveUri() {
@@ -100,6 +141,7 @@ class modBlogPostUpdateProcessor extends modResourceUpdateProcessor {
 
     public function beforeSet() {
         $this->setProperty('clearCache',true);
+        $this->unsetProperty('blog_settings');
         return parent::beforeSet();
     }
 
@@ -115,6 +157,12 @@ class modBlogPostUpdateProcessor extends modResourceUpdateProcessor {
             if (!$this->setArchiveUri()) {
                 $this->modx->log(modX::LOG_LEVEL_ERROR,'Failed to set date URI.');
             }
+        }
+
+        /** @var modBlog $blog */
+        $blog = $this->modx->getObject('modBlog',$this->object->get('blog'));
+        if ($blog) {
+            $this->object->set('blog_settings',$blog->get('blog_settings'));
         }
         return $afterSave;
     }

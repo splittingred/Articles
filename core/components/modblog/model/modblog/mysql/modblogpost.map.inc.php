@@ -7,6 +7,7 @@ $xpdo_meta_map['modBlogPost']= array (
   'fields' => 
   array (
     'blog' => 0,
+    'blog_settings' => NULL,
   ),
   'fieldMeta' => 
   array (
@@ -18,6 +19,12 @@ $xpdo_meta_map['modBlogPost']= array (
       'null' => false,
       'default' => 0,
       'index' => 'index',
+    ),
+    'blog_settings' => 
+    array (
+      'dbtype' => 'mediumtext',
+      'phptype' => 'json',
+      'null' => true,
     ),
   ),
   'indexes' => 

@@ -7,6 +7,7 @@
     </object>
     <object class="modBlogPost" extends="modResource">
         <field key="blog" dbtype="int" precision="10" phptype="integer" null="false" default="0" index="index" />
+        <field key="blog_settings" dbtype="mediumtext" phptype="json" null="true" /><!-- just a copy of the modBlog settings stuff; cached here for speed -->
 
         <index alias="blog" name="blog" primary="false" unique="false" type="BTREE">
             <column key="blog" length="" collation="A" null="false" />
