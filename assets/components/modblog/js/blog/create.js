@@ -423,8 +423,8 @@ Ext.extend(modBlog.panel.Blog,MODx.panel.Resource,{
             ,anchor: '100%'
             ,height: 250
             ,grow: false
-            ,value: (config.record.content || config.record.ta) || ''
             ,border: false
+            ,value: "[[+posts]]\n\n[[+paging]]"
         },{
             id: 'modx-content-below'
             ,border: false

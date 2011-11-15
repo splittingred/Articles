@@ -24,7 +24,7 @@
  */
 switch ($modx->event->name) {
     case 'OnManagerPageInit':
-        $cssFile = $modx->getOption('modblog.assets_url',$modx->getOption('assets_url').'components/modblog/').'css/mgr.css';
+        $cssFile = $modx->getOption('modblog.assets_url',null,$modx->getOption('assets_url').'components/modblog/').'css/mgr.css';
         $modx->regClientCSS($cssFile);
         break;
     case 'OnPageNotFound':
