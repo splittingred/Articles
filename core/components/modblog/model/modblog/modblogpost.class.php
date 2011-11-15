@@ -149,6 +149,55 @@ class modBlogPostCreateProcessor extends modResourceCreateProcessor {
         $this->object->set('uri_override',true);
         return $uri;
     }
+
+    public function afterSave() {
+        $this->saveTemplateVariables();
+        return parent::afterSave();
+    }
+    
+    /**
+     * Extend the saveTemplateVariables method and provide handling for the 'tags' type to store in a hidden TV
+     * @return array|mixed
+     */
+    public function saveTemplateVariables() {
+        $tags = $this->getProperty('tags',null);
+        if ($tags !== null) {
+            /** @var modTemplateVar $tv */
+            $tv = $this->modx->getObject('modTemplateVar',array(
+                'name' => 'modblogtags',
+            ));
+            if ($tv) {
+                $defaultValue = $tv->processBindings($tv->get('default_text'),$this->object->get('id'));
+                if (strcmp($tags,$defaultValue) != 0) {
+                    /* update the existing record */
+                    $tvc = $this->modx->getObject('modTemplateVarResource',array(
+                        'tmplvarid' => $tv->get('id'),
+                        'contentid' => $this->object->get('id'),
+                    ));
+                    if ($tvc == null) {
+                        /** @var modTemplateVarResource $tvc add a new record */
+                        $tvc = $this->modx->newObject('modTemplateVarResource');
+                        $tvc->set('tmplvarid',$tv->get('id'));
+                        $tvc->set('contentid',$this->object->get('id'));
+                    }
+                    $tvc->set('value',$tags);
+                    $tvc->save();
+
+                /* if equal to default value, erase TVR record */
+                } else {
+                    $tvc = $this->modx->getObject('modTemplateVarResource',array(
+                        'tmplvarid' => $tv->get('id'),
+                        'contentid' => $this->object->get('id'),
+                    ));
+                    if (!empty($tvc)) {
+                        $tvc->remove();
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
 }
 
 /**
