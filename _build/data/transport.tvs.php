@@ -34,7 +34,6 @@ $tvs[1]->fromArray(array(
     'description' => 'The default tags TV for modBlog. Do not delete!',
     'caption' => 'modblogtags',
     'type' => 'hidden',
-    ''
 ));
 
 return $tvs;
