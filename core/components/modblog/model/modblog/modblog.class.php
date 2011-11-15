@@ -26,6 +26,8 @@ require_once MODX_CORE_PATH.'model/modx/processors/resource/update.class.php';
  * @package modblog
  */
 class modBlog extends modResource {
+    /** @var modX $xpdo */
+    public $xpdo;
     /**
      * Override modResource::__construct to ensure a few specific fields are forced to be set.
      * @param xPDO $xpdo
@@ -78,13 +80,61 @@ class modBlog extends modResource {
      * @return string
      */
     public function process() {
-        $this->xpdo->lexicon->load('modblog:frontend');
-        $this->getPostListingCall();
-        $this->getArchivistCall();
-        $this->getTagListerCall();
-        return parent::process();
+        if ($this->isRss()) {
+            $this->set('template',0);
+            $this->set('contentType','application/rss+xml');
+            /** @var modContentType $contentType */
+            $contentType = $this->xpdo->getObject('modContentType',array('mime_type' => 'application/rss+xml'));
+            if ($contentType) {
+                $this->set('content_type',$contentType->get('id'));
+            }
+            $this->_content= $this->getRssCall();
+            $maxIterations= intval($this->xpdo->getOption('parser_max_iterations',10));
+            $this->xpdo->parser->processElementTags('', $this->_content, false, false, '[[', ']]', array(), $maxIterations);
+            $this->_processed= true;
+            $this->set('cacheable',false);
+        } else {
+            $this->xpdo->lexicon->load('modblog:frontend');
+            $this->getPostListingCall();
+            $this->getArchivistCall();
+            $this->getTagListerCall();
+            $this->_content = parent::process();
+        }
+        return $this->_content;
     }
 
+
+    public function isRss() {
+        $isRss = false;
+        $fullUri = $this->xpdo->context->getOption('base_url',null,MODX_BASE_URL).$this->get('uri');
+        if (strpos($_SERVER['REQUEST_URI'],$fullUri) === 0 && strlen($fullUri) != strlen($_SERVER['REQUEST_URI'])) {
+            $appendage = str_replace($fullUri,'',$_SERVER['REQUEST_URI']);
+            if ($appendage == 'rss' || $appendage == 'rss/' || $appendage == 'feed.rss') {
+                $isRss = true;
+            }
+        }
+        return $isRss;
+    }
+
+    public function getRssCall() {
+        $settings = $this->getBlogSettings();
+        $content = '[[!getResources?
+          &cache=`0`
+          &pageVarKey=`page`
+          &parents=`[[*id]]`
+          &where=`{"class_key":"modBlogPost","searchable":1}`
+          &limit=`'.$this->xpdo->getOption('postsPerPage',$settings,10).'`
+          &showHidden=`1`
+          &includeContent=`1`
+          &includeTVs=`1`
+          &tpl=`'.$this->xpdo->getOption('tplRssItem',$settings,'modBlogRssItem').'`
+        ]]';
+        $content = $this->xpdo->getChunk($this->xpdo->getOption('tplRssItem',$settings,'modBlogRss'),array(
+            'content' => $content,
+            'year' => date('Y'),
+        ));
+        return $content;
+    }
     /**
      * Get the getPage and getArchives call to display listings of posts on the blog.
      * @return void

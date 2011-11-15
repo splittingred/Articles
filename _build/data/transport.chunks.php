@@ -43,4 +43,20 @@ $chunks[2]->fromArray(array(
     'snippet' => file_get_contents($sources['chunks'].'modblogpostrow.chunk.tpl'),
 ));
 
+$chunks[3]= $modx->newObject('modChunk');
+$chunks[3]->fromArray(array(
+    'id' => 3,
+    'name' => 'modBlogRss',
+    'description' => 'The tpl for the RSS feed. Duplicate this to override it.',
+    'snippet' => file_get_contents($sources['chunks'].'modblogrss.chunk.tpl'),
+));
+
+$chunks[4]= $modx->newObject('modChunk');
+$chunks[4]->fromArray(array(
+    'id' => 4,
+    'name' => 'modBlogRssItem',
+    'description' => 'The tpl row for each RSS feed item. Duplicate this to override it.',
+    'snippet' => file_get_contents($sources['chunks'].'modblogrssitem.chunk.tpl'),
+));
+
 return $chunks;
