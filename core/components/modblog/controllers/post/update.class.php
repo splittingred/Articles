@@ -68,7 +68,6 @@ class BlogPostUpdateManagerController extends ResourceUpdateManagerController {
     public function process(array $scriptProperties = array()) {
         $placeholders = parent::process($scriptProperties);
         $this->resourceArray['richtext'] = 1;
-        //$this->resourceArray['categories'] = 'Technology';
         $this->getTagsTV();
 
         return $placeholders;

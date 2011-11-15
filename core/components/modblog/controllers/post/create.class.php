@@ -49,8 +49,6 @@ class BlogPostCreateManagerController extends ResourceCreateManagerController {
     public function process(array $scriptProperties = array()) {
         $placeholders = parent::process($scriptProperties);
         $this->resourceArray['richtext'] = 1;
-        $this->resourceArray['tags'] = 'blogs,fun,modx';
-        $this->resourceArray['categories'] = 'Technology';
 
         $this->getDefaultBlogSettings();
         return $placeholders;
