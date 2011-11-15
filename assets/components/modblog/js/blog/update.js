@@ -245,17 +245,17 @@ Ext.extend(modBlog.panel.Blog,MODx.panel.Resource,{
             ,items: [{
                 columnWidth: .5
                 ,items: [{
-                    xtype: 'combo-boolean'
-                    ,name: 'setting_archiveByMonth'
-                    ,hiddenName: 'setting_archiveByMonth'
-                    ,id: 'modblog-setting-archiveByMonth'
-                    ,fieldLabel: _('modblog.setting.archiveByMonth')
-                    ,description: MODx.expandHelp ? '' : _('modblog.setting.archiveByMonth_desc')
-                    ,width: 120
+                    xtype: 'textfield'
+                    ,name: 'setting_tplArchiveMonth'
+                    ,id: 'modblog-setting-tplArchiveMonth'
+                    ,fieldLabel: _('modblog.setting.tplArchiveMonth')
+                    ,description: MODx.expandHelp ? '' : _('modblog.setting.tplArchiveMonth_desc')
+                    ,anchor: '100%'
+                    ,value: 'row'
                 },{
                     xtype: MODx.expandHelp ? 'label' : 'hidden'
-                    ,forId: 'modblog-setting-archiveByMonth'
-                    ,html: _('modblog.setting.archiveByMonth_desc')
+                    ,forId: 'modblog-setting-tplArchiveMonth'
+                    ,html: _('modblog.setting.tplArchiveMonth_desc')
                     ,cls: 'desc-under'
 
                 },{
@@ -274,39 +274,20 @@ Ext.extend(modBlog.panel.Blog,MODx.panel.Resource,{
                     ,cls: 'desc-under'
 
                 },{
-                    xtype: 'numberfield'
-                    ,name: 'setting_tagsLimit'
-                    ,id: 'modblog-setting-tagsLimit'
-                    ,fieldLabel: _('modblog.setting.tagsLimit')
-                    ,description: MODx.expandHelp ? '' : _('modblog.setting.tagsLimit_desc')
-                    ,allowNegative: false
-                    ,allowDecimals: false
+                    xtype: 'combo-boolean'
+                    ,name: 'setting_archiveByMonth'
+                    ,hiddenName: 'setting_archiveByMonth'
+                    ,id: 'modblog-setting-archiveByMonth'
+                    ,fieldLabel: _('modblog.setting.archiveByMonth')
+                    ,description: MODx.expandHelp ? '' : _('modblog.setting.archiveByMonth_desc')
                     ,width: 120
-                    ,value: 10
                 },{
                     xtype: MODx.expandHelp ? 'label' : 'hidden'
-                    ,forId: 'modblog-setting-tagsLimit'
-                    ,html: _('modblog.setting.tagsLimit_desc')
+                    ,forId: 'modblog-setting-archiveByMonth'
+                    ,html: _('modblog.setting.archiveByMonth_desc')
                     ,cls: 'desc-under'
 
                 },{
-                    xtype: 'textfield'
-                    ,name: 'setting_tplTagRow'
-                    ,id: 'modblog-setting-tplTagRow'
-                    ,fieldLabel: _('modblog.setting.tplTagRow')
-                    ,description: MODx.expandHelp ? '' : _('modblog.setting.tplTagRow_desc')
-                    ,anchor: '100%'
-                    ,value: 'tag'
-                },{
-                    xtype: MODx.expandHelp ? 'label' : 'hidden'
-                    ,forId: 'modblog-setting-tplTagRow'
-                    ,html: _('modblog.setting.tplTagRow_desc')
-                    ,cls: 'desc-under'
-
-                }]
-            },{
-                columnWidth: .5
-                ,items: [{
                     xtype: 'textfield'
                     ,name: 'setting_archiveCls'
                     ,id: 'modblog-setting-archiveCls'
@@ -329,6 +310,39 @@ Ext.extend(modBlog.panel.Blog,MODx.panel.Resource,{
                     xtype: MODx.expandHelp ? 'label' : 'hidden'
                     ,forId: 'modblog-setting-archiveAltCls'
                     ,html: _('modblog.setting.archiveAltCls_desc')
+                    ,cls: 'desc-under'
+
+                }]
+            },{
+                columnWidth: .5
+                ,items: [{
+                    xtype: 'textfield'
+                    ,name: 'setting_tplTagRow'
+                    ,id: 'modblog-setting-tplTagRow'
+                    ,fieldLabel: _('modblog.setting.tplTagRow')
+                    ,description: MODx.expandHelp ? '' : _('modblog.setting.tplTagRow_desc')
+                    ,anchor: '100%'
+                    ,value: 'tag'
+                },{
+                    xtype: MODx.expandHelp ? 'label' : 'hidden'
+                    ,forId: 'modblog-setting-tplTagRow'
+                    ,html: _('modblog.setting.tplTagRow_desc')
+                    ,cls: 'desc-under'
+
+                },{
+                    xtype: 'numberfield'
+                    ,name: 'setting_tagsLimit'
+                    ,id: 'modblog-setting-tagsLimit'
+                    ,fieldLabel: _('modblog.setting.tagsLimit')
+                    ,description: MODx.expandHelp ? '' : _('modblog.setting.tagsLimit_desc')
+                    ,allowNegative: false
+                    ,allowDecimals: false
+                    ,width: 120
+                    ,value: 10
+                },{
+                    xtype: MODx.expandHelp ? 'label' : 'hidden'
+                    ,forId: 'modblog-setting-tagsLimit'
+                    ,html: _('modblog.setting.tagsLimit_desc')
                     ,cls: 'desc-under'
 
                 },{

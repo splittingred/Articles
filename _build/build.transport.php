@@ -35,17 +35,21 @@ define('PKG_RELEASE','beta1');
 $root = dirname(dirname(__FILE__)).'/';
 $sources = array(
     'root' => $root,
-    'build' => $root . '_build/',
-    'data' => $root . '_build/data/',
+    'root' => $root,
+    'build' => $root .'_build/',
     'resolvers' => $root . '_build/resolvers/',
-    'chunks' => $root.'core/components/'.PKG_NAME_LOWER.'/elements/chunks/',
-    'snippets' => $root.'core/components/'.PKG_NAME_LOWER.'/elements/snippets/',
+    'data' => $root . '_build/data/',
+    'events' => $root . '_build/data/events/',
+    'permissions' => $root . '_build/data/permissions/',
+    'properties' => $root . '_build/data/properties/',
+    'source_core' => $root.'core/components/'.PKG_NAME_LOWER,
+    'source_assets' => $root.'assets/components/'.PKG_NAME_LOWER,
     'plugins' => $root.'core/components/'.PKG_NAME_LOWER.'/elements/plugins/',
+    'snippets' => $root.'core/components/'.PKG_NAME_LOWER.'/elements/snippets/',
+    'chunks' => $root.'core/components/'.PKG_NAME_LOWER.'/elements/chunks/',
     'lexicon' => $root . 'core/components/'.PKG_NAME_LOWER.'/lexicon/',
     'docs' => $root.'core/components/'.PKG_NAME_LOWER.'/docs/',
-    'pages' => $root.'core/components/'.PKG_NAME_LOWER.'/elements/pages/',
-    'source_assets' => $root.'assets/components/'.PKG_NAME_LOWER,
-    'source_core' => $root.'core/components/'.PKG_NAME_LOWER,
+    'model' => $root.'core/components/'.PKG_NAME_LOWER.'/model/',
 );
 unset($root);
 
@@ -68,16 +72,94 @@ $modx->log(modX::LOG_LEVEL_INFO,'Created Transport Package and Namespace.');
 
 $modx->log(modX::LOG_LEVEL_INFO,'Adding file resolvers to category...');
 
+/* load system settings */
+$settings = include_once $sources['data'].'transport.settings.php';
+$attributes= array(
+    xPDOTransport::UNIQUE_KEY => 'key',
+    xPDOTransport::PRESERVE_KEYS => true,
+    xPDOTransport::UPDATE_OBJECT => false,
+);
+if (!is_array($settings)) { $modx->log(modX::LOG_LEVEL_FATAL,'Adding settings failed.'); }
+foreach ($settings as $setting) {
+    $vehicle = $builder->createVehicle($setting,$attributes);
+    $builder->putVehicle($vehicle);
+}
+$modx->log(modX::LOG_LEVEL_INFO,'Packaged in '.count($settings).' system settings.'); flush();
+unset($settings,$setting,$attributes);
 
-/** TODO FINISH THIS */
-$vehicle->resolve('file',array(
-    'source' => $sources['source_assets'],
-    'target' => "return MODX_ASSETS_PATH . 'components/';",
-));
+
+/* add plugins */
+$plugins = include $sources['data'].'transport.plugins.php';
+if (!is_array($plugins)) { $modx->log(modX::LOG_LEVEL_FATAL,'Adding plugins failed.'); }
+$attributes= array(
+    xPDOTransport::UNIQUE_KEY => 'name',
+    xPDOTransport::PRESERVE_KEYS => false,
+    xPDOTransport::UPDATE_OBJECT => true,
+    xPDOTransport::RELATED_OBJECTS => true,
+    xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
+        'PluginEvents' => array(
+            xPDOTransport::PRESERVE_KEYS => true,
+            xPDOTransport::UPDATE_OBJECT => false,
+            xPDOTransport::UNIQUE_KEY => array('pluginid','event'),
+        ),
+    ),
+);
+foreach ($plugins as $plugin) {
+    $vehicle = $builder->createVehicle($plugin, $attributes);
+    $builder->putVehicle($vehicle);
+}
+$modx->log(modX::LOG_LEVEL_INFO,'Packaged in '.count($plugins).' plugins.'); flush();
+unset($plugins,$plugin,$attributes);
+
+/* @var modCategory $category */
+$category= $modx->newObject('modCategory');
+$category->set('id',1);
+$category->set('category',PKG_NAME);
+$modx->log(modX::LOG_LEVEL_INFO,'Packaged in category.'); flush();
+
+/* add chunks */
+$chunks = include $sources['data'].'transport.chunks.php';
+if (is_array($chunks)) {
+    $category->addMany($chunks,'Chunks');
+} else { $modx->log(modX::LOG_LEVEL_FATAL,'Adding chunks failed.'); }
+$modx->log(modX::LOG_LEVEL_INFO,'Packaged in '.count($chunks).' chunks.'); flush();
+unset($chunks);
+
+/* create category vehicle */
+$attr = array(
+    xPDOTransport::UNIQUE_KEY => 'category',
+    xPDOTransport::PRESERVE_KEYS => false,
+    xPDOTransport::UPDATE_OBJECT => true,
+    xPDOTransport::RELATED_OBJECTS => true,
+    xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
+        'Chunks' => array(
+            xPDOTransport::PRESERVE_KEYS => false,
+            xPDOTransport::UPDATE_OBJECT => true,
+            xPDOTransport::UNIQUE_KEY => 'name',
+        ),
+        'Snippets' => array(
+            xPDOTransport::PRESERVE_KEYS => false,
+            xPDOTransport::UPDATE_OBJECT => true,
+            xPDOTransport::UNIQUE_KEY => 'name',
+        ),
+    )
+);
+$vehicle = $builder->createVehicle($category,$attr);
 $vehicle->resolve('file',array(
     'source' => $sources['source_core'],
     'target' => "return MODX_CORE_PATH . 'components/';",
 ));
+$vehicle->resolve('file',array(
+    'source' => $sources['source_assets'],
+    'target' => "return MODX_ASSETS_PATH . 'components/';",
+));
+$vehicle->resolve('php',array(
+    'source' => $sources['resolvers'] . 'extpack.resolver.php',
+));
+//$vehicle->resolve('php',array(
+//    'source' => $sources['resolvers'] . 'setupoptions.resolver.php',
+//));
+$modx->log(modX::LOG_LEVEL_INFO,'Packaged in resolvers.'); flush();
 $builder->putVehicle($vehicle);
 
 /* now pack in the license file, readme and setup options */

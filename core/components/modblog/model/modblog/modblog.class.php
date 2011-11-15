@@ -125,7 +125,7 @@ class modBlog extends modResource {
     public function getArchivistCall() {
         $settings = $this->getBlogSettings();
         $output = '[[!Archivist?
-            &tpl=`'.$this->xpdo->getOption('tplArchiveMonth',$settings,'modBlogArchiveMonthTpl').'`
+            &tpl=`'.$this->xpdo->getOption('tplArchiveMonth',$settings,'row').'`
             &target=`'.$this->get('id').'`
             &parents=`'.$this->get('id').'`
             &depth=`4`
