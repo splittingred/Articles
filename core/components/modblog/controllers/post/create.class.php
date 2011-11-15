@@ -81,7 +81,7 @@ class BlogPostCreateManagerController extends ResourceCreateManagerController {
         ));
         if ($blog) {
             $settings = $blog->get('blog_settings');
-            $this->resourceArray['template'] = $this->modx->getOption('post_template',$settings,0);
+            $this->resourceArray['template'] = $this->modx->getOption('postTemplate',$settings,0);
         }
     }
 }

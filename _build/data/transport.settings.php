@@ -33,6 +33,22 @@ $settings['modblog.blog_ids']->fromArray(array(
     'namespace' => 'modblog',
     'area' => 'furls',
 ),'',true,true);
+$settings['modblog.default_blog_template']= $modx->newObject('modSystemSetting');
+$settings['modblog.default_blog_template']->fromArray(array(
+    'key' => 'modblog.default_blog_template',
+    'value' => 0,
+    'xtype' => 'textfield',
+    'namespace' => 'modblog',
+    'area' => 'site',
+),'',true,true);
+$settings['modblog.default_blog_post_template']= $modx->newObject('modSystemSetting');
+$settings['modblog.default_blog_post_template']->fromArray(array(
+    'key' => 'modblog.default_blog_post_template',
+    'value' => 0,
+    'xtype' => 'textfield',
+    'namespace' => 'modblog',
+    'area' => 'site',
+),'',true,true);
 
 
 return $settings;

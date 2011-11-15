@@ -26,6 +26,7 @@ require_once $modx->getOption('manager_path',null,MODX_MANAGER_PATH).'controller
 class BlogCreateManagerController extends ResourceCreateManagerController {
 
     public function loadCustomCssJs() {
+        $this->prepareResource();
         $managerUrl = $this->context->getOption('manager_url', MODX_MANAGER_URL, $this->modx->_userConfig);
         $blogAssetsUrl = $this->modx->getOption('modblog.assets_url',null,$this->modx->getOption('assets_url',null,MODX_ASSETS_URL).'components/modblog/');
         $connectorUrl = $blogAssetsUrl.'connector.php';
@@ -80,8 +81,39 @@ class BlogCreateManagerController extends ResourceCreateManagerController {
      */
     public function prepareResource() {
         $settings = $this->resource->get('blog_settings');
+        if (empty($settings)) $settings = array();
+        
+        $defaultBlogTemplate = $this->modx->getOption('modblog.default_blog_template',$settings,false);
+        if (empty($defaultBlogTemplate)) {
+            /** @var modTemplate $template */
+            $template = $this->modx->getObject('modTemplate',array('templatename' => 'modBlogTemplate'));
+            if ($template) {
+                $defaultBlogTemplate = $template->get('id');
+            }
+        }
+        $this->resourceArray['template'] = $defaultBlogTemplate;
+
+        $defaultBlogPostTemplate = $this->modx->getOption('modblog.default_blog_post_template',$settings,false);
+        if (empty($defaultBlogPostTemplate)) {
+            /** @var modTemplate $template */
+            $template = $this->modx->getObject('modTemplate',array('templatename' => 'modBlogPostTemplate'));
+            if ($template) {
+                $defaultBlogPostTemplate = $template->get('id');
+            }
+        }
+        $this->resourceArray['setting_postTemplate'] = $defaultBlogPostTemplate;
+
         foreach ($settings as $k => $v) {
             $this->resourceArray['setting_'.$k] = $v;
         }
+
+    }
+    /**
+     * Return the pagetitle
+     *
+     * @return string
+     */
+    public function getPageTitle() {
+        return $this->modx->lexicon('modblog.blog_new');
     }
 }

@@ -87,3 +87,13 @@ $_lang['modblog.setting.tagAltCls'] = 'Tag Alternate CSS Class';
 $_lang['modblog.setting.tagAltCls_desc'] = 'A CSS class to apply to each alternate row for each tag listing.';
 $_lang['modblog.setting.'] = '';
 $_lang['modblog.setting._desc'] = '';
+
+
+$_lang['setting_modblog.default_blog_template'] = 'Default Blog Template';
+$_lang['setting_modblog.default_blog_template_desc'] = 'The default Template to use when creating a new Blog.';
+
+$_lang['setting_modblog.default_blog_post_template'] = 'Default Blog Post Template';
+$_lang['setting_modblog.default_blog_post_template_desc'] = 'The default Template to use when creating a new Blog Post when there is none specified on the Blog itself.';
+
+$_lang['setting_modblog.blog_ids'] = 'Blog FURL IDs';
+$_lang['setting_modblog.blog_ids_desc'] = 'A comma-separated list of blog IDs in use for FURL routing. Best to leave this alone.';

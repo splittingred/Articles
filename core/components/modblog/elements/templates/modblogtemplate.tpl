@@ -4,7 +4,7 @@
 <title>modBlog - [[*pagetitle]]</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<link rel="stylesheet" type="text/css" href="[[++modblog.assets_url:default=`assets/components/modblog/`]]themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="[[++modblog.assets_url:default=`[[++base_url]]assets/components/modblog/`]]themes/default/style.css" />
 <base href="[[++site_url]]" />
 </head>
 <body>
