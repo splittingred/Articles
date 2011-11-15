@@ -97,6 +97,7 @@ class modBlogPostCreateProcessor extends modResourceCreateProcessor {
         $this->setProperty('isfolder',false);
         $this->setProperty('cacheable',true);
         $this->setProperty('clearCache',true);
+        $this->setProperty('class_key','modBlogPost');
         $this->unsetProperty('blog_settings');
         return parent::beforeSet();
     }

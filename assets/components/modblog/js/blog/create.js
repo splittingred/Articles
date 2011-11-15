@@ -1,5 +1,5 @@
 
-modBlog.page.UpdateBlog = function(config) {
+modBlog.page.CreateBlog = function(config) {
     config = config || {record:{}};
     config.record = config.record || {};
     Ext.applyIf(config,{
@@ -7,12 +7,12 @@ modBlog.page.UpdateBlog = function(config) {
     });
     config.canDuplicate = false;
     config.canDelete = false;
-    modBlog.page.UpdateBlog.superclass.constructor.call(this,config);
+    modBlog.page.CreateBlog.superclass.constructor.call(this,config);
 };
-Ext.extend(modBlog.page.UpdateBlog,MODx.page.UpdateResource,{
+Ext.extend(modBlog.page.CreateBlog,MODx.page.CreateResource,{
 
 });
-Ext.reg('modblog-page-blog-update',modBlog.page.UpdateBlog);
+Ext.reg('modblog-page-blog-create',modBlog.page.CreateBlog);
 
 
 
@@ -71,28 +71,6 @@ Ext.extend(modBlog.panel.Blog,MODx.panel.Resource,{
             }
             ,items: this.getBlogSettings(config)
         });
-        it.push({
-            title: _('modblog.comments')
-            ,autoHeight: true
-            ,items: [{
-                html: _('modblog.comments.intro_msg')
-                ,border: false
-                ,bodyCssClass: 'panel-desc'
-            },{
-                xtype: 'panel'
-                ,bodyCssClass: 'main-wrapper'
-                ,autoHeight: true
-                ,border: false
-                ,items: [{
-                    xtype: 'quip-grid-comments'
-                    ,cls: 'quip-thread-grid'
-                    ,family: 'b'+config.record.id
-                    ,preventRender: true
-                    ,width: '98%'
-                    ,bodyStyle: 'padding: 0'
-                }]
-            }]
-        });
         if (config.show_tvs && MODx.config.tvs_below_content != 1) {
             it.push(this.getTemplateVariablesPanel(config));
         }
@@ -109,20 +87,6 @@ Ext.extend(modBlog.panel.Blog,MODx.panel.Resource,{
             ,itemId: 'tabs'
             ,items: it
         });
-        var ct = this.getPosts(config);
-        if (ct) {
-            its.push({
-                title: _('modblog.posts')
-                ,id: 'modx-blog-posts'
-                ,layout: 'form'
-                ,bodyCssClass: 'main-wrapper'
-                ,autoHeight: true
-                ,collapsible: true
-                ,hideMode: 'offsets'
-                ,items: ct
-                ,style: 'margin-top: 10px'
-            });
-        }
         if (MODx.config.tvs_below_content == 1) {
             var tvs = this.getTemplateVariablesPanel(config);
             tvs.style = 'margin-top: 10px';
@@ -130,13 +94,18 @@ Ext.extend(modBlog.panel.Blog,MODx.panel.Resource,{
         }
         return its;
     }
-    ,getPosts: function(config) {
-        return [{
-            xtype: 'modblog-grid-blog-posts'
-            ,resource: config.resource
+    ,getPageHeader: function(config) {
+        config = config || {record:{}};
+        return {
+            html: '<h2>'+_('modblog.blog_new')+'</h2>'
+            ,id: 'modx-resource-header'
+            ,cls: 'modx-page-header'
             ,border: false
-        }];
+            ,forceLayout: true
+            ,anchor: '100%'
+        };
     }
+
 
     ,getTemplateSettings: function(config) {
         var flds = [];
@@ -434,6 +403,11 @@ Ext.extend(modBlog.panel.Blog,MODx.panel.Resource,{
             ,html: _('modblog.blog_description_desc')
             ,cls: 'desc-under'
 
+        },{
+            xtype: 'hidden'
+            ,name: 'class_key'
+            ,id: 'modx-resource-class-key'
+            ,value: 'modBlog'
         }];
     }
 

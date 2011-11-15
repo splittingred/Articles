@@ -20,6 +20,7 @@ modBlog.grid.BlogPosts = function(config) {
         ,remoteSort: true
         ,cls: 'mblog-grid'
         ,sm: this.sm
+        ,emptyText: _('modblog.posts_none')
         ,columns: [this.sm,{
             header: _('modblog.publishedon')
             ,dataIndex: 'publishedon'

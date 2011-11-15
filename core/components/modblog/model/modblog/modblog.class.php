@@ -199,6 +199,7 @@ class modBlogCreateProcessor extends modResourceCreateProcessor {
         }
         $this->object->set('blog_settings',$settings);
 
+        $this->object->set('class_key','modBlog');
         $this->object->set('cacheable',true);
         $this->object->set('isfolder',true);
         return parent::beforeSave();
