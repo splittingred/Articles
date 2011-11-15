@@ -81,6 +81,9 @@ class modBlog extends modResource {
             &limit=`'.$this->xpdo->getOption('archiveListingsLimit',$settings,10).'`
             &useMonth=`'.$this->xpdo->getOption('archiveByMonth',$settings,1).'`
             &useFurls=`'.$this->xpdo->getOption('archiveWithFurls',$settings,1).'`
+            &cls=`'.$this->xpdo->getOption('archiveCls',$settings,'').'`
+            &altCls=`'.$this->xpdo->getOption('archiveAltCls',$settings,'').'`
+            &setLocale=`1`
         ]]';
         $this->xpdo->setPlaceholder('archives',$output);
     }
