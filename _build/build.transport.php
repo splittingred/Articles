@@ -90,6 +90,11 @@ foreach ($settings as $setting) {
 $modx->log(modX::LOG_LEVEL_INFO,'Packaged in '.count($settings).' system settings.'); flush();
 unset($settings,$setting,$attributes);
 
+/* add subpackages */
+$success = include $sources['data'].'transport.subpackages.php';
+if (!$success) { $modx->log(modX::LOG_LEVEL_FATAL,'Adding subpackages failed.'); }
+$modx->log(modX::LOG_LEVEL_INFO,'Added in subpackages.'); flush();
+unset($success);
 
 /* add plugins */
 $plugins = include $sources['data'].'transport.plugins.php';
