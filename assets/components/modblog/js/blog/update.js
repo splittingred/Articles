@@ -272,6 +272,37 @@ Ext.extend(modBlog.panel.Blog,MODx.panel.Resource,{
                     ,forId: 'modblog-setting-archiveListingsLimit'
                     ,html: _('modblog.setting.archiveListingsLimit_desc')
                     ,cls: 'desc-under'
+
+                },{
+                    xtype: 'numberfield'
+                    ,name: 'setting_tagsLimit'
+                    ,id: 'modblog-setting-tagsLimit'
+                    ,fieldLabel: _('modblog.setting.tagsLimit')
+                    ,description: MODx.expandHelp ? '' : _('modblog.setting.tagsLimit_desc')
+                    ,allowNegative: false
+                    ,allowDecimals: false
+                    ,width: 120
+                    ,value: 10
+                },{
+                    xtype: MODx.expandHelp ? 'label' : 'hidden'
+                    ,forId: 'modblog-setting-tagsLimit'
+                    ,html: _('modblog.setting.tagsLimit_desc')
+                    ,cls: 'desc-under'
+
+                },{
+                    xtype: 'textfield'
+                    ,name: 'setting_tplTagRow'
+                    ,id: 'modblog-setting-tplTagRow'
+                    ,fieldLabel: _('modblog.setting.tplTagRow')
+                    ,description: MODx.expandHelp ? '' : _('modblog.setting.tplTagRow_desc')
+                    ,anchor: '100%'
+                    ,value: 'tag'
+                },{
+                    xtype: MODx.expandHelp ? 'label' : 'hidden'
+                    ,forId: 'modblog-setting-tplTagRow'
+                    ,html: _('modblog.setting.tplTagRow_desc')
+                    ,cls: 'desc-under'
+
                 }]
             },{
                 columnWidth: .5
@@ -299,6 +330,35 @@ Ext.extend(modBlog.panel.Blog,MODx.panel.Resource,{
                     ,forId: 'modblog-setting-archiveAltCls'
                     ,html: _('modblog.setting.archiveAltCls_desc')
                     ,cls: 'desc-under'
+
+                },{
+                    xtype: 'textfield'
+                    ,name: 'setting_tagCls'
+                    ,id: 'modblog-setting-tagCls'
+                    ,fieldLabel: _('modblog.setting.tagCls')
+                    ,description: MODx.expandHelp ? '' : _('modblog.setting.tagCls_desc')
+                    ,anchor: '100%'
+                    ,value: 'tl-tag'
+                },{
+                    xtype: MODx.expandHelp ? 'label' : 'hidden'
+                    ,forId: 'modblog-setting-tagCls'
+                    ,html: _('modblog.setting.tagCls_desc')
+                    ,cls: 'desc-under'
+
+                },{
+                    xtype: 'textfield'
+                    ,name: 'setting_tagAltCls'
+                    ,id: 'modblog-setting-tagAltCls'
+                    ,fieldLabel: _('modblog.setting.tagAltCls')
+                    ,description: MODx.expandHelp ? '' : _('modblog.setting.tagAltCls_desc')
+                    ,anchor: '100%'
+                    ,value: 'tl-tag-alt'
+                },{
+                    xtype: MODx.expandHelp ? 'label' : 'hidden'
+                    ,forId: 'modblog-setting-tagAltCls'
+                    ,html: _('modblog.setting.tagAltCls_desc')
+                    ,cls: 'desc-under'
+
                 }]
             }]
         }];

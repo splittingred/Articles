@@ -34,6 +34,7 @@ class modBlog extends modResource {
         $this->xpdo->lexicon->load('modblog:frontend');
         $this->getPosts();
         $this->getArchives();
+        $this->getTagListerCall();
         return parent::process();
     }
     public function getContent(array $options = array()) {
@@ -86,6 +87,22 @@ class modBlog extends modResource {
             &setLocale=`1`
         ]]';
         $this->xpdo->setPlaceholder('archives',$output);
+    }
+
+    public function getTagListerCall() {
+        $settings = $this->getBlogSettings();
+        $output = '[[!tagLister?
+            &tpl=`'.$this->xpdo->getOption('tplTagRow',$settings,'tag').'`
+            &tv=`modblogtags`
+            &parents=`'.$this->get('id').'`
+            &tvDelimiter=`,`
+            &limit=`'.$this->xpdo->getOption('tagsLimit',$settings,10).'`
+            &cls=`'.$this->xpdo->getOption('tagsCls',$settings,'tl-tag').'`
+            &altCls=`'.$this->xpdo->getOption('tagsAltCls',$settings,'tl-tag-alt').'`
+            &target=`'.$this->get('id').'`
+        ]]';
+        $this->xpdo->setPlaceholder('tags',$output);
+        return $output;
     }
 
     public function getBlogSettings() {
