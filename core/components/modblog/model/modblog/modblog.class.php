@@ -1,11 +1,35 @@
 <?php
+/**
+ * modBlog
+ *
+ * Copyright 2011-12 by Shaun McCormick <shaun+xvc@modx.com>
+ *
+ * modBlog is free software; you can redistribute it and/or modify it under the
+ * terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later
+ * version.
+ *
+ * modBlog is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * modBlog; if not, write to the Free Software Foundation, Inc., 59 Temple
+ * Place, Suite 330, Boston, MA 02111-1307 USA
+ *
+ * @package modblog
+ */
 require_once MODX_CORE_PATH.'model/modx/modprocessor.class.php';
 require_once MODX_CORE_PATH.'model/modx/processors/resource/create.class.php';
 require_once MODX_CORE_PATH.'model/modx/processors/resource/update.class.php';
 /**
- * @package modBlog
+ * @package modblog
  */
 class modBlog extends modResource {
+    /**
+     * Override modResource::__construct to ensure a few specific fields are forced to be set.
+     * @param xPDO $xpdo
+     */
     function __construct(& $xpdo) {
         parent :: __construct($xpdo);
         $this->set('class_key','modBlog');
@@ -13,10 +37,23 @@ class modBlog extends modResource {
         $this->showInContextMenu = true;
     }
 
+    /**
+     * Get the controller path for our modBlog type.
+     * 
+     * {@inheritDoc}
+     * @static
+     * @param xPDO $modx
+     * @return string
+     */
     public static function getControllerPath(xPDO &$modx) {
         return $modx->getOption('modblog.core_path',null,$modx->getOption('core_path').'components/modblog/').'controllers/blog/';
     }
 
+    /**
+     * Provide the custom context menu for modBlog.
+     * {@inheritDoc}
+     * @return array
+     */
     public function getContextMenuText() {
         $this->xpdo->lexicon->load('modblog:default');
         return array(
@@ -25,25 +62,34 @@ class modBlog extends modResource {
         );
     }
 
+    /**
+     * Provide the name of this CRT.
+     * {@inheritDoc}
+     * @return string
+     */
     public function getResourceTypeName() {
         $this->xpdo->lexicon->load('modblog:default');
         return $this->xpdo->lexicon('modblog.blog');
     }
 
+    /**
+     * Override modResource::process to set some custom placeholders for the Resource when rendering it in the front-end.
+     * {@inheritDoc}
+     * @return string
+     */
     public function process() {
         $this->xpdo->lexicon->load('modblog:frontend');
-        $this->getPosts();
-        $this->getArchives();
+        $this->getPostListingCall();
+        $this->getArchivistCall();
         $this->getTagListerCall();
         return parent::process();
     }
-    public function getContent(array $options = array()) {
-        $content = parent::getContent($options);
 
-        return $content;
-    }
-
-    public function getPosts() {
+    /**
+     * Get the getPage and getArchives call to display listings of posts on the blog.
+     * @return void
+     */
+    public function getPostListingCall() {
         $settings = $this->getBlogSettings();
 
         $output = '[[!getPage?
@@ -72,7 +118,11 @@ class modBlog extends modResource {
 `]]');
     }
 
-    public function getArchives() {
+    /**
+     * Get the Archivist call for displaying archives in month/year format on the blog.
+     * @return void
+     */
+    public function getArchivistCall() {
         $settings = $this->getBlogSettings();
         $output = '[[!Archivist?
             &tpl=`'.$this->xpdo->getOption('tplArchiveMonth',$settings,'modBlogArchiveMonthTpl').'`
@@ -89,6 +139,10 @@ class modBlog extends modResource {
         $this->xpdo->setPlaceholder('archives',$output);
     }
 
+    /**
+     * Get the tagLister call for displaying tag listings on the front-end.
+     * @return string
+     */
     public function getTagListerCall() {
         $settings = $this->getBlogSettings();
         $output = '[[!tagLister?
@@ -105,6 +159,10 @@ class modBlog extends modResource {
         return $output;
     }
 
+    /**
+     * Get an array of settings for the blog.
+     * @return array
+     */
     public function getBlogSettings() {
         $settings = $this->get('blog_settings');
         $this->xpdo->setDebug(false);
@@ -121,6 +179,12 @@ class modBlog extends modResource {
  * @package modblog
  */
 class modBlogCreateProcessor extends modResourceCreateProcessor {
+    /**
+     * Override modResourceCreateProcessor::afterSave to provide custom functionality, saving the blog settings to a
+     * custom field in the manager
+     * {@inheritDoc}
+     * @return boolean
+     */
     public function beforeSave() {
         $properties = $this->getProperties();
         $settings = $this->object->get('blog_settings');
@@ -139,12 +203,21 @@ class modBlogCreateProcessor extends modResourceCreateProcessor {
         return parent::beforeSave();
     }
 
+    /**
+     * Override modResourceCreateProcessor::afterSave to provide custom functionality
+     * {@inheritDoc}
+     * @return boolean
+     */
     public function afterSave() {
         $this->addBlogId();
         $this->setProperty('clearCache',true);
         return parent::afterSave();
     }
 
+    /**
+     * Add the Blog ID to the modblog system setting for managing blog IDs for FURL redirection.
+     * @return boolean
+     */
     public function addBlogId() {
         $saved = true;
         /** @var modSystemSetting $setting */
@@ -175,6 +248,12 @@ class modBlogCreateProcessor extends modResourceCreateProcessor {
  * @package modblog
  */
 class modBlogUpdateProcessor extends modResourceUpdateProcessor {
+    /**
+     * Override modResourceUpdateProcessor::beforeSave to provide custom functionality, saving settings for the blog
+     * to a custom field in the DB
+     * {@inheritDoc}
+     * @return boolean
+     */
     public function beforeSave() {
         $properties = $this->getProperties();
         $settings = $this->object->get('blog_settings');
@@ -190,14 +269,23 @@ class modBlogUpdateProcessor extends modResourceUpdateProcessor {
         return parent::beforeSave();
     }
 
+    /**
+     * Override modResourceUpdateProcessor::afterSave to provide custom functionality
+     * {@inheritDoc}
+     * @return boolean
+     */
     public function afterSave() {
-        $this->addArchivistArchive();
+        $this->addBlogId();
         $this->setProperty('clearCache',true);
         $this->object->set('isfolder',true);
         return parent::afterSave();
     }
 
-    public function addArchivistArchive() {
+    /**
+     * Add the Blog ID to the modblog system setting for managing blog IDs for FURL redirection.
+     * @return boolean
+     */
+    public function addBlogId() {
         $saved = true;
         /** @var modSystemSetting $setting */
         $setting = $this->modx->getObject('modSystemSetting',array('key' => 'modblog.blog_ids'));

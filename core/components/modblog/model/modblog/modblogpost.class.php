@@ -103,6 +103,10 @@ class modBlogPostCreateProcessor extends modResourceCreateProcessor {
         return $beforeSave;
     }
 
+    /**
+     * Set the friendly URL archive by forcing it into the URI.
+     * @return bool|string
+     */
     public function setArchiveUri() {
         if (!$this->parentResource) {
             $this->parentResource = $this->object->getOne('Parent');
@@ -167,6 +171,10 @@ class modBlogPostUpdateProcessor extends modResourceUpdateProcessor {
         return $afterSave;
     }
 
+    /**
+     * Extend the saveTemplateVariables method and provide handling for the 'tags' type to store in a hidden TV
+     * @return array|mixed
+     */
     public function saveTemplateVariables() {
         $saved = parent::saveTemplateVariables();
         $tags = $this->getProperty('tags',null);
@@ -208,6 +216,10 @@ class modBlogPostUpdateProcessor extends modResourceUpdateProcessor {
     }
 
 
+    /**
+     * Set the friendly URL archive by forcing it into the URI.
+     * @return bool|string
+     */
     public function setArchiveUri() {
         if (!$this->parentResource) {
             $this->parentResource = $this->object->getOne('Parent');
