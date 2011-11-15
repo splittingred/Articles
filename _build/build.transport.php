@@ -47,6 +47,7 @@ $sources = array(
     'plugins' => $root.'core/components/'.PKG_NAME_LOWER.'/elements/plugins/',
     'snippets' => $root.'core/components/'.PKG_NAME_LOWER.'/elements/snippets/',
     'chunks' => $root.'core/components/'.PKG_NAME_LOWER.'/elements/chunks/',
+    'templates' => $root.'core/components/'.PKG_NAME_LOWER.'/elements/templates/',
     'lexicon' => $root . 'core/components/'.PKG_NAME_LOWER.'/lexicon/',
     'docs' => $root.'core/components/'.PKG_NAME_LOWER.'/docs/',
     'model' => $root.'core/components/'.PKG_NAME_LOWER.'/model/',
@@ -125,6 +126,22 @@ if (is_array($chunks)) {
 $modx->log(modX::LOG_LEVEL_INFO,'Packaged in '.count($chunks).' chunks.'); flush();
 unset($chunks);
 
+/* add templates */
+$templates = include $sources['data'].'transport.templates.php';
+if (is_array($templates)) {
+    $category->addMany($templates,'Templates');
+} else { $modx->log(modX::LOG_LEVEL_FATAL,'Adding Templates failed.'); }
+$modx->log(modX::LOG_LEVEL_INFO,'Packaged in '.count($templates).' Templates.'); flush();
+unset($templates);
+
+/* add TVs */
+$tvs = include $sources['data'].'transport.tvs.php';
+if (is_array($tvs)) {
+    $category->addMany($tvs,'TemplateVars');
+} else { $modx->log(modX::LOG_LEVEL_FATAL,'Adding TVs failed.'); }
+$modx->log(modX::LOG_LEVEL_INFO,'Packaged in '.count($tvs).' TVs.'); flush();
+unset($tvs);
+
 /* create category vehicle */
 $attr = array(
     xPDOTransport::UNIQUE_KEY => 'category',
@@ -142,6 +159,16 @@ $attr = array(
             xPDOTransport::UPDATE_OBJECT => true,
             xPDOTransport::UNIQUE_KEY => 'name',
         ),
+        'Templates' => array(
+            xPDOTransport::PRESERVE_KEYS => false,
+            xPDOTransport::UPDATE_OBJECT => true,
+            xPDOTransport::UNIQUE_KEY => 'templatename',
+        ),
+        'TemplateVars' => array(
+            xPDOTransport::PRESERVE_KEYS => false,
+            xPDOTransport::UPDATE_OBJECT => true,
+            xPDOTransport::UNIQUE_KEY => 'name',
+        ),
     )
 );
 $vehicle = $builder->createVehicle($category,$attr);
@@ -155,6 +182,9 @@ $vehicle->resolve('file',array(
 ));
 $vehicle->resolve('php',array(
     'source' => $sources['resolvers'] . 'extpack.resolver.php',
+));
+$vehicle->resolve('php',array(
+    'source' => $sources['resolvers'] . 'tvs.resolver.php',
 ));
 //$vehicle->resolve('php',array(
 //    'source' => $sources['resolvers'] . 'setupoptions.resolver.php',

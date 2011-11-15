@@ -25,22 +25,16 @@
  * @package modblog
  * @subpackage build
  */
-$chunks = array();
+$tvs = array();
 
-$chunks[1]= $modx->newObject('modSnippet');
-$chunks[1]->fromArray(array(
+$tvs[1]= $modx->newObject('modTemplateVar');
+$tvs[1]->fromArray(array(
     'id' => 1,
-    'name' => 'modBlogLatestPostTpl',
-    'description' => 'The tpl row for the latest post. Duplicate this to override it.',
-    'snippet' => file_get_contents($sources['chunks'].'modbloglatestpost.chunk.tpl'),
+    'name' => 'modblogtags',
+    'description' => 'The default tags TV for modBlog. Do not delete!',
+    'caption' => 'modblogtags',
+    'type' => 'hidden',
+    ''
 ));
 
-$chunks[2]= $modx->newObject('modSnippet');
-$chunks[2]->fromArray(array(
-    'id' => 2,
-    'name' => 'modBlogPostRowTpl',
-    'description' => 'The tpl row for each post when listed on the main blog page. Duplicate this to override it.',
-    'snippet' => file_get_contents($sources['chunks'].'modblogpostrow.chunk.tpl'),
-));
-
-return $chunks;
+return $tvs;

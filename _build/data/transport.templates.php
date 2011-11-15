@@ -25,22 +25,22 @@
  * @package modblog
  * @subpackage build
  */
-$chunks = array();
+$templates = array();
 
-$chunks[1]= $modx->newObject('modSnippet');
-$chunks[1]->fromArray(array(
+$templates[1]= $modx->newObject('modTemplate');
+$templates[1]->fromArray(array(
     'id' => 1,
-    'name' => 'modBlogLatestPostTpl',
-    'description' => 'The tpl row for the latest post. Duplicate this to override it.',
-    'snippet' => file_get_contents($sources['chunks'].'modbloglatestpost.chunk.tpl'),
+    'templatename' => 'modBlogTemplate',
+    'description' => 'The default Template for the blog. Duplicate this to override it.',
+    'snippet' => file_get_contents($sources['templates'].'modblogtemplate.tpl'),
 ));
 
-$chunks[2]= $modx->newObject('modSnippet');
-$chunks[2]->fromArray(array(
+$templates[2]= $modx->newObject('modTemplate');
+$templates[2]->fromArray(array(
     'id' => 2,
-    'name' => 'modBlogPostRowTpl',
-    'description' => 'The tpl row for each post when listed on the main blog page. Duplicate this to override it.',
-    'snippet' => file_get_contents($sources['chunks'].'modblogpostrow.chunk.tpl'),
+    'templatename' => 'modBlogPostTemplate',
+    'description' => 'The default Template for Blog Posts. Duplicate this to override it.',
+    'content' => file_get_contents($sources['templates'].'modblogposttemplate.tpl'),
 ));
 
-return $chunks;
+return $templates;
