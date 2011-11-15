@@ -150,6 +150,7 @@ class modBlog extends modResource {
             &tv=`modblogtags`
             &parents=`'.$this->get('id').'`
             &tvDelimiter=`,`
+            &useTagFurl=`1`
             &limit=`'.$this->xpdo->getOption('tagsLimit',$settings,10).'`
             &cls=`'.$this->xpdo->getOption('tagsCls',$settings,'tl-tag').'`
             &altCls=`'.$this->xpdo->getOption('tagsAltCls',$settings,'tl-tag-alt').'`
