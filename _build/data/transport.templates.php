@@ -32,7 +32,7 @@ $templates[1]->fromArray(array(
     'id' => 1,
     'templatename' => 'modBlogTemplate',
     'description' => 'The default Template for the blog. Duplicate this to override it.',
-    'snippet' => file_get_contents($sources['templates'].'modblogtemplate.tpl'),
+    'content' => file_get_contents($sources['templates'].'modblogtemplate.tpl'),
 ));
 
 $templates[2]= $modx->newObject('modTemplate');
