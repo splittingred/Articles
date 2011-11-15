@@ -26,7 +26,7 @@ require_once $modx->getOption('manager_path',null,MODX_MANAGER_PATH).'controller
 class BlogPostCreateManagerController extends ResourceCreateManagerController {
 
     public function loadCustomCssJs() {
-        $blogAssetsUrl = $this->modx->getOption('modblog.assets_url',$this->modx->getOption('assets_url',null,MODX_ASSETS_URL).'components/modblog/');
+        $blogAssetsUrl = $this->modx->getOption('modblog.assets_url',null,$this->modx->getOption('assets_url',null,MODX_ASSETS_URL).'components/modblog/');
         $connectorUrl = $blogAssetsUrl.'connector.php';
         $blogJsUrl = $blogAssetsUrl.'js/';
         $mgrUrl = $this->modx->getOption('manager_url',null,MODX_MANAGER_URL);

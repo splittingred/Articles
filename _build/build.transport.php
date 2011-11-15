@@ -186,6 +186,9 @@ $vehicle->resolve('php',array(
 $vehicle->resolve('php',array(
     'source' => $sources['resolvers'] . 'tvs.resolver.php',
 ));
+$vehicle->resolve('php',array(
+    'source' => $sources['resolvers'] . 'dbfields.resolver.php',
+));
 //$vehicle->resolve('php',array(
 //    'source' => $sources['resolvers'] . 'setupoptions.resolver.php',
 //));

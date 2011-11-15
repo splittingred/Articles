@@ -30,8 +30,8 @@ class BlogUpdateManagerController extends ResourceUpdateManagerController {
 
     public function loadCustomCssJs() {
         $managerUrl = $this->context->getOption('manager_url', MODX_MANAGER_URL, $this->modx->_userConfig);
-        $blogAssetsUrl = $this->modx->getOption('modblog.assets_url',$this->modx->getOption('assets_url',null,MODX_ASSETS_URL).'components/modblog/');
-        $quipAssetsUrl = $this->modx->getOption('quip.assets_url',$this->modx->getOption('assets_url',null,MODX_ASSETS_URL).'components/quip/');
+        $blogAssetsUrl = $this->modx->getOption('modblog.assets_url',null,$this->modx->getOption('assets_url',null,MODX_ASSETS_URL).'components/modblog/');
+        $quipAssetsUrl = $this->modx->getOption('quip.assets_url',null,$this->modx->getOption('assets_url',null,MODX_ASSETS_URL).'components/quip/');
         $connectorUrl = $blogAssetsUrl.'connector.php';
         $blogJsUrl = $blogAssetsUrl.'js/';
         $this->addJavascript($managerUrl.'assets/modext/util/datetime.js');
