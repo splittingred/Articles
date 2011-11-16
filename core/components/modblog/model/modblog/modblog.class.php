@@ -163,6 +163,7 @@ class modBlog extends modResource {
             }
             if ($userPk !== false) {
                 $where['createdby:='] = $userPk;
+                $this->set('cacheable',false);
             }
         }
 
