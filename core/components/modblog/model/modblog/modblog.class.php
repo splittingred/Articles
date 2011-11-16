@@ -111,7 +111,7 @@ class modBlog extends modResource {
         $feedAppendage = explode(',',$feedAppendage);
         $fullUri = $this->xpdo->context->getOption('base_url',null,MODX_BASE_URL).$this->get('uri');
         if (strpos($_SERVER['REQUEST_URI'],$fullUri) === 0 && strlen($fullUri) != strlen($_SERVER['REQUEST_URI'])) {
-            $appendage = rtrim(str_replace($fullUri,'',$_SERVER['REQUEST_URI']).'/');
+            $appendage = rtrim(str_replace($fullUri,'',$_SERVER['REQUEST_URI']),'/');
             if (in_array($appendage,$feedAppendage)) {
                 $isRss = true;
             }
