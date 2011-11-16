@@ -37,7 +37,7 @@ $settings['modblog.default_blog_template']= $modx->newObject('modSystemSetting')
 $settings['modblog.default_blog_template']->fromArray(array(
     'key' => 'modblog.default_blog_template',
     'value' => 0,
-    'xtype' => 'textfield',
+    'xtype' => 'modx-combo-template',
     'namespace' => 'modblog',
     'area' => 'site',
 ),'',true,true);
@@ -45,7 +45,7 @@ $settings['modblog.default_blog_post_template']= $modx->newObject('modSystemSett
 $settings['modblog.default_blog_post_template']->fromArray(array(
     'key' => 'modblog.default_blog_post_template',
     'value' => 0,
-    'xtype' => 'textfield',
+    'xtype' => 'modx-combo-template',
     'namespace' => 'modblog',
     'area' => 'site',
 ),'',true,true);
