@@ -30,7 +30,7 @@ $templates = array();
 $templates[1]= $modx->newObject('modTemplate');
 $templates[1]->fromArray(array(
     'id' => 1,
-    'templatename' => 'modBlogTemplate',
+    'templatename' => 'sample.modBlogTemplate',
     'description' => 'The default Template for the blog. Duplicate this to override it.',
     'content' => file_get_contents($sources['templates'].'modblogtemplate.tpl'),
 ));
@@ -38,7 +38,7 @@ $templates[1]->fromArray(array(
 $templates[2]= $modx->newObject('modTemplate');
 $templates[2]->fromArray(array(
     'id' => 2,
-    'templatename' => 'modBlogPostTemplate',
+    'templatename' => 'sample.modBlogPostTemplate',
     'description' => 'The default Template for Blog Posts. Duplicate this to override it.',
     'content' => file_get_contents($sources['templates'].'modblogposttemplate.tpl'),
 ));

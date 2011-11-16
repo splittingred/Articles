@@ -30,7 +30,7 @@ $chunks = array();
 $chunks[1]= $modx->newObject('modChunk');
 $chunks[1]->fromArray(array(
     'id' => 1,
-    'name' => 'modBlogLatestPostTpl',
+    'name' => 'sample.modBlogLatestPostTpl',
     'description' => 'The tpl row for the latest post. Duplicate this to override it.',
     'snippet' => file_get_contents($sources['chunks'].'modbloglatestpost.chunk.tpl'),
 ));
@@ -38,7 +38,7 @@ $chunks[1]->fromArray(array(
 $chunks[2]= $modx->newObject('modChunk');
 $chunks[2]->fromArray(array(
     'id' => 2,
-    'name' => 'modBlogPostRowTpl',
+    'name' => 'sample.modBlogPostRowTpl',
     'description' => 'The tpl row for each post when listed on the main blog page. Duplicate this to override it.',
     'snippet' => file_get_contents($sources['chunks'].'modblogpostrow.chunk.tpl'),
 ));
@@ -46,7 +46,7 @@ $chunks[2]->fromArray(array(
 $chunks[3]= $modx->newObject('modChunk');
 $chunks[3]->fromArray(array(
     'id' => 3,
-    'name' => 'modBlogRss',
+    'name' => 'sample.modBlogRss',
     'description' => 'The tpl for the RSS feed. Duplicate this to override it.',
     'snippet' => file_get_contents($sources['chunks'].'modblogrss.chunk.tpl'),
 ));
@@ -54,7 +54,7 @@ $chunks[3]->fromArray(array(
 $chunks[4]= $modx->newObject('modChunk');
 $chunks[4]->fromArray(array(
     'id' => 4,
-    'name' => 'modBlogRssItem',
+    'name' => 'sample.modBlogRssItem',
     'description' => 'The tpl row for each RSS feed item. Duplicate this to override it.',
     'snippet' => file_get_contents($sources['chunks'].'modblogrssitem.chunk.tpl'),
 ));

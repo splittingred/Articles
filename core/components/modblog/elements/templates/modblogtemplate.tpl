@@ -49,7 +49,7 @@
 <div class="sidemenu">
   <h3>Latest Posts</h3>
   <ul>
-  [[!getResources? &parents=`[[*id]]` &hideContainers=`1` &showHidden=`1` &tpl=`modBlogLatestPostTpl` &limit=`5` &sortby=`publishedon` &where=`{"class_key":"modBlogPost"}`]]
+  [[!getResources? &parents=`[[*id]]` &hideContainers=`1` &showHidden=`1` &tpl=`sample.modBlogLatestPostTpl` &limit=`5` &sortby=`publishedon` &where=`{"class_key":"modBlogPost"}`]]
   </ul>
 </div>
 

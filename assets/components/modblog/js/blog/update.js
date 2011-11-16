@@ -432,7 +432,7 @@ Ext.extend(modBlog.panel.Blog,MODx.panel.Resource,{
                     ,fieldLabel: _('modblog.setting.tplRssFeed')
                     ,description: MODx.expandHelp ? '' : _('modblog.setting.tplRssFeed_desc')
                     ,anchor: '100%'
-                    ,value: 'modBlogRss'
+                    ,value: 'sample.modBlogRss'
                 },{
                     xtype: MODx.expandHelp ? 'label' : 'hidden'
                     ,forId: 'modblog-setting-tplRssFeed'
@@ -445,7 +445,7 @@ Ext.extend(modBlog.panel.Blog,MODx.panel.Resource,{
                     ,fieldLabel: _('modblog.setting.tplRssItem')
                     ,description: MODx.expandHelp ? '' : _('modblog.setting.tplRssItem_desc')
                     ,anchor: '100%'
-                    ,value: 'modBlogRssItem'
+                    ,value: 'sample.modBlogRssItem'
                 },{
                     xtype: MODx.expandHelp ? 'label' : 'hidden'
                     ,forId: 'modblog-setting-tplRssItem'

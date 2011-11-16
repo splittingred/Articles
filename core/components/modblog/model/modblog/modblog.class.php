@@ -130,9 +130,9 @@ class modBlog extends modResource {
           &showHidden=`1`
           &includeContent=`1`
           &includeTVs=`1`
-          &tpl=`'.$this->xpdo->getOption('tplRssItem',$settings,'modBlogRssItem').'`
+          &tpl=`'.$this->xpdo->getOption('tplRssItem',$settings,'sample.modBlogRssItem').'`
         ]]';
-        $content = $this->xpdo->getChunk($this->xpdo->getOption('tplRssFeed',$settings,'modBlogRss'),array(
+        $content = $this->xpdo->getChunk($this->xpdo->getOption('tplRssFeed',$settings,'sample.modBlogRss'),array(
             'content' => $content,
             'year' => date('Y'),
         ));
@@ -158,7 +158,7 @@ class modBlog extends modResource {
           &includeTVs=`1`
           &tagKey=`modblogtags`
           &tagSearchType=`contains`
-          &tpl=`'.$this->xpdo->getOption('tplPost',$settings,'modBlogPostRowTpl').'`
+          &tpl=`'.$this->xpdo->getOption('tplPost',$settings,'sample.modBlogPostRowTpl').'`
         ]]';
         $this->xpdo->setPlaceholder('posts',$output);
 

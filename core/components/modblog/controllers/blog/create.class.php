@@ -86,7 +86,7 @@ class BlogCreateManagerController extends ResourceCreateManagerController {
         $defaultBlogTemplate = $this->modx->getOption('modblog.default_blog_template',$settings,false);
         if (empty($defaultBlogTemplate)) {
             /** @var modTemplate $template */
-            $template = $this->modx->getObject('modTemplate',array('templatename' => 'modBlogTemplate'));
+            $template = $this->modx->getObject('modTemplate',array('templatename' => 'sample.modBlogTemplate'));
             if ($template) {
                 $defaultBlogTemplate = $template->get('id');
             }
@@ -96,7 +96,7 @@ class BlogCreateManagerController extends ResourceCreateManagerController {
         $defaultBlogPostTemplate = $this->modx->getOption('modblog.default_blog_post_template',$settings,false);
         if (empty($defaultBlogPostTemplate)) {
             /** @var modTemplate $template */
-            $template = $this->modx->getObject('modTemplate',array('templatename' => 'modBlogPostTemplate'));
+            $template = $this->modx->getObject('modTemplate',array('templatename' => 'sample.modBlogPostTemplate'));
             if ($template) {
                 $defaultBlogPostTemplate = $template->get('id');
             }

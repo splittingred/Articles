@@ -40,7 +40,7 @@ if ($object->xpdo) {
                 'name' => 'modblogtags',
             ));
             if ($tv) {
-                $templates = array('modBlogTemplate','modBlogPostTemplate');
+                $templates = array('sample.modBlogTemplate','sample.modBlogPostTemplate');
                 foreach ($templates as $templateName) {
                     /** @var modTemplate $template */
                     $template = $modx->getObject('modTemplate',array('templatename' => $templateName));
