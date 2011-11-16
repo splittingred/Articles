@@ -87,10 +87,17 @@ class modBlogPostGetListProcessor extends modObjectGetListProcessor {
         }
         $resourceArray['action_edit'] = '?a='.$this->editAction->get('id').'&action=post/update&id='.$resourceArray['id'];
 
+        $this->modx->getContext($resourceArray['context_key']);
+        $resourceArray['preview_url'] = $this->modx->makeUrl($resourceArray['id'],$resourceArray['context_key']);
+
         $resourceArray['actions'] = array();
         $resourceArray['actions'][] = array(
             'className' => 'edit',
             'text' => $this->modx->lexicon('edit'),
+        );
+        $resourceArray['actions'][] = array(
+            'className' => 'view',
+            'text' => $this->modx->lexicon('view'),
         );
         $resourceArray['actions'][] = array(
             'className' => 'delete',

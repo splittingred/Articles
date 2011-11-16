@@ -14,6 +14,7 @@ modBlog.grid.BlogPosts = function(config) {
         }
         ,fields: ['id','pagetitle',
                   'publishedon','publishedon_date','publishedon_time',
+                  'uri','uri_override','preview_url',
                   'createdby','createdby_username','tags','categories',
                   'actions','action_edit']
         ,paging: true
@@ -145,6 +146,10 @@ Ext.extend(modBlog.grid.BlogPosts,MODx.grid.Grid,{
     ,createPost: function(btn,e) {
         location.href = 'index.php?a='+MODx.action['resource/create']+'&class_key=modBlogPost&parent='+MODx.request.id;
     }
+    ,viewPost: function(btn,e) {
+        window.open(this.menu.record.data.preview_url);
+        return false;
+    }
 
     ,deletePost: function(btn,e) {
         MODx.Ajax.request({
@@ -205,6 +210,9 @@ Ext.extend(modBlog.grid.BlogPosts,MODx.grid.Grid,{
 					break;
 				case 'unpublish':
 					this.unpublishPost();
+					break;
+				case 'view':
+					this.viewPost();
 					break;
 				default:
 					window.location = record.data.edit_action;
