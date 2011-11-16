@@ -375,6 +375,84 @@ Ext.extend(modBlog.panel.Blog,MODx.panel.Resource,{
 
                 }]
             }]
+        },{
+            html: '<hr />'
+            ,border: false
+            ,anchor: '100%'
+        },{
+            layout: 'column'
+            ,border: false
+            ,anchor: '100%'
+            ,defaults: {
+                layout: 'form'
+                ,labelAlign: 'top'
+                ,anchor: '100%'
+                ,border: false
+                ,labelSeparator: ''
+            }
+            ,items: [{
+                columnWidth: .5
+                ,items: [{
+                    xtype: 'textfield'
+                    ,name: 'setting_rssAlias'
+                    ,id: 'modblog-setting-rssAlias'
+                    ,fieldLabel: _('modblog.setting.rssAlias')
+                    ,description: MODx.expandHelp ? '' : _('modblog.setting.rssAlias_desc')
+                    ,anchor: '100%'
+                    ,value: 'feed.rss,rss'
+                },{
+                    xtype: MODx.expandHelp ? 'label' : 'hidden'
+                    ,forId: 'modblog-setting-rssAlias'
+                    ,html: _('modblog.setting.rssAlias_desc')
+                    ,cls: 'desc-under'
+                },{
+                    xtype: 'textfield'
+                    ,name: 'setting_rssItems'
+                    ,id: 'modblog-setting-rssItems'
+                    ,fieldLabel: _('modblog.setting.rssItems')
+                    ,description: MODx.expandHelp ? '' : _('modblog.setting.rssItems_desc')
+                    ,width: 120
+                    ,value: 10
+                },{
+                    xtype: MODx.expandHelp ? 'label' : 'hidden'
+                    ,forId: 'modblog-setting-rssItems'
+                    ,html: _('modblog.setting.rssItems_desc')
+                    ,cls: 'desc-under'
+
+                }]
+            },{
+                columnWidth: .5
+                ,items: [{
+                    xtype: 'textfield'
+                    ,name: 'setting_tplRssFeed'
+                    ,id: 'modblog-setting-tplRssFeed'
+                    ,fieldLabel: _('modblog.setting.tplRssFeed')
+                    ,description: MODx.expandHelp ? '' : _('modblog.setting.tplRssFeed_desc')
+                    ,anchor: '100%'
+                    ,value: 'modBlogRss'
+                },{
+                    xtype: MODx.expandHelp ? 'label' : 'hidden'
+                    ,forId: 'modblog-setting-tplRssFeed'
+                    ,html: _('modblog.setting.tplRssFeed_desc')
+                    ,cls: 'desc-under'
+                },{
+                    xtype: 'textfield'
+                    ,name: 'setting_tplRssItem'
+                    ,id: 'modblog-setting-tplRssItem'
+                    ,fieldLabel: _('modblog.setting.tplRssItem')
+                    ,description: MODx.expandHelp ? '' : _('modblog.setting.tplRssItem_desc')
+                    ,anchor: '100%'
+                    ,value: 'modBlogRssItem'
+                },{
+                    xtype: MODx.expandHelp ? 'label' : 'hidden'
+                    ,forId: 'modblog-setting-tplRssItem'
+                    ,html: _('modblog.setting.tplRssItem_desc')
+                    ,cls: 'desc-under'
+
+
+                }]
+
+            }]
         }];
     }
 

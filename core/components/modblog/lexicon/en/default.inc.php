@@ -77,6 +77,16 @@ $_lang['modblog.setting.archiveCls'] = 'Archive CSS Class';
 $_lang['modblog.setting.archiveCls_desc'] = 'A CSS class to apply to each archive listing.';
 $_lang['modblog.setting.archiveAltCls'] = 'Archive Alternate CSS Class';
 $_lang['modblog.setting.archiveAltCls_desc'] = 'A CSS class to apply to each alternate row for each archive listing.';
+
+$_lang['modblog.setting.rssAlias'] = 'RSS Alias (Permalink)';
+$_lang['modblog.setting.rssAlias_desc'] = 'The alias (permalink) for the RSS feed, appended to the blog URL.';
+$_lang['modblog.setting.rssItems'] = 'Number of RSS Items';
+$_lang['modblog.setting.rssItems_desc'] = 'The number of RSS items to show on the RSS feed.';
+$_lang['modblog.setting.tplRssFeed'] = 'RSS Feed Chunk';
+$_lang['modblog.setting.tplRssFeed_desc'] = 'The Chunk to use for the RSS Feed template.';
+$_lang['modblog.setting.tplRssItem'] = 'RSS Item Chunk';
+$_lang['modblog.setting.tplRssItem_desc'] = 'The Chunk to use for each item in the RSS Feed.';
+
 $_lang['modblog.setting.tagsLimit'] = 'Tag Listings to Show';
 $_lang['modblog.setting.tagsLimit_desc'] = 'The number of tags to show in the popular tags listing.';
 $_lang['modblog.setting.tplTagRow'] = 'Tag Listing Chunk';

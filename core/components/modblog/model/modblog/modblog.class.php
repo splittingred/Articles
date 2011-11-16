@@ -106,10 +106,13 @@ class modBlog extends modResource {
 
     public function isRss() {
         $isRss = false;
+        $settings = $this->getBlogSettings();
+        $feedAppendage = $this->xpdo->getOption('rssAlias',$settings,'feed.rss,rss');
+        $feedAppendage = explode(',',$feedAppendage);
         $fullUri = $this->xpdo->context->getOption('base_url',null,MODX_BASE_URL).$this->get('uri');
         if (strpos($_SERVER['REQUEST_URI'],$fullUri) === 0 && strlen($fullUri) != strlen($_SERVER['REQUEST_URI'])) {
-            $appendage = str_replace($fullUri,'',$_SERVER['REQUEST_URI']);
-            if ($appendage == 'rss' || $appendage == 'rss/' || $appendage == 'feed.rss') {
+            $appendage = rtrim(str_replace($fullUri,'',$_SERVER['REQUEST_URI']).'/');
+            if (in_array($appendage,$feedAppendage)) {
                 $isRss = true;
             }
         }
@@ -123,13 +126,13 @@ class modBlog extends modResource {
           &pageVarKey=`page`
           &parents=`[[*id]]`
           &where=`{"class_key":"modBlogPost","searchable":1}`
-          &limit=`'.$this->xpdo->getOption('postsPerPage',$settings,10).'`
+          &limit=`'.$this->xpdo->getOption('rssItems',$settings,10).'`
           &showHidden=`1`
           &includeContent=`1`
           &includeTVs=`1`
           &tpl=`'.$this->xpdo->getOption('tplRssItem',$settings,'modBlogRssItem').'`
         ]]';
-        $content = $this->xpdo->getChunk($this->xpdo->getOption('tplRssItem',$settings,'modBlogRss'),array(
+        $content = $this->xpdo->getChunk($this->xpdo->getOption('tplRssFeed',$settings,'modBlogRss'),array(
             'content' => $content,
             'year' => date('Y'),
         ));
