@@ -67,6 +67,8 @@ class modBlogRouter {
         /* tag handling! */
         if ($params[0] == 'tags') {
             $_REQUEST['tag'] = $params[1];
+        } else if ($params[0] == 'user' || $params[0] == 'author') {
+            $_REQUEST['arc_user'] = $params[1];
         } else {
             /* set Archivist parameters for date-based archives */
             $_REQUEST[$prefix.'year'] = $params[0];

@@ -144,14 +144,28 @@ class modBlog extends modResource {
      */
     public function getPostListingCall() {
         $settings = $this->getBlogSettings();
+        $where = array('class_key' => 'modBlogPost');
+        if (!empty($_REQUEST['arc_user'])) {
+            $userPk = $this->xpdo->sanitizeString($_REQUEST['arc_user']);
+            if (intval($userPk) == 0) {
+                /** @var modUser */
+                $user = $this->xpdo->getObject('modUser',array('username' => $userPk));
+                if ($user) {
+                    $userPk = $user->get('id');
+                } else { $userPk = false; }
+            }
+            if ($userPk !== false) {
+                $where['createdby:='] = $userPk;
+            }
+        }
 
-        $output = '[[!getPage?
+        $output = '[[!getArchives?
           &elementClass=`modSnippet`
           &element=`getArchives`
           &cache=`0`
           &pageVarKey=`page`
           &parents=`[[*id]]`
-          &where=`{"class_key":"modBlogPost"}`
+          &where=`'.$this->xpdo->toJSON($where).'`
           &limit=`'.$this->xpdo->getOption('postsPerPage',$settings,10).'`
           &showHidden=`1`
           &includeContent=`1`
