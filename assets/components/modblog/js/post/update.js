@@ -33,17 +33,18 @@ Ext.extend(modBlog.page.UpdateBlogPost,MODx.page.UpdateResource,{
             });
             btns.push('-');
         }
-        if (cfg.record.published) {
             btns.push({
                 text: _('modblog.post_publish')
+                ,id: 'modx-post-publish'
+                ,hidden: cfg.record.published ? true : false
                 ,handler: this.publishPost
             });
-        } else {
             btns.push({
                 text: _('modblog.post_unpublish')
+                ,id: 'modx-post-unpublish'
+                ,hidden: cfg.record.published ? false : true
                 ,handler: this.unpublishPost
             });
-        }
         btns.push('-');
         btns.push({
             process: 'preview'
@@ -65,9 +66,81 @@ Ext.extend(modBlog.page.UpdateBlogPost,MODx.page.UpdateResource,{
         });
         return btns;
     }
-    ,publishPost: function() {
 
+    ,publishPost: function(btn,e) {
+        MODx.Ajax.request({
+            url: MODx.config.connectors_url+'resource/index.php'
+            ,params: {
+                action: 'publish'
+                ,id: MODx.request.id
+            }
+            ,listeners: {
+                'success':{fn:function(r) {
+                    var p = Ext.getCmp('modx-resource-published');
+                    if (p) {
+                        p.setValue(1);
+                    }
+                    var po = Ext.getCmp('modx-resource-publishedon');
+                    if (po) {
+                        po.setValue(r.object.publishedon);
+                    }
+                    var bp = Ext.getCmp('modx-post-publish');
+                    if (bp) {
+                        bp.hide();
+                    }
+                    var bu = Ext.getCmp('modx-post-unpublish');
+                    if (bu) {
+                        bu.show();
+                    }
+                },scope:this}
+            }
+        });
+    }
 
+    ,unpublishPost: function(btn,e) {
+        MODx.Ajax.request({
+            url: MODx.config.connectors_url+'resource/index.php'
+            ,params: {
+                action: 'unpublish'
+                ,id: MODx.request.id
+            }
+            ,listeners: {
+                'success':{fn:function(r) {
+                    var p = Ext.getCmp('modx-resource-published');
+                    if (p) {
+                        p.setValue(0);
+                    }
+                    var po = Ext.getCmp('modx-resource-publishedon');
+                    if (po) {
+                        po.setValue('');
+                    }
+                    var bp = Ext.getCmp('modx-post-publish');
+                    if (bp) {
+                        bp.show();
+                    }
+                    var bu = Ext.getCmp('modx-post-unpublish');
+                    if (bu) {
+                        bu.hide();
+                    }
+                },scope:this}
+            }
+        });
+    }
+    
+    ,cancel: function(btn,e) {
+        var fp = Ext.getCmp(this.config.formpanel);
+        if (fp && fp.isDirty()) {
+            Ext.Msg.confirm(_('warning'),_('resource_cancel_dirty_confirm'),function(e) {
+                if (e == 'yes') {
+                    MODx.releaseLock(MODx.request.id);
+                    MODx.sleep(400);
+                    location.href = 'index.php?a='+MODx.action['resource/update']+'&id='+this.config.record['parent'];
+                }
+            },this);
+        } else {
+            MODx.releaseLock(MODx.request.id);
+            location.href = 'index.php?a='+MODx.action['resource/update']+'&id='+this.config.record['parent'];
+        }
     }
 });
 Ext.reg('modblog-page-blog-post-update',modBlog.page.UpdateBlogPost);
@@ -231,6 +304,7 @@ Ext.extend(modBlog.panel.BlogPost,MODx.panel.Resource,{
             ,title: _('modblog.publishing_information')
             ,items: [{
                 xtype: 'modblog-combo-publish-status'
+                ,id: 'modx-resource-published'
                 ,name: 'published'
                 ,hiddenName: 'published'
                 ,fieldLabel: _('modblog.status')

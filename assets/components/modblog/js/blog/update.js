@@ -4,14 +4,17 @@ modBlog.page.UpdateBlog = function(config) {
     config.record = config.record || {};
     Ext.applyIf(config,{
         panelXType: 'modx-panel-blog'
+        ,actions: {
+            'new': MODx.action['resource/create']
+            ,edit: MODx.action['resource/update']
+            ,preview: MODx.action['resource/preview']
+        }
     });
     config.canDuplicate = false;
     config.canDelete = false;
     modBlog.page.UpdateBlog.superclass.constructor.call(this,config);
 };
-Ext.extend(modBlog.page.UpdateBlog,MODx.page.UpdateResource,{
-
-});
+Ext.extend(modBlog.page.UpdateBlog,MODx.page.UpdateResource);
 Ext.reg('modblog-page-blog-update',modBlog.page.UpdateBlog);
 
 
