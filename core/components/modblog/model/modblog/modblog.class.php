@@ -103,7 +103,10 @@ class modBlog extends modResource {
         return $this->_content;
     }
 
-
+    /**
+     * Check to see if the request is asking for an RSS feed
+     * @return boolean
+     */
     public function isRss() {
         $isRss = false;
         $settings = $this->getBlogSettings();
@@ -119,6 +122,10 @@ class modBlog extends modResource {
         return $isRss;
     }
 
+    /**
+     * Get the call for the RSS feed
+     * @return string
+     */
     public function getRssCall() {
         $settings = $this->getBlogSettings();
         $content = '[[!getResources?
@@ -148,7 +155,7 @@ class modBlog extends modResource {
         if (!empty($_REQUEST['arc_user'])) {
             $userPk = $this->xpdo->sanitizeString($_REQUEST['arc_user']);
             if (intval($userPk) == 0) {
-                /** @var modUser */
+                /** @var modUser $user */
                 $user = $this->xpdo->getObject('modUser',array('username' => $userPk));
                 if ($user) {
                     $userPk = $user->get('id');
