@@ -187,7 +187,7 @@ Ext.extend(modBlog.panel.BlogPost,MODx.panel.Resource,{
                 ,items: [{
                     xtype: 'quip-grid-comments'
                     ,cls: 'quip-thread-grid'
-                    ,thread: 'modblogpost-'+config.record.blog+'-'+config.record.id
+                    ,thread: 'modblogpost-b'+config.record.blog+'-'+config.record.id
                     ,preventRender: true
                     ,width: '98%'
                     ,bodyStyle: 'padding: 0'
