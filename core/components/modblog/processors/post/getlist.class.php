@@ -41,11 +41,8 @@ class modBlogPostGetListProcessor extends modObjectGetListProcessor {
     public function prepareQueryBeforeCount(xPDOQuery $c) {
         $parent = $this->getProperty('parent',null);
         if ($parent !== null) {
-            /** @var modResource $parent */
-            $parent = $this->modx->getObject('modBlog',$parent);
-            $ids = $this->modx->getChildIds($parent->get('id'),5,array('context' => $parent->get('context_key')));
             $c->where(array(
-                'id:IN' => $ids,
+                'blog' => $parent,
             ));
         }
         $query = $this->getProperty('query',null);

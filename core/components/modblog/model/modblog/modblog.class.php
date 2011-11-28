@@ -75,6 +75,15 @@ class modBlog extends modResource {
     }
 
     /**
+     * Prevent isLazy error since modBlog types have extra DB fields
+     * @param string $key
+     * @return bool
+     */
+    public function isLazy($key = '') {
+        return false;
+    }
+
+    /**
      * Override modResource::process to set some custom placeholders for the Resource when rendering it in the front-end.
      * {@inheritDoc}
      * @return string

@@ -48,6 +48,15 @@ class modBlogPost extends modResource {
         return $content;
     }
 
+    /**
+     * Prevent isLazy error since modBlog types have extra DB fields
+     * @param string $key
+     * @return bool
+     */
+    public function isLazy($key = '') {
+        return false;
+    }
+
     /*
      * Delayed for a future release...
      * 
