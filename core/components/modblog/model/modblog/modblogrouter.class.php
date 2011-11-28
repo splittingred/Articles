@@ -32,6 +32,10 @@ class modBlogRouter {
         ),$config);
     }
 
+    /**
+     * Route the URL request based on the blog IDs
+     * @return boolean
+     */
     public function route() {
         $blogIds = $this->modx->getOption('modblog.blog_ids',null,'');
         if (empty($blogIds)) return false;
