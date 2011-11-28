@@ -69,6 +69,7 @@ class BlogPostCreateManagerController extends ResourceCreateManagerController {
     public function process(array $scriptProperties = array()) {
         $placeholders = parent::process($scriptProperties);
         $this->resourceArray['richtext'] = 1;
+        $this->resourceArray['published'] = 0;
 
         $this->getDefaultBlogSettings();
         return $placeholders;

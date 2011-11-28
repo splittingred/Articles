@@ -302,6 +302,9 @@ Ext.extend(modBlog.panel.BlogPost,MODx.panel.Resource,{
         return [{
             xtype: 'fieldset'
             ,title: _('modblog.publishing_information')
+            ,defaults: {
+                msgTarget: 'under'
+            }
             ,items: [{
                 xtype: 'modblog-combo-publish-status'
                 ,id: 'modx-resource-published'
@@ -351,6 +354,9 @@ Ext.extend(modBlog.panel.BlogPost,MODx.panel.Resource,{
         },{
             xtype: 'fieldset'
             ,title: _('modblog.post_options')
+            ,defaults: {
+                msgTarget: 'under'
+            }
             ,items: [{
                 xtype: 'modx-combo-template'
                 ,fieldLabel: _('resource_template')

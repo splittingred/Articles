@@ -167,7 +167,7 @@ class modBlog extends modResource {
             }
         }
 
-        $output = '[[getArchives?
+        $output = '[[!getArchives?
           &elementClass=`modSnippet`
           &element=`getArchives`
           &cache=`0`

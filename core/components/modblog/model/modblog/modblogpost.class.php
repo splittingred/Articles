@@ -145,7 +145,7 @@ class modBlogPostCreateProcessor extends modResourceCreateProcessor {
         $blogUri = $this->parentResource->get('uri');
         $uri = rtrim($blogUri,'/').'/'.$year.'/'.$month.'/'.$day.'/'.$this->object->get('alias');
 
-        $this->object->set('uri',$uri);
+        $this->object->set('uri',rtrim($uri,'/').'/');
         $this->object->set('uri_override',true);
         return $uri;
     }
@@ -321,7 +321,7 @@ class modBlogPostUpdateProcessor extends modResourceUpdateProcessor {
         $blogUri = $this->parentResource->get('uri');
         $uri = rtrim($blogUri,'/').'/'.$year.'/'.$month.'/'.$day.'/'.$this->object->get('alias');
 
-        $this->object->set('uri',$uri);
+        $this->object->set('uri',rtrim($uri,'/').'/');
         $this->object->set('uri_override',true);
         return $uri;
     }
