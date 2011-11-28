@@ -21,8 +21,8 @@
  */
 class modBlogPostGetListProcessor extends modObjectGetListProcessor {
     public $classKey = 'modBlogPost';
-    public $defaultSortField = 'pagetitle';
-    public $defaultSortDirection = 'ASC';
+    public $defaultSortField = 'createdon';
+    public $defaultSortDirection = 'DESC';
     public $checkListPermission = true;
     public $objectType = 'post';
     public $languageTopics = array('resource','modblog:default');
