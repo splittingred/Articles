@@ -151,8 +151,23 @@ class modBlogPostCreateProcessor extends modResourceCreateProcessor {
     }
 
     public function afterSave() {
+        $afterSave = parent::afterSave();
         $this->saveTemplateVariables();
-        return parent::afterSave();
+        $this->clearBlogCache();
+        return $afterSave;
+    }
+
+    /**
+     * Clears the blog cache to ensure that the blog listing is updated
+     * @return void
+     */
+    public function clearBlogCache() {
+        $this->modx->cacheManager->refresh(array(
+            'db' => array(),
+            'auto_publish' => array('contexts' => array($this->object->get('context_key'))),
+            'context_settings' => array('contexts' => array($this->object->get('context_key'))),
+            'resource' => array('contexts' => array($this->object->get('context_key'))),
+        ));
     }
     
     /**
@@ -285,7 +300,6 @@ class modBlogPostUpdateProcessor extends modResourceUpdateProcessor {
         return $saved;
     }
 
-
     /**
      * Set the friendly URL archive by forcing it into the URI.
      * @return bool|string
@@ -310,5 +324,24 @@ class modBlogPostUpdateProcessor extends modResourceUpdateProcessor {
         $this->object->set('uri',$uri);
         $this->object->set('uri_override',true);
         return $uri;
+    }
+
+    public function afterSave() {
+        $afterSave = parent::afterSave();
+        $this->clearBlogCache();
+        return $afterSave;
+    }
+
+    /**
+     * Clears the blog cache to ensure that the blog listing is updated
+     * @return void
+     */
+    public function clearBlogCache() {
+        $this->modx->cacheManager->refresh(array(
+            'db' => array(),
+            'auto_publish' => array('contexts' => array($this->object->get('context_key'))),
+            'context_settings' => array('contexts' => array($this->object->get('context_key'))),
+            'resource' => array('contexts' => array($this->object->get('context_key'))),
+        ));
     }
 }

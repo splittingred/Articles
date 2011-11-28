@@ -167,7 +167,7 @@ class modBlog extends modResource {
             }
         }
 
-        $output = '[[!getArchives?
+        $output = '[[getArchives?
           &elementClass=`modSnippet`
           &element=`getArchives`
           &cache=`0`
@@ -199,7 +199,7 @@ class modBlog extends modResource {
      */
     public function getArchivistCall() {
         $settings = $this->getBlogSettings();
-        $output = '[[!Archivist?
+        $output = '[[Archivist?
             &tpl=`'.$this->xpdo->getOption('tplArchiveMonth',$settings,'row').'`
             &target=`'.$this->get('id').'`
             &parents=`'.$this->get('id').'`
@@ -220,7 +220,7 @@ class modBlog extends modResource {
      */
     public function getTagListerCall() {
         $settings = $this->getBlogSettings();
-        $output = '[[!tagLister?
+        $output = '[[tagLister?
             &tpl=`'.$this->xpdo->getOption('tplTagRow',$settings,'tag').'`
             &tv=`modblogtags`
             &parents=`'.$this->get('id').'`
