@@ -26,7 +26,7 @@ require_once MODX_CORE_PATH.'model/modx/processors/resource/update.class.php';
  * @package modBlog
  */
 class modBlogPost extends modResource {
-    function __construct(& $xpdo) {
+    function __construct(xPDO &$xpdo) {
         parent :: __construct($xpdo);
         $this->set('class_key','modBlogPost');
         $this->set('show_in_tree',false);
