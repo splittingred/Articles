@@ -124,7 +124,7 @@ $_lang['modblog.setting.latestCommentsAltRowCss_desc'] = 'The CSS class to set f
 $_lang['modblog.setting.commentsThreaded'] = 'Threaded Comments';
 $_lang['modblog.setting.commentsThreaded_desc'] = 'Whether or not this thread can have threaded comments. Threaded comments allow users to comment on comments, increasing the level of indentation. Non-threaded comments allow users to comment only on the parent article, not on the comments.';
 $_lang['modblog.setting.commentsReplyResourceId'] = 'Reply Resource ID';
-$_lang['modblog.setting.commentsReplyResourceId_desc'] = 'The ID of the Resource where the QuipReply snippet is held, for replying to threaded comments.';
+$_lang['modblog.setting.commentsReplyResourceId_desc'] = 'The ID of the Resource where the QuipReply snippet is held, for replying to threaded comments. <b>This is required for threaded comments.</b>';
 $_lang['modblog.setting.commentsMaxDepth'] = 'Maximum Threading Depth';
 $_lang['modblog.setting.commentsMaxDepth_desc'] = 'The maximum depth that replies can be made in a threaded comment thread.';
 

@@ -3,6 +3,10 @@
 
 modBlog.panel.BlogAdvancedSettings = function(config) {
     config = config || {};
+    var oc = {
+        'change':{fn:MODx.fireResourceFormChange}
+        ,'select':{fn:MODx.fireResourceFormChange}
+    };
     Ext.applyIf(config,{
         border: false
         ,plain: true
@@ -23,6 +27,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.tplArchiveMonth_desc')
                 ,anchor: '100%'
                 ,value: 'row'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-tplArchiveMonth'
@@ -38,6 +43,8 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,allowNegative: false
                 ,allowDecimals: false
                 ,width: 120
+                ,value: 10
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-archiveListingsLimit'
@@ -52,6 +59,8 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,fieldLabel: _('modblog.setting.archiveByMonth')
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.archiveByMonth_desc')
                 ,width: 120
+                ,value: 1
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-archiveByMonth'
@@ -65,6 +74,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,fieldLabel: _('modblog.setting.archiveCls')
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.archiveCls_desc')
                 ,anchor: '100%'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-archiveCls'
@@ -77,6 +87,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,fieldLabel: _('modblog.setting.archiveAltCls')
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.archiveAltCls_desc')
                 ,anchor: '100%'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-archiveAltCls'
@@ -98,6 +109,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.tplTagRow_desc')
                 ,anchor: '100%'
                 ,value: 'tag'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-tplTagRow'
@@ -114,6 +126,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,allowDecimals: false
                 ,width: 120
                 ,value: 10
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-tagsLimit'
@@ -128,6 +141,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.tagCls_desc')
                 ,anchor: '100%'
                 ,value: 'tl-tag'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-tagCls'
@@ -142,6 +156,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.tagAltCls_desc')
                 ,anchor: '100%'
                 ,value: 'tl-tag-alt'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-tagAltCls'
@@ -163,11 +178,13 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.rssAlias_desc')
                 ,anchor: '100%'
                 ,value: 'feed.rss,rss'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-rssAlias'
                 ,html: _('modblog.setting.rssAlias_desc')
                 ,cls: 'desc-under'
+
             },{
                 xtype: 'textfield'
                 ,name: 'setting_rssItems'
@@ -176,6 +193,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.rssItems_desc')
                 ,width: 120
                 ,value: 10
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-rssItems'
@@ -190,11 +208,13 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.tplRssFeed_desc')
                 ,anchor: '100%'
                 ,value: 'sample.modBlogRss'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-tplRssFeed'
                 ,html: _('modblog.setting.tplRssFeed_desc')
                 ,cls: 'desc-under'
+
             },{
                 xtype: 'textfield'
                 ,name: 'setting_tplRssItem'
@@ -203,6 +223,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.tplRssItem_desc')
                 ,anchor: '100%'
                 ,value: 'sample.modBlogRssItem'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-tplRssItem'
@@ -224,6 +245,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.latestPostsTpl_desc')
                 ,anchor: '100%'
                 ,value: 'sample.modBlogLatestPostTpl'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-latestPostsTpl'
@@ -240,6 +262,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,allowNegative: false
                 ,allowDecimals: false
                 ,value: 5
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-latestPostsLimit'
@@ -262,6 +285,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsThreaded_desc')
                 ,anchor: '30%'
                 ,value: 0
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsThreaded'
@@ -275,6 +299,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,fieldLabel: _('modblog.setting.commentsReplyResourceId')
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsReplyResourceId_desc')
                 ,anchor: '30%'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsReplyResourceId'
@@ -291,6 +316,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,allowDecimals: false
                 ,allowNegative: false
                 ,value: 5
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsMaxDepth'
@@ -306,6 +332,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsRequirePreview_desc')
                 ,anchor: '30%'
                 ,value: 0
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsRequirePreview'
@@ -322,6 +349,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,allowDecimals: false
                 ,allowNegative: false
                 ,value: 0
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsCloseAfter'
@@ -336,6 +364,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsDateFormat_desc')
                 ,anchor: '100%'
                 ,value: '%b %d, %Y at %I:%M %p'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsDateFormat'
@@ -351,6 +380,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsAutoConvertLinks_desc')
                 ,anchor: '30%'
                 ,value: 1
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsAutoConvertLinks'
@@ -367,6 +397,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,allowDecimals: false
                 ,allowNegative: false
                 ,value: 0
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsLimit'
@@ -388,6 +419,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsTplComment_desc')
                 ,anchor: '100%'
                 ,value: 'quipComment'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsTplComment'
@@ -402,6 +434,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsTplCommentOptions_desc')
                 ,anchor: '100%'
                 ,value: 'quipCommentOptions'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsTplCommentOptions'
@@ -416,6 +449,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsTplComments_desc')
                 ,anchor: '100%'
                 ,value: 'quipComments'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsTplComments'
@@ -430,6 +464,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsTplAddComment_desc')
                 ,anchor: '100%'
                 ,value: 'quipAddComment'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsTplAddComment'
@@ -444,6 +479,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.commentsTplLoginToComment_desc')
                 ,anchor: '100%'
                 ,value: 'quipLoginToComment'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsTplLoginToComment'
@@ -458,6 +494,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.commentsTplPreview_desc')
                 ,anchor: '100%'
                 ,value: 'quipPreviewComment'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsTplPreview'
@@ -476,6 +513,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsUseCss_desc')
                 ,anchor: '30%'
                 ,value: 1
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsUseCss'
@@ -490,6 +528,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsAltRowCss_desc')
                 ,anchor: '100%'
                 ,value: 'quip-comment-alt'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsAltRowCss'
@@ -512,6 +551,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsRequireAuth_desc')
                 ,anchor: '30%'
                 ,value: 0
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp && false ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsRequireAuth'
@@ -527,6 +567,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsModerate_desc')
                 ,anchor: '30%'
                 ,value: 1
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsModerate'
@@ -541,6 +582,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsModerators_desc')
                 ,anchor: '100%'
                 ,value: ''
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsModerators'
@@ -555,6 +597,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsModeratorGroup_desc')
                 ,anchor: '100%'
                 ,value: 'Administrator'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsModeratorGroup'
@@ -570,6 +613,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsModerateAnonymousOnly_desc')
                 ,anchor: '30%'
                 ,value: 0
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsModerateAnonymousOnly'
@@ -585,6 +629,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsModerateFirstPostOnly_desc')
                 ,anchor: '30%'
                 ,value: 1
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsModerateFirstPostOnly'
@@ -603,6 +648,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsReCaptcha_desc')
                 ,anchor: '30%'
                 ,value: 0
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsReCaptcha'
@@ -618,6 +664,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsDisableReCaptchaWhenLoggedIn_desc')
                 ,anchor: '30%'
                 ,value: 1
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsDisableReCaptchaWhenLoggedIn'
@@ -636,6 +683,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsAllowRemove_desc')
                 ,anchor: '30%'
                 ,value: 1
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsAllowRemove'
@@ -652,6 +700,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,allowDecimals: false
                 ,allowNegative: false
                 ,value: 3
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsRemoveThreshold'
@@ -667,6 +716,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsAllowReportAsSpam_desc')
                 ,anchor: '30%'
                 ,value: 1
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsAllowReportAsSpam'
@@ -688,6 +738,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.latestCommentsTpl_desc')
                 ,anchor: '100%'
                 ,value: 'quipLatestComment'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-latestCommentsTpl'
@@ -704,6 +755,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,allowNegative: false
                 ,allowDecimals: false
                 ,value: 10
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-latestCommentsLimit'
@@ -720,6 +772,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,allowNegative: false
                 ,allowDecimals: false
                 ,value: 300
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-latestCommentsBodyLimit'
@@ -734,6 +787,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.latestCommentsRowCss_desc')
                 ,anchor: '100%'
                 ,value: 'quip-latest-comment'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-latestCommentsRowCss'
@@ -748,6 +802,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.latestCommentsAltRowCss_desc')
                 ,anchor: '100%'
                 ,value: 'quip-latest-comment-alt'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-latestCommentsAltRowCss'
@@ -770,6 +825,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsGravatar_desc')
                 ,anchor: '30%'
                 ,value: 1
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsGravatar'
@@ -784,6 +840,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsGravatarIcon_desc')
                 ,anchor: '100%'
                 ,value: 'identicon'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsGravatarIcon'
@@ -799,6 +856,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,anchor: '100%'
                 ,allowNegative: false
                 ,value: 50
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsGravatarSize'
@@ -813,6 +871,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsNameField_desc')
                 ,anchor: '100%'
                 ,value: 'name'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsNameField'
@@ -828,6 +887,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsShowAnonymousName')
                 ,anchor: '30%'
                 ,value: 0
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsShowAnonymousName'
@@ -842,6 +902,7 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsAnonymousName_desc')
                 ,anchor: '100%'
                 ,value: 'Anonymous'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsAnonymousName'

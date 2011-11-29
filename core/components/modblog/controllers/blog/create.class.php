@@ -24,7 +24,6 @@ require_once $modx->getOption('manager_path',null,MODX_MANAGER_PATH).'controller
  * @package modblog
  */
 class BlogCreateManagerController extends ResourceCreateManagerController {
-
     public function loadCustomCssJs() {
         $this->prepareResource();
         $managerUrl = $this->context->getOption('manager_url', MODX_MANAGER_URL, $this->modx->_userConfig);
@@ -54,16 +53,13 @@ class BlogCreateManagerController extends ResourceCreateManagerController {
                 ,resource: "'.$this->resource->get('id').'"
                 ,record: '.$this->modx->toJSON($this->resourceArray).'
                 ,publish_document: "'.$this->canPublish.'"
-                ,preview_url: "'.$this->previewUrl.'"
-                ,locked: '.($this->locked ? 1 : 0).'
-                ,lockedText: "'.$this->lockedText.'"
                 ,canSave: '.($this->canSave ? 1 : 0).'
                 ,canEdit: '.($this->canEdit ? 1 : 0).'
                 ,canCreate: '.($this->canCreate ? 1 : 0).'
                 ,canDuplicate: '.($this->canDuplicate ? 1 : 0).'
                 ,canDelete: '.($this->canDelete ? 1 : 0).'
                 ,show_tvs: '.(!empty($this->tvCounts) ? 1 : 0).'
-                ,mode: "update"
+                ,mode: "create"
             });
         });
         // ]]>
