@@ -278,6 +278,22 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
             }
             ,items: [{
                 xtype: 'combo-boolean'
+                ,name: 'setting_commentsEnabled'
+                ,hiddenName: 'setting_commentsEnabled'
+                ,id: 'articles-setting-commentsEnabled'
+                ,fieldLabel: _('articles.setting.commentsEnabled')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsEnabled_desc')
+                ,anchor: '30%'
+                ,value: 1
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsEnabled'
+                ,html: _('articles.setting.commentsEnabled_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'combo-boolean'
                 ,name: 'setting_commentsThreaded'
                 ,hiddenName: 'setting_commentsThreaded'
                 ,id: 'articles-setting-commentsThreaded'

@@ -53,12 +53,14 @@
   </ul>
 </div>
 
+[[+comments_enabled:is=`1`:then=`
 <div class="sidemenu">
   <h3>Latest Comments</h3>
   <ul>
   [[+latest_comments]]
   </ul>
 </div>
+`]]
 
 
   </div>

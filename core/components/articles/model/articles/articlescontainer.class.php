@@ -109,7 +109,13 @@ class ArticlesContainer extends modResource {
             $this->getArchivistCall();
             $this->getTagListerCall();
             $this->getLatestPostsCall();
-            $this->getLatestCommentsCall();
+            $settings = $this->getContainerSettings();
+            if ($this->getOption('commentsEnabled',$settings,true)) {
+                $this->getLatestCommentsCall();
+                $this->xpdo->setPlaceholder('comments_enabled',1);
+            } else {
+                $this->xpdo->setPlaceholder('comments_enabled',0);
+            }
             $this->_content = parent::process();
         }
         return $this->_content;

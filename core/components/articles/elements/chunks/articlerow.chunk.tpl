@@ -7,7 +7,7 @@
     <p class="postmeta">
       <span class="links">
         <a href="[[~[[+id]]]]" class="readmore">[[%articles.read_more]]</a>
-        | <a href="[[~[[+id]]]]#comments" class="comments">[[%articles.comments]] ([[!QuipCount? &thread=`article-b[[+articles_container]]-[[+id]]`]])</a>
+        [[+comments_enabled:is=`1`:then=`| <a href="[[~[[+id]]]]#comments" class="comments">[[%articles.comments]] ([[!QuipCount? &thread=`article-b[[+articles_container]]-[[+id]]`]])</a>`]]
         | <span class="date">[[+publishedon:strtotime:date=`%b %d, %Y`]]</span>
       </span>
     </p>

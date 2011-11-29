@@ -41,8 +41,8 @@
 <p class="post-info">Posted on [[*publishedon:strtotime:date=`%b %d, %Y`]] |
 Tags: [[*articlestags:notempty=`
   <span class="tags" style="float: left;">Tags: [[!tolinks? &useTagsFurl=`1` &items=`[[*articlestags]]` &target=`[[*articles_container]]`]]</span>
-`]] |
-<a href="[[~[[*id]]]]#comments" class="comments">Comments ([[!QuipCount? &thread=`article-b[[*articles_container]]-[[*id]]`]])</a>
+`]]
+[[!+comments_enabled:is=`1`:then=` | <a href="[[~[[*id]]]]#comments" class="comments">Comments ([[!QuipCount? &thread=`article-b[[*articles_container]]-[[*id]]`]])</a>`]]
 </p>
 <div class="entry">
 <p>[[*introtext]]</p>

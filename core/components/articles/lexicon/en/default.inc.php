@@ -121,6 +121,8 @@ $_lang['articles.setting.latestCommentsRowCss_desc'] = 'The CSS class to set for
 $_lang['articles.setting.latestCommentsAltRowCss'] = 'Latest Comments Alt Row CSS';
 $_lang['articles.setting.latestCommentsAltRowCss_desc'] = 'The CSS class to set for each alternate latest comment.';
 
+$_lang['articles.setting.commentsEnabled'] = 'Enable Comments';
+$_lang['articles.setting.commentsEnabled_desc'] = 'Whether or not to enable comments.';
 $_lang['articles.setting.commentsThreaded'] = 'Threaded Comments';
 $_lang['articles.setting.commentsThreaded_desc'] = 'Whether or not this thread can have threaded comments. Threaded comments allow users to comment on comments, increasing the level of indentation. Non-threaded comments allow users to comment only on the parent article, not on the comments.';
 $_lang['articles.setting.commentsReplyResourceId'] = 'Reply Resource ID';

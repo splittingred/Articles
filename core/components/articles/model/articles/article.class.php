@@ -41,8 +41,13 @@ class Article extends modResource {
         $content = parent::getContent($options);
         if ($this->xpdo instanceof modX) {
             $settings = $this->getContainerSettings();
-            $this->getCommentsCall($settings);
-            $this->getCommentsReplyCall($settings);
+            if ($this->xpdo->getOption('commentsEnabled',$settings,true)) {
+                $this->getCommentsCall($settings);
+                $this->getCommentsReplyCall($settings);
+                $this->xpdo->setPlaceholder('comments_enabled',1);
+            } else {
+                $this->xpdo->setPlaceholder('comments_enabled',0);
+            }
         }
         return $content;
     }
