@@ -172,28 +172,30 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
             }
             ,items: this.getMainFields(config)
         });
-        it.push({
-            title: _('articles.comments')
-            ,autoHeight: true
-            ,items: [{
-                html: _('articles.comments.intro_msg')
-                ,border: false
-                ,bodyCssClass: 'panel-desc'
-            },{
-                xtype: 'panel'
-                ,bodyCssClass: 'main-wrapper'
+        if (config.record.commentsEnabled) {
+            it.push({
+                title: _('articles.comments')
                 ,autoHeight: true
-                ,border: false
                 ,items: [{
-                    xtype: 'quip-grid-comments'
-                    ,cls: 'quip-thread-grid'
-                    ,thread: 'article-b'+config.record.articles_container+'-'+config.record.id
-                    ,preventRender: true
-                    ,width: '98%'
-                    ,bodyStyle: 'padding: 0'
+                    html: _('articles.comments.intro_msg')
+                    ,border: false
+                    ,bodyCssClass: 'panel-desc'
+                },{
+                    xtype: 'panel'
+                    ,bodyCssClass: 'main-wrapper'
+                    ,autoHeight: true
+                    ,border: false
+                    ,items: [{
+                        xtype: 'quip-grid-comments'
+                        ,cls: 'quip-thread-grid'
+                        ,thread: 'article-b'+config.record.articles_container+'-'+config.record.id
+                        ,preventRender: true
+                        ,width: '98%'
+                        ,bodyStyle: 'padding: 0'
+                    }]
                 }]
-            }]
-        });
+            });
+        }
         /*
         it.push({
             title: _('articles.statistics')

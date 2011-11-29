@@ -24,7 +24,9 @@ require_once $modx->getOption('manager_path',null,MODX_MANAGER_PATH).'controller
  * @package articles
  */
 class ArticleUpdateManagerController extends ResourceUpdateManagerController {
-
+    /** @var Article $resource */
+    public $resource;
+    
     public function loadCustomCssJs() {
         $managerUrl = $this->context->getOption('manager_url', MODX_MANAGER_URL, $this->modx->_userConfig);
         $articlesAssetsUrl = $this->modx->getOption('articles.assets_url',null,$this->modx->getOption('assets_url',null,MODX_ASSETS_URL).'components/articles/');
@@ -89,6 +91,9 @@ class ArticleUpdateManagerController extends ResourceUpdateManagerController {
         $placeholders = parent::process($scriptProperties);
         $this->resourceArray['richtext'] = 1;
         $this->getTagsTV();
+
+        $settings = $this->resource->getContainerSettings();
+        $this->resourceArray['commentsEnabled'] = $this->modx->getOption('commentsEnabled',$settings,true);
 
         return $placeholders;
     }
