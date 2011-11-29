@@ -381,6 +381,93 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 msgTarget: 'under'
             }
             ,items: [{
+                xtype: 'textfield'
+                ,name: 'setting_commentsTplComment'
+                ,id: 'modblog-setting-commentsTplComment'
+                ,fieldLabel: _('modblog.setting.commentsTplComment')
+                ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsTplComment_desc')
+                ,anchor: '100%'
+                ,value: 'quipComment'
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'modblog-setting-commentsTplComment'
+                ,html: _('modblog.setting.commentsTplComment_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_commentsTplCommentOptions'
+                ,id: 'modblog-setting-commentsTplCommentOptions'
+                ,fieldLabel: _('modblog.setting.commentsTplCommentOptions')
+                ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsTplCommentOptions_desc')
+                ,anchor: '100%'
+                ,value: 'quipCommentOptions'
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'modblog-setting-commentsTplCommentOptions'
+                ,html: _('modblog.setting.commentsTplCommentOptions_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_commentsTplComments'
+                ,id: 'modblog-setting-commentsTplComments'
+                ,fieldLabel: _('modblog.setting.commentsTplComments')
+                ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsTplComments_desc')
+                ,anchor: '100%'
+                ,value: 'quipComments'
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'modblog-setting-commentsTplComments'
+                ,html: _('modblog.setting.commentsTplComments_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_commentsTplAddComment'
+                ,id: 'modblog-setting-commentsAddComment'
+                ,fieldLabel: _('modblog.setting.commentsTplAddComment')
+                ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsTplAddComment_desc')
+                ,anchor: '100%'
+                ,value: 'quipAddComment'
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'modblog-setting-commentsTplAddComment'
+                ,html: _('modblog.setting.commentsTplAddComment_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_commentsTplLoginToComment'
+                ,id: 'modblog-setting-commentsTplLoginToComment'
+                ,fieldLabel: _('modblog.setting.commentsTplLoginToComment')
+                ,description: MODx.expandHelp ? '' : _('modblog.commentsTplLoginToComment_desc')
+                ,anchor: '100%'
+                ,value: 'quipLoginToComment'
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'modblog-setting-commentsTplLoginToComment'
+                ,html: _('modblog.setting.commentsTplLoginToComment_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_commentsTplPreview'
+                ,id: 'modblog-setting-commentsTplPreview'
+                ,fieldLabel: _('modblog.setting.commentsTplPreview')
+                ,description: MODx.expandHelp ? '' : _('modblog.commentsTplPreview_desc')
+                ,anchor: '100%'
+                ,value: 'quipPreviewComment'
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'modblog-setting-commentsTplPreview'
+                ,html: _('modblog.setting.commentsTplPreview_desc')
+                ,cls: 'desc-under'
+
+            },{
+                html: '<hr />'
+                ,border: false
+            },{
                 xtype: 'combo-boolean'
                 ,name: 'setting_commentsUseCss'
                 ,hiddenName: 'setting_commentsUseCss'
@@ -407,93 +494,6 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-commentsAltRowCss'
                 ,html: _('modblog.setting.commentsAltRowCss_desc')
-                ,cls: 'desc-under'
-
-            },{
-                xtype: 'combo-boolean'
-                ,name: 'setting_commentsGravatar'
-                ,hiddenName: 'setting_commentsGravatar'
-                ,id: 'modblog-setting-commentsGravatar'
-                ,fieldLabel: _('modblog.setting.commentsGravatar')
-                ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsGravatar_desc')
-                ,anchor: '30%'
-                ,value: 1
-            },{
-                xtype: MODx.expandHelp ? 'label' : 'hidden'
-                ,forId: 'modblog-setting-commentsGravatar'
-                ,html: _('modblog.setting.commentsGravatar_desc')
-                ,cls: 'desc-under'
-
-            },{
-                xtype: 'textfield'
-                ,name: 'setting_commentsGravatarIcon'
-                ,id: 'modblog-setting-commentsGravatarIcon'
-                ,fieldLabel: _('modblog.setting.commentsGravatarIcon')
-                ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsGravatarIcon_desc')
-                ,anchor: '100%'
-                ,value: 'identicon'
-            },{
-                xtype: MODx.expandHelp ? 'label' : 'hidden'
-                ,forId: 'modblog-setting-commentsGravatarIcon'
-                ,html: _('modblog.setting.commentsGravatarIcon_desc')
-                ,cls: 'desc-under'
-
-            },{
-                xtype: 'numberfield'
-                ,name: 'setting_commentsGravatarSize'
-                ,id: 'modblog-setting-commentsGravatarSize'
-                ,fieldLabel: _('modblog.setting.commentsGravatarSize')
-                ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsGravatarSize_desc')
-                ,anchor: '100%'
-                ,allowNegative: false
-                ,value: 50
-            },{
-                xtype: MODx.expandHelp ? 'label' : 'hidden'
-                ,forId: 'modblog-setting-commentsGravatarSize'
-                ,html: _('modblog.setting.commentsGravatarSize_desc')
-                ,cls: 'desc-under'
-
-            },{
-                xtype: 'textfield'
-                ,name: 'setting_commentsNameField'
-                ,id: 'modblog-setting-commentsNameField'
-                ,fieldLabel: _('modblog.setting.commentsNameField')
-                ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsNameField_desc')
-                ,anchor: '100%'
-                ,value: 'name'
-            },{
-                xtype: MODx.expandHelp ? 'label' : 'hidden'
-                ,forId: 'modblog-setting-commentsNameField'
-                ,html: _('modblog.setting.commentsNameField_desc')
-                ,cls: 'desc-under'
-
-            },{
-                xtype: 'combo-boolean'
-                ,name: 'setting_commentsShowAnonymousName'
-                ,hiddenName: 'setting_commentsShowAnonymousName'
-                ,id: 'modblog-setting-commentsShowAnonymousName'
-                ,fieldLabel: _('modblog.setting.commentsShowAnonymousName')
-                ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsShowAnonymousName')
-                ,anchor: '30%'
-                ,value: 0
-            },{
-                xtype: MODx.expandHelp ? 'label' : 'hidden'
-                ,forId: 'modblog-setting-commentsShowAnonymousName'
-                ,html: _('modblog.setting.commentsShowAnonymousName_desc')
-                ,cls: 'desc-under'
-
-            },{
-                xtype: 'textfield'
-                ,name: 'setting_commentsAnonymousName'
-                ,id: 'modblog-setting-commentsAnonymousName'
-                ,fieldLabel: _('modblog.setting.commentsAnonymousName')
-                ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsAnonymousName_desc')
-                ,anchor: '100%'
-                ,value: 'Anonymous'
-            },{
-                xtype: MODx.expandHelp ? 'label' : 'hidden'
-                ,forId: 'modblog-setting-commentsAnonymousName'
-                ,html: _('modblog.setting.commentsAnonymousName_desc')
                 ,cls: 'desc-under'
 
             }]
@@ -752,6 +752,100 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'modblog-setting-latestCommentsAltRowCss'
                 ,html: _('modblog.setting.latestCommentsAltRowCss_desc')
+                ,cls: 'desc-under'
+
+            }]
+        },{
+            title: ' &#8212; '+_('modblog.settings_comments_other')
+            ,anchor: '100%'
+            ,defaults: {
+                msgTarget: 'under'
+            }
+            ,items: [{
+                xtype: 'combo-boolean'
+                ,name: 'setting_commentsGravatar'
+                ,hiddenName: 'setting_commentsGravatar'
+                ,id: 'modblog-setting-commentsGravatar'
+                ,fieldLabel: _('modblog.setting.commentsGravatar')
+                ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsGravatar_desc')
+                ,anchor: '30%'
+                ,value: 1
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'modblog-setting-commentsGravatar'
+                ,html: _('modblog.setting.commentsGravatar_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_commentsGravatarIcon'
+                ,id: 'modblog-setting-commentsGravatarIcon'
+                ,fieldLabel: _('modblog.setting.commentsGravatarIcon')
+                ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsGravatarIcon_desc')
+                ,anchor: '100%'
+                ,value: 'identicon'
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'modblog-setting-commentsGravatarIcon'
+                ,html: _('modblog.setting.commentsGravatarIcon_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'numberfield'
+                ,name: 'setting_commentsGravatarSize'
+                ,id: 'modblog-setting-commentsGravatarSize'
+                ,fieldLabel: _('modblog.setting.commentsGravatarSize')
+                ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsGravatarSize_desc')
+                ,anchor: '100%'
+                ,allowNegative: false
+                ,value: 50
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'modblog-setting-commentsGravatarSize'
+                ,html: _('modblog.setting.commentsGravatarSize_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_commentsNameField'
+                ,id: 'modblog-setting-commentsNameField'
+                ,fieldLabel: _('modblog.setting.commentsNameField')
+                ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsNameField_desc')
+                ,anchor: '100%'
+                ,value: 'name'
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'modblog-setting-commentsNameField'
+                ,html: _('modblog.setting.commentsNameField_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'combo-boolean'
+                ,name: 'setting_commentsShowAnonymousName'
+                ,hiddenName: 'setting_commentsShowAnonymousName'
+                ,id: 'modblog-setting-commentsShowAnonymousName'
+                ,fieldLabel: _('modblog.setting.commentsShowAnonymousName')
+                ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsShowAnonymousName')
+                ,anchor: '30%'
+                ,value: 0
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'modblog-setting-commentsShowAnonymousName'
+                ,html: _('modblog.setting.commentsShowAnonymousName_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_commentsAnonymousName'
+                ,id: 'modblog-setting-commentsAnonymousName'
+                ,fieldLabel: _('modblog.setting.commentsAnonymousName')
+                ,description: MODx.expandHelp ? '' : _('modblog.setting.commentsAnonymousName_desc')
+                ,anchor: '100%'
+                ,value: 'Anonymous'
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'modblog-setting-commentsAnonymousName'
+                ,html: _('modblog.setting.commentsAnonymousName_desc')
                 ,cls: 'desc-under'
 
             }]

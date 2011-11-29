@@ -80,6 +80,10 @@ class modBlogPost extends modResource {
    &replyResourceId=`'.$this->xpdo->getOption('commentsReplyResourceId',$settings,0).'`
    &maxDepth=`'.$this->xpdo->getOption('commentsMaxDepth',$settings,5).'`
 
+   &tplComment=`'.$this->xpdo->getOption('commentsTplComment',$settings,'quipComment').'`
+   &tplCommentOptions=`'.$this->xpdo->getOption('commentsTplCommentOptions',$settings,'quipCommentOptions').'`
+   &tplComments=`'.$this->xpdo->getOption('commentsTplComments',$settings,'quipComments').'`
+
    &dateFormat=`'.$this->xpdo->getOption('commentsDateFormat',$settings,'%b %d, %Y at %I:%M %p').'`
    &closeAfter=`'.$this->xpdo->getOption('commentsCloseAfter',$settings,0).'`
 
@@ -113,6 +117,10 @@ class modBlogPost extends modResource {
     public function getCommentsReplyCall(array $settings = array()) {
         $call = '[[!QuipReply?
    &thread=`modblogpost-b'.$this->get('blog').'-'.$this->get('id').'`
+
+   &tplAddComment=`'.$this->xpdo->getOption('commentsTplAddComment',$settings,'quipAddComment').'`
+   &tplLoginToComment=`'.$this->xpdo->getOption('commentsTplLoginToComment',$settings,'quipLoginToComment').'`
+   &tplPreview=`'.$this->xpdo->getOption('commentsTplPreview',$settings,'quipPreviewComment').'`
 
    &requirePreview=`'.$this->xpdo->getOption('commentsRequirePreview',$settings,0).'`
    &zzrequireAuth=`'.$this->xpdo->getOption('commentsRequireAuth',$settings,0).'`

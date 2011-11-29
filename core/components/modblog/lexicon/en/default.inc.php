@@ -59,6 +59,7 @@ $_lang['modblog.settings_comments'] = 'Comments';
 $_lang['modblog.settings_comments_display'] = 'Display';
 $_lang['modblog.settings_comments_latest'] = 'Latest';
 $_lang['modblog.settings_comments_moderation'] = 'Security';
+$_lang['modblog.settings_comments_other'] = 'Other';
 $_lang['modblog.settings_latest_posts'] = 'Latest Posts';
 $_lang['modblog.settings_rss'] = 'RSS';
 $_lang['modblog.settings_tagging'] = 'Tagging';
@@ -120,17 +121,31 @@ $_lang['modblog.setting.latestCommentsRowCss_desc'] = 'The CSS class to set for 
 $_lang['modblog.setting.latestCommentsAltRowCss'] = 'Latest Comments Alt Row CSS';
 $_lang['modblog.setting.latestCommentsAltRowCss_desc'] = 'The CSS class to set for each alternate latest comment.';
 
-
 $_lang['modblog.setting.commentsThreaded'] = 'Threaded Comments';
 $_lang['modblog.setting.commentsThreaded_desc'] = 'Whether or not this thread can have threaded comments. Threaded comments allow users to comment on comments, increasing the level of indentation. Non-threaded comments allow users to comment only on the parent article, not on the comments.';
 $_lang['modblog.setting.commentsReplyResourceId'] = 'Reply Resource ID';
 $_lang['modblog.setting.commentsReplyResourceId_desc'] = 'The ID of the Resource where the QuipReply snippet is held, for replying to threaded comments.';
 $_lang['modblog.setting.commentsMaxDepth'] = 'Maximum Threading Depth';
 $_lang['modblog.setting.commentsMaxDepth_desc'] = 'The maximum depth that replies can be made in a threaded comment thread.';
+
+$_lang['modblog.setting.commentsTplComment'] = 'Comment Chunk';
+$_lang['modblog.setting.commentsTplComment_desc'] = 'The Chunk to use for each comment.';
+$_lang['modblog.setting.commentsTplCommentOptions'] = 'Comments Options Chunk';
+$_lang['modblog.setting.commentsTplCommentOptions_desc'] = 'A chunk for the options, such as delete, shown to an owner of a comment.';
+$_lang['modblog.setting.commentsTplComments'] = 'Comments Wrapper Chunk';
+$_lang['modblog.setting.commentsTplComments_desc'] = 'The outer wrapper for comments. Can either be a chunk name or value. If set to a value, will override the chunk.';
+$_lang['modblog.setting.commentsTplAddComment'] = 'Reply Form Chunk';
+$_lang['modblog.setting.commentsTplAddComment_desc'] = 'The add comment form Chunk.';
+$_lang['modblog.setting.commentsTplLoginToComment'] = 'Login to Comment Chunk';
+$_lang['modblog.setting.commentsTplLoginToComment_desc'] = 'The Chunk that shows when the user is not logged in and authentication is required.';
+$_lang['modblog.setting.commentsTplPreview'] = 'Preview Chunk';
+$_lang['modblog.setting.commentsTplPreview_desc'] = 'The Chunk for the Preview Comment view.';
+
 $_lang['modblog.setting.commentsUseCss'] = 'Use Quip CSS';
 $_lang['modblog.setting.commentsUseCss_desc'] = 'Provide a basic CSS template for the presentation.';
 $_lang['modblog.setting.commentsAltRowCss'] = 'Alternate Row CSS Class';
 $_lang['modblog.setting.commentsAltRowCss_desc'] = 'The CSS class to put on alternating comments.';
+
 $_lang['modblog.setting.commentsNameField'] = 'Name Field';
 $_lang['modblog.setting.commentsNameField_desc'] = 'The field to use for the author name of each comment. Recommended values are "name" or "username".';
 $_lang['modblog.setting.commentsShowAnonymousName'] = 'Show Anonymous Name';
