@@ -56,7 +56,9 @@ $_lang['modblog.publishing_information'] = 'Publishing Information';
 $_lang['modblog.settings'] = 'Settings';
 $_lang['modblog.settings_archiving'] = 'Archives';
 $_lang['modblog.settings_comments'] = 'Comments';
-$_lang['modblog.settings_comments_latest'] = 'Latest Comments';
+$_lang['modblog.settings_comments_display'] = 'Display';
+$_lang['modblog.settings_comments_latest'] = 'Latest';
+$_lang['modblog.settings_comments_moderation'] = 'Security';
 $_lang['modblog.settings_latest_posts'] = 'Latest Posts';
 $_lang['modblog.settings_rss'] = 'RSS';
 $_lang['modblog.settings_tagging'] = 'Tagging';
@@ -117,6 +119,85 @@ $_lang['modblog.setting.latestCommentsRowCss'] = 'Latest Comments Row CSS';
 $_lang['modblog.setting.latestCommentsRowCss_desc'] = 'The CSS class to set for each latest comment.';
 $_lang['modblog.setting.latestCommentsAltRowCss'] = 'Latest Comments Alt Row CSS';
 $_lang['modblog.setting.latestCommentsAltRowCss_desc'] = 'The CSS class to set for each alternate latest comment.';
+
+
+$_lang['modblog.setting.commentsThreaded'] = 'Threaded Comments';
+$_lang['modblog.setting.commentsThreaded_desc'] = 'Whether or not this thread can have threaded comments. Threaded comments allow users to comment on comments, increasing the level of indentation. Non-threaded comments allow users to comment only on the parent article, not on the comments.';
+$_lang['modblog.setting.commentsReplyResourceId'] = 'Reply Resource ID';
+$_lang['modblog.setting.commentsReplyResourceId_desc'] = 'The ID of the Resource where the QuipReply snippet is held, for replying to threaded comments.';
+$_lang['modblog.setting.commentsMaxDepth'] = 'Maximum Threading Depth';
+$_lang['modblog.setting.commentsMaxDepth_desc'] = 'The maximum depth that replies can be made in a threaded comment thread.';
+$_lang['modblog.setting.commentsUseCss'] = 'Use Quip CSS';
+$_lang['modblog.setting.commentsUseCss_desc'] = 'Provide a basic CSS template for the presentation.';
+$_lang['modblog.setting.commentsAltRowCss'] = 'Alternate Row CSS Class';
+$_lang['modblog.setting.commentsAltRowCss_desc'] = 'The CSS class to put on alternating comments.';
+$_lang['modblog.setting.commentsNameField'] = 'Name Field';
+$_lang['modblog.setting.commentsNameField_desc'] = 'The field to use for the author name of each comment. Recommended values are "name" or "username".';
+$_lang['modblog.setting.commentsShowAnonymousName'] = 'Show Anonymous Name';
+$_lang['modblog.setting.commentsShowAnonymousName_desc'] = 'Display the value of anonymousName property (defaults to "Anonymous") if the user is not logged in when posting.';
+$_lang['modblog.setting.commentsAnonymousName'] = 'Anonymous Name';
+$_lang['modblog.setting.commentsAnonymousName_desc'] = 'The name to display for anonymous postings. Defaults to "Anonymous".';
+$_lang['modblog.setting.commentsLimit'] = 'Number of Comments Per Page';
+$_lang['modblog.setting.commentsLimit_desc'] = 'The number of comments to limit per page. Setting this to a non-zero number will enable pagination.';
+$_lang['modblog.setting.commentsCloseAfter'] = 'Close Comments After';
+$_lang['modblog.setting.commentsCloseAfter_desc'] = 'The number of days at which the thread will automatically close after it was created. Set to 0 to leave open indefinitely.';
+$_lang['modblog.setting.commentsRequirePreview'] = 'Require Posting Preview';
+$_lang['modblog.setting.commentsRequirePreview_desc'] = 'Require a user to preview their comment before posting.';
+$_lang['modblog.setting.commentsRequireAuth'] = 'Require Authentication To Comment';
+$_lang['modblog.setting.commentsRequireAuth_desc'] = 'Only logged in users will be able to comment on the thread.';
+$_lang['modblog.setting.commentsReCaptcha'] = 'ReCaptcha';
+$_lang['modblog.setting.commentsReCaptcha_desc'] = 'Enable reCaptcha in the add comment form.';
+$_lang['modblog.setting.commentsDisableReCaptchaWhenLoggedIn'] = 'Disable reCaptcha When Logged In';
+$_lang['modblog.setting.commentsDisableReCaptchaWhenLoggedIn_desc'] = 'Disable reCaptcha validation for logged in users.';
+$_lang['modblog.setting.commentsModerate'] = 'Moderate Comments';
+$_lang['modblog.setting.commentsModerate_desc'] = 'All new posts to the thread will be moderated.';
+$_lang['modblog.setting.commentsModerateAnonymousOnly'] = 'Moderate Anonymous Postings Only';
+$_lang['modblog.setting.commentsModerateAnonymousOnly_desc'] = 'Only moderate posts by users not logged in.';
+$_lang['modblog.setting.commentsModerateFirstPostOnly'] = 'Moderate First Post Only';
+$_lang['modblog.setting.commentsModerateFirstPostOnly_desc'] = 'Only moderate the first post of logged-in users. All other posts will auto-approve. Anonymous posts will always be moderated.';
+$_lang['modblog.setting.commentsModerators'] = 'Moderators';
+$_lang['modblog.setting.commentsModerators_desc'] = 'A comma-separated list of moderator usernames.';
+$_lang['modblog.setting.commentsModeratorGroup'] = 'Moderator Group';
+$_lang['modblog.setting.commentsModeratorGroup_desc'] = 'Any Users in this User Group will have moderator access.';
+$_lang['modblog.setting.commentsAllowRemove'] = 'Allow Remove';
+$_lang['modblog.setting.commentsAllowRemove_desc'] = 'Allow logged-in users to remove their own postings.';
+$_lang['modblog.setting.commentsRemoveThreshold'] = 'Removal Threshold';
+$_lang['modblog.setting.commentsRemoveThreshold_desc'] = 'If Allow Remove is on, the number of minutes a user can remove their posting after they have posted it.';
+$_lang['modblog.setting.commentsAllowReportAsSpam'] = 'Allow Report As Spam';
+$_lang['modblog.setting.commentsAllowReportAsSpam_desc'] = 'Allow logged-in users to report comments as spam.';
+$_lang['modblog.setting.commentsDateFormat'] = 'Post Date Format';
+$_lang['modblog.setting.commentsDateFormat_desc'] = 'The format of the date to show for a comment\'s post date. The syntax is in PHP strftime format.';
+$_lang['modblog.setting.commentsAutoConvertLinks'] = 'Auto Convert Hyperlinks';
+$_lang['modblog.setting.commentsAutoConvertLinks_desc'] = 'Automatically convert URLs to links.';
+$_lang['modblog.setting.commentsGravatar'] = 'Use Gravatar';
+$_lang['modblog.setting.commentsGravatar_desc'] = 'Whether or not to show Gravatar icons in comments.';
+$_lang['modblog.setting.commentsGravatarIcon'] = 'Gravatar Icon Style';
+$_lang['modblog.setting.commentsGravatarIcon_desc'] = 'The type of Gravatar icon to use for a user without a Gravatar.';
+$_lang['modblog.setting.commentsGravatarSize'] = 'Gravatar Icon Size';
+$_lang['modblog.setting.commentsGravatarSize_desc'] = 'The size in pixels of the Gravatar.';
+/**
+ *
+   &closeAfter=`'.$this->xpdo->getOption('commentsCloseAfter',$settings,0).'`
+
+   &requirePreview=`'.$this->xpdo->getOption('commentsRequirePreview',$settings,0).'`
+   &zzrequireAuth=`'.$this->xpdo->getOption('commentsRequireAuth',$settings,0).'
+
+   &recaptcha=`'.$this->xpdo->getOption('commentsReCaptcha',$settings,0).'`
+   &disableRecaptchaWhenLoggedIn=`1`
+
+   &moderate=`'.$this->xpdo->getOption('commentsModerate',$settings,1).'`
+   &moderateAnonymousOnly=`'.$this->xpdo->getOption('commentsModerateAnonymousOnly',$settings,0).'`
+   &moderateFirstPostOnly=`'.$this->xpdo->getOption('commentsModerateFirstPostOnly',$settings,1).'`
+   &moderators=`'.$this->xpdo->getOption('commentsModerators',$settings,'').'`
+   &moderatorGroup=`'.$this->xpdo->getOption('commentsModeratorGroup',$settings,'Administrator').'`
+
+   &dateFormat=`'.$this->xpdo->getOption('commentsDateFormat',$settings,'%b %d, %Y at %I:%M %p').'`
+   &autoConvertLinks=`'.$this->xpdo->getOption('commentsAutoConvertLinks',$settings,1).'`
+
+   &useGravatar=`'.$this->xpdo->getOption('commentsGravatar',$settings,1).'`
+   &gravatarIcon=`'.$this->xpdo->getOption('commentsGravatarIcon',$settings,'identicon').'`
+   &gravatarSize=`'.$this->xpdo->getOption('commentsGravatarSize',$settings,50).'`
+ */
 
 $_lang['modblog.setting.'] = '';
 $_lang['modblog.setting._desc'] = '';

@@ -56,19 +56,10 @@ Tags: [[*modblogtags:notempty=`
 <hr />
 
 <div class="post-comments" id="comments">
-[[!Quip?
-  &thread=`modblogpost-b[[*blog]]-[[*id]]`
-  &replyResourceId=`1`
-  &closeAfter=`0`
-]]
+[[+comments]]
 <br />
 <h3>Add a Comment</h3>
-[[!QuipReply?
-  &thread=`modblogpost-b[[*blog]]-[[*id]]`
-  &recaptcha=`0`
-  &moderate=`1`
-  &closeAfter=`0`
-]]
+[[+comments_form]]
 
 </div>
 

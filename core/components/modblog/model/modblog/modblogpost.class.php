@@ -39,13 +39,25 @@ class modBlogPost extends modResource {
 
     public function getContent(array $options = array()) {
         $content = parent::getContent($options);
-        /*
         if ($this->xpdo instanceof modX) {
-            $settings = $this->get('blog_settings');
+            $settings = $this->getBlogSettings();
             $this->getCommentsCall($settings);
             $this->getCommentsReplyCall($settings);
-        }*/
+        }
         return $content;
+    }
+
+    /**
+     * @return array
+     */
+    public function getBlogSettings() {
+        $settings = $this->get('blog_settings');
+        /** @var modBlog $blog */
+        $blog = $this->getOne('Blog');
+        if ($blog) {
+            $settings = $blog->getBlogSettings();
+        }
+        return $settings;
     }
 
     /**
@@ -57,33 +69,74 @@ class modBlogPost extends modResource {
         return false;
     }
 
-    /*
-     * Delayed for a future release...
-     * 
+    /**
+     * @param array $settings
+     * @return string
+     */
     public function getCommentsCall(array $settings = array()) {
         $call = '[[!Quip?
-  &thread=`modblogpost-b'.$this->get('blog').'-'.$this->get('id').'`
-  &replyResourceId=`19`
-  &closeAfter=`'.$this->xpdo->getOption('commentsCloseAfter',$settings,0).'`
-  &threaded=`'.$this->xpdo->getOption('commentsThreaded',$settings,1).'`
-  &maxDepth=`'.$this->xpdo->getOption('commentsMaxDepth',$settings,5).'`
-  &dateFormat=`'.$this->xpdo->getOption('commentsDateFormat',$settings,'%b %d, %Y at %I:%M %p').'`
-  &requireAuth=`'.$this->xpdo->getOption('commentsRequireAuth',$settings,0).'`
-  &useCss=`'.$this->xpdo->getOption('commentsUseCss',$settings,1).'`
+   &thread=`modblogpost-b'.$this->get('blog').'-'.$this->get('id').'`
+   &threaded=`'.$this->xpdo->getOption('commentsThreaded',$settings,1).'`
+   &replyResourceId=`'.$this->xpdo->getOption('commentsReplyResourceId',$settings,0).'`
+   &maxDepth=`'.$this->xpdo->getOption('commentsMaxDepth',$settings,5).'`
+
+   &dateFormat=`'.$this->xpdo->getOption('commentsDateFormat',$settings,'%b %d, %Y at %I:%M %p').'`
+   &closeAfter=`'.$this->xpdo->getOption('commentsCloseAfter',$settings,0).'`
+
+   &useCss=`'.$this->xpdo->getOption('commentsUseCss',$settings,1).'`
+   &altRowCss=`'.$this->xpdo->getOption('commentsAltRowCss',$settings,'quip-comment-alt').'`
+
+   &zzrequireAuth=`'.$this->xpdo->getOption('commentsRequireAuth',$settings,0).'`
+
+   &nameField=`'.$this->xpdo->getOption('commentsNameField',$settings,'username').'`
+   &showAnonymousName=`'.$this->xpdo->getOption('commentsShowAnonymousName',$settings,0).'`
+   &anonymousName=`'.$this->xpdo->getOption('commentsAnonymousName',$settings,'Anonymous').'`
+
+   &allowRemove=`'.$this->xpdo->getOption('commentsAllowRemove',$settings,1).'`
+   &removeThreshold=`'.$this->xpdo->getOption('commentsRemoveThreshold',$settings,3).'`
+   &allowReportAsSpam=`'.$this->xpdo->getOption('commentsAllowReportAsSpam',$settings,1).'`
+
+   &useGravatar=`'.$this->xpdo->getOption('commentsGravatar',$settings,1).'`
+   &gravatarIcon=`'.$this->xpdo->getOption('commentsGravatarIcon',$settings,'identicon').'`
+   &gravatarSize=`'.$this->xpdo->getOption('commentsGravatarSize',$settings,50).'`
+
+   &limit=`'.$this->xpdo->getOption('commentsLimit',$settings,0).'`
 ]]';
         $this->xpdo->setPlaceholder('comments',$call);
+        return $call;
     }
 
+    /**
+     * @param array $settings
+     * @return string
+     */
     public function getCommentsReplyCall(array $settings = array()) {
         $call = '[[!QuipReply?
    &thread=`modblogpost-b'.$this->get('blog').'-'.$this->get('id').'`
+
+   &requirePreview=`'.$this->xpdo->getOption('commentsRequirePreview',$settings,0).'`
+   &zzrequireAuth=`'.$this->xpdo->getOption('commentsRequireAuth',$settings,0).'`
+
    &recaptcha=`'.$this->xpdo->getOption('commentsReCaptcha',$settings,0).'`
+   &disableRecaptchaWhenLoggedIn=`'.$this->xpdo->getOption('commentsDisabledReCaptchaWhenLoggedIn',$settings,1).'`
+
    &moderate=`'.$this->xpdo->getOption('commentsModerate',$settings,1).'`
+   &moderateAnonymousOnly=`'.$this->xpdo->getOption('commentsModerateAnonymousOnly',$settings,0).'`
+   &moderateFirstPostOnly=`'.$this->xpdo->getOption('commentsModerateFirstPostOnly',$settings,1).'`
+   &moderators=`'.$this->xpdo->getOption('commentsModerators',$settings,'').'`
+   &moderatorGroup=`'.$this->xpdo->getOption('commentsModeratorGroup',$settings,'Administrator').'`
+
    &closeAfter=`'.$this->xpdo->getOption('commentsCloseAfter',$settings,0).'`
+   &dateFormat=`'.$this->xpdo->getOption('commentsDateFormat',$settings,'%b %d, %Y at %I:%M %p').'`
+   &autoConvertLinks=`'.$this->xpdo->getOption('commentsAutoConvertLinks',$settings,1).'`
+
+   &useGravatar=`'.$this->xpdo->getOption('commentsGravatar',$settings,1).'`
+   &gravatarIcon=`'.$this->xpdo->getOption('commentsGravatarIcon',$settings,'identicon').'`
+   &gravatarSize=`'.$this->xpdo->getOption('commentsGravatarSize',$settings,50).'`
 ]]';
         $this->xpdo->setPlaceholder('comments_form',$call);
+        return $call;
     }
-    */
 }
 
 /**
