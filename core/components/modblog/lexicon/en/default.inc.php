@@ -54,9 +54,12 @@ $_lang['modblog.posts_search'] = 'Search Posts...';
 $_lang['modblog.published'] = 'Published';
 $_lang['modblog.publishing_information'] = 'Publishing Information';
 $_lang['modblog.settings'] = 'Settings';
-$_lang['modblog.settings_archiving'] = 'Archiving';
-$_lang['modblog.settings_tagging'] = 'Tagging';
+$_lang['modblog.settings_archiving'] = 'Archives';
+$_lang['modblog.settings_comments'] = 'Comments';
+$_lang['modblog.settings_comments_latest'] = 'Latest Comments';
+$_lang['modblog.settings_latest_posts'] = 'Latest Posts';
 $_lang['modblog.settings_rss'] = 'RSS';
+$_lang['modblog.settings_tagging'] = 'Tagging';
 $_lang['modblog.statistics'] = 'Statistics';
 $_lang['modblog.status'] = 'Status';
 $_lang['modblog.template'] = 'Template';
@@ -98,6 +101,23 @@ $_lang['modblog.setting.tagCls'] = 'Tag CSS Class';
 $_lang['modblog.setting.tagCls_desc'] = 'A CSS class to apply to each tag listing.';
 $_lang['modblog.setting.tagAltCls'] = 'Tag Alternate CSS Class';
 $_lang['modblog.setting.tagAltCls_desc'] = 'A CSS class to apply to each alternate row for each tag listing.';
+
+$_lang['modblog.setting.latestPostsTpl'] = 'Latest Posts Chunk';
+$_lang['modblog.setting.latestPostsTpl_desc'] = 'The Chunk to use for each Latest Post.';
+$_lang['modblog.setting.latestPostsLimit'] = 'Latest Posts to Show';
+$_lang['modblog.setting.latestPostsLimit_desc'] = 'The number of latest posts to show.';
+
+$_lang['modblog.setting.latestCommentsTpl'] = 'Latest Comments Chunk';
+$_lang['modblog.setting.latestCommentsTpl_desc'] = 'The Chunk to use for each latest comment.';
+$_lang['modblog.setting.latestCommentsLimit'] = 'Latest Comments to Show';
+$_lang['modblog.setting.latestCommentsLimit_desc'] = 'The number of latest comments to show. Defaults to 10.';
+$_lang['modblog.setting.latestCommentsBodyLimit'] = 'Body Limit of Latest Comments';
+$_lang['modblog.setting.latestCommentsBodyLimit_desc'] = 'The number of characters to show for the latest comment before truncating with an ellipsis (...).';
+$_lang['modblog.setting.latestCommentsRowCss'] = 'Latest Comments Row CSS';
+$_lang['modblog.setting.latestCommentsRowCss_desc'] = 'The CSS class to set for each latest comment.';
+$_lang['modblog.setting.latestCommentsAltRowCss'] = 'Latest Comments Alt Row CSS';
+$_lang['modblog.setting.latestCommentsAltRowCss_desc'] = 'The CSS class to set for each alternate latest comment.';
+
 $_lang['modblog.setting.'] = '';
 $_lang['modblog.setting._desc'] = '';
 

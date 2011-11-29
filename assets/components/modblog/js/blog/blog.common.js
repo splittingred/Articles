@@ -210,6 +210,124 @@ modBlog.panel.BlogAdvancedSettings = function(config) {
                 ,cls: 'desc-under'
 
             }]
+        },{
+            title: _('modblog.settings_latest_posts')
+            ,anchor: '100%'
+            ,defaults: {
+                msgTarget: 'under'
+            }
+            ,items: [{
+                xtype: 'textfield'
+                ,name: 'setting_latestPostsTpl'
+                ,id: 'modblog-setting-latestPostsTpl'
+                ,fieldLabel: _('modblog.setting.latestPostsTpl')
+                ,description: MODx.expandHelp ? '' : _('modblog.setting.latestPostsTpl_desc')
+                ,anchor: '100%'
+                ,value: 'sample.modBlogLatestPostTpl'
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'modblog-setting-latestPostsTpl'
+                ,html: _('modblog.setting.latestPostsTpl_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'numberfield'
+                ,name: 'setting_latestPostsLimit'
+                ,id: 'modblog-setting-latestPostsLimit'
+                ,fieldLabel: _('modblog.setting.latestPostsLimit')
+                ,description: MODx.expandHelp ? '' : _('modblog.setting.latestPostsLimit_desc')
+                ,width: 120
+                ,allowNegative: false
+                ,allowDecimals: false
+                ,value: 5
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'modblog-setting-latestPostsLimit'
+                ,html: _('modblog.setting.latestPostsLimit_desc')
+                ,cls: 'desc-under'
+
+            }]
+        },{
+            title: _('modblog.settings_comments_latest')
+            ,anchor: '100%'
+            ,defaults: {
+                msgTarget: 'under'
+            }
+            ,items: [{
+                xtype: 'textfield'
+                ,name: 'setting_latestCommentsTpl'
+                ,id: 'modblog-setting-latestCommentsTpl'
+                ,fieldLabel: _('modblog.setting.latestCommentsTpl')
+                ,description: MODx.expandHelp ? '' : _('modblog.setting.latestCommentsTpl_desc')
+                ,anchor: '100%'
+                ,value: 'quipLatestComment'
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'modblog-setting-latestCommentsTpl'
+                ,html: _('modblog.setting.latestCommentsTpl_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'numberfield'
+                ,name: 'setting_latestCommentsLimit'
+                ,id: 'modblog-setting-latestCommentsLimit'
+                ,fieldLabel: _('modblog.setting.latestCommentsLimit')
+                ,description: MODx.expandHelp ? '' : _('modblog.setting.latestCommentsLimit_desc')
+                ,width: 120
+                ,allowNegative: false
+                ,allowDecimals: false
+                ,value: 10
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'modblog-setting-latestCommentsLimit'
+                ,html: _('modblog.setting.latestCommentsLimit_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_latestCommentsBodyLimit'
+                ,id: 'modblog-setting-latestCommentsBodyLimit'
+                ,fieldLabel: _('modblog.setting.latestCommentsBodyLimit')
+                ,description: MODx.expandHelp ? '' : _('modblog.setting.latestCommentsBodyLimit_desc')
+                ,width: 150
+                ,allowNegative: false
+                ,allowDecimals: false
+                ,value: 300
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'modblog-setting-latestCommentsBodyLimit'
+                ,html: _('modblog.setting.latestCommentsBodyLimit_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_latestCommentsRowCss'
+                ,id: 'modblog-setting-latestCommentsRowCss'
+                ,fieldLabel: _('modblog.setting.latestCommentsRowCss')
+                ,description: MODx.expandHelp ? '' : _('modblog.setting.latestCommentsRowCss_desc')
+                ,anchor: '100%'
+                ,value: 'quip-latest-comment'
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'modblog-setting-latestCommentsRowCss'
+                ,html: _('modblog.setting.latestCommentsRowCss_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_latestCommentsAltRowCss'
+                ,id: 'modblog-setting-latestCommentsAltRowCss'
+                ,fieldLabel: _('modblog.setting.latestCommentsAltRowCss')
+                ,description: MODx.expandHelp ? '' : _('modblog.setting.latestCommentsAltRowCss_desc')
+                ,anchor: '100%'
+                ,value: 'quip-latest-comment-alt'
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'modblog-setting-latestCommentsAltRowCss'
+                ,html: _('modblog.setting.latestCommentsAltRowCss_desc')
+                ,cls: 'desc-under'
+
+            }]
         }]
     });
     modBlog.panel.BlogAdvancedSettings.superclass.constructor.call(this,config);

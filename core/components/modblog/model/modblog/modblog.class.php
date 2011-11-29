@@ -108,6 +108,8 @@ class modBlog extends modResource {
             $this->getPostListingCall();
             $this->getArchivistCall();
             $this->getTagListerCall();
+            $this->getLatestPostsCall();
+            $this->getLatestCommentsCall();
             $this->_content = parent::process();
         }
         return $this->_content;
@@ -242,6 +244,44 @@ class modBlog extends modResource {
             &target=`'.$this->get('id').'`
         ]]';
         $this->xpdo->setPlaceholder('tags',$output);
+        return $output;
+    }
+
+    /**
+     * Get the call for the latest posts
+     * @return string
+     */
+    public function getLatestPostsCall() {
+        $settings = $this->getBlogSettings();
+        $output = '[[getResources?
+            &parents=`'.$this->get('id').'`
+            &hideContainers=`1`
+            &showHidden=`1`
+            &tpl=`'.$this->xpdo->getOption('latestPostsTpl',$settings,'sample.modBlogLatestPostTpl').'`
+            &limit=`'.$this->xpdo->getOption('latestPostsLimit',$settings,5).'`
+            &sortby=`publishedon`
+            &where=`{"class_key":"modBlogPost"}`
+        ]]';
+        $this->xpdo->setPlaceholder('latest_posts',$output);
+        return $output;
+    }
+
+    /**
+     * Get the call for the latest comments
+     * @return string
+     */
+    public function getLatestCommentsCall() {
+        $settings = $this->getBlogSettings();
+        $output = '[[!QuipLatestComments?
+            &type=`family`
+            &family=`b'.$this->get('id').'`
+            &tpl=`'.$this->xpdo->getOption('latestCommentsTpl',$settings,'quipLatestComment').'`
+            &limit=`'.$this->xpdo->getOption('latestCommentsLimit',$settings,10).'`
+            &bodyLimit=`'.$this->xpdo->getOption('latestCommentsBodyLimit',$settings,300).'`
+            &rowCss=`'.$this->xpdo->getOption('latestCommentsRowCss',$settings,'quip-latest-comment').'`
+            &altRowCss=`'.$this->xpdo->getOption('latestCommentsAltRowCss',$settings,'quip-latest-comment-alt').'`
+        ]]';
+        $this->xpdo->setPlaceholder('latest_comments',$output);
         return $output;
     }
 

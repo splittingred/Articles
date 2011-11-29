@@ -49,14 +49,14 @@
 <div class="sidemenu">
   <h3>Latest Posts</h3>
   <ul>
-  [[!getResources? &parents=`[[*id]]` &hideContainers=`1` &showHidden=`1` &tpl=`sample.modBlogLatestPostTpl` &limit=`5` &sortby=`publishedon` &where=`{"class_key":"modBlogPost"}`]]
+  [[+latest_posts]]
   </ul>
 </div>
 
 <div class="sidemenu">
   <h3>Latest Comments</h3>
   <ul>
-  [[!QuipLatestComments? &type=`family` &family=`b[[*id]]`]]
+  [[+latest_comments]]
   </ul>
 </div>
 

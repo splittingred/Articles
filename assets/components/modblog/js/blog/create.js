@@ -243,7 +243,7 @@ Ext.extend(modBlog.panel.Blog,MODx.panel.Resource,{
         },{
             xtype: 'textarea'
             ,fieldLabel: _('modblog.blog_description')
-            ,description: '<b>[[*description]]</b><br />'+_('modblog.blog_description_help')
+            ,description: '<b>[[*description]]</b><br />'+_('modblog.blog_description_desc')
             ,name: 'description'
             ,id: 'modx-resource-description'
             ,maxLength: 255
