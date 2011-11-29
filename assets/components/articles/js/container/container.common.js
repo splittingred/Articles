@@ -1,0 +1,920 @@
+
+
+
+Articles.panel.ContainerAdvancedSettings = function(config) {
+    config = config || {};
+    var oc = {
+        'change':{fn:MODx.fireResourceFormChange}
+        ,'select':{fn:MODx.fireResourceFormChange}
+    };
+    Ext.applyIf(config,{
+        border: false
+        ,plain: true
+        ,deferredRender: false
+        ,id: 'modx-resource-vtabs'
+        ,anchor: '97%'
+        ,items: [{
+            title: _('articles.settings_archiving')
+            ,anchor: '100%'
+            ,defaults: {
+                msgTarget: 'under'
+            }
+            ,items: [{
+                xtype: 'textfield'
+                ,name: 'setting_tplArchiveMonth'
+                ,id: 'articles-setting-tplArchiveMonth'
+                ,fieldLabel: _('articles.setting.tplArchiveMonth')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.tplArchiveMonth_desc')
+                ,anchor: '100%'
+                ,value: 'row'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-tplArchiveMonth'
+                ,html: _('articles.setting.tplArchiveMonth_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'numberfield'
+                ,name: 'setting_archiveListingsLimit'
+                ,id: 'articles-setting-archiveListingsLimit'
+                ,fieldLabel: _('articles.setting.archiveListingsLimit')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.archiveListingsLimit_desc')
+                ,allowNegative: false
+                ,allowDecimals: false
+                ,width: 120
+                ,value: 10
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-archiveListingsLimit'
+                ,html: _('articles.setting.archiveListingsLimit_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'combo-boolean'
+                ,name: 'setting_archiveByMonth'
+                ,hiddenName: 'setting_archiveByMonth'
+                ,id: 'articles-setting-archiveByMonth'
+                ,fieldLabel: _('articles.setting.archiveByMonth')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.archiveByMonth_desc')
+                ,width: 120
+                ,value: 1
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-archiveByMonth'
+                ,html: _('articles.setting.archiveByMonth_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_archiveCls'
+                ,id: 'articles-setting-archiveCls'
+                ,fieldLabel: _('articles.setting.archiveCls')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.archiveCls_desc')
+                ,anchor: '100%'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-archiveCls'
+                ,html: _('articles.setting.archiveCls_desc')
+                ,cls: 'desc-under'
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_archiveAltCls'
+                ,id: 'articles-setting-archiveAltCls'
+                ,fieldLabel: _('articles.setting.archiveAltCls')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.archiveAltCls_desc')
+                ,anchor: '100%'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-archiveAltCls'
+                ,html: _('articles.setting.archiveAltCls_desc')
+                ,cls: 'desc-under'
+
+            }]
+        },{
+            title: _('articles.settings_tagging')
+            ,anchor: '100%'
+            ,defaults: {
+                msgTarget: 'under'
+            }
+            ,items: [{
+                xtype: 'textfield'
+                ,name: 'setting_tplTagRow'
+                ,id: 'articles-setting-tplTagRow'
+                ,fieldLabel: _('articles.setting.tplTagRow')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.tplTagRow_desc')
+                ,anchor: '100%'
+                ,value: 'tag'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-tplTagRow'
+                ,html: _('articles.setting.tplTagRow_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'numberfield'
+                ,name: 'setting_tagsLimit'
+                ,id: 'articles-setting-tagsLimit'
+                ,fieldLabel: _('articles.setting.tagsLimit')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.tagsLimit_desc')
+                ,allowNegative: false
+                ,allowDecimals: false
+                ,width: 120
+                ,value: 10
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-tagsLimit'
+                ,html: _('articles.setting.tagsLimit_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_tagCls'
+                ,id: 'articles-setting-tagCls'
+                ,fieldLabel: _('articles.setting.tagCls')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.tagCls_desc')
+                ,anchor: '100%'
+                ,value: 'tl-tag'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-tagCls'
+                ,html: _('articles.setting.tagCls_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_tagAltCls'
+                ,id: 'articles-setting-tagAltCls'
+                ,fieldLabel: _('articles.setting.tagAltCls')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.tagAltCls_desc')
+                ,anchor: '100%'
+                ,value: 'tl-tag-alt'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-tagAltCls'
+                ,html: _('articles.setting.tagAltCls_desc')
+                ,cls: 'desc-under'
+
+            }]
+        },{
+            title: _('articles.settings_rss')
+            ,anchor: '100%'
+            ,defaults: {
+                msgTarget: 'under'
+            }
+            ,items: [{
+                xtype: 'textfield'
+                ,name: 'setting_rssAlias'
+                ,id: 'articles-setting-rssAlias'
+                ,fieldLabel: _('articles.setting.rssAlias')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.rssAlias_desc')
+                ,anchor: '100%'
+                ,value: 'feed.rss,rss'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-rssAlias'
+                ,html: _('articles.setting.rssAlias_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_rssItems'
+                ,id: 'articles-setting-rssItems'
+                ,fieldLabel: _('articles.setting.rssItems')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.rssItems_desc')
+                ,width: 120
+                ,value: 10
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-rssItems'
+                ,html: _('articles.setting.rssItems_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_tplRssFeed'
+                ,id: 'articles-setting-tplRssFeed'
+                ,fieldLabel: _('articles.setting.tplRssFeed')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.tplRssFeed_desc')
+                ,anchor: '100%'
+                ,value: 'sample.ArticlesRss'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-tplRssFeed'
+                ,html: _('articles.setting.tplRssFeed_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_tplRssItem'
+                ,id: 'articles-setting-tplRssItem'
+                ,fieldLabel: _('articles.setting.tplRssItem')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.tplRssItem_desc')
+                ,anchor: '100%'
+                ,value: 'sample.ArticlesRssItem'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-tplRssItem'
+                ,html: _('articles.setting.tplRssItem_desc')
+                ,cls: 'desc-under'
+
+            }]
+        },{
+            title: _('articles.settings_latest_posts')
+            ,anchor: '100%'
+            ,defaults: {
+                msgTarget: 'under'
+            }
+            ,items: [{
+                xtype: 'textfield'
+                ,name: 'setting_latestPostsTpl'
+                ,id: 'articles-setting-latestPostsTpl'
+                ,fieldLabel: _('articles.setting.latestPostsTpl')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.latestPostsTpl_desc')
+                ,anchor: '100%'
+                ,value: 'sample.ArticlesLatestPostTpl'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-latestPostsTpl'
+                ,html: _('articles.setting.latestPostsTpl_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'numberfield'
+                ,name: 'setting_latestPostsLimit'
+                ,id: 'articles-setting-latestPostsLimit'
+                ,fieldLabel: _('articles.setting.latestPostsLimit')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.latestPostsLimit_desc')
+                ,width: 120
+                ,allowNegative: false
+                ,allowDecimals: false
+                ,value: 5
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-latestPostsLimit'
+                ,html: _('articles.setting.latestPostsLimit_desc')
+                ,cls: 'desc-under'
+
+            }]
+        },{
+            title: _('articles.settings_comments')
+            ,anchor: '100%'
+            ,defaults: {
+                msgTarget: 'under'
+            }
+            ,items: [{
+                xtype: 'combo-boolean'
+                ,name: 'setting_commentsThreaded'
+                ,hiddenName: 'setting_commentsThreaded'
+                ,id: 'articles-setting-commentsThreaded'
+                ,fieldLabel: _('articles.setting.commentsThreaded')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsThreaded_desc')
+                ,anchor: '30%'
+                ,value: 0
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsThreaded'
+                ,html: _('articles.setting.commentsThreaded_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_commentsReplyResourceId'
+                ,id: 'articles-setting-commentsReplyResourceId'
+                ,fieldLabel: _('articles.setting.commentsReplyResourceId')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsReplyResourceId_desc')
+                ,anchor: '30%'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsReplyResourceId'
+                ,html: _('articles.setting.commentsReplyResourceId_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'numberfield'
+                ,name: 'setting_commentsMaxDepth'
+                ,id: 'articles-setting-commentsMaxDepth'
+                ,fieldLabel: _('articles.setting.commentsMaxDepth')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsMaxDepth_desc')
+                ,anchor: '30%'
+                ,allowDecimals: false
+                ,allowNegative: false
+                ,value: 5
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsMaxDepth'
+                ,html: _('articles.setting.commentsMaxDepth_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'combo-boolean'
+                ,name: 'setting_commentsRequirePreview'
+                ,hiddenName: 'setting_commentsRequirePreview'
+                ,id: 'articles-setting-commentsRequirePreview'
+                ,fieldLabel: _('articles.setting.commentsRequirePreview')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsRequirePreview_desc')
+                ,anchor: '30%'
+                ,value: 0
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsRequirePreview'
+                ,html: _('articles.setting.commentsRequirePreview_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'numberfield'
+                ,name: 'setting_commentsCloseAfter'
+                ,id: 'articles-setting-commentsCloseAfter'
+                ,fieldLabel: _('articles.setting.commentsCloseAfter')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsCloseAfter_desc')
+                ,anchor: '30%'
+                ,allowDecimals: false
+                ,allowNegative: false
+                ,value: 0
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsCloseAfter'
+                ,html: _('articles.setting.commentsCloseAfter_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_commentsDateFormat'
+                ,id: 'articles-setting-commentsDateFormat'
+                ,fieldLabel: _('articles.setting.commentsDateFormat')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsDateFormat_desc')
+                ,anchor: '100%'
+                ,value: '%b %d, %Y at %I:%M %p'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsDateFormat'
+                ,html: _('articles.setting.commentsDateFormat_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'combo-boolean'
+                ,name: 'setting_commentsAutoConvertLinks'
+                ,hiddenName: 'setting_commentsAutoConvertLinks'
+                ,id: 'articles-setting-commentsAutoConvertLinks'
+                ,fieldLabel: _('articles.setting.commentsAutoConvertLinks')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsAutoConvertLinks_desc')
+                ,anchor: '30%'
+                ,value: 1
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsAutoConvertLinks'
+                ,html: _('articles.setting.commentsAutoConvertLinks_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'numberfield'
+                ,name: 'setting_commentsLimit'
+                ,id: 'articles-setting-commentsLimit'
+                ,fieldLabel: _('articles.setting.commentsLimit')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsLimit_desc')
+                ,anchor: '30%'
+                ,allowDecimals: false
+                ,allowNegative: false
+                ,value: 0
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsLimit'
+                ,html: _('articles.setting.commentsLimit_desc')
+                ,cls: 'desc-under'
+
+            }]
+        },{
+            title: ' &#8212; '+_('articles.settings_comments_display')
+            ,anchor: '100%'
+            ,defaults: {
+                msgTarget: 'under'
+            }
+            ,items: [{
+                xtype: 'textfield'
+                ,name: 'setting_commentsTplComment'
+                ,id: 'articles-setting-commentsTplComment'
+                ,fieldLabel: _('articles.setting.commentsTplComment')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsTplComment_desc')
+                ,anchor: '100%'
+                ,value: 'quipComment'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsTplComment'
+                ,html: _('articles.setting.commentsTplComment_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_commentsTplCommentOptions'
+                ,id: 'articles-setting-commentsTplCommentOptions'
+                ,fieldLabel: _('articles.setting.commentsTplCommentOptions')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsTplCommentOptions_desc')
+                ,anchor: '100%'
+                ,value: 'quipCommentOptions'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsTplCommentOptions'
+                ,html: _('articles.setting.commentsTplCommentOptions_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_commentsTplComments'
+                ,id: 'articles-setting-commentsTplComments'
+                ,fieldLabel: _('articles.setting.commentsTplComments')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsTplComments_desc')
+                ,anchor: '100%'
+                ,value: 'quipComments'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsTplComments'
+                ,html: _('articles.setting.commentsTplComments_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_commentsTplAddComment'
+                ,id: 'articles-setting-commentsAddComment'
+                ,fieldLabel: _('articles.setting.commentsTplAddComment')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsTplAddComment_desc')
+                ,anchor: '100%'
+                ,value: 'quipAddComment'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsTplAddComment'
+                ,html: _('articles.setting.commentsTplAddComment_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_commentsTplLoginToComment'
+                ,id: 'articles-setting-commentsTplLoginToComment'
+                ,fieldLabel: _('articles.setting.commentsTplLoginToComment')
+                ,description: MODx.expandHelp ? '' : _('articles.commentsTplLoginToComment_desc')
+                ,anchor: '100%'
+                ,value: 'quipLoginToComment'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsTplLoginToComment'
+                ,html: _('articles.setting.commentsTplLoginToComment_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_commentsTplPreview'
+                ,id: 'articles-setting-commentsTplPreview'
+                ,fieldLabel: _('articles.setting.commentsTplPreview')
+                ,description: MODx.expandHelp ? '' : _('articles.commentsTplPreview_desc')
+                ,anchor: '100%'
+                ,value: 'quipPreviewComment'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsTplPreview'
+                ,html: _('articles.setting.commentsTplPreview_desc')
+                ,cls: 'desc-under'
+
+            },{
+                html: '<hr />'
+                ,border: false
+            },{
+                xtype: 'combo-boolean'
+                ,name: 'setting_commentsUseCss'
+                ,hiddenName: 'setting_commentsUseCss'
+                ,id: 'articles-setting-commentsUseCss'
+                ,fieldLabel: _('articles.setting.commentsUseCss')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsUseCss_desc')
+                ,anchor: '30%'
+                ,value: 1
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsUseCss'
+                ,html: _('articles.setting.commentsUseCss_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_commentsAltRowCss'
+                ,id: 'articles-setting-commentsAltRowCss'
+                ,fieldLabel: _('articles.setting.commentsAltRowCss')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsAltRowCss_desc')
+                ,anchor: '100%'
+                ,value: 'quip-comment-alt'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsAltRowCss'
+                ,html: _('articles.setting.commentsAltRowCss_desc')
+                ,cls: 'desc-under'
+
+            }]
+        },{
+            title: ' &#8212; '+_('articles.settings_comments_moderation')
+            ,anchor: '100%'
+            ,defaults: {
+                msgTarget: 'under'
+            }
+            ,items: [{
+                xtype: 'hidden' /* doesnt currently work */
+                ,name: 'setting_commentsRequireAuth'
+                ,hiddenName: 'setting_commentsRequireAuth'
+                ,id: 'articles-setting-commentsRequireAuth'
+                ,fieldLabel: _('articles.setting.commentsRequireAuth')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsRequireAuth_desc')
+                ,anchor: '30%'
+                ,value: 0
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp && false ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsRequireAuth'
+                ,html: _('articles.setting.commentsRequireAuth_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'combo-boolean'
+                ,name: 'setting_commentsModerate'
+                ,hiddenName: 'setting_commentsModerate'
+                ,id: 'articles-setting-commentsModerate'
+                ,fieldLabel: _('articles.setting.commentsModerate')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsModerate_desc')
+                ,anchor: '30%'
+                ,value: 1
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsModerate'
+                ,html: _('articles.setting.commentsModerate_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_commentsModerators'
+                ,id: 'articles-setting-commentsModerators'
+                ,fieldLabel: _('articles.setting.commentsModerators')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsModerators_desc')
+                ,anchor: '100%'
+                ,value: ''
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsModerators'
+                ,html: _('articles.setting.commentsModerators_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_commentsModeratorGroup'
+                ,id: 'articles-setting-commentsModeratorGroup'
+                ,fieldLabel: _('articles.setting.commentsModeratorGroup')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsModeratorGroup_desc')
+                ,anchor: '100%'
+                ,value: 'Administrator'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsModeratorGroup'
+                ,html: _('articles.setting.commentsModeratorGroup_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'combo-boolean'
+                ,name: 'setting_commentsModerateAnonymousOnly'
+                ,hiddenName: 'setting_commentsModerateAnonymousOnly'
+                ,id: 'articles-setting-commentsModerateAnonymousOnly'
+                ,fieldLabel: _('articles.setting.commentsModerateAnonymousOnly')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsModerateAnonymousOnly_desc')
+                ,anchor: '30%'
+                ,value: 0
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsModerateAnonymousOnly'
+                ,html: _('articles.setting.commentsModerateAnonymousOnly_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'combo-boolean'
+                ,name: 'setting_commentsModerateFirstPostOnly'
+                ,hiddenName: 'setting_commentsModerateFirstPostOnly'
+                ,id: 'articles-setting-commentsModerateFirstPostOnly'
+                ,fieldLabel: _('articles.setting.commentsModerateFirstPostOnly')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsModerateFirstPostOnly_desc')
+                ,anchor: '30%'
+                ,value: 1
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsModerateFirstPostOnly'
+                ,html: _('articles.setting.commentsModerateFirstPostOnly_desc')
+                ,cls: 'desc-under'
+
+            },{
+                html: '<hr />'
+                ,border: false
+            },{
+                xtype: 'combo-boolean'
+                ,name: 'setting_commentsReCaptcha'
+                ,hiddenName: 'setting_commentsReCaptcha'
+                ,id: 'articles-setting-commentsReCaptcha'
+                ,fieldLabel: _('articles.setting.commentsReCaptcha')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsReCaptcha_desc')
+                ,anchor: '30%'
+                ,value: 0
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsReCaptcha'
+                ,html: _('articles.setting.commentsReCaptcha_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'combo-boolean'
+                ,name: 'setting_commentsDisableReCaptchaWhenLoggedIn'
+                ,hiddenName: 'setting_commentsDisableReCaptchaWhenLoggedIn'
+                ,id: 'articles-setting-commentsDisableReCaptchaWhenLoggedIn'
+                ,fieldLabel: _('articles.setting.commentsDisableReCaptchaWhenLoggedIn')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsDisableReCaptchaWhenLoggedIn_desc')
+                ,anchor: '30%'
+                ,value: 1
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsDisableReCaptchaWhenLoggedIn'
+                ,html: _('articles.setting.commentsDisableReCaptchaWhenLoggedIn_desc')
+                ,cls: 'desc-under'
+
+            },{
+                html: '<hr />'
+                ,border: false
+            },{
+                xtype: 'combo-boolean'
+                ,name: 'setting_commentsAllowRemove'
+                ,hiddenName: 'setting_commentsAllowRemove'
+                ,id: 'articles-setting-commentsAllowRemove'
+                ,fieldLabel: _('articles.setting.commentsAllowRemove')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsAllowRemove_desc')
+                ,anchor: '30%'
+                ,value: 1
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsAllowRemove'
+                ,html: _('articles.setting.commentsAllowRemove_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'numberfield'
+                ,name: 'setting_commentsRemoveThreshold'
+                ,id: 'articles-setting-commentsRemoveThreshold'
+                ,fieldLabel: _('articles.setting.commentsRemoveThreshold')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsRemoveThreshold_desc')
+                ,anchor: '30%'
+                ,allowDecimals: false
+                ,allowNegative: false
+                ,value: 3
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsRemoveThreshold'
+                ,html: _('articles.setting.commentsRemoveThreshold_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'combo-boolean'
+                ,name: 'setting_commentsAllowReportAsSpam'
+                ,hiddenName: 'setting_commentsAllowReportAsSpam'
+                ,id: 'articles-setting-commentsAllowReportAsSpam'
+                ,fieldLabel: _('articles.setting.commentsAllowReportAsSpam')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsAllowReportAsSpam_desc')
+                ,anchor: '30%'
+                ,value: 1
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsAllowReportAsSpam'
+                ,html: _('articles.setting.commentsAllowReportAsSpam_desc')
+                ,cls: 'desc-under'
+
+            }]
+        },{
+            title: ' &#8212; '+_('articles.settings_comments_latest')
+            ,anchor: '100%'
+            ,defaults: {
+                msgTarget: 'under'
+            }
+            ,items: [{
+                xtype: 'textfield'
+                ,name: 'setting_latestCommentsTpl'
+                ,id: 'articles-setting-latestCommentsTpl'
+                ,fieldLabel: _('articles.setting.latestCommentsTpl')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.latestCommentsTpl_desc')
+                ,anchor: '100%'
+                ,value: 'quipLatestComment'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-latestCommentsTpl'
+                ,html: _('articles.setting.latestCommentsTpl_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'numberfield'
+                ,name: 'setting_latestCommentsLimit'
+                ,id: 'articles-setting-latestCommentsLimit'
+                ,fieldLabel: _('articles.setting.latestCommentsLimit')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.latestCommentsLimit_desc')
+                ,width: 120
+                ,allowNegative: false
+                ,allowDecimals: false
+                ,value: 10
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-latestCommentsLimit'
+                ,html: _('articles.setting.latestCommentsLimit_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_latestCommentsBodyLimit'
+                ,id: 'articles-setting-latestCommentsBodyLimit'
+                ,fieldLabel: _('articles.setting.latestCommentsBodyLimit')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.latestCommentsBodyLimit_desc')
+                ,width: 150
+                ,allowNegative: false
+                ,allowDecimals: false
+                ,value: 300
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-latestCommentsBodyLimit'
+                ,html: _('articles.setting.latestCommentsBodyLimit_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_latestCommentsRowCss'
+                ,id: 'articles-setting-latestCommentsRowCss'
+                ,fieldLabel: _('articles.setting.latestCommentsRowCss')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.latestCommentsRowCss_desc')
+                ,anchor: '100%'
+                ,value: 'quip-latest-comment'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-latestCommentsRowCss'
+                ,html: _('articles.setting.latestCommentsRowCss_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_latestCommentsAltRowCss'
+                ,id: 'articles-setting-latestCommentsAltRowCss'
+                ,fieldLabel: _('articles.setting.latestCommentsAltRowCss')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.latestCommentsAltRowCss_desc')
+                ,anchor: '100%'
+                ,value: 'quip-latest-comment-alt'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-latestCommentsAltRowCss'
+                ,html: _('articles.setting.latestCommentsAltRowCss_desc')
+                ,cls: 'desc-under'
+
+            }]
+        },{
+            title: ' &#8212; '+_('articles.settings_comments_other')
+            ,anchor: '100%'
+            ,defaults: {
+                msgTarget: 'under'
+            }
+            ,items: [{
+                xtype: 'combo-boolean'
+                ,name: 'setting_commentsGravatar'
+                ,hiddenName: 'setting_commentsGravatar'
+                ,id: 'articles-setting-commentsGravatar'
+                ,fieldLabel: _('articles.setting.commentsGravatar')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsGravatar_desc')
+                ,anchor: '30%'
+                ,value: 1
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsGravatar'
+                ,html: _('articles.setting.commentsGravatar_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_commentsGravatarIcon'
+                ,id: 'articles-setting-commentsGravatarIcon'
+                ,fieldLabel: _('articles.setting.commentsGravatarIcon')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsGravatarIcon_desc')
+                ,anchor: '100%'
+                ,value: 'identicon'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsGravatarIcon'
+                ,html: _('articles.setting.commentsGravatarIcon_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'numberfield'
+                ,name: 'setting_commentsGravatarSize'
+                ,id: 'articles-setting-commentsGravatarSize'
+                ,fieldLabel: _('articles.setting.commentsGravatarSize')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsGravatarSize_desc')
+                ,anchor: '100%'
+                ,allowNegative: false
+                ,value: 50
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsGravatarSize'
+                ,html: _('articles.setting.commentsGravatarSize_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_commentsNameField'
+                ,id: 'articles-setting-commentsNameField'
+                ,fieldLabel: _('articles.setting.commentsNameField')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsNameField_desc')
+                ,anchor: '100%'
+                ,value: 'name'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsNameField'
+                ,html: _('articles.setting.commentsNameField_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'combo-boolean'
+                ,name: 'setting_commentsShowAnonymousName'
+                ,hiddenName: 'setting_commentsShowAnonymousName'
+                ,id: 'articles-setting-commentsShowAnonymousName'
+                ,fieldLabel: _('articles.setting.commentsShowAnonymousName')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsShowAnonymousName')
+                ,anchor: '30%'
+                ,value: 0
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsShowAnonymousName'
+                ,html: _('articles.setting.commentsShowAnonymousName_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_commentsAnonymousName'
+                ,id: 'articles-setting-commentsAnonymousName'
+                ,fieldLabel: _('articles.setting.commentsAnonymousName')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsAnonymousName_desc')
+                ,anchor: '100%'
+                ,value: 'Anonymous'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsAnonymousName'
+                ,html: _('articles.setting.commentsAnonymousName_desc')
+                ,cls: 'desc-under'
+
+            }]
+        }]
+    });
+    Articles.panel.ContainerAdvancedSettings.superclass.constructor.call(this,config);
+};
+Ext.extend(Articles.panel.ContainerAdvancedSettings,MODx.VerticalTabs,{
+
+});
+Ext.reg('articles-tab-advanced-settings',Articles.panel.ContainerAdvancedSettings);

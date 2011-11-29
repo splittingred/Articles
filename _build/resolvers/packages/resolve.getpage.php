@@ -5,7 +5,7 @@
  * @var modX $modx
  * @var xPDOTransport $transport
  * @var array $options
- * @package modblog
+ * @package articles
  */
 $success= true;
 if ($transport && $transport->xpdo) {
