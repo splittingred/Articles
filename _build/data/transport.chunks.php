@@ -39,7 +39,7 @@ $chunks[2]= $modx->newObject('modChunk');
 $chunks[2]->fromArray(array(
     'id' => 2,
     'name' => 'sample.ArticleRowTpl',
-    'description' => 'The tpl row for each post when listed on the main blog page. Duplicate this to override it.',
+    'description' => 'The tpl row for each post when listed on the main Articles Container page. Duplicate this to override it.',
     'snippet' => file_get_contents($sources['chunks'].'articlerow.chunk.tpl'),
 ));
 

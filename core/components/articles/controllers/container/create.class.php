@@ -27,19 +27,19 @@ class ArticlesContainerCreateManagerController extends ResourceCreateManagerCont
     public function loadCustomCssJs() {
         $this->prepareResource();
         $managerUrl = $this->context->getOption('manager_url', MODX_MANAGER_URL, $this->modx->_userConfig);
-        $blogAssetsUrl = $this->modx->getOption('articles.assets_url',null,$this->modx->getOption('assets_url',null,MODX_ASSETS_URL).'components/articles/');
-        $connectorUrl = $blogAssetsUrl.'connector.php';
-        $blogJsUrl = $blogAssetsUrl.'js/';
+        $articlesAssetsUrl = $this->modx->getOption('articles.assets_url',null,$this->modx->getOption('assets_url',null,MODX_ASSETS_URL).'components/articles/');
+        $connectorUrl = $articlesAssetsUrl.'connector.php';
+        $articlesJsUrl = $articlesAssetsUrl.'js/';
         $this->addJavascript($managerUrl.'assets/modext/util/datetime.js');
         $this->addJavascript($managerUrl.'assets/modext/widgets/element/modx.panel.tv.renders.js');
         $this->addJavascript($managerUrl.'assets/modext/widgets/resource/modx.grid.resource.security.js');
         $this->addJavascript($managerUrl.'assets/modext/widgets/resource/modx.panel.resource.tv.js');
         $this->addJavascript($managerUrl.'assets/modext/widgets/resource/modx.panel.resource.js');
         $this->addJavascript($managerUrl.'assets/modext/sections/resource/create.js');
-        $this->addJavascript($blogJsUrl.'articles.js');
-        $this->addJavascript($blogJsUrl.'container/container.common.js');
-        $this->addJavascript($blogJsUrl.'container/container.articles.grid.js');
-        $this->addLastJavascript($blogJsUrl.'container/create.js');
+        $this->addJavascript($articlesJsUrl.'articles.js');
+        $this->addJavascript($articlesJsUrl.'container/container.common.js');
+        $this->addJavascript($articlesJsUrl.'container/container.articles.grid.js');
+        $this->addLastJavascript($articlesJsUrl.'container/create.js');
         $this->addHtml('
         <script type="text/javascript">
         // <![CDATA[

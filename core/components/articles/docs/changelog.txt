@@ -2,11 +2,11 @@ Changelog for Articles.
 
 Articles 1.0.0
 ===============================
-- Custom UI for blog posting
-- Blog-specific settings
+- Custom UI for article posting
+- Container-specific settings
 - Integrated RSS feeds with customizable URLs
 - Integrated Quip commenting
-- Automatic archiving of blog posts
+- Automatic archiving of Articles
 - Integrated tagging
-- Easy templating for blogs and blog posts
+- Easy templating for containers and articles
 - Initial release.

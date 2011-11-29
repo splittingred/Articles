@@ -27,17 +27,17 @@ class ArticleUpdateManagerController extends ResourceUpdateManagerController {
 
     public function loadCustomCssJs() {
         $managerUrl = $this->context->getOption('manager_url', MODX_MANAGER_URL, $this->modx->_userConfig);
-        $blogAssetsUrl = $this->modx->getOption('articles.assets_url',null,$this->modx->getOption('assets_url',null,MODX_ASSETS_URL).'components/articles/');
+        $articlesAssetsUrl = $this->modx->getOption('articles.assets_url',null,$this->modx->getOption('assets_url',null,MODX_ASSETS_URL).'components/articles/');
         $quipAssetsUrl = $this->modx->getOption('quip.assets_url',null,$this->modx->getOption('assets_url',null,MODX_ASSETS_URL).'components/quip/');
-        $connectorUrl = $blogAssetsUrl.'connector.php';
-        $blogJsUrl = $blogAssetsUrl.'js/';
+        $connectorUrl = $articlesAssetsUrl.'connector.php';
+        $articlesJsUrl = $articlesAssetsUrl.'js/';
         $this->addJavascript($managerUrl.'assets/modext/util/datetime.js');
         $this->addJavascript($managerUrl.'assets/modext/widgets/element/modx.panel.tv.renders.js');
         $this->addJavascript($managerUrl.'assets/modext/widgets/resource/modx.grid.resource.security.js');
         $this->addJavascript($managerUrl.'assets/modext/widgets/resource/modx.panel.resource.tv.js');
         $this->addJavascript($managerUrl.'assets/modext/widgets/resource/modx.panel.resource.js');
         $this->addJavascript($managerUrl.'assets/modext/sections/resource/update.js');
-        $this->addJavascript($blogJsUrl.'articles.js');
+        $this->addJavascript($articlesJsUrl.'articles.js');
 
         $this->addCss($quipAssetsUrl.'css/mgr.css');
         $this->addJavascript($quipAssetsUrl.'js/quip.js');
@@ -49,7 +49,7 @@ class ArticleUpdateManagerController extends ResourceUpdateManagerController {
             Quip.request = '.$this->modx->toJSON($_GET).';
         });
         </script>');
-        $this->addLastJavascript($blogJsUrl.'article/update.js');
+        $this->addLastJavascript($articlesJsUrl.'article/update.js');
         $this->addHtml('
         <script type="text/javascript">
         // <![CDATA[

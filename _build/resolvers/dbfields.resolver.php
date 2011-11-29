@@ -38,8 +38,8 @@ if ($object->xpdo) {
 
             /** @var xPDOManager $manager */
             $manager = $modx->getManager();
-            $manager->addField('Article','blog');
-            $manager->addField('Article','blog_settings');
+            $manager->addField('Article','articles_container');
+            $manager->addField('Article','articles_container_settings');
 
             break;
     }

@@ -44,7 +44,7 @@ Ext.extend(Articles.panel.Container,MODx.panel.Resource,{
         });
         it.push({
             title: _('articles.template')
-            ,id: 'modx-blog-template'
+            ,id: 'modx-articles-template'
             ,cls: 'modx-resource-tab'
             ,layout: 'form'
             ,labelAlign: 'top'
@@ -60,7 +60,7 @@ Ext.extend(Articles.panel.Container,MODx.panel.Resource,{
         });
         it.push({
             title: _('articles.advanced_settings')
-            ,id: 'modx-blog-advanced-settings'
+            ,id: 'modx-articles-advanced-settings'
             ,cls: 'modx-resource-tab'
             ,labelAlign: 'top'
             ,labelSeparator: ''
@@ -318,7 +318,7 @@ Ext.extend(Articles.panel.Container,MODx.panel.Resource,{
         return [{
             xtype: 'textfield'
             ,fieldLabel: _('resource_menutitle')
-            ,description: MODx.expandHelp ? '' : '<b>[[*menutitle]]</b><br />'+_('articles.blog_menutitle_desc')
+            ,description: MODx.expandHelp ? '' : '<b>[[*menutitle]]</b><br />'+_('articles.container_menutitle_desc')
             ,name: 'menutitle'
             ,id: 'modx-resource-menutitle'
             ,maxLength: 255
@@ -327,7 +327,7 @@ Ext.extend(Articles.panel.Container,MODx.panel.Resource,{
         },{
             xtype: MODx.expandHelp ? 'label' : 'hidden'
             ,forId: 'modx-resource-menutitle'
-            ,html: _('articles.blog_menutitle_desc')
+            ,html: _('articles.container_menutitle_desc')
             ,cls: 'desc-under'
 
         },{

@@ -290,7 +290,7 @@ Ext.extend(Articles.panel.Container,MODx.panel.Resource,{
         return [{
             xtype: 'textfield'
             ,fieldLabel: _('resource_menutitle')
-            ,description: MODx.expandHelp ? '' : '<b>[[*menutitle]]</b><br />'+_('articles.blog_menutitle_desc')
+            ,description: MODx.expandHelp ? '' : '<b>[[*menutitle]]</b><br />'+_('articles.container_menutitle_desc')
             ,name: 'menutitle'
             ,id: 'modx-resource-menutitle'
             ,maxLength: 255
@@ -299,7 +299,7 @@ Ext.extend(Articles.panel.Container,MODx.panel.Resource,{
         },{
             xtype: MODx.expandHelp ? 'label' : 'hidden'
             ,forId: 'modx-resource-menutitle'
-            ,html: _('articles.blog_menutitle_desc')
+            ,html: _('articles.container_menutitle_desc')
             ,cls: 'desc-under'
 
         },{

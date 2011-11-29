@@ -26,9 +26,9 @@ require_once $modx->getOption('manager_path',null,MODX_MANAGER_PATH).'controller
 class ArticleCreateManagerController extends ResourceCreateManagerController {
 
     public function loadCustomCssJs() {
-        $blogAssetsUrl = $this->modx->getOption('articles.assets_url',null,$this->modx->getOption('assets_url',null,MODX_ASSETS_URL).'components/articles/');
-        $connectorUrl = $blogAssetsUrl.'connector.php';
-        $blogJsUrl = $blogAssetsUrl.'js/';
+        $articlesAssetsUrl = $this->modx->getOption('articles.assets_url',null,$this->modx->getOption('assets_url',null,MODX_ASSETS_URL).'components/articles/');
+        $connectorUrl = $articlesAssetsUrl.'connector.php';
+        $articlesJsUrl = $articlesAssetsUrl.'js/';
         $mgrUrl = $this->modx->getOption('manager_url',null,MODX_MANAGER_URL);
         $this->addJavascript($mgrUrl.'assets/modext/util/datetime.js');
         $this->addJavascript($mgrUrl.'assets/modext/widgets/element/modx.panel.tv.renders.js');
@@ -36,8 +36,8 @@ class ArticleCreateManagerController extends ResourceCreateManagerController {
         $this->addJavascript($mgrUrl.'assets/modext/widgets/resource/modx.panel.resource.tv.js');
         $this->addJavascript($mgrUrl.'assets/modext/widgets/resource/modx.panel.resource.js');
         $this->addJavascript($mgrUrl.'assets/modext/sections/resource/create.js');
-        $this->addJavascript($blogJsUrl.'articles.js');
-        $this->addLastJavascript($blogJsUrl.'article/create.js');
+        $this->addJavascript($articlesJsUrl.'articles.js');
+        $this->addLastJavascript($articlesJsUrl.'article/create.js');
         $this->addHtml('
         <script type="text/javascript">
         // <![CDATA[
