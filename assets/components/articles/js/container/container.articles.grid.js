@@ -48,7 +48,7 @@ Articles.grid.ContainerArticles = function(config) {
         }]
         ,tbar: [{
             text: _('articles.article_create')
-            ,handler: this.createPost
+            ,handler: this.createArticle
             ,scope: this
         },'->',{
             xtype: 'textfield'

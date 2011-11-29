@@ -218,6 +218,9 @@ class ArticleCreateProcessor extends modResourceCreateProcessor {
         $day = date('d',strtotime($date));
 
         $containerUri = $this->parentResource->get('uri');
+        if (empty($containerUri)) {
+            $containerUri = $this->parentResource->get('alias');
+        }
         $uri = rtrim($containerUri,'/').'/'.$year.'/'.$month.'/'.$day.'/'.$this->object->get('alias');
 
         $this->object->set('uri',rtrim($uri,'/').'/');
@@ -394,6 +397,9 @@ class ArticleUpdateProcessor extends modResourceUpdateProcessor {
         $day = date('d',strtotime($date));
 
         $containerUri = $this->parentResource->get('uri');
+        if (empty($containerUri)) {
+            $containerUri = $this->parentResource->get('alias');
+        }
         $uri = rtrim($containerUri,'/').'/'.$year.'/'.$month.'/'.$day.'/'.$this->object->get('alias');
 
         $this->object->set('uri',rtrim($uri,'/').'/');
