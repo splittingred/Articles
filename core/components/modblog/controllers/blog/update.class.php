@@ -41,6 +41,7 @@ class BlogUpdateManagerController extends ResourceUpdateManagerController {
         $this->addJavascript($managerUrl.'assets/modext/widgets/resource/modx.panel.resource.js');
         $this->addJavascript($managerUrl.'assets/modext/sections/resource/update.js');
         $this->addJavascript($blogJsUrl.'modblog.js');
+        $this->addJavascript($blogJsUrl.'blog/blog.common.js');
         $this->addJavascript($blogJsUrl.'blog/blog.posts.grid.js');
         $this->addLastJavascript($blogJsUrl.'blog/update.js');
 
