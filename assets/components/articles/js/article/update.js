@@ -33,18 +33,18 @@ Ext.extend(Articles.page.UpdateArticle,MODx.page.UpdateResource,{
             });
             btns.push('-');
         }
-            btns.push({
-                text: _('articles.article_publish')
-                ,id: 'modx-article-publish'
-                ,hidden: cfg.record.published ? true : false
-                ,handler: this.publishArticle
-            });
-            btns.push({
-                text: _('articles.article_unpublish')
-                ,id: 'modx-article-unpublish'
-                ,hidden: cfg.record.published ? false : true
-                ,handler: this.unpublishArticle
-            });
+        btns.push({
+            text: _('articles.article_publish')
+            ,id: 'modx-article-publish'
+            ,hidden: cfg.record.published ? true : false
+            ,handler: this.publishArticle
+        });
+        btns.push({
+            text: _('articles.article_unpublish')
+            ,id: 'modx-article-unpublish'
+            ,hidden: cfg.record.published ? false : true
+            ,handler: this.unpublishArticle
+        });
         btns.push('-');
         btns.push({
             process: 'preview'
@@ -369,9 +369,6 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                 ,baseParams: {
                     action: 'getList'
                     ,combo: '1'
-                }
-                ,listeners: {
-                    'select': {fn: this.templateWarning,scope: this}
                 }
             },{
                 xtype: 'textfield'

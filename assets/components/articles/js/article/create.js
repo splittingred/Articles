@@ -195,9 +195,6 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                     action: 'getList'
                     ,combo: '1'
                 }
-                ,listeners: {
-                    'select': {fn: this.templateWarning,scope: this}
-                }
             },{
                 xtype: 'textfield'
                 ,fieldLabel: _('articles.article_alias')

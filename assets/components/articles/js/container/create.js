@@ -115,9 +115,6 @@ Ext.extend(Articles.panel.Container,MODx.panel.Resource,{
                 action: 'getList'
                 ,combo: '1'
             }
-            ,listeners: {
-                'select': {fn: this.templateWarning,scope: this}
-            }
         },{
             xtype: MODx.expandHelp ? 'label' : 'hidden'
             ,forId: 'modx-resource-template'
