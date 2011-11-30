@@ -2,6 +2,7 @@ Changelog for Articles.
 
 Articles 1.0.0
 ===============================
+- [#6161] Fix issue with changing article row chunk
 - [#6160] Remove template change reloading for Article types
 - Custom UI for article posting
 - Container-specific settings

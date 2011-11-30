@@ -198,7 +198,7 @@ class ArticlesContainer extends modResource {
           &includeTVs=`1`
           &tagKey=`articlestags`
           &tagSearchType=`contains`
-          &tpl=`'.$this->xpdo->getOption('tplArticles',$settings,'sample.ArticleRowTpl').'`
+          &tpl=`'.$this->xpdo->getOption('tplArticleRow',$settings,'sample.ArticleRowTpl').'`
         ]]';
         $this->xpdo->setPlaceholder('articles',$output);
 
