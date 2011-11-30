@@ -28,7 +28,7 @@ require_once MODX_CORE_PATH.'model/modx/processors/resource/update.class.php';
 class ArticlesContainer extends modResource {
     /** @var modX $xpdo */
     public $xpdo;
-
+    public $allowListingInClassKeyDropdown = false;
     public $showInContextMenu = true;
     /**
      * Override modResource::__construct to ensure a few specific fields are forced to be set.
