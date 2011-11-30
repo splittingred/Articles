@@ -51,6 +51,13 @@ Articles.grid.ContainerArticles = function(config) {
             ,handler: this.createArticle
             ,scope: this
         },'->',{
+            xtype: 'articles-combo-filter-status'
+            ,id: 'articles-grid-filter-status'
+            ,value: ''
+            ,listeners: {
+                'select': {fn:this.filterStatus,scope:this}
+            }
+        },{
             xtype: 'textfield'
             ,name: 'search'
             ,id: 'articles-article-search'
@@ -94,6 +101,12 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
            ,handler: this.editPost
         });
         return m;
+    }
+    ,filterStatus: function(cb,nv,ov) {
+        this.getStore().baseParams.filter = Ext.isEmpty(nv) || Ext.isObject(nv) ? cb.getValue() : nv;
+        this.getBottomToolbar().changePage(1);
+        this.refresh();
+        return true;
     }
     
     ,search: function(tf,newValue,oldValue) {
@@ -164,6 +177,19 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
         });
     }
 
+    ,undeleteArticle: function(btn,e) {
+        MODx.Ajax.request({
+            url: MODx.config.connectors_url+'resource/index.php'
+            ,params: {
+                action: 'undelete'
+                ,id: this.menu.record.id
+            }
+            ,listeners: {
+                'success':{fn:this.refresh,scope:this}
+            }
+        });
+    }
+
     ,publishArticle: function(btn,e) {
         MODx.Ajax.request({
             url: MODx.config.connectors_url+'resource/index.php'
@@ -201,6 +227,9 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
 			switch (action) {
                 case 'delete':
                     this.deleteArticle();
+                    break;
+                case 'undelete':
+                    this.undeleteArticle();
                     break;
                 case 'edit':
 					this.editArticle();

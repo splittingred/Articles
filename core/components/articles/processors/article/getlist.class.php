@@ -53,9 +53,34 @@ class ArticleGetListProcessor extends modObjectGetListProcessor {
                 'OR:introtext:LIKE' => '%'.$query.'%',
             ));
         }
+        $filter = $this->getProperty('filter','');
+        switch ($filter) {
+            case 'published':
+                $c->where(array(
+                    'published' => 1,
+                    'deleted' => 0,
+                ));
+                break;
+            case 'unpublished':
+                $c->where(array(
+                    'published' => 0,
+                    'deleted' => 0,
+                ));
+                break;
+            case 'deleted':
+                $c->where(array(
+                    'deleted' => 1,
+                ));
+                break;
+            default:
+                $c->where(array(
+                    'deleted' => 0,
+                ));
+                break;
+        }
+
         $c->where(array(
             'class_key' => 'Article',
-            'deleted' => $this->getProperty('deleted',false),
         ));
         $c->innerJoin('modUser','CreatedBy');
         return $c;
@@ -96,10 +121,17 @@ class ArticleGetListProcessor extends modObjectGetListProcessor {
             'className' => 'view',
             'text' => $this->modx->lexicon('view'),
         );
-        $resourceArray['actions'][] = array(
-            'className' => 'delete',
-            'text' => $this->modx->lexicon('delete'),
-        );
+        if (!empty($resourceArray['deleted'])) {
+            $resourceArray['actions'][] = array(
+                'className' => 'undelete',
+                'text' => $this->modx->lexicon('undelete'),
+            );
+        } else {
+            $resourceArray['actions'][] = array(
+                'className' => 'delete',
+                'text' => $this->modx->lexicon('delete'),
+            );
+        }
         if (!empty($resourceArray['published'])) {
             $resourceArray['actions'][] = array(
                 'className' => 'unpublish',

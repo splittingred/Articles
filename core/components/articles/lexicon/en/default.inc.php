@@ -20,6 +20,7 @@
  * @package articles
  */
 $_lang['articles.advanced_settings'] = 'Advanced Settings';
+$_lang['articles.all'] = 'All';
 $_lang['articles.article'] = 'Article';
 $_lang['articles.article_alias'] = 'Alias (Permalink)';
 $_lang['articles.article_content'] = 'Content';
@@ -50,6 +51,7 @@ $_lang['articles.container_new'] = 'New Articles Container';
 $_lang['articles.container_title'] = 'Container Title';
 $_lang['articles.container_title_desc'] = 'The title of your Articles Container.';
 $_lang['articles.content'] = 'Content';
+$_lang['articles.filter_ellipsis'] = 'Filter...';
 $_lang['articles.publishedon'] = 'Published On';
 $_lang['articles.published'] = 'Published';
 $_lang['articles.publishing_information'] = 'Publishing Information';
