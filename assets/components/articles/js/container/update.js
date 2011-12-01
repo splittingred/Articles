@@ -197,6 +197,7 @@ Ext.extend(Articles.panel.Container,MODx.panel.Resource,{
                     ,fieldLabel: _('articles.setting.tplArticleRow')
                     ,description: MODx.expandHelp ? '' : _('articles.setting.tplArticleRow_desc')
                     ,anchor: '100%'
+                    ,value: 'sample.ArticleRowTpl'
                 },{
                     xtype: MODx.expandHelp ? 'label' : 'hidden'
                     ,forId: 'articles-setting-tplArticleRow'
@@ -212,6 +213,7 @@ Ext.extend(Articles.panel.Container,MODx.panel.Resource,{
                     ,allowNegative: false
                     ,allowDecimals: false
                     ,width: 120
+                    ,value: 10
                 },{
                     xtype: MODx.expandHelp ? 'label' : 'hidden'
                     ,forId: 'articles-setting-articlesPerPage'
