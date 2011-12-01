@@ -30,6 +30,7 @@ class ArticlesContainer extends modResource {
     public $xpdo;
     public $allowListingInClassKeyDropdown = false;
     public $showInContextMenu = true;
+    public $allowChildrenResources = false;
     /**
      * Override modResource::__construct to ensure a few specific fields are forced to be set.
      * @param xPDO $xpdo
@@ -73,6 +74,60 @@ class ArticlesContainer extends modResource {
     public function getResourceTypeName() {
         $this->xpdo->lexicon->load('articles:default');
         return $this->xpdo->lexicon('articles.container');
+    }
+
+    /**
+     * @param array $node
+     * @return array
+     */
+    public function prepareTreeNode(array $node = array()) {
+        $this->xpdo->lexicon->load('articles:default');
+        $menu = array();
+        $idNote = $this->xpdo->hasPermission('tree_show_resource_ids') ? ' <span dir="ltr">('.$this->id.')</span>' : '';
+        $menu[] = array(
+            'text' => '<b>'.$this->get('pagetitle').'</b>'.$idNote,
+            'handler' => 'Ext.emptyFn',
+        );
+        $menu[] = '-';
+        $menu[] = array(
+            'text' => $this->xpdo->lexicon('articles.articles_manage'),
+            'handler' => 'this.editResource',
+        );
+        $menu[] = array(
+            'text' => $this->xpdo->lexicon('articles.articles_write_new'),
+            'handler' => 'function(itm,e) { itm.classKey = "Article"; this.createResourceHere(itm,e); }',
+        );
+        $menu[] = '-';
+        if ($this->get('published')) {
+            $menu[] = array(
+                'text' => $this->xpdo->lexicon('articles.container_unpublish'),
+                'handler' => 'this.unpublishDocument',
+            );
+        } else {
+            $menu[] = array(
+                'text' => $this->xpdo->lexicon('articles.container_publish'),
+                'handler' => 'this.publishDocument',
+            );
+        }
+        if ($this->get('deleted')) {
+            $menu[] = array(
+                'text' => $this->xpdo->lexicon('articles.container_undelete'),
+                'handler' => 'this.undeleteDocument',
+            );
+        } else {
+            $menu[] = array(
+                'text' => $this->xpdo->lexicon('articles.container_delete'),
+                'handler' => 'this.deleteDocument',
+            );
+        }
+        $menu[] = '-';
+        $menu[] = array(
+            'text' => $this->xpdo->lexicon('articles.articles_view'),
+            'handler' => 'this.preview',
+        );
+
+        $node['menu'] = array('items' => $menu);
+        return $node;
     }
 
     /**

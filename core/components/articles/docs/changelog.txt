@@ -2,6 +2,7 @@ Changelog for Articles.
 
 Articles 1.0.0
 ===============================
+- [#6168] Prevent creation of Resources below Articles resources
 - Fix issue where article tpl was incorrect in container settings
 - [#6164] Prevent changing Resource to Articles when using class_key dropdown
 - [#6158] Add ability to "undelete" deleted articles
