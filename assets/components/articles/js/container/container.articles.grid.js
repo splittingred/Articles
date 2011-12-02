@@ -50,6 +50,25 @@ Articles.grid.ContainerArticles = function(config) {
             text: _('articles.article_create')
             ,handler: this.createArticle
             ,scope: this
+        },{
+            text: _('bulk_actions')
+            ,menu: [{
+                text: _('articles.article_selected_publish')
+                ,handler: this.publishSelected
+                ,scope: this
+            },{
+                text: _('articles.article_selected_unpublish')
+                ,handler: this.unpublishSelected
+                ,scope: this
+            },'-',{
+                text: _('articles.article_selected_delete')
+                ,handler: this.deleteSelected
+                ,scope: this
+            },{
+                text: _('articles.article_selected_undelete')
+                ,handler: this.undeleteSelected
+                ,scope: this
+            }]
         },'->',{
             xtype: 'articles-combo-filter-status'
             ,id: 'articles-grid-filter-status'
@@ -177,6 +196,48 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
         });
     }
 
+    ,deleteSelected: function(btn,e) {
+        var cs = this.getSelectedAsList();
+        if (cs === false) return false;
+
+        MODx.msg.confirm({
+            title: _('articles.article_delete_multiple')
+            ,text: _('articles.article_delete_multiple_confirm')
+            ,url: this.config.url
+            ,params: {
+                action: 'article/deleteMultiple'
+                ,ids: cs
+            }
+            ,listeners: {
+                'success': {fn:function(r) {
+                    this.getSelectionModel().clearSelections(true);
+                    this.refresh();
+                },scope:this}
+            }
+        });
+        return true;
+    }
+
+    ,undeleteSelected: function(btn,e) {
+        var cs = this.getSelectedAsList();
+        if (cs === false) return false;
+
+        MODx.Ajax.request({
+            url: this.config.url
+            ,params: {
+                action: 'article/undeleteMultiple'
+                ,ids: cs
+            }
+            ,listeners: {
+                'success': {fn:function(r) {
+                    this.getSelectionModel().clearSelections(true);
+                    this.refresh();
+                },scope:this}
+            }
+        });
+        return true;
+    }
+
     ,undeleteArticle: function(btn,e) {
         MODx.Ajax.request({
             url: MODx.config.connectors_url+'resource/index.php'
@@ -188,6 +249,46 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
                 'success':{fn:this.refresh,scope:this}
             }
         });
+    }
+
+    ,publishSelected: function(btn,e) {
+        var cs = this.getSelectedAsList();
+        if (cs === false) return false;
+
+        MODx.Ajax.request({
+            url: this.config.url
+            ,params: {
+                action: 'article/publishMultiple'
+                ,ids: cs
+            }
+            ,listeners: {
+                'success': {fn:function(r) {
+                    this.getSelectionModel().clearSelections(true);
+                    this.refresh();
+                },scope:this}
+            }
+        });
+        return true;
+    }
+
+    ,unpublishSelected: function(btn,e) {
+        var cs = this.getSelectedAsList();
+        if (cs === false) return false;
+
+        MODx.Ajax.request({
+            url: this.config.url
+            ,params: {
+                action: 'article/unpublishMultiple'
+                ,ids: cs
+            }
+            ,listeners: {
+                'success': {fn:function(r) {
+                    this.getSelectionModel().clearSelections(true);
+                    this.refresh();
+                },scope:this}
+            }
+        });
+        return true;
     }
 
     ,publishArticle: function(btn,e) {

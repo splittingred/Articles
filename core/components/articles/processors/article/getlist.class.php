@@ -19,6 +19,10 @@
  *
  * @package articles
  */
+/**
+ * @package articles
+ * @subpackage processors
+ */
 class ArticleGetListProcessor extends modObjectGetListProcessor {
     public $classKey = 'Article';
     public $defaultSortField = 'createdon';

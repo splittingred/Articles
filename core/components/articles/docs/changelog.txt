@@ -2,6 +2,7 @@ Changelog for Articles.
 
 Articles 1.0.0
 ===============================
+- Add bulk publish/unpublish/delete/undelete to articles grid
 - [#6202] Add back menuindex into Articles Container settings
 - [#6205] Fix array error in article update controller
 - [#6168] Prevent creation of Resources below Articles resources
