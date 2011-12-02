@@ -2,6 +2,7 @@ Changelog for Articles.
 
 Articles 1.0.0
 ===============================
+- Allow search on articles grid to search tags
 - Add content preview for each article to articles grid
 - Add bulk publish/unpublish/delete/undelete to articles grid
 - [#6202] Add back menuindex into Articles Container settings

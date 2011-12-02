@@ -51,11 +51,21 @@ class ArticleGetListProcessor extends modObjectGetListProcessor {
         }
         $query = $this->getProperty('query',null);
         if (!empty($query)) {
-            $c->where(array(
+            $queryWhere = array(
                 'pagetitle:LIKE' => '%'.$query.'%',
                 'OR:description:LIKE' => '%'.$query.'%',
                 'OR:introtext:LIKE' => '%'.$query.'%',
-            ));
+            );
+            /** @var modTemplateVar $tv */
+            $tv = $this->modx->getObject('modTemplateVar',array('name' => 'articlestags'));
+            if ($tv) {
+                $c->leftJoin('modTemplateVarResource','TemplateVarResources',array(
+                    'TemplateVarResources.tmplvarid' => $tv->get('id'),
+                    'TemplateVarResources.contentid = Article.id',
+                ));
+                $queryWhere['OR:TemplateVarResources.value:LIKE'] = '%'.$query.'%';
+            }
+            $c->where($queryWhere);
         }
         $filter = $this->getProperty('filter','');
         switch ($filter) {
