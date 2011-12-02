@@ -33,6 +33,8 @@ class ArticleGetListProcessor extends modObjectGetListProcessor {
 
     /** @var modAction $editAction */
     public $editAction;
+    /** @var modTemplateVar $tvTags */
+    public $tvTags;
 
     public function initialize() {
         $this->editAction = $this->modx->getObject('modAction',array(
@@ -44,6 +46,16 @@ class ArticleGetListProcessor extends modObjectGetListProcessor {
 
     public function prepareQueryBeforeCount(xPDOQuery $c) {
         $c->innerJoin('modUser','CreatedBy');
+
+        $this->tvTags = $this->modx->getObject('modTemplateVar',array('name' => 'articlestags'));
+        if ($this->tvTags) {
+            $c->leftJoin('modTemplateVarResource','Tags',array(
+                'Tags.tmplvarid' => $this->tvTags->get('id'),
+                'Tags.contentid = Article.id',
+            ));
+        } else if ($this->getProperty('sort') == 'tags') {
+            $this->setProperty('sort','createdon');
+        }
 
         $parent = $this->getProperty('parent',null);
         if ($parent !== null) {
@@ -58,14 +70,8 @@ class ArticleGetListProcessor extends modObjectGetListProcessor {
                 'OR:description:LIKE' => '%'.$query.'%',
                 'OR:introtext:LIKE' => '%'.$query.'%',
             );
-            /** @var modTemplateVar $tv */
-            $tv = $this->modx->getObject('modTemplateVar',array('name' => 'articlestags'));
-            if ($tv) {
-                $c->leftJoin('modTemplateVarResource','TemplateVarResources',array(
-                    'TemplateVarResources.tmplvarid' => $tv->get('id'),
-                    'TemplateVarResources.contentid = Article.id',
-                ));
-                $queryWhere['OR:TemplateVarResources.value:LIKE'] = '%'.$query.'%';
+            if ($this->tvTags) {
+                $queryWhere['OR:Tags.value:LIKE'] = '%'.$query.'%';
             }
             $c->where($queryWhere);
         }
@@ -101,11 +107,27 @@ class ArticleGetListProcessor extends modObjectGetListProcessor {
         return $c;
     }
 
+    public function getSortClassKey() {
+        $this->modx->log(modX::LOG_LEVEL_ERROR,'Sort: '.$this->getProperty('sort'));
+        $classKey = 'Article';
+        switch ($this->getProperty('sort')) {
+            case 'tags':
+                $classKey = 'modTemplateVarResource';
+                break;
+        }
+        return $classKey;
+    }
+
     public function prepareQueryAfterCount(xPDOQuery $c) {
         $c->select($this->modx->getSelectColumns('Article','Article'));
         $c->select(array(
-            'createdby_username' => 'CreatedBy.username'
+            'createdby_username' => 'CreatedBy.username',
         ));
+        if ($this->tvTags) {
+            $c->select(array(
+                'tags' => 'Tags.value',
+            ));
+        }
         return $c;
     }
 
@@ -115,7 +137,7 @@ class ArticleGetListProcessor extends modObjectGetListProcessor {
      */
     public function prepareRow(xPDOObject $object) {
         $resourceArray = parent::prepareRow($object);
-        $resourceArray['tags'] = $object->getTVValue('articlestags');
+        //$resourceArray['tags'] = $object->getTVValue('articlestags');
 
         if (!empty($resourceArray['publishedon'])) {
             $resourceArray['publishedon_date'] = strftime('%b %d',strtotime($resourceArray['publishedon']));

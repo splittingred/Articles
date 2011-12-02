@@ -44,7 +44,7 @@ Articles.grid.ContainerArticles = function(config) {
             header: _('articles.author')
             ,dataIndex: 'createdby_username'
             ,width: 150
-            ,sortable: false
+            ,sortable: true
             ,renderer: {fn:this._renderAuthor,scope:this}
         },{
             header: _('articles.tags')
