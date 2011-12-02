@@ -116,6 +116,9 @@ class ArticleGetListProcessor extends modObjectGetListProcessor {
         $this->modx->getContext($resourceArray['context_key']);
         $resourceArray['preview_url'] = $this->modx->makeUrl($resourceArray['id'],$resourceArray['context_key']);
 
+        $trimLength = $this->modx->getOption('articles.mgr_article_content_preview_length',null,300);
+        $resourceArray['content'] = strip_tags($this->ellipsis($object->getContent(),$trimLength));
+
         $resourceArray['actions'] = array();
         $resourceArray['actions'][] = array(
             'className' => 'edit',
@@ -148,6 +151,13 @@ class ArticleGetListProcessor extends modObjectGetListProcessor {
             );
         }
         return $resourceArray;
+    }
+
+    public function ellipsis($string,$length = 300) {
+        if (strlen($string) > $length) {
+            $string = substr($string,0,$length).'...';
+        }
+        return $string;
     }
 }
 return 'ArticleGetListProcessor';

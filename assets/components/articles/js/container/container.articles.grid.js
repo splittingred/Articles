@@ -1,6 +1,11 @@
 Articles.grid.ContainerArticles = function(config) {
     config = config || {};
     this.sm = new Ext.grid.CheckboxSelectionModel();
+    this.exp = new Ext.grid.RowExpander({
+        tpl : new Ext.Template(
+            '<p class="desc">{content}</p>'
+        )
+    });
     Ext.applyIf(config,{
         id: 'articles-grid-container-articles'
         ,title: _('articles.articles')
@@ -16,13 +21,14 @@ Articles.grid.ContainerArticles = function(config) {
                   'publishedon','publishedon_date','publishedon_time',
                   'uri','uri_override','preview_url',
                   'createdby','createdby_username','tags','categories',
-                  'actions','action_edit']
+                  'actions','action_edit','content']
         ,paging: true
         ,remoteSort: true
         ,cls: 'articles-grid'
         ,sm: this.sm
+        ,plugins: [this.exp]
         ,emptyText: _('articles.articles_none')
-        ,columns: [this.sm,{
+        ,columns: [this.sm,this.exp,{
             header: _('articles.publishedon')
             ,dataIndex: 'publishedon'
             ,width: 80
