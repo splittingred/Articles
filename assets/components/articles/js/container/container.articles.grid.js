@@ -6,7 +6,6 @@ Articles.grid.ContainerArticles = function(config) {
             '<p class="desc">{content}</p>'
         )
     });
-    console.log(Articles);
     Ext.applyIf(config,{
         id: 'articles-grid-container-articles'
         ,title: _('articles.articles')

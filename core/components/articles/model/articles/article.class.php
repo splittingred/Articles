@@ -153,6 +153,41 @@ class Article extends modResource {
         $this->xpdo->setPlaceholder('comments_form',$call);
         return $call;
     }
+
+    /**
+     * Send any notification pings to notification services, such as Ping-O-Matic
+     * @return boolean
+     */
+    public function sendNotifications() {
+        $success = false;
+        $settings = $this->getContainerSettings();
+        if (!$this->getOption('notificationsEnabled',$settings,true)) return $success;
+
+        $service = $this->getNotificationService();
+        if ($service) {
+            /** @var ArticlesNotifyService $service */
+            $url = $this->xpdo->makeUrl($this->get('id'),$this->get('context_key'),'','full');
+            $success = $service->notify($this->get('pagetitle'),$url);
+        }
+        return $success;
+    }
+
+    /**
+     * Get the notification service
+     * @return ArticlesNotifyService
+     */
+    protected function getNotificationService() {
+        $settings = $this->getContainerSettings();
+        $modelPath = $this->xpdo->getOption('articles.core_path',null,$this->xpdo->getOption('core_path').'components/articles/').'model/articles/';
+        $notificationServiceClass = $this->getOption('notificationServiceClass',$settings,'ArticlesPingomatic');
+        $notificationServicePath = $this->getOption('notificationServicePath',$settings,$modelPath.'notify/articlespingomatic.class.php');
+        $included = include_once $notificationServicePath;
+        $service = false;
+        if ($included) {
+            $service = new $notificationServiceClass($this);
+        }
+        return $service;
+    }
 }
 
 /**
@@ -167,7 +202,10 @@ class ArticleCreateProcessor extends modResourceCreateProcessor {
     public $monthParent;
     /** @var modResource $dayParent */
     public $dayParent;
-
+    /** @var Article $object */
+    public $object;
+    /** @var boolean $isPublishing */
+    public $isPublishing = false;
 
     public function beforeSet() {
         $this->setProperty('searchable',true);
@@ -207,6 +245,8 @@ class ArticleCreateProcessor extends modResourceCreateProcessor {
         if ($container) {
             $this->object->set('articles_container_settings',$container->get('articles_container_settings'));
         }
+
+        $this->isPublishing = $this->object->isDirty('published') && $this->object->get('published');
         return $beforeSave;
     }
 
@@ -240,6 +280,9 @@ class ArticleCreateProcessor extends modResourceCreateProcessor {
         $afterSave = parent::afterSave();
         $this->saveTemplateVariables();
         $this->clearContainerCache();
+        if ($this->isPublishing) {
+            $this->object->sendNotifications();
+        }
         return $afterSave;
     }
 
@@ -313,6 +356,10 @@ class ArticleUpdateProcessor extends modResourceUpdateProcessor {
     public $monthParent;
     /** @var modResource $dayParent */
     public $dayParent;
+    /** @var Article $object */
+    public $object;
+    /** @var boolean $isPublishing */
+    public $isPublishing = false;
 
     public function beforeSet() {
         $this->setProperty('clearCache',true);
@@ -339,6 +386,8 @@ class ArticleUpdateProcessor extends modResourceUpdateProcessor {
         if ($container) {
             $this->object->set('articles_container_settings',$container->get('articles_container_settings'));
         }
+
+        $this->isPublishing = $this->object->isDirty('published') && $this->object->get('published');
         return $afterSave;
     }
 
@@ -417,6 +466,9 @@ class ArticleUpdateProcessor extends modResourceUpdateProcessor {
 
     public function afterSave() {
         $afterSave = parent::afterSave();
+        if ($this->isPublishing) {
+            $this->object->sendNotifications();
+        }
         $this->clearContainerCache();
         return $afterSave;
     }
