@@ -43,10 +43,12 @@ class ArticleGetListProcessor extends modObjectGetListProcessor {
     }
 
     public function prepareQueryBeforeCount(xPDOQuery $c) {
+        $c->innerJoin('modUser','CreatedBy');
+
         $parent = $this->getProperty('parent',null);
         if ($parent !== null) {
             $c->where(array(
-                'articles_container' => $parent,
+                'parent' => $parent,
             ));
         }
         $query = $this->getProperty('query',null);
@@ -96,7 +98,6 @@ class ArticleGetListProcessor extends modObjectGetListProcessor {
         $c->where(array(
             'class_key' => 'Article',
         ));
-        $c->innerJoin('modUser','CreatedBy');
         return $c;
     }
 

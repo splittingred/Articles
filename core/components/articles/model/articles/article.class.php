@@ -188,6 +188,14 @@ class ArticleCreateProcessor extends modResourceCreateProcessor {
      */
     public function beforeSave() {
         $beforeSave = parent::beforeSave();
+
+        if (!$this->parentResource) {
+            $this->parentResource = $this->object->getOne('Parent');
+            if ($this->parentResource) {
+                $this->object->set('articles_container',$this->parentResource->get('id'));
+            }
+        }
+
         if ($this->object->get('published')) {
             if (!$this->setArchiveUri()) {
                 $this->modx->log(modX::LOG_LEVEL_ERROR,'Failed to set URI for new Article.');
@@ -208,10 +216,7 @@ class ArticleCreateProcessor extends modResourceCreateProcessor {
      */
     public function setArchiveUri() {
         if (!$this->parentResource) {
-            $this->parentResource = $this->object->getOne('Parent');
-            if (!$this->parentResource) {
-                return false;
-            }
+            return false;
         }
         $this->object->set('articles_container',$this->parentResource->get('id'));
 
