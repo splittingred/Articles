@@ -220,6 +220,20 @@ Ext.extend(Articles.panel.Container,MODx.panel.Resource,{
                     ,html: _('articles.setting.articlesPerPage_desc')
                     ,cls: 'desc-under'
 
+                },{
+                    xtype: 'numberfield'
+                    ,name: 'menuindex'
+                    ,id: 'articles-menuindex'
+                    ,fieldLabel: _('resource_menuindex')
+                    ,description: MODx.expandHelp ? '' : _('resource_menuindex_help')
+                    ,allowNegative: false
+                    ,allowDecimals: false
+                    ,width: 120
+                },{
+                    xtype: MODx.expandHelp ? 'label' : 'hidden'
+                    ,forId: 'articles-menuindex'
+                    ,html: _('resource_menuindex_help')
+                    ,cls: 'desc-under'
 
                 }]
             }]
