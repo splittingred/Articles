@@ -6,6 +6,7 @@ Articles.grid.ContainerArticles = function(config) {
             '<p class="desc">{content}</p>'
         )
     });
+    console.log(Articles);
     Ext.applyIf(config,{
         id: 'articles-grid-container-articles'
         ,title: _('articles.articles')
@@ -21,7 +22,7 @@ Articles.grid.ContainerArticles = function(config) {
                   'publishedon','publishedon_date','publishedon_time',
                   'uri','uri_override','preview_url',
                   'createdby','createdby_username','tags','categories',
-                  'actions','action_edit','content']
+                  'actions','action_edit','content','comments']
         ,paging: true
         ,remoteSort: true
         ,cls: 'articles-grid'
@@ -46,6 +47,13 @@ Articles.grid.ContainerArticles = function(config) {
             ,width: 150
             ,sortable: true
             ,renderer: {fn:this._renderAuthor,scope:this}
+        },{
+            header: '<img src="'+Articles.assets_url+'images/comments-icon-w.png" alt="" class="articles-comments-col-header" />'
+            ,dataIndex: 'comments'
+            ,width: 50
+            ,sortable: true
+            ,hidden: !Articles.commentsEnabled
+            ,renderer: {fn:this._renderComments,scope:this}
         },{
             header: _('articles.tags')
             ,dataIndex: 'tags'
@@ -153,7 +161,12 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
 
     ,_makeTemplates: function() {
         this.tplPublished = new Ext.XTemplate('<tpl for=".">'
-            +'<div class="articles_grid_date">{publishedon_date}<span class="articles_grid_time">{publishedon_time}</span></div>'
+            +'<div class="articles-grid-date">{publishedon_date}<span class="articles-grid-time">{publishedon_time}</span></div>'
+        +'</tpl>',{
+			compiled: true
+		});
+        this.tplComments = new Ext.XTemplate('<tpl for=".">'
+            +'<div class="articles-grid-comments"><span>{comments}</span></div>'
         +'</tpl>',{
 			compiled: true
 		});
@@ -176,6 +189,9 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
 	}
 	,_renderPageTitle:function(v,md,rec) {
 		return this.tplPageTitle.apply(rec.data);
+	}
+	,_renderComments:function(v,md,rec) {
+		return this.tplComments.apply(rec.data);
 	}
 
     ,editArticle: function(btn,e) {

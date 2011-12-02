@@ -35,30 +35,57 @@ class ArticleGetListProcessor extends modObjectGetListProcessor {
     public $editAction;
     /** @var modTemplateVar $tvTags */
     public $tvTags;
+    /** @var ArticlesContainer $container */
+    public $container;
+    /** @var boolean $commentsEnabled */
+    public $commentsEnabled = false;
 
     public function initialize() {
         $this->editAction = $this->modx->getObject('modAction',array(
             'namespace' => 'core',
             'controller' => 'resource/update',
         ));
+
+        if ($this->getParentContainer()) {
+            $settings = $this->container->getContainerSettings();
+            if ($this->modx->getOption('commentsEnabled',$settings,true)) {
+                $quipCorePath = $this->modx->getOption('quip.core_path',null,$this->modx->getOption('core_path',null,MODX_CORE_PATH).'components/quip/');
+                if ($this->modx->addPackage('quip',$quipCorePath.'model/')) {
+                    $this->commentsEnabled = true;
+                }
+            }
+        }
         return parent::initialize();
+    }
+
+    public function getTagsTV() {
+        $this->tvTags = $this->modx->getObject('modTemplateVar',array('name' => 'articlestags'));
+        if (!$this->tvTags && $this->getProperty('sort') == 'tags') {
+            $this->setProperty('sort','createdon');
+        }
+        return $this->tvTags;
+    }
+
+    public function getParentContainer() {
+        $parent = $this->getProperty('parent');
+        if (!empty($parent)) {
+            $this->container = $this->modx->getObject('ArticlesContainer',$parent);
+        }
+        return $this->container;
     }
 
     public function prepareQueryBeforeCount(xPDOQuery $c) {
         $c->innerJoin('modUser','CreatedBy');
 
-        $this->tvTags = $this->modx->getObject('modTemplateVar',array('name' => 'articlestags'));
-        if ($this->tvTags) {
+        if ($this->getTagsTV()) {
             $c->leftJoin('modTemplateVarResource','Tags',array(
                 'Tags.tmplvarid' => $this->tvTags->get('id'),
                 'Tags.contentid = Article.id',
             ));
-        } else if ($this->getProperty('sort') == 'tags') {
-            $this->setProperty('sort','createdon');
         }
 
         $parent = $this->getProperty('parent',null);
-        if ($parent !== null) {
+        if (!empty($parent)) {
             $c->where(array(
                 'parent' => $parent,
             ));
@@ -108,7 +135,6 @@ class ArticleGetListProcessor extends modObjectGetListProcessor {
     }
 
     public function getSortClassKey() {
-        $this->modx->log(modX::LOG_LEVEL_ERROR,'Sort: '.$this->getProperty('sort'));
         $classKey = 'Article';
         switch ($this->getProperty('sort')) {
             case 'tags':
@@ -128,6 +154,20 @@ class ArticleGetListProcessor extends modObjectGetListProcessor {
                 'tags' => 'Tags.value',
             ));
         }
+        if ($this->commentsEnabled) {
+            $commentsQuery = $this->modx->newQuery('quipComment');
+            $commentsQuery->innerJoin('quipThread','Thread');
+            $commentsQuery->where(array(
+                'Thread.resource = Article.id',
+            ));
+            $commentsQuery->select(array(
+                'COUNT('.$this->modx->getSelectColumns('quipComment','quipComment','',array('id')).')',
+            ));
+            $commentsQuery->construct();
+            $c->select(array(
+                '('.$commentsQuery->toSQL().') AS '.$this->modx->escape('comments'),
+            ));
+        }
         return $c;
     }
 
@@ -137,7 +177,6 @@ class ArticleGetListProcessor extends modObjectGetListProcessor {
      */
     public function prepareRow(xPDOObject $object) {
         $resourceArray = parent::prepareRow($object);
-        //$resourceArray['tags'] = $object->getTVValue('articlestags');
 
         if (!empty($resourceArray['publishedon'])) {
             $resourceArray['publishedon_date'] = strftime('%b %d',strtotime($resourceArray['publishedon']));
@@ -145,6 +184,7 @@ class ArticleGetListProcessor extends modObjectGetListProcessor {
             $resourceArray['publishedon'] = strftime('%b %d, %Y %H:%I %p',strtotime($resourceArray['publishedon']));
         }
         $resourceArray['action_edit'] = '?a='.$this->editAction->get('id').'&action=post/update&id='.$resourceArray['id'];
+        if (!array_key_exists('comments',$resourceArray)) $resourceArray['comments'] = 0;
 
         $this->modx->getContext($resourceArray['context_key']);
         $resourceArray['preview_url'] = $this->modx->makeUrl($resourceArray['id'],$resourceArray['context_key']);

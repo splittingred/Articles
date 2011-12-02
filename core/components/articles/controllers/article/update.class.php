@@ -55,6 +55,7 @@ class ArticleUpdateManagerController extends ResourceUpdateManagerController {
         $this->addHtml('
         <script type="text/javascript">
         // <![CDATA[
+        Articles.assets_url = "'.$articlesAssetsUrl.'";
         Articles.connector_url = "'.$connectorUrl.'";
         MODx.config.publish_document = "'.$this->canPublish.'";
         MODx.onDocFormRender = "'.$this->onDocFormRender.'";

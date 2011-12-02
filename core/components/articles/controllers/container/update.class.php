@@ -27,7 +27,8 @@ require_once $modx->getOption('manager_path',null,MODX_MANAGER_PATH).'controller
  * @package articles
  */
 class ArticlesContainerUpdateManagerController extends ResourceUpdateManagerController {
-
+    /** @var ArticlesContainer $resource */
+    public $resource;
     public function loadCustomCssJs() {
         $managerUrl = $this->context->getOption('manager_url', MODX_MANAGER_URL, $this->modx->_userConfig);
         $articlesAssetsUrl = $this->modx->getOption('articles.assets_url',null,$this->modx->getOption('assets_url',null,MODX_ASSETS_URL).'components/articles/');
@@ -56,11 +57,14 @@ class ArticlesContainerUpdateManagerController extends ResourceUpdateManagerCont
             Quip.request = '.$this->modx->toJSON($_GET).';
         });
         </script>');
+        $settings = $this->resource->getContainerSettings();
         
         $this->addHtml('
         <script type="text/javascript">
         // <![CDATA[
+        Articles.assets_url = "'.$articlesAssetsUrl.'";
         Articles.connector_url = "'.$connectorUrl.'";
+        Articles.commentsEnabled = '.($this->modx->getOption('commentsEnabled',$settings,true) ? 1 : 0).';
         MODx.config.publish_document = "'.$this->canPublish.'";
         MODx.onDocFormRender = "'.$this->onDocFormRender.'";
         MODx.ctx = "'.$this->resource->get('context_key').'";

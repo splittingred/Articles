@@ -3,7 +3,7 @@
 }
 
 
-.articles_grid_date {
+.articles-grid-date {
   color:#a0a0a0;
   font-family:arial, Helvetica, sans-serif;
   font-size:20px;
@@ -13,13 +13,31 @@
   padding-right:10px;
   text-align:right;
 }
-.articles_grid_date .articles_grid_time {
+.articles-grid-date .articles-grid-time {
   display:block;
   font-size:10px;
   font-weight:normal;
   margin-top:5px;
 }
 
+.articles-grid-comments {
+    background: url(../images/comments-icon.png) top left no-repeat !important;
+    height: 22px;
+    width: 24px;
+    padding: 3px 0 0 3px;
+    text-align: center;
+}
+.articles-grid-comments span {
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 1.3em;
+    display: inline-block;
+    color: white;
+    text-align: center;
+}
+.articles-comments-col-header {
+    margin-left:7px;
+}
 
 .main-column {
   font-family:arial, Helvetica, sans-serif;
