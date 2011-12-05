@@ -65,7 +65,7 @@ class Article extends modResource {
         if ($container) {
             $settings = $container->getContainerSettings();
         }
-        return $settings;
+        return is_array($settings) ? $settings : array();
     }
 
     /**
