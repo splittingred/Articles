@@ -82,6 +82,11 @@ Articles.grid.ContainerArticles = function(config) {
                 ,handler: this.undeleteSelected
                 ,scope: this
             }]
+        },'-',{
+            text: _('articles.articles_import')
+            ,handler: this.importArticles
+            ,scope: this
+
         },'->',{
             xtype: 'articles-combo-filter-status'
             ,id: 'articles-grid-filter-status'
@@ -202,6 +207,27 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
     ,viewArticle: function(btn,e) {
         window.open(this.menu.record.data.preview_url);
         return false;
+    }
+
+    ,importArticles: function(btn,e) {
+        var r = {
+            'id': MODx.request.id
+            ,'service': 'WordPress'
+        };
+        if (!this.windows.importArticles) {
+            this.windows.importArticles = MODx.load({
+                xtype: 'articles-window-import'
+                ,record: r
+                ,listeners: {
+                    'success': {fn:function(r) {
+                        this.refresh();
+                    },scope:this}
+                }
+            });
+        }
+        this.windows.importArticles.reset();
+        this.windows.importArticles.setValues(r);
+        this.windows.importArticles.show(e.target);
     }
 
     ,deleteArticle: function(btn,e) {

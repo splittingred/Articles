@@ -188,6 +188,56 @@ class Article extends modResource {
         }
         return $service;
     }
+
+    public function setArchiveUri() {
+        /** @var ArticlesContainer $container */
+        $container = $this->xpdo->getObject('ArticlesContainer',array('id' => $this->get('parent')));
+        if (!$container) {
+            $this->xpdo->log(xPDO::LOG_LEVEL_ERROR,'[Articles] Could not find Container to set Article URI from.');
+            return false;
+        }
+
+        $date = $this->get('published') ? $this->get('publishedon') : $this->get('createdon');
+        $year = date('Y',strtotime($date));
+        $month = date('m',strtotime($date));
+        $day = date('d',strtotime($date));
+
+        $containerUri = $container->get('uri');
+        if (empty($containerUri)) {
+            $containerUri = $container->get('alias');
+        }
+        $uri = rtrim($containerUri,'/').'/'.$year.'/'.$month.'/'.$day.'/'.$this->get('alias');
+
+        $this->set('uri',rtrim($uri,'/').'/');
+        $this->set('uri_override',true);
+        return $this->get('uri');
+    }
+
+    /**
+     * Override remove to remove the associated Quip thread
+     *
+     * {@inheritDoc}
+     *
+     * @param array $ancestors
+     * @return boolean
+     */
+    public function remove(array $ancestors = array()) {
+        $removed = parent::remove($ancestors);
+
+        if ($removed) {
+            $quipPath = $this->xpdo->getOption('quip.core_path',null,$this->xpdo->getOption('core_path').'components/quip/');
+            $this->xpdo->addPackage('quip',$quipPath.'model/');
+            /** @var quipThread $thread */
+            $thread = $this->xpdo->getObject('quipThread',array(
+                'name' => 'article-b'.$this->get('parent').'-'.$this->get('id'),
+            ));
+            if ($thread) {
+                $thread->remove();
+            }
+        }
+
+        return $removed;
+    }
 }
 
 /**
@@ -259,21 +309,7 @@ class ArticleCreateProcessor extends modResourceCreateProcessor {
             return false;
         }
         $this->object->set('articles_container',$this->parentResource->get('id'));
-
-        $date = $this->object->get('published') ? $this->object->get('publishedon') : $this->object->get('createdon');
-        $year = date('Y',strtotime($date));
-        $month = date('m',strtotime($date));
-        $day = date('d',strtotime($date));
-
-        $containerUri = $this->parentResource->get('uri');
-        if (empty($containerUri)) {
-            $containerUri = $this->parentResource->get('alias');
-        }
-        $uri = rtrim($containerUri,'/').'/'.$year.'/'.$month.'/'.$day.'/'.$this->object->get('alias');
-
-        $this->object->set('uri',rtrim($uri,'/').'/');
-        $this->object->set('uri_override',true);
-        return $uri;
+        return $this->object->setArchiveUri();
     }
 
     public function afterSave() {
@@ -341,7 +377,6 @@ class ArticleCreateProcessor extends modResourceCreateProcessor {
         }
         return true;
     }
-
 }
 
 /**
@@ -448,20 +483,7 @@ class ArticleUpdateProcessor extends modResourceUpdateProcessor {
         }
         $this->object->set('articles_container',$this->parentResource->get('id'));
 
-        $date = $this->object->get('published') ? $this->object->get('publishedon') : $this->object->get('createdon');
-        $year = date('Y',strtotime($date));
-        $month = date('m',strtotime($date));
-        $day = date('d',strtotime($date));
-
-        $containerUri = $this->parentResource->get('uri');
-        if (empty($containerUri)) {
-            $containerUri = $this->parentResource->get('alias');
-        }
-        $uri = rtrim($containerUri,'/').'/'.$year.'/'.$month.'/'.$day.'/'.$this->object->get('alias');
-
-        $this->object->set('uri',rtrim($uri,'/').'/');
-        $this->object->set('uri_override',true);
-        return $uri;
+        return $this->object->setArchiveUri();
     }
 
     public function afterSave() {

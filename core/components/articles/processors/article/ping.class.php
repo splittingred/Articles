@@ -16,7 +16,7 @@ class ArticlePingProcessor extends modObjectProcessor {
         return $initialized;
     }
     public function process() {
-        if ($this->object->sendNotifications()) {
+        if ($this->object->notifyUpdateServices()) {
             return $this->success();
         } else {
             return $this->failure();

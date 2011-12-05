@@ -44,6 +44,7 @@ class ArticlesContainerUpdateManagerController extends ResourceUpdateManagerCont
         $this->addJavascript($articlesJsUrl.'articles.js');
         $this->addJavascript($articlesJsUrl.'container/container.common.js');
         $this->addJavascript($articlesJsUrl.'container/container.articles.grid.js');
+        $this->addJavascript($articlesJsUrl.'container/articles.import.window.js');
         $this->addLastJavascript($articlesJsUrl.'container/update.js');
 
 

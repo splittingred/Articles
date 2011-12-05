@@ -2,6 +2,7 @@ Changelog for Articles.
 
 Articles 1.0.0
 ===============================
+- [#6201] Add ability to import posts+comments from WordPress
 - [#6167] Fix issue where unpublished new articles were not showing in grid
 - Allow search on articles grid to search tags
 - Add content preview for each article to articles grid
