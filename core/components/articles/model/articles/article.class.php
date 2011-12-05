@@ -158,12 +158,12 @@ class Article extends modResource {
      * Send any notification pings to notification services, such as Ping-O-Matic
      * @return boolean
      */
-    public function sendNotifications() {
+    public function notifyUpdateServices() {
         $success = false;
         $settings = $this->getContainerSettings();
-        if (!$this->getOption('notificationsEnabled',$settings,true)) return $success;
+        if (!$this->getOption('updateServicesEnabled',$settings,true)) return $success;
 
-        $service = $this->getNotificationService();
+        $service = $this->getUpdateService();
         if ($service) {
             /** @var ArticlesNotifyService $service */
             $url = $this->xpdo->makeUrl($this->get('id'),$this->get('context_key'),'','full');
@@ -176,7 +176,7 @@ class Article extends modResource {
      * Get the notification service
      * @return ArticlesNotifyService
      */
-    protected function getNotificationService() {
+    protected function getUpdateService() {
         $settings = $this->getContainerSettings();
         $modelPath = $this->xpdo->getOption('articles.core_path',null,$this->xpdo->getOption('core_path').'components/articles/').'model/articles/';
         $notificationServiceClass = $this->getOption('notificationServiceClass',$settings,'ArticlesPingomatic');
@@ -281,7 +281,7 @@ class ArticleCreateProcessor extends modResourceCreateProcessor {
         $this->saveTemplateVariables();
         $this->clearContainerCache();
         if ($this->isPublishing) {
-            $this->object->sendNotifications();
+            $this->object->notifyUpdateServices();
         }
         return $afterSave;
     }
@@ -467,7 +467,7 @@ class ArticleUpdateProcessor extends modResourceUpdateProcessor {
     public function afterSave() {
         $afterSave = parent::afterSave();
         if ($this->isPublishing) {
-            $this->object->sendNotifications();
+            $this->object->notifyUpdateServices();
         }
         $this->clearContainerCache();
         return $afterSave;

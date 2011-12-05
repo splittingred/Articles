@@ -42,4 +42,18 @@ $events['OnManagerPageInit']->fromArray(array(
     'propertyset' => 0,
 ),'',true,true);
 
+$events['OnDocPublished']= $modx->newObject('modPluginEvent');
+$events['OnDocPublished']->fromArray(array(
+    'event' => 'OnDocPublished',
+    'priority' => 0,
+    'propertyset' => 0,
+),'',true,true);
+
+$events['OnDocUnPublished']= $modx->newObject('modPluginEvent');
+$events['OnDocUnPublished']->fromArray(array(
+    'event' => 'OnDocUnPublished',
+    'priority' => 0,
+    'propertyset' => 0,
+),'',true,true);
+
 return $events;

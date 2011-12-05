@@ -76,6 +76,7 @@ $_lang['articles.settings_comments_display'] = 'Display';
 $_lang['articles.settings_comments_latest'] = 'Latest';
 $_lang['articles.settings_comments_moderation'] = 'Security';
 $_lang['articles.settings_comments_other'] = 'Other';
+$_lang['articles.settings_general'] = 'General';
 $_lang['articles.settings_latest_posts'] = 'Latest Posts';
 $_lang['articles.settings_rss'] = 'RSS';
 $_lang['articles.settings_tagging'] = 'Tagging';
@@ -85,6 +86,9 @@ $_lang['articles.template'] = 'Template';
 $_lang['articles.template_desc'] = 'The Template that the main listing view uses.';
 $_lang['articles.tags'] = 'Tags';
 $_lang['articles.unpublished'] = 'Not Published';
+
+$_lang['articles.setting.updateServicesEnabled'] = 'Enable Update Services';
+$_lang['articles.setting.updateServicesEnabled_desc'] = 'If on, Articles will attempt to ping Ping-o-Matic whenever you publish an Article, to send out your article\'s title and URL to major search engines.';
 
 $_lang['articles.setting.articleTemplate'] = 'Article Template';
 $_lang['articles.setting.articleTemplate_desc'] = 'The default Template to use for Articles.';

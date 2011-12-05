@@ -47,3 +47,5 @@ Articles.combo.FilterStatus = function(config) {
 };
 Ext.extend(Articles.combo.FilterStatus,MODx.combo.ComboBox);
 Ext.reg('articles-combo-filter-status',Articles.combo.FilterStatus);
+
+Articles.PanelSpacer = { html: '<br />' ,border: false, cls: 'articles-panel-spacer' };

@@ -60,7 +60,7 @@
 }
 
 
-
+.articles-panel-spacer .x-panel-body { background: transparent !important; }
 
 .actions {
   margin: 15px 0 0;

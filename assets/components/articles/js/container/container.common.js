@@ -14,6 +14,44 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
         ,id: 'modx-resource-vtabs'
         ,anchor: '97%'
         ,items: [{
+            title: _('articles.settings_general')
+            ,anchor: '100%'
+            ,defaults: {
+                msgTarget: 'under'
+            }
+            ,items: [{
+                xtype: 'combo-boolean'
+                ,name: 'setting_updateServicesEnabled'
+                ,hiddenName: 'setting_updateServicesEnabled'
+                ,id: 'articles-setting-updateServicesEnabled'
+                ,fieldLabel: _('articles.setting.updateServicesEnabled')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.updateServicesEnabled_desc')
+                ,anchor: '40%'
+                ,value: true
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-updateServicesEnabled'
+                ,html: _('articles.setting.updateServicesEnabled_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'numberfield'
+                ,name: 'menuindex'
+                ,id: 'articles-menuindex'
+                ,fieldLabel: _('resource_menuindex')
+                ,description: MODx.expandHelp ? '' : _('resource_menuindex_help')
+                ,allowNegative: false
+                ,allowDecimals: false
+                ,width: 120
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-menuindex'
+                ,html: _('resource_menuindex_help')
+                ,cls: 'desc-under'
+
+            }]
+        },{
             title: _('articles.settings_archiving')
             ,anchor: '100%'
             ,defaults: {
@@ -58,7 +96,7 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,id: 'articles-setting-archiveByMonth'
                 ,fieldLabel: _('articles.setting.archiveByMonth')
                 ,description: MODx.expandHelp ? '' : _('articles.setting.archiveByMonth_desc')
-                ,width: 120
+                ,anchor: '30%'
                 ,value: 1
                 ,listeners: oc
             },{

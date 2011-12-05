@@ -21,6 +21,7 @@
  */
 /**
  * @var modX $modx
+ * @var array $scriptProperties
  */
 switch ($modx->event->name) {
     case 'OnManagerPageInit':
@@ -33,6 +34,16 @@ switch ($modx->event->name) {
         $router = new ArticlesRouter($modx);
         $router->route();
         return;
+    case 'OnDocPublished':
+        /** @var Article $resource */
+        $resource =& $scriptProperties['resource'];
+        if ($resource instanceof Article) {
+            $resource->notifyUpdateServices();
+        }
+        break;
+    case 'OnDocUnPublished':
+        $resource =& $scriptProperties['resource'];
+        break;
 
 }
 return;
