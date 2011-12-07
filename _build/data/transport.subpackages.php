@@ -28,7 +28,7 @@
  * @package articles
  */
 $subpackages = array(
-    'archivist'      => 'archivist-1.1.2-pl',
+    'archivist'      => 'archivist-1.2.0-pl',
     'getpage'        => 'getpage-1.2.1-pl',
     'getresources'   => 'getresources-1.4.0-pl',
     'quip'           => 'quip-2.1.3-pl',

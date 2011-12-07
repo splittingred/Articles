@@ -9,7 +9,7 @@
  */
 $success= true;
 if ($transport && $transport->xpdo) {
-    $signature = 'archivist-1.1.2-pl';
+    $signature = 'archivist-1.2.0-pl';
     $modx =& $transport->xpdo;
     $modx->addPackage('modx.transport',$modx->getOption('core_path').'model/');
     

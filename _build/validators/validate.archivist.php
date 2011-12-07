@@ -35,7 +35,7 @@ if ($transport && $transport->xpdo) {
             $modx =& $transport->xpdo;
 
             /* define Archivist version */
-            $newVersion = '1.1.2-pl';
+            $newVersion = '1.2.0-pl';
             $newVersionMajor = '1';
             $name = 'archivist';
 
