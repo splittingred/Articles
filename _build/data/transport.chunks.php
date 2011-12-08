@@ -59,4 +59,11 @@ $chunks[4]->fromArray(array(
     'snippet' => file_get_contents($sources['chunks'].'articlesrssitem.chunk.tpl'),
 ));
 
+$chunks[5]= $modx->newObject('modChunk');
+$chunks[5]->fromArray(array(
+    'id' => 5,
+    'name' => 'sample.ArchiveGroupByYear',
+    'description' => 'The tpl wrapper for archives when grouped by year.',
+    'snippet' => file_get_contents($sources['chunks'].'archivegroupbyyear.chunk.tpl'),
+));
 return $chunks;

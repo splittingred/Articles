@@ -1,5 +1,10 @@
 Changelog for Articles.
 
+Articles 1.0.1
+===============================
+- Include new Archivist parameters, &groupByYear and &groupByYearTpl
+- [#6252] Fix paging on articles main list page
+
 Articles 1.0.0
 ===============================
 - [#6201] Add ability to import posts+comments from WordPress

@@ -111,6 +111,14 @@ $_lang['articles.setting.archiveCls'] = 'Archive CSS Class';
 $_lang['articles.setting.archiveCls_desc'] = 'A CSS class to apply to each archive listing.';
 $_lang['articles.setting.archiveAltCls'] = 'Archive Alternate CSS Class';
 $_lang['articles.setting.archiveAltCls_desc'] = 'A CSS class to apply to each alternate row for each archive listing.';
+$_lang['articles.setting.archiveGroupByYear'] = 'Group By Year';
+$_lang['articles.setting.archiveGroupByYear_desc'] = 'If set to 1, will group archive results by year into a nested list. If set to 1, this will ignore the Archive By Month setting.';
+$_lang['articles.setting.archiveGroupByYearTpl'] = 'Group By Year Chunk';
+$_lang['articles.setting.archiveGroupByYearTpl_desc'] = 'If Group By Year is set to 1, the Chunk to use for the wrapper for the archive list grouping.';
+$_lang['articles.setting.archivesIncludeTVs'] = 'Include TVs in Listing';
+$_lang['articles.setting.archivesIncludeTVs_desc'] = 'If set to 1, will include TV values as options in the listing chunks for archives.';
+$_lang['articles.setting.archivesProcessTVs'] = 'Process TVs in Listing';
+$_lang['articles.setting.archivesProcessTVs_desc'] = 'If set to 1, will process the TV values in the listing chunks for archives.';
 
 $_lang['articles.setting.rssAlias'] = 'RSS Alias (Permalink)';
 $_lang['articles.setting.rssAlias_desc'] = 'The alias (permalink) for the RSS feed, appended to the Articles Container URL.';

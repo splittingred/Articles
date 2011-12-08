@@ -240,7 +240,7 @@ class ArticlesContainer extends modResource {
             }
         }
 
-        $output = '[[!getArchives?
+        $output = '[[!getPage?
           &elementClass=`modSnippet`
           &element=`getArchives`
           &cache=`0`
@@ -250,7 +250,8 @@ class ArticlesContainer extends modResource {
           &limit=`'.$this->xpdo->getOption('articlesPerPage',$settings,10).'`
           &showHidden=`1`
           &includeContent=`1`
-          &includeTVs=`1`
+          &includeTVs=`'.$this->xpdo->getOption('archivesIncludeTVs',$settings,0).'`
+          &processTVs=`'.$this->xpdo->getOption('archivesProcessTVs',$settings,0).'`
           &tagKey=`articlestags`
           &tagSearchType=`contains`
           &tpl=`'.$this->xpdo->getOption('tplArticleRow',$settings,'sample.ArticleRowTpl').'`
@@ -279,6 +280,8 @@ class ArticlesContainer extends modResource {
             &depth=`4`
             &limit=`'.$this->xpdo->getOption('archiveListingsLimit',$settings,10).'`
             &useMonth=`'.$this->xpdo->getOption('archiveByMonth',$settings,1).'`
+            &groupByYear=`'.$this->xpdo->getOption('archiveGroupByYear',$settings,0).'`
+            &groupByYearTpl=`'.$this->xpdo->getOption('archiveGroupByYearTpl',$settings,'sample.ArchiveGroupByYear').'`
             &useFurls=`'.$this->xpdo->getOption('archiveWithFurls',$settings,1).'`
             &cls=`'.$this->xpdo->getOption('archiveCls',$settings,'').'`
             &altCls=`'.$this->xpdo->getOption('archiveAltCls',$settings,'').'`
