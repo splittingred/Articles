@@ -2,6 +2,7 @@ Changelog for Articles.
 
 Articles 1.0.1
 ===============================
+- Add ability to toggle including and processing of TVs on archive listing pages
 - Include new Archivist parameters, &groupByYear and &groupByYearTpl
 - [#6252] Fix paging on articles main list page
 
