@@ -102,94 +102,9 @@ Ext.extend(Articles.panel.Container,MODx.panel.Resource,{
 
 
     ,getTemplateSettings: function(config) {
-        var flds = [];
-        flds.push({
-            xtype: 'modx-combo-template'
-            ,fieldLabel: _('resource_template')
-            ,description: MODx.expandHelp ? '' : '<b>[[*template]]</b><br />'+_('resource_template_help')
-            ,name: 'template'
-            ,id: 'modx-resource-template'
-            ,anchor: '100%'
-            ,editable: false
-            ,baseParams: {
-                action: 'getList'
-                ,combo: '1'
-            }
-        },{
-            xtype: MODx.expandHelp ? 'label' : 'hidden'
-            ,forId: 'modx-resource-template'
-            ,id: 'modx-resource-template-label'
-            ,html: _('articles.template_desc')
-            ,cls: 'desc-under'
-        });
-        var ct = this.getContentField(config);
-        for (var f in ct) {
-            flds.push(ct[f]);
-        }
         return [{
-            layout: 'column'
-            ,border: false
-            ,anchor: '100%'
-            ,defaults: {
-                layout: 'form'
-                ,labelAlign: 'top'
-                ,anchor: '100%'
-                ,border: false
-                ,labelSeparator: ''
-            }
-            ,items: [{
-                columnWidth: .5
-                ,items: flds
-            },{
-                columnWidth: .5
-                ,items: [{
-                    xtype: 'modx-combo-template'
-                    ,name: 'setting_articleTemplate'
-                    ,hiddenName: 'setting_articleTemplate'
-                    ,id: 'articles-setting-articleTemplate'
-                    ,fieldLabel: _('articles.setting.articleTemplate')
-                    ,description: MODx.expandHelp ? '' : _('articles.setting.articleTemplate_desc')
-                    ,anchor: '100%'
-                },{
-                    xtype: MODx.expandHelp ? 'label' : 'hidden'
-                    ,forId: 'articles-setting-articleTemplate'
-                    ,html: _('articles.setting.articleTemplate_desc')
-                    ,cls: 'desc-under'
-
-                },{
-                    xtype: 'textfield'
-                    ,name: 'setting_tplArticleRow'
-                    ,id: 'articles-setting-tplArticleRow'
-                    ,fieldLabel: _('articles.setting.tplArticleRow')
-                    ,description: MODx.expandHelp ? '' : _('articles.setting.tplArticleRow_desc')
-                    ,anchor: '100%'
-                    ,value: 'sample.ArticleRowTpl'
-                },{
-                    xtype: MODx.expandHelp ? 'label' : 'hidden'
-                    ,forId: 'articles-setting-tplArticleRow'
-                    ,html: _('articles.setting.tplArticleRow_desc')
-                    ,cls: 'desc-under'
-
-                },{
-                    xtype: 'numberfield'
-                    ,name: 'setting_articlesPerPage'
-                    ,id: 'articles-setting-articlesPerPage'
-                    ,fieldLabel: _('articles.setting.articlesPerPage')
-                    ,description: MODx.expandHelp ? '' : _('articles.setting.articlesPerPage_desc')
-                    ,allowNegative: false
-                    ,allowDecimals: false
-                    ,width: 120
-                    ,value: 10
-                },{
-                    xtype: MODx.expandHelp ? 'label' : 'hidden'
-                    ,forId: 'articles-setting-articlesPerPage'
-                    ,html: _('articles.setting.articlesPerPage_desc')
-                    ,cls: 'desc-under'
-
-
-                }]
-            }]
-        }]
+            xtype: 'articles-tab-template-settings'
+        }];
     }
 
     ,getBlogSettings: function(config) {
@@ -261,28 +176,6 @@ Ext.extend(Articles.panel.Container,MODx.panel.Resource,{
             ,value: 'ArticlesContainer'
         }];
     }
-
-    ,getContentField: function(config) {
-        return [{
-            id: 'modx-content-above'
-            ,border: false
-        },{
-            xtype: 'textarea'
-            ,name: 'ta'
-            ,id: 'ta'
-            ,fieldLabel: _('articles.content')
-            ,anchor: '100%'
-            ,height: 250
-            ,grow: false
-            ,border: false
-            ,value: "[[+articles]]\n\n[[+paging]]"
-        },{
-            id: 'modx-content-below'
-            ,border: false
-        }];
-    }
-
-
 
     ,getMainRightFields: function(config) {
         config = config || {};
