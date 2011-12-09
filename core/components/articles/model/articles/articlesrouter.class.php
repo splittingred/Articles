@@ -73,7 +73,7 @@ class ArticlesRouter {
             $_GET['tag'] = $params[1];
         /* author based */
         } else if ($params[0] == 'user' || $params[0] == 'author') {
-            $_GET['arc_user'] = $params[1];
+            $_GET[$prefix.'author'] = $params[1];
 
         /* numeric "archives/1234" */
         } else if ($params[0] == 'archives' && !empty($params[1])) {

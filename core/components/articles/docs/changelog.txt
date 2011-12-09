@@ -2,6 +2,7 @@ Changelog for Articles.
 
 Articles 1.0.2
 ===============================
+- Add ability to filter by author on articles
 - Vastly improve loading speeds and caching for main articles page
 - Add more options for getPage to container settings
 
