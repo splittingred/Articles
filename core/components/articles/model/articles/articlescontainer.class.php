@@ -244,10 +244,8 @@ class ArticlesContainer extends modResource {
           &elementClass=`modSnippet`
           &element=`getArchives`
           &cache=`0`
-          &pageVarKey=`page`
           &parents=`[[*id]]`
           &where=`'.$this->xpdo->toJSON($where).'`
-          &limit=`'.$this->xpdo->getOption('articlesPerPage',$settings,10).'`
           &showHidden=`1`
           &includeContent=`1`
           &includeTVs=`'.$this->xpdo->getOption('archivesIncludeTVs',$settings,0).'`
@@ -255,6 +253,20 @@ class ArticlesContainer extends modResource {
           &tagKey=`articlestags`
           &tagSearchType=`contains`
           &tpl=`'.$this->xpdo->getOption('tplArticleRow',$settings,'sample.ArticleRowTpl').'`
+
+          &limit=`'.$this->xpdo->getOption('articlesPerPage',$settings,10).'`
+          &pageLimit=`'.$this->xpdo->getOption('pageLimit',$settings,5).'
+          &pageVarKey=`'.$this->xpdo->getOption('pageVarKey',$settings,'page').'`
+          &pageNavVar=`'.$this->xpdo->getOption('pageNavVar',$settings,'page.nav').'
+          &totalVar=`'.$this->xpdo->getOption('pageTotalVar',$settings,'total').'
+          &offset=`'.$this->xpdo->getOption('pageOffset',$settings,0).'
+
+          &pageNavTpl=`'.$this->xpdo->getOption('pageNavTpl',$settings,'<li[[+classes]]><a[[+classes]][[+title]] href="[[+href]]">[[+pageNo]]</a></li>').'`
+          &pageActiveTpl=`'.$this->xpdo->getOption('pageActiveTpl',$settings,'<li[[+activeClasses]]><a[[+activeClasses:default=` class="active"`]][[+title]] href="[[+href]]">[[+pageNo]]</a></li>').'`
+          &pageFirstTpl=`'.$this->xpdo->getOption('pageFirstTpl',$settings,'<li class="control"><a[[+classes]][[+title]] href="[[+href]]">First</a></li>').'`
+          &pageLastTpl=`'.$this->xpdo->getOption('pageLastTpl',$settings,'<li class="control"><a[[+classes]][[+title]] href="[[+href]]">Last</a></li>').'`
+          &pagePrevTpl=`'.$this->xpdo->getOption('pagePrevTpl',$settings,'<li class="control"><a[[+classes]][[+title]] href="[[+href]]">&lt;&lt;</a></li>').'`
+          &pageNextTpl=`'.$this->xpdo->getOption('pageNextTpl',$settings,'<li class="control"><a[[+classes]][[+title]] href="[[+href]]">&gt;&gt;</a></li>').'`
         ]]';
         $this->xpdo->setPlaceholder('articles',$output);
 

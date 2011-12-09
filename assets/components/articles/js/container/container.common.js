@@ -52,6 +52,192 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
 
             }]
         },{
+            title: _('articles.settings_pagination')
+            ,anchor: '100%'
+            ,defaults: {
+                msgTarget: 'under'
+            }
+            ,items: [{
+                xtype: 'numberfield'
+                ,name: 'setting_articlesPerPage'
+                ,id: 'articles-setting-articlesPerPage'
+                ,fieldLabel: _('articles.setting.articlesPerPage')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.articlesPerPage_desc')
+                ,allowNegative: false
+                ,allowDecimals: false
+                ,width: 120
+                ,value: 10
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-articlesPerPage'
+                ,html: _('articles.setting.articlesPerPage_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'numberfield'
+                ,name: 'setting_pageLimit'
+                ,id: 'articles-setting-pageLimit'
+                ,fieldLabel: _('articles.setting.pageLimit')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.pageLimit_desc')
+                ,allowNegative: false
+                ,allowDecimals: false
+                ,width: 120
+                ,value: 5
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-pageLimit'
+                ,html: _('articles.setting.pageLimit_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_pageNavTpl'
+                ,id: 'articles-setting-pageNavTpl'
+                ,fieldLabel: _('articles.setting.pageNavTpl')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.pageNavTpl_desc')
+                ,anchor: '100%'
+                ,value: '<li[[+classes]]><a[[+classes]][[+title]] href="[[+href]]">[[+pageNo]]</a></li>'
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-pageNavTpl'
+                ,html: _('articles.setting.pageNavTpl_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_pageActiveTpl'
+                ,id: 'articles-setting-pageActiveTpl'
+                ,fieldLabel: _('articles.setting.pageActiveTpl')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.pageActiveTpl_desc')
+                ,anchor: '100%'
+                ,value: '<li[[+activeClasses]]><a[[+activeClasses:default=` class="active"`]][[+title]] href="[[+href]]">[[+pageNo]]</a></li>'
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-pageActiveTpl'
+                ,html: _('articles.setting.pageActiveTpl_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_pageFirstTpl'
+                ,id: 'articles-setting-pageFirstTpl'
+                ,fieldLabel: _('articles.setting.pageFirstTpl')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.pageFirstTpl_desc')
+                ,anchor: '100%'
+                ,value: '<li class="control"><a[[+classes]][[+title]] href="[[+href]]">First</a></li>'
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-pageFirstTpl'
+                ,html: _('articles.setting.pageFirstTpl_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_pageLastTpl'
+                ,id: 'articles-setting-pageLastTpl'
+                ,fieldLabel: _('articles.setting.pageLastTpl')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.pageLastTpl_desc')
+                ,anchor: '100%'
+                ,value: '<li class="control"><a[[+classes]][[+title]] href="[[+href]]">Last</a></li>'
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-pageLastTpl'
+                ,html: _('articles.setting.pageLastTpl_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_pagePrevTpl'
+                ,id: 'articles-setting-pagePrevTpl'
+                ,fieldLabel: _('articles.setting.pagePrevTpl')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.pagePrevTpl_desc')
+                ,anchor: '100%'
+                ,value: '<li class="control"><a[[+classes]][[+title]] href="[[+href]]">&lt;&lt;</a></li>'
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-pagePrevTpl'
+                ,html: _('articles.setting.pagePrevTpl_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_pageNextTpl'
+                ,id: 'articles-setting-pageNextTpl'
+                ,fieldLabel: _('articles.setting.pageNextTpl')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.pageNextTpl_desc')
+                ,anchor: '100%'
+                ,value: '<li class="control"><a[[+classes]][[+title]] href="[[+href]]">&gt;&gt;</a></li>'
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-pageNextTpl'
+                ,html: _('articles.setting.pageNextTpl_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'numberfield'
+                ,name: 'setting_pageOffset'
+                ,id: 'articles-setting-pageOffset'
+                ,fieldLabel: _('articles.setting.pageOffset')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.pageOffset_desc')
+                ,anchor: '30%'
+                ,minWidth: 100
+                ,allowNegative: false
+                ,allowDecimals: false
+                ,value: 0
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-pageOffset'
+                ,html: _('articles.setting.pageOffset_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_pageVarKey'
+                ,id: 'articles-setting-pageVarKey'
+                ,fieldLabel: _('articles.setting.pageVarKey')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.pageVarKey_desc')
+                ,anchor: '100%'
+                ,value: 'page'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-pageVarKey'
+                ,html: _('articles.setting.pageVarKey_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_pageTotalVar'
+                ,id: 'articles-setting-pageTotalVar'
+                ,fieldLabel: _('articles.setting.pageTotalVar')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.pageTotalVar_desc')
+                ,anchor: '100%'
+                ,value: 'total'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-pageTotalVar'
+                ,html: _('articles.setting.pageTotalVar_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_pageNavVar'
+                ,id: 'articles-setting-pageNavVar'
+                ,fieldLabel: _('articles.setting.pageNavVar')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.pageNavVar_desc')
+                ,anchor: '100%'
+                ,value: 'page.nav'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-pageNavVar'
+                ,html: _('articles.setting.pageNavVar_desc')
+                ,cls: 'desc-under'
+
+            }]
+        },{
             title: _('articles.settings_archiving')
             ,anchor: '100%'
             ,defaults: {
@@ -1113,23 +1299,6 @@ Ext.extend(Articles.panel.ContainerTemplateSettings,MODx.Panel,{
                 ,forId: 'articles-setting-tplArticleRow'
                 ,html: _('articles.setting.tplArticleRow_desc')
                 ,cls: 'desc-under'
-
-            },{
-                xtype: 'numberfield'
-                ,name: 'setting_articlesPerPage'
-                ,id: 'articles-setting-articlesPerPage'
-                ,fieldLabel: _('articles.setting.articlesPerPage')
-                ,description: MODx.expandHelp ? '' : _('articles.setting.articlesPerPage_desc')
-                ,allowNegative: false
-                ,allowDecimals: false
-                ,width: 120
-                ,value: 10
-            },{
-                xtype: MODx.expandHelp ? 'label' : 'hidden'
-                ,forId: 'articles-setting-articlesPerPage'
-                ,html: _('articles.setting.articlesPerPage_desc')
-                ,cls: 'desc-under'
-
 
             }]
         }];

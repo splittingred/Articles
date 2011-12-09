@@ -83,6 +83,7 @@ $_lang['articles.settings_comments_moderation'] = 'Security';
 $_lang['articles.settings_comments_other'] = 'Other';
 $_lang['articles.settings_general'] = 'General';
 $_lang['articles.settings_latest_posts'] = 'Latest Posts';
+$_lang['articles.settings_pagination'] = 'Pagination';
 $_lang['articles.settings_rss'] = 'RSS';
 $_lang['articles.settings_tagging'] = 'Tagging';
 $_lang['articles.statistics'] = 'Statistics';
@@ -92,15 +93,15 @@ $_lang['articles.template_desc'] = 'The Template that the main listing view uses
 $_lang['articles.tags'] = 'Tags';
 $_lang['articles.unpublished'] = 'Not Published';
 
+/* General */
 $_lang['articles.setting.updateServicesEnabled'] = 'Enable Update Services';
 $_lang['articles.setting.updateServicesEnabled_desc'] = 'If on, Articles will attempt to ping Ping-o-Matic whenever you publish an Article, to send out your article\'s title and URL to major search engines.';
 
+/* template / archives settings */
 $_lang['articles.setting.articleTemplate'] = 'Article Template';
 $_lang['articles.setting.articleTemplate_desc'] = 'The default Template to use for Articles.';
 $_lang['articles.setting.tplArticleRow'] = 'Article Row Chunk';
 $_lang['articles.setting.tplArticleRow_desc'] = 'The Chunk to use when displaying Articles on the front page or archive pages.';
-$_lang['articles.setting.articlesPerPage'] = 'Articles Per Page';
-$_lang['articles.setting.articlesPerPage_desc'] = 'The number of Articles to show per page when listing posts.';
 $_lang['articles.setting.archiveByMonth'] = 'Archive By Month';
 $_lang['articles.setting.archiveByMonth_desc'] = 'Whether or not to archive by month or by year. Yes will archive by month.';
 $_lang['articles.setting.tplArchiveMonth'] = 'Archive Listing Chunk';
@@ -120,6 +121,34 @@ $_lang['articles.setting.archivesIncludeTVs_desc'] = 'If set to 1, will include 
 $_lang['articles.setting.archivesProcessTVs'] = 'Process TVs in Listing';
 $_lang['articles.setting.archivesProcessTVs_desc'] = 'If set to 1, will process the TV values in the listing chunks for archives.';
 
+/* Pagination */
+$_lang['articles.setting.articlesPerPage'] = 'Articles Per Page';
+$_lang['articles.setting.articlesPerPage_desc'] = 'The number of Articles to show per page when listing posts.';
+$_lang['articles.setting.pageLimit'] = 'Pages Limit';
+$_lang['articles.setting.pageLimit_desc'] = 'The maximum number of pages to display when rendering paging controls';
+$_lang['articles.setting.pageNavTpl'] = 'Page Nav Tpl';
+$_lang['articles.setting.pageNavTpl_desc'] = 'Content representing a single page navigation control.';
+$_lang['articles.setting.pageActiveTpl'] = 'Page Active Tpl';
+$_lang['articles.setting.pageActiveTpl_desc'] = 'Content representing the current page navigation control.';
+$_lang['articles.setting.pageFirstTpl'] = 'Page First Tpl';
+$_lang['articles.setting.pageFirstTpl_desc'] = 'Content representing the first page navigation control.';
+$_lang['articles.setting.pageLastTpl'] = 'Page Last Tpl';
+$_lang['articles.setting.pageLastTpl_desc'] = 'Content representing the last page navigation control.';
+$_lang['articles.setting.pagePrevTpl'] = 'Page Prev';
+$_lang['articles.setting.pagePrevTpl_desc'] = 'Content representing the previous page navigation control.';
+$_lang['articles.setting.pageNextTpl'] = 'Page Next Tpl';
+$_lang['articles.setting.pageNextTpl_desc'] = 'Content representing the next page navigation control.';
+$_lang['articles.setting.pageOffset'] = 'Page Offset';
+$_lang['articles.setting.pageOffset_desc'] = 'The offset, or record position to start at within the collection for rendering results for the current page; should be calculated based on page variable set in Page Var Key.';
+$_lang['articles.setting.pageVarKey'] = 'Page Var Key';
+$_lang['articles.setting.pageVarKey_desc'] = 'The key of a property that indicates the current page.';
+$_lang['articles.setting.pageTotalVar'] = 'Total Var';
+$_lang['articles.setting.pageTotalVar_desc'] = 'The key of a placeholder that must contain the total records in the limitable collection being paged.';
+$_lang['articles.setting.pageNavVar'] = 'Page Nav Var';
+$_lang['articles.setting.pageNavVar_desc'] = 'The key of a placeholder to be set with the paging navigation controls.';
+
+
+/* RSS settings */
 $_lang['articles.setting.rssAlias'] = 'RSS Alias (Permalink)';
 $_lang['articles.setting.rssAlias_desc'] = 'The alias (permalink) for the RSS feed, appended to the Articles Container URL.';
 $_lang['articles.setting.rssItems'] = 'Number of RSS Items';
@@ -129,6 +158,7 @@ $_lang['articles.setting.tplRssFeed_desc'] = 'The Chunk to use for the RSS Feed 
 $_lang['articles.setting.tplRssItem'] = 'RSS Item Chunk';
 $_lang['articles.setting.tplRssItem_desc'] = 'The Chunk to use for each item in the RSS Feed.';
 
+/* Tagging */
 $_lang['articles.setting.tagsLimit'] = 'Tag Listings to Show';
 $_lang['articles.setting.tagsLimit_desc'] = 'The number of tags to show in the popular tags listing.';
 $_lang['articles.setting.tplTagRow'] = 'Tag Listing Chunk';
@@ -138,11 +168,13 @@ $_lang['articles.setting.tagCls_desc'] = 'A CSS class to apply to each tag listi
 $_lang['articles.setting.tagAltCls'] = 'Tag Alternate CSS Class';
 $_lang['articles.setting.tagAltCls_desc'] = 'A CSS class to apply to each alternate row for each tag listing.';
 
+/* Latest Posts */
 $_lang['articles.setting.latestPostsTpl'] = 'Latest Articles Chunk';
 $_lang['articles.setting.latestPostsTpl_desc'] = 'The Chunk to use for each Latest Article.';
 $_lang['articles.setting.latestPostsLimit'] = 'Latest Articles to Show';
 $_lang['articles.setting.latestPostsLimit_desc'] = 'The number of latest Articles to show.';
 
+/* Latest Comments */
 $_lang['articles.setting.latestCommentsTpl'] = 'Latest Comments Chunk';
 $_lang['articles.setting.latestCommentsTpl_desc'] = 'The Chunk to use for each latest comment.';
 $_lang['articles.setting.latestCommentsLimit'] = 'Latest Comments to Show';
@@ -154,6 +186,7 @@ $_lang['articles.setting.latestCommentsRowCss_desc'] = 'The CSS class to set for
 $_lang['articles.setting.latestCommentsAltRowCss'] = 'Latest Comments Alt Row CSS';
 $_lang['articles.setting.latestCommentsAltRowCss_desc'] = 'The CSS class to set for each alternate latest comment.';
 
+/* Comments */
 $_lang['articles.setting.commentsEnabled'] = 'Enable Comments';
 $_lang['articles.setting.commentsEnabled_desc'] = 'Whether or not to enable comments.';
 $_lang['articles.setting.commentsThreaded'] = 'Threaded Comments';
@@ -162,7 +195,6 @@ $_lang['articles.setting.commentsReplyResourceId'] = 'Reply Resource ID';
 $_lang['articles.setting.commentsReplyResourceId_desc'] = 'The ID of the Resource where the QuipReply snippet is held, for replying to threaded comments. <b>This is required for threaded comments.</b>';
 $_lang['articles.setting.commentsMaxDepth'] = 'Maximum Threading Depth';
 $_lang['articles.setting.commentsMaxDepth_desc'] = 'The maximum depth that replies can be made in a threaded comment thread.';
-
 $_lang['articles.setting.commentsTplComment'] = 'Comment Chunk';
 $_lang['articles.setting.commentsTplComment_desc'] = 'The Chunk to use for each comment.';
 $_lang['articles.setting.commentsTplCommentOptions'] = 'Comments Options Chunk';
@@ -175,12 +207,10 @@ $_lang['articles.setting.commentsTplLoginToComment'] = 'Login to Comment Chunk';
 $_lang['articles.setting.commentsTplLoginToComment_desc'] = 'The Chunk that shows when the user is not logged in and authentication is required.';
 $_lang['articles.setting.commentsTplPreview'] = 'Preview Chunk';
 $_lang['articles.setting.commentsTplPreview_desc'] = 'The Chunk for the Preview Comment view.';
-
 $_lang['articles.setting.commentsUseCss'] = 'Use Quip CSS';
 $_lang['articles.setting.commentsUseCss_desc'] = 'Provide a basic CSS template for the presentation.';
 $_lang['articles.setting.commentsAltRowCss'] = 'Alternate Row CSS Class';
 $_lang['articles.setting.commentsAltRowCss_desc'] = 'The CSS class to put on alternating comments.';
-
 $_lang['articles.setting.commentsNameField'] = 'Name Field';
 $_lang['articles.setting.commentsNameField_desc'] = 'The field to use for the author name of each comment. Recommended values are "name" or "username".';
 $_lang['articles.setting.commentsShowAnonymousName'] = 'Show Anonymous Name';
@@ -228,6 +258,7 @@ $_lang['articles.setting.commentsGravatarSize_desc'] = 'The size in pixels of th
 $_lang['articles.setting.'] = '';
 $_lang['articles.setting._desc'] = '';
 
+/* Settings */
 $_lang['setting_articles.default_container_template'] = 'Default Articles Container Template';
 $_lang['setting_articles.default_container_template_desc'] = 'The default Template to use when creating a new Articles Container';
 

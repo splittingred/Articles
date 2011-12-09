@@ -1,5 +1,9 @@
 Changelog for Articles.
 
+Articles 1.0.2
+===============================
+- Add more options for getPage to container settings
+
 Articles 1.0.1
 ===============================
 - Add ability to toggle including and processing of TVs on archive listing pages
