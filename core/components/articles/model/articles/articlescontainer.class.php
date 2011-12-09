@@ -243,7 +243,8 @@ class ArticlesContainer extends modResource {
         $output = '[[!getPage?
           &elementClass=`modSnippet`
           &element=`getArchives`
-          &cache=`0`
+          &makeArchive=`0`
+          &cache=`1`
           &parents=`[[*id]]`
           &where=`'.$this->xpdo->toJSON($where).'`
           &showHidden=`1`
@@ -255,11 +256,11 @@ class ArticlesContainer extends modResource {
           &tpl=`'.$this->xpdo->getOption('tplArticleRow',$settings,'sample.ArticleRowTpl').'`
 
           &limit=`'.$this->xpdo->getOption('articlesPerPage',$settings,10).'`
-          &pageLimit=`'.$this->xpdo->getOption('pageLimit',$settings,5).'
+          &pageLimit=`'.$this->xpdo->getOption('pageLimit',$settings,5).'`
           &pageVarKey=`'.$this->xpdo->getOption('pageVarKey',$settings,'page').'`
-          &pageNavVar=`'.$this->xpdo->getOption('pageNavVar',$settings,'page.nav').'
-          &totalVar=`'.$this->xpdo->getOption('pageTotalVar',$settings,'total').'
-          &offset=`'.$this->xpdo->getOption('pageOffset',$settings,0).'
+          &pageNavVar=`'.$this->xpdo->getOption('pageNavVar',$settings,'page.nav').'`
+          &totalVar=`'.$this->xpdo->getOption('pageTotalVar',$settings,'total').'`
+          &offset=`'.$this->xpdo->getOption('pageOffset',$settings,0).'`
 
           &pageNavTpl=`'.$this->xpdo->getOption('pageNavTpl',$settings,'<li[[+classes]]><a[[+classes]][[+title]] href="[[+href]]">[[+pageNo]]</a></li>').'`
           &pageActiveTpl=`'.$this->xpdo->getOption('pageActiveTpl',$settings,'<li[[+activeClasses]]><a[[+activeClasses:default=` class="active"`]][[+title]] href="[[+href]]">[[+pageNo]]</a></li>').'`
@@ -413,6 +414,7 @@ class ArticlesContainerCreateProcessor extends modResourceCreateProcessor {
      */
     public function afterSave() {
         $this->addContainerId();
+        $this->removeFromArchivistIds();
         $this->setProperty('clearCache',true);
         return parent::afterSave();
     }
@@ -440,6 +442,32 @@ class ArticlesContainerCreateProcessor extends modResourceCreateProcessor {
             $value = array_unique($value);
             $setting->set('value',implode(',',$value));
             $saved = $setting->save();
+        }
+        return $saved;
+    }
+
+    /**
+     * Remove from Archivist IDs on prior versions of Archivist, to prevent conflicts
+     * @return boolean
+     */
+    public function removeFromArchivistIds() {
+        $saved = true;
+        /** @var modSystemSetting $setting */
+        $setting = $this->modx->getObject('modSystemSetting',array('key' => 'archivist.archive_ids'));
+        if ($setting) {
+            $value = $setting->get('value');
+            $archiveKey = $this->object->get('id').':arc_';
+            $value = is_array($value) ? $value : explode(',',$value);
+            if (in_array($archiveKey,$value)) {
+                $newKeys = array();
+                foreach ($value as $k => $v) {
+                    if ($v == $archiveKey) continue;
+                    $newKeys[] = $v;
+                }
+                $newKeys = array_unique($newKeys);
+                $setting->set('value',implode(',',$newKeys));
+                $saved = $setting->save();
+            }
         }
         return $saved;
     }
@@ -479,6 +507,7 @@ class ArticlesContainerUpdateProcessor extends modResourceUpdateProcessor {
      */
     public function afterSave() {
         $this->addContainerId();
+        $this->removeFromArchivistIds();
         $this->setProperty('clearCache',true);
         $this->object->set('isfolder',true);
         return parent::afterSave();
@@ -509,5 +538,54 @@ class ArticlesContainerUpdateProcessor extends modResourceUpdateProcessor {
             $saved = $setting->save();
         }
         return $saved;
+    }
+
+    /**
+     * Remove from Archivist IDs on prior versions of Archivist, to prevent conflicts
+     * @return boolean
+     */
+    public function removeFromArchivistIds() {
+        $saved = true;
+        /** @var modSystemSetting $setting */
+        $setting = $this->modx->getObject('modSystemSetting',array('key' => 'archivist.archive_ids'));
+        if ($setting) {
+            $value = $setting->get('value');
+            $archiveKey = $this->object->get('id').':arc_';
+            $value = is_array($value) ? $value : explode(',',$value);
+            if (in_array($archiveKey,$value)) {
+                $newKeys = array();
+                foreach ($value as $k => $v) {
+                    if ($v == $archiveKey) continue;
+                    $newKeys[] = $v;
+                }
+                $newKeys = array_unique($newKeys);
+                $setting->set('value',implode(',',$newKeys));
+                $saved = $setting->save();
+            }
+        }
+        return $saved;
+    }
+
+    /**
+     * Override cleanup to send only back needed params
+     * @return array|string
+     */
+    public function cleanup() {
+        $this->object->removeLock();
+        $this->clearCache();
+
+        $returnArray = $this->object->get(array_diff(array_keys($this->object->_fields), array('content','ta','introtext','description','link_attributes','pagetitle','longtitle','menutitle','articles_container_settings')));
+        foreach ($returnArray as $k => $v) {
+            if (strpos($k,'tv') === 0) {
+                unset($returnArray[$k]);
+            }
+            if (strpos($k,'setting_') === 0) {
+                unset($returnArray[$k]);
+            }
+        }
+        $returnArray['class_key'] = $this->object->get('class_key');
+        $this->workingContext->prepare(true);
+        $returnArray['preview_url'] = $this->modx->makeUrl($this->object->get('id'), $this->object->get('context_key'), '', 'full');
+        return $this->success('',$returnArray);
     }
 }

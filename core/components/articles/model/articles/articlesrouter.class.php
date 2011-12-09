@@ -70,10 +70,10 @@ class ArticlesRouter {
 
         /* tag handling! */
         if ($params[0] == 'tags') {
-            $_REQUEST['tag'] = $params[1];
+            $_GET['tag'] = $params[1];
         /* author based */
         } else if ($params[0] == 'user' || $params[0] == 'author') {
-            $_REQUEST['arc_user'] = $params[1];
+            $_GET['arc_user'] = $params[1];
 
         /* numeric "archives/1234" */
         } else if ($params[0] == 'archives' && !empty($params[1])) {
@@ -85,9 +85,9 @@ class ArticlesRouter {
         /* normal yyyy/mm/dd or yyyy/mm */
         } else {
             /* set Archivist parameters for date-based archives */
-            $_REQUEST[$prefix.'year'] = $params[0];
-            if (isset($params[1])) $_REQUEST[$prefix.'month'] = $params[1];
-            if (isset($params[2])) $_REQUEST[$prefix.'day'] = $params[2];
+            $_GET[$prefix.'year'] = $params[0];
+            if (isset($params[1])) $_GET[$prefix.'month'] = $params[1];
+            if (isset($params[2])) $_GET[$prefix.'day'] = $params[2];
         }
 
         /* forward */
