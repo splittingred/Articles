@@ -25,6 +25,7 @@ Articles.grid.ContainerArticles = function(config) {
         ,paging: true
         ,remoteSort: true
         ,cls: 'articles-grid'
+        ,bodyCssClass: 'grid-with-buttons'
         ,sm: this.sm
         ,plugins: [this.exp]
         ,emptyText: _('articles.articles_none')
@@ -212,7 +213,7 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
     ,importArticles: function(btn,e) {
         var r = {
             'id': MODx.request.id
-            ,'service': 'WordPress'
+            ,'service': 'MODX'
         };
         if (!this.windows.importArticles) {
             this.windows.importArticles = MODx.load({
@@ -225,7 +226,6 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
                 }
             });
         }
-        this.windows.importArticles.reset();
         this.windows.importArticles.setValues(r);
         this.windows.importArticles.show(e.target);
     }

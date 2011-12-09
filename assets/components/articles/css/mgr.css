@@ -140,3 +140,10 @@
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#fee1a0,endColorstr=#fec95b,GradientType=0);
   background:linear-gradient(center bottom,#fec95b 0%,#fee1a0 100%);
 }
+
+.articles-import-intro {
+    font-size: 11px;
+    color: #777;
+    background-color: #fafafa !important;
+    padding: 0 5px;
+}

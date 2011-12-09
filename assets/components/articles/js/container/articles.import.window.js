@@ -6,7 +6,8 @@ Articles.window.ArticlesImport = function(config) {
         title: _('articles.articles_import')
         ,id: this.ident
         ,height: 150
-        ,width: 600
+        ,width: '75%'
+        ,minWidth: 600
         ,url: Articles.connector_url
         ,action: 'container/import'
         ,fileUpload: true
@@ -16,7 +17,7 @@ Articles.window.ArticlesImport = function(config) {
             ,value: MODx.request.id
         },{
             xtype: 'combo'
-            ,store: [['WordPress','WordPress']]
+            ,store: [['MODX','MODX'],['WordPress','WordPress']]
             ,name: 'service'
             ,hiddenName: 'service'
             ,fieldLabel: _('articles.import_service')
@@ -24,8 +25,11 @@ Articles.window.ArticlesImport = function(config) {
             ,editable: false
             ,triggerAction: 'all'
             ,id: this.ident+'-service'
-            ,value: 'WordPress'
+            ,value: 'MODX'
             ,anchor: '100%'
+            ,listeners: {
+                'select':{fn:this.changeService,scope:this}
+            }
         },{
             xtype: MODx.expandHelp ? 'label' : 'hidden'
             ,forId: this.ident+'-service'
@@ -33,20 +37,185 @@ Articles.window.ArticlesImport = function(config) {
             ,cls: 'desc-under'
 
         },{
-            xtype: 'textfield'
-            ,inputType: 'file'
-            ,name: 'file'
-            ,fieldLabel: _('articles.import_wp_file')
-            ,anchor: '98%'
+            xtype: 'articles-panel-import-MODX'
         },{
-            xtype: MODx.expandHelp ? 'label' : 'hidden'
-            ,forId: this.ident+'-file'
-            ,html: _('articles.import_wp_file_desc')
-            ,cls: 'desc-under'
-
+            xtype: 'articles-panel-import-WordPress'
+            ,hidden: true
         }]
     });
     Articles.window.ArticlesImport.superclass.constructor.call(this,config);
 };
-Ext.extend(Articles.window.ArticlesImport,MODx.Window);
+Ext.extend(Articles.window.ArticlesImport,MODx.Window,{
+    activeOptions: 'articles-options-MODX'
+    ,changeService: function(cb,s) {
+        var nv = cb.getValue();
+        var op = Ext.getCmp(this.activeOptions);
+
+        var nop = 'articles-options-'+nv;
+        var p = Ext.getCmp(nop);
+        if (p) {
+            op.hide();
+            p.show();
+            this.activeOptions = nop;
+        }
+        return true;
+    }
+});
 Ext.reg('articles-window-import',Articles.window.ArticlesImport);
+
+Articles.panel.ImportOptionsWordPress = function(config) {
+    config = config || {};
+    Ext.applyIf(config,{
+        id: 'articles-options-WordPress'
+        ,xtype: 'fieldset'
+        ,title: _('articles.import_options')
+        ,defaults: {
+            msgTarget: 'under'
+        }
+        ,items: [{
+            xtype: 'textfield'
+            ,inputType: 'file'
+            ,name: 'wp-file'
+            ,fieldLabel: _('articles.import_wp_file')
+            ,id: this.ident+'-wp-file'
+            ,anchor: '98%'
+        },{
+            xtype: MODx.expandHelp ? 'label' : 'hidden'
+            ,forId: this.ident+'-wp-file'
+            ,html: _('articles.import_wp_file_desc')
+            ,cls: 'desc-under'
+        }]
+    });
+    Articles.panel.ImportOptionsWordPress.superclass.constructor.call(this,config);
+};
+Ext.extend(Articles.panel.ImportOptionsWordPress,Ext.form.FieldSet);
+Ext.reg('articles-panel-import-WordPress',Articles.panel.ImportOptionsWordPress);
+
+
+Articles.panel.ImportOptionsMODX = function(config) {
+    config = config || {};
+    Ext.applyIf(config,{
+        id: 'articles-options-MODX'
+        ,title: _('articles.import_options')
+        ,defaults: {
+            msgTarget: 'under'
+        }
+        ,items: [{
+            html: '<p>'+_('articles.import_modx_intro')+'</p>'
+            ,bodyCssClass: 'articles-import-intro'
+            ,border: false
+        },{
+            layout: 'column'
+            ,border: false
+            ,defaults: {
+                layout: 'form'
+                ,labelAlign: 'top'
+                ,anchor: '100%'
+                ,border: false
+                ,labelSeparator: ''
+            }
+            ,items: [{
+                columnWidth: .5
+                ,items: [{
+                    xtype: 'textfield'
+                    ,fieldLabel: _('articles.import_modx_parents')
+                    ,description: MODx.expandHelp ? '' : _('articles.import_modx_parents_desc')
+                    ,name: 'modx-parents'
+                    ,id: this.ident+'-modx-parents'
+                    ,value: ''
+                    ,anchor: '100%'
+                },{
+                    xtype: MODx.expandHelp ? 'label' : 'hidden'
+                    ,forId: this.ident+'-modx-parents'
+                    ,html: _('articles.import_modx_parents_desc')
+                    ,cls: 'desc-under'
+                },{
+                    xtype: 'textfield'
+                    ,fieldLabel: _('articles.import_modx_resources')
+                    ,description: MODx.expandHelp ? '' : _('articles.import_modx_resources_desc')
+                    ,name: 'modx-resources'
+                    ,id: this.ident+'-modx-resources'
+                    ,value: ''
+                    ,anchor: '100%'
+                },{
+                    xtype: MODx.expandHelp ? 'label' : 'hidden'
+                    ,forId: this.ident+'-modx-resources'
+                    ,html: _('articles.import_modx_resources_desc')
+                    ,cls: 'desc-under'
+                },{
+                    xtype: 'textfield'
+                    ,fieldLabel: _('articles.import_modx_tagsField')
+                    ,description: MODx.expandHelp ? '' : _('articles.import_modx_tagsField_desc')
+                    ,name: 'modx-tagsField'
+                    ,id: this.ident+'-modx-tagsField'
+                    ,value: 'tv.tags'
+                    ,anchor: '100%'
+                },{
+                    xtype: MODx.expandHelp ? 'label' : 'hidden'
+                    ,forId: this.ident+'-modx-tagsField'
+                    ,html: _('articles.import_modx_tagsField_desc')
+                    ,cls: 'desc-under'
+                }]
+            },{
+                columnWidth: .5
+                ,items: [{
+                    xtype: 'modx-combo-template'
+                    ,fieldLabel: _('articles.import_modx_template')
+                    ,description: MODx.expandHelp ? '' : _('articles.import_modx_template_desc')
+                    ,name: 'modx-template'
+                    ,hiddenName: 'modx-template'
+                    ,id: this.ident+'-modx-template'
+                    ,value: ''
+                    ,anchor: '100%'
+                },{
+                    xtype: MODx.expandHelp ? 'label' : 'hidden'
+                    ,forId: this.ident+'-modx-template'
+                    ,html: _('articles.import_modx_template_desc')
+                    ,cls: 'desc-under'
+                },{
+                    xtype: 'textfield'
+                    ,fieldLabel: _('articles.import_modx_commentsThreadNameFormat')
+                    ,description: MODx.expandHelp ? '' : _('articles.import_modx_commentsThreadNameFormat_desc')
+                    ,name: 'modx-commentsThreadNameFormat'
+                    ,id: this.ident+'-modx-commentsThreadNameFormat'
+                    ,value: 'blog-post-[[*id]]'
+                    ,anchor: '100%'
+                },{
+                    xtype: MODx.expandHelp ? 'label' : 'hidden'
+                    ,forId: this.ident+'-modx-commentsThreadNameFormat'
+                    ,html: _('articles.import_modx_commentsThreadNameFormat_desc')
+                    ,cls: 'desc-under'
+                },{
+                    xtype: 'checkbox'
+                    ,boxLabel: _('articles.import_modx_hidemenu')
+                    ,description: MODx.expandHelp ? '' : _('articles.import_modx_hidemenu_desc')
+                    ,name: 'modx-hidemenu'
+                    ,id: this.ident+'-modx-hidemenu'
+                    ,inputValue: 1
+                    ,checked: false
+                },{
+                    xtype: MODx.expandHelp ? 'label' : 'hidden'
+                    ,forId: this.ident+'-modx-hidemenu'
+                    ,html: _('articles.import_modx_hidemenu_desc')
+                    ,cls: 'desc-under'
+                },{
+                    xtype: 'checkbox'
+                    ,boxLabel: _('articles.import_modx_unpublished')
+                    ,description: MODx.expandHelp ? '' : _('articles.import_modx_unpublished_desc')
+                    ,name: 'modx-unpublished'
+                    ,id: this.ident+'-modx-unpublished'
+                    ,inputValue: 1
+                    ,checked: true
+                },{
+                    xtype: MODx.expandHelp ? 'label' : 'hidden'
+                    ,forId: this.ident+'-modx-unpublished'
+                    ,html: _('articles.import_modx_unpublished_desc')
+                    ,cls: 'desc-under'
+                }]
+            }]
+        }]
+    });
+    Articles.panel.ImportOptionsMODX.superclass.constructor.call(this,config);
+};
+Ext.extend(Articles.panel.ImportOptionsMODX,Ext.form.FieldSet);
+Ext.reg('articles-panel-import-MODX',Articles.panel.ImportOptionsMODX);

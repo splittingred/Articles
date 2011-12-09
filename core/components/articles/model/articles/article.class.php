@@ -83,7 +83,7 @@ class Article extends modResource {
      */
     public function getCommentsCall(array $settings = array()) {
         $call = '[[!Quip?
-   &thread=`article-b'.$this->get('articles_container').'-'.$this->get('id').'`
+   &thread=`article-b'.$this->get('parent').'-'.$this->get('id').'`
    &threaded=`'.$this->xpdo->getOption('commentsThreaded',$settings,1).'`
    &replyResourceId=`'.$this->xpdo->getOption('commentsReplyResourceId',$settings,0).'`
    &maxDepth=`'.$this->xpdo->getOption('commentsMaxDepth',$settings,5).'`
@@ -124,7 +124,7 @@ class Article extends modResource {
      */
     public function getCommentsReplyCall(array $settings = array()) {
         $call = '[[!QuipReply?
-   &thread=`article-b'.$this->get('articles_container').'-'.$this->get('id').'`
+   &thread=`article-b'.$this->get('parent').'-'.$this->get('id').'`
 
    &tplAddComment=`'.$this->xpdo->getOption('commentsTplAddComment',$settings,'quipAddComment').'`
    &tplLoginToComment=`'.$this->xpdo->getOption('commentsTplLoginToComment',$settings,'quipLoginToComment').'`

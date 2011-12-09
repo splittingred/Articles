@@ -22,7 +22,7 @@
 require_once (dirname(__FILE__).'/articlesimport.class.php');
 /**
  * @package articles
- * @subpackage notify
+ * @subpackage import
  */
 class ArticlesImportWordPress extends ArticlesImport {
     /** @var ArticlesContainer $container */
@@ -51,7 +51,7 @@ class ArticlesImportWordPress extends ArticlesImport {
      * @return bool|SimpleXMLElement
      */
     public function getData() {
-        $file = isset($_FILES['file']) ? $_FILES['file'] : '';
+        $file = isset($_FILES['wp-file']) ? $_FILES['wp-file'] : '';
         if (empty($file) || !file_exists($file['tmp_name'])) {
             return false;
         }
