@@ -75,7 +75,7 @@ class ArticleGetListProcessor extends modObjectGetListProcessor {
     }
 
     public function prepareQueryBeforeCount(xPDOQuery $c) {
-        $c->innerJoin('modUser','CreatedBy');
+        $c->leftJoin('modUser','CreatedBy');
 
         if ($this->getTagsTV()) {
             $c->leftJoin('modTemplateVarResource','Tags',array(
