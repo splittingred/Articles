@@ -123,6 +123,10 @@ $_lang['articles.unpublished'] = 'Not Published';
 /* General */
 $_lang['articles.setting.updateServicesEnabled'] = 'Enable Update Services';
 $_lang['articles.setting.updateServicesEnabled_desc'] = 'If on, Articles will attempt to ping Ping-o-Matic whenever you publish an Article, to send out your article\'s title and URL to major search engines.';
+$_lang['articles.setting.sortBy'] = 'Sort Field';
+$_lang['articles.setting.sortBy_desc'] = 'The field to sort by on the main and archives listing pages.';
+$_lang['articles.setting.sortDir'] = 'Sort Direction';
+$_lang['articles.setting.sortDir_desc'] = 'The direction to sort by on the main and archives listing pages (DESC or ASC).';
 
 /* template / archives settings */
 $_lang['articles.setting.articleTemplate'] = 'Article Template';

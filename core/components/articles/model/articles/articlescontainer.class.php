@@ -253,6 +253,8 @@ class ArticlesContainer extends modResource {
           &processTVs=`'.$this->xpdo->getOption('archivesProcessTVs',$settings,0).'`
           &tagKey=`articlestags`
           &tagSearchType=`contains`
+          &sortby=`'.$this->xpdo->getOption('sortBy',$settings,'publishedon').'`
+          &sortdir=`'.$this->xpdo->getOption('sortDir',$settings,'DESC').'`
           &tpl=`'.$this->xpdo->getOption('tplArticleRow',$settings,'sample.ArticleRowTpl').'`
 
           &limit=`'.$this->xpdo->getOption('articlesPerPage',$settings,10).'`

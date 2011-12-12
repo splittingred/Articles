@@ -5,6 +5,7 @@ Articles 1.1.0
 - Add import from MODX
 - Add import from Blogger
 - Add ability to specify file on server when importing from WordPress
+- [#6296] Add sortBy and sortDir settings for getResources to the Advanced Settings tab for containers
 - [#6299] Ensure that if author of Article is deleted, article can still be viewed/edited
 
 Articles 1.0.2

@@ -50,6 +50,34 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,html: _('resource_menuindex_help')
                 ,cls: 'desc-under'
 
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_sortBy'
+                ,id: 'articles-setting-sortBy'
+                ,fieldLabel: _('articles.setting.sortBy')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.sortBy_desc')
+                ,anchor: '100%'
+                ,value: 'publishedon'
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-sortBy'
+                ,html: _('articles.setting.sortBy_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_sortDir'
+                ,id: 'articles-setting-sortDir'
+                ,fieldLabel: _('articles.setting.sortDir')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.sortDir_desc')
+                ,anchor: '100%'
+                ,value: 'DESC'
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-sortDir'
+                ,html: _('articles.setting.sortDir_desc')
+                ,cls: 'desc-under'
+
             }]
         },{
             title: _('articles.settings_pagination')
