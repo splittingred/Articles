@@ -37,7 +37,10 @@ class ArticlesImportBlogger extends ArticlesImport {
         if (empty($data)) return false;
 
         $this->createContainer();
-        if (empty($this->container)) return false;
+        if (empty($this->container)) {
+            $this->addError('blogger-file',$this->modx->lexicon('articles.import_blogger_container_err_nf'));
+            return false;
+        }
 
         $imported = false;
         foreach ($data->entry as $entry) {
@@ -61,7 +64,10 @@ class ArticlesImportBlogger extends ArticlesImport {
     public function getData() {
         if (empty($_FILES['blogger-file']) || !empty($_FILES['blogger-file']['error'])) {
             $file = isset($this->config['blogger-file-server']) ? $this->config['blogger-file-server'] : '';
-            if (empty($file)) return false;
+            if (empty($file)) {
+                $this->addError('blogger-file-server',$this->modx->lexicon('articles.import_blogger_file_err_nf'));
+                return false;
+            }
             $file = str_replace(array(
                 '{core_path}',
                 '{base_path}',
@@ -72,6 +78,7 @@ class ArticlesImportBlogger extends ArticlesImport {
                 $this->modx->getOption('assets_path',null,MODX_ASSETS_PATH),
             ),$file);
             if (!file_exists($file)) {
+                $this->processor->addFieldError('blogger-file-server',$this->modx->lexicon('articles.import_blogger_file_err_nf'));
                 return false;
             }
         } else {
@@ -80,6 +87,9 @@ class ArticlesImportBlogger extends ArticlesImport {
                 return false;
             }
             $file = $file['tmp_name'];
+            if (!file_exists($file)) {
+                $this->processor->addFieldError('blogger-file-server',$this->modx->lexicon('articles.import_blogger_file_err_nf'));
+            }
         }
         $contents = file_get_contents($file);
         $xml = @simplexml_load_string($contents,'SimpleXMLElement',LIBXML_NOCDATA);

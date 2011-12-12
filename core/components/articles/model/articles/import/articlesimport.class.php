@@ -33,9 +33,12 @@ abstract class ArticlesImport {
     public $config = array();
     /** @var boolean $debug */
     public $debug = false;
+    /** @var ContainerImportProcessor $processor */
+    public $processor;
 
-    function __construct(ArticlesService $articles,array $config = array()) {
+    function __construct(ArticlesService $articles,ContainerImportProcessor $processor,array $config = array()) {
         $this->articles =& $articles;
+        $this->processor =& $processor;
         $this->modx =& $articles->modx;
         $this->config = array_merge(array(
 
@@ -64,4 +67,13 @@ abstract class ArticlesImport {
      */
     abstract public function import();
 
+    /**
+     * Add an error to the response
+     * @param string $field
+     * @param string $message
+     * @return mixed
+     */
+    public function addError($field,$message = '') {
+        return $this->processor->addFieldError($field,$message);
+    }
 }

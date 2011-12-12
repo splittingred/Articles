@@ -74,7 +74,7 @@ class ContainerImportProcessor extends modObjectProcessor {
         if (file_exists($servicePath)) {
             require_once $servicePath;
             $className = 'ArticlesImport'.$serviceName;
-            $this->service = new $className($this->modx->articles,$this->getProperties());
+            $this->service = new $className($this->modx->articles,$this,$this->getProperties());
         }
 
         return $this->service;

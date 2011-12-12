@@ -34,7 +34,10 @@ class ArticlesImportWordPress extends ArticlesImport {
         if (empty($data)) return false;
 
         $this->createContainer();
-        if (empty($this->container)) return false;
+        if (empty($this->container)) {
+            $this->addError('blogger-file',$this->modx->lexicon('articles.import_blogger_container_err_nf'));
+            return false;
+        }
 
         $imported = false;
         foreach ($data->channel->item as $item) {
@@ -53,7 +56,10 @@ class ArticlesImportWordPress extends ArticlesImport {
     public function getData() {
         if (empty($_FILES['wp-file']) || !empty($_FILES['wp-file']['error'])) {
             $file = isset($this->config['wp-file-server']) ? $this->config['wp-file-server'] : '';
-            if (empty($file)) return false;
+            if (empty($file)) {
+                $this->addError('wp-file-server',$this->modx->lexicon('articles.import_wp_file_err_nf'));
+                return false;
+            }
             $file = str_replace(array(
                 '{core_path}',
                 '{base_path}',
@@ -64,11 +70,13 @@ class ArticlesImportWordPress extends ArticlesImport {
                 $this->modx->getOption('assets_path',null,MODX_ASSETS_PATH),
             ),$file);
             if (!file_exists($file)) {
+                $this->addError('wp-file-server',$this->modx->lexicon('articles.import_wp_file_err_nf'));
                 return false;
             }
         } else {
             $file = isset($_FILES['wp-file']) ? $_FILES['wp-file'] : '';
             if (empty($file) || !file_exists($file['tmp_name'])) {
+                $this->addError('wp-file',$this->modx->lexicon('articles.import_wp_file_err_nf'));
                 return false;
             }
             $file = $file['tmp_name'];
