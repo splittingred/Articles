@@ -32,21 +32,6 @@ class ArticlesImportMODX extends ArticlesImport {
         $imported = false;
         $this->container = $this->modx->getObject('ArticlesContainer',$this->config['id']);
 
-//        $this->debug = true;
-/*
-        $this->config = array(
-            'modx-parents' => '123689',
-            'modx-resources' => '123688,-567',
-            //'modx-template' => 1,
-            'modx-unpublished' => 1,
-            'modx-hidemenu' => 1,
-            'modx-tagsField' => 'tv.tags',
-            'modx-commentsThreadNameFormat' => 'blog-post-[[*id]]',
-        );
-        $this->modx->setLogTarget('ECHO');
-        $this->modx->setLogLevel(modX::LOG_LEVEL_ERROR);
-        */
-
         $c = $this->getQuery();
         if ($c === false) return $imported;
 
@@ -116,7 +101,10 @@ class ArticlesImportMODX extends ArticlesImport {
             $where['hidemenu'] = 0;
         }
 
-        if (empty($where)) return false;
+        if (empty($where)) {
+            $this->addError('modx-parents',$this->modx->lexicon('articles.import_modx_err_no_criteria'));
+            return false;
+        }
 
         /* dont let them get the site start */
         $where['id:!='] = array((int)$this->modx->getOption('site_start',null,1));
