@@ -3,6 +3,8 @@ Changelog for Articles.
 Articles 1.1.0
 ===============================
 - Add import from MODX
+- Add import from Blogger
+- Add ability to specify file on server when importing from WordPress
 
 Articles 1.0.2
 ===============================

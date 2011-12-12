@@ -17,7 +17,7 @@ Articles.window.ArticlesImport = function(config) {
             ,value: MODx.request.id
         },{
             xtype: 'combo'
-            ,store: [['MODX','MODX'],['WordPress','WordPress']]
+            ,store: [['MODX','MODX'],['WordPress','WordPress'],['Blogger','Blogger']]
             ,name: 'service'
             ,hiddenName: 'service'
             ,fieldLabel: _('articles.import_service')
@@ -40,6 +40,9 @@ Articles.window.ArticlesImport = function(config) {
             xtype: 'articles-panel-import-MODX'
         },{
             xtype: 'articles-panel-import-WordPress'
+            ,hidden: true
+        },{
+            xtype: 'articles-panel-import-Blogger'
             ,hidden: true
         }]
     });
@@ -83,6 +86,19 @@ Articles.panel.ImportOptionsWordPress = function(config) {
             xtype: MODx.expandHelp ? 'label' : 'hidden'
             ,forId: this.ident+'-wp-file'
             ,html: _('articles.import_wp_file_desc')
+            ,cls: 'desc-under'
+        },{
+            xtype: 'textfield'
+            ,name: 'wp-file-server'
+            ,fieldLabel: _('articles.import_wp_file_server')
+            ,description: MODx.expandHelp ? '' : _('articles.import_wp_file_server')
+            ,id: this.ident+'-wp-file-server'
+            ,anchor: '98%'
+            ,value: '{core_path}import/'
+        },{
+            xtype: MODx.expandHelp ? 'label' : 'hidden'
+            ,forId: this.ident+'-wp-file-server'
+            ,html: _('articles.import_wp_file_server_desc')
             ,cls: 'desc-under'
         }]
     });
@@ -219,3 +235,44 @@ Articles.panel.ImportOptionsMODX = function(config) {
 };
 Ext.extend(Articles.panel.ImportOptionsMODX,Ext.form.FieldSet);
 Ext.reg('articles-panel-import-MODX',Articles.panel.ImportOptionsMODX);
+
+Articles.panel.ImportOptionsBlogger = function(config) {
+    config = config || {};
+    Ext.applyIf(config,{
+        id: 'articles-options-Blogger'
+        ,xtype: 'fieldset'
+        ,title: _('articles.import_options')
+        ,defaults: {
+            msgTarget: 'under'
+        }
+        ,items: [{
+            xtype: 'textfield'
+            ,inputType: 'file'
+            ,name: 'blogger-file'
+            ,fieldLabel: _('articles.import_blogger_file')
+            ,id: this.ident+'-blogger-file'
+            ,anchor: '98%'
+        },{
+            xtype: MODx.expandHelp ? 'label' : 'hidden'
+            ,forId: this.ident+'-blogger-file'
+            ,html: _('articles.import_blogger_file_desc')
+            ,cls: 'desc-under'
+        },{
+            xtype: 'textfield'
+            ,name: 'blogger-file-server'
+            ,fieldLabel: _('articles.import_blogger_file_server')
+            ,description: MODx.expandHelp ? '' : _('articles.import_blogger_file_server')
+            ,id: this.ident+'-blogger-file-server'
+            ,anchor: '98%'
+            ,value: '{core_path}import/'
+        },{
+            xtype: MODx.expandHelp ? 'label' : 'hidden'
+            ,forId: this.ident+'-blogger-file-server'
+            ,html: _('articles.import_blogger_file_server_desc')
+            ,cls: 'desc-under'
+        }]
+    });
+    Articles.panel.ImportOptionsBlogger.superclass.constructor.call(this,config);
+};
+Ext.extend(Articles.panel.ImportOptionsBlogger,Ext.form.FieldSet);
+Ext.reg('articles-panel-import-Blogger',Articles.panel.ImportOptionsBlogger);

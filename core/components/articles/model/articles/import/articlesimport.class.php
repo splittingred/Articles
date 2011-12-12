@@ -40,6 +40,9 @@ abstract class ArticlesImport {
         $this->config = array_merge(array(
 
         ),$config);
+        if (!empty($this->config['id'])) {
+            $this->config['id'] = trim(trim($this->config['id'],'#'));
+        }
 
         $this->initialize();
     }

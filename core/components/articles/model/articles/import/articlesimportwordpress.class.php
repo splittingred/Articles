@@ -51,14 +51,31 @@ class ArticlesImportWordPress extends ArticlesImport {
      * @return bool|SimpleXMLElement
      */
     public function getData() {
-        $file = isset($_FILES['wp-file']) ? $_FILES['wp-file'] : '';
-        if (empty($file) || !file_exists($file['tmp_name'])) {
-            return false;
+        if (empty($_FILES['wp-file']) || !empty($_FILES['wp-file']['error'])) {
+            $file = isset($this->config['wp-file-server']) ? $this->config['wp-file-server'] : '';
+            if (empty($file)) return false;
+            $file = str_replace(array(
+                '{core_path}',
+                '{base_path}',
+                '{assets_path}',
+            ),array(
+                $this->modx->getOption('core_path',null,MODX_CORE_PATH),
+                $this->modx->getOption('base_path',null,MODX_BASE_PATH),
+                $this->modx->getOption('assets_path',null,MODX_ASSETS_PATH),
+            ),$file);
+            if (!file_exists($file)) {
+                return false;
+            }
+        } else {
+            $file = isset($_FILES['wp-file']) ? $_FILES['wp-file'] : '';
+            if (empty($file) || !file_exists($file['tmp_name'])) {
+                return false;
+            }
+            $file = $file['tmp_name'];
         }
-        $contents = file_get_contents($file['tmp_name']);
+        $contents = file_get_contents($file);
         $xml = @simplexml_load_string($contents,'SimpleXMLElement',LIBXML_NOCDATA);
         return $xml;
-
     }
 
     /**
