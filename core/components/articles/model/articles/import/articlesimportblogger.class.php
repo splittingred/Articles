@@ -32,8 +32,6 @@ class ArticlesImportBlogger extends ArticlesImport {
     public $commentMap = array();
 
     public function import() {
-        $this->config['blogger-file-server'] = '/www/modx/assets/data/blogger.xml';
-
         /** @var SimpleXMLElement $data */
         $data = $this->getData();
         if (empty($data)) return false;
