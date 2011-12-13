@@ -163,7 +163,7 @@ class ArticlesImportMODX extends ArticlesImport {
     public function importResource(modResource $resource) {
         $resource->set('searchable',true);
         $resource->set('richtext',true);
-        $resource->set('isfolder',true);
+        $resource->set('isfolder',false);
         $resource->set('cacheable',true);
         $resource->set('class_key','Article');
         $resource->set('parent',$this->container->get('id'));

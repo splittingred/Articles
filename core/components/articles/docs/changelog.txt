@@ -1,5 +1,9 @@
 Changelog for Articles.
 
+Articles 1.1.1
+===============================
+- [#6324] Fix issue where import from MODX sets isfolder incorrectly
+
 Articles 1.1.0
 ===============================
 - Add import from MODX
