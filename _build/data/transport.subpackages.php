@@ -29,8 +29,8 @@
  */
 $subpackages = array(
     'archivist'      => 'archivist-1.2.1-pl',
-    'getpage'        => 'getpage-1.2.1-pl',
-    'getresources'   => 'getresources-1.4.0-pl',
+    'getpage'        => 'getpage-1.2.2-pl',
+    'getresources'   => 'getresources-1.4.2-pl',
     'quip'           => 'quip-2.1.3-pl',
     'taglister'      => 'taglister-1.1.4-pl',
 );

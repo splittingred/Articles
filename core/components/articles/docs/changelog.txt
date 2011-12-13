@@ -5,6 +5,7 @@ Articles 1.1.1
 - [#6305] Rearrange TV processing advanced settings to address possible clarity issue
 - [#6303] Fix issue where some settings do not set dirty status for container form when changed
 - [#6324] Fix issue where import from MODX sets isfolder incorrectly
+- Upgrade getResources to 1.4.2 and getPage to 1.2.2
 
 Articles 1.1.0
 ===============================
