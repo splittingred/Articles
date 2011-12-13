@@ -98,6 +98,21 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,cls: 'desc-under'
 
             },{
+                xtype: 'textfield'
+                ,name: 'setting_includeTVsList'
+                ,id: 'articles-setting-includeTVsList'
+                ,fieldLabel: _('articles.setting.includeTVsList')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.includeTVsList_desc')
+                ,anchor: '100%'
+                ,value: ''
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-includeTVsList'
+                ,html: _('articles.setting.includeTVsList_desc')
+                ,cls: 'desc-under'
+
+            },{
                 xtype: 'combo-boolean'
                 ,name: 'setting_archivesProcessTVs'
                 ,hiddenName: 'setting_archivesProcessTVs'
@@ -111,6 +126,21 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'articles-setting-archivesProcessTVs'
                 ,html: _('articles.setting.archivesProcessTVs_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_processTVsList'
+                ,id: 'articles-setting-processTVsList'
+                ,fieldLabel: _('articles.setting.processTVsList')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.processTVsList_desc')
+                ,anchor: '100%'
+                ,value: ''
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-includeTVsList'
+                ,html: _('articles.setting.includeTVsList_desc')
                 ,cls: 'desc-under'
 
             }]

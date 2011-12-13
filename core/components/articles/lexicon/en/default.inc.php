@@ -130,9 +130,13 @@ $_lang['articles.setting.sortBy_desc'] = 'The field to sort by on the main and a
 $_lang['articles.setting.sortDir'] = 'Sort Direction';
 $_lang['articles.setting.sortDir_desc'] = 'The direction to sort by on the main and archives listing pages (DESC or ASC).';
 $_lang['articles.setting.archivesIncludeTVs'] = 'Include TVs in Listing';
-$_lang['articles.setting.archivesIncludeTVs_desc'] = 'If set to 1, will include TV values as options in the listing chunks.';
+$_lang['articles.setting.archivesIncludeTVs_desc'] = 'If on, will include TV values as options in the listing chunks.';
+$_lang['articles.setting.includeTVsList'] = 'Include TVs List';
+$_lang['articles.setting.includeTVsList_desc'] = 'An optional comma-delimited list of TemplateVar names to include explicitly if Include TVs is on.';
 $_lang['articles.setting.archivesProcessTVs'] = 'Process TVs in Listing';
-$_lang['articles.setting.archivesProcessTVs_desc'] = 'If set to 1, will process the TV values in the listing chunks.';
+$_lang['articles.setting.archivesProcessTVs_desc'] = 'If on, will process the TV values in the listing chunks.';
+$_lang['articles.setting.processTVsList'] = 'Process TVs List';
+$_lang['articles.setting.processTVsList_desc'] = 'An optional comma-delimited list of TemplateVar names to process explicitly. TemplateVars specified here must be included via Include TVs/Include TVs List.';
 
 /* template / archives settings */
 $_lang['articles.setting.articleTemplate'] = 'Article Template';
