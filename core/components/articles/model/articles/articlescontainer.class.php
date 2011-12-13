@@ -250,7 +250,9 @@ class ArticlesContainer extends modResource {
           &showHidden=`1`
           &includeContent=`1`
           &includeTVs=`'.$this->xpdo->getOption('archivesIncludeTVs',$settings,0).'`
+          &includeTVsList=`'.$this->xpdo->getOption('includeTVsList',$settings,'').'`
           &processTVs=`'.$this->xpdo->getOption('archivesProcessTVs',$settings,0).'`
+          &processTVsList=`'.$this->xpdo->getOption('processTVsList',$settings,'').'`
           &tagKey=`articlestags`
           &tagSearchType=`contains`
           &sortby=`'.$this->xpdo->getOption('sortBy',$settings,'publishedon').'`
