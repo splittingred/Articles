@@ -167,7 +167,13 @@ class ArticlesImportMODX extends ArticlesImport {
         $resource->set('cacheable',true);
         $resource->set('class_key','Article');
         $resource->set('parent',$this->container->get('id'));
-        $resource->set('articles_container_settings',$this->container->get('articles_container_settings'));
+        $settings = $this->container->get('articles_container_settings');
+        $resource->set('articles_container_settings',$settings);
+
+        if (!empty($this->config['modx-change-template'])) {
+            $resource->set('template',$this->container->get('template'));
+        }
+
         $this->setResourceUri($resource);
         if (!empty($this->config['modx-commentsThreadNameFormat'])) {
             $this->importComments($resource);

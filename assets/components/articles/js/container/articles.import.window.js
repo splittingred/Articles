@@ -7,7 +7,7 @@ Articles.window.ArticlesImport = function(config) {
         ,id: this.ident
         ,height: 150
         ,width: '75%'
-        ,minWidth: 600
+        ,minWidth: 650
         ,url: Articles.connector_url
         ,action: 'container/import'
         ,fileUpload: true
@@ -226,6 +226,19 @@ Articles.panel.ImportOptionsMODX = function(config) {
                     xtype: MODx.expandHelp ? 'label' : 'hidden'
                     ,forId: this.ident+'-modx-unpublished'
                     ,html: _('articles.import_modx_unpublished_desc')
+                    ,cls: 'desc-under'
+                },{
+                    xtype: 'checkbox'
+                    ,boxLabel: _('articles.import_modx_change_template')
+                    ,description: MODx.expandHelp ? '' : _('articles.import_modx_change_template_desc')
+                    ,name: 'modx-change-template'
+                    ,id: this.ident+'-modx-change-template'
+                    ,inputValue: 1
+                    ,checked: true
+                },{
+                    xtype: MODx.expandHelp ? 'label' : 'hidden'
+                    ,forId: this.ident+'-modx-change-template'
+                    ,html: _('articles.import_modx_change_template_desc')
                     ,cls: 'desc-under'
                 }]
             }]
