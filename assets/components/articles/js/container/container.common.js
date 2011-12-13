@@ -81,6 +81,38 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,cls: 'desc-under'
                 ,listeners: oc
 
+            },{
+                xtype: 'combo-boolean'
+                ,name: 'setting_archivesIncludeTVs'
+                ,hiddenName: 'setting_archivesIncludeTVs'
+                ,id: 'articles-setting-archivesIncludeTVs'
+                ,fieldLabel: _('articles.setting.archivesIncludeTVs')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.archivesIncludeTVs_desc')
+                ,anchor: '30%'
+                ,value: 1
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-archivesIncludeTVs'
+                ,html: _('articles.setting.archivesIncludeTVs_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'combo-boolean'
+                ,name: 'setting_archivesProcessTVs'
+                ,hiddenName: 'setting_archivesProcessTVs'
+                ,id: 'articles-setting-archivesProcessTVs'
+                ,fieldLabel: _('articles.setting.archivesProcessTVs')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.archivesProcessTVs_desc')
+                ,anchor: '30%'
+                ,value: 0
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-archivesProcessTVs'
+                ,html: _('articles.setting.archivesProcessTVs_desc')
+                ,cls: 'desc-under'
+
             }]
         },{
             title: _('articles.settings_pagination')
@@ -388,38 +420,6 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'articles-setting-archiveGroupByYearTpl'
                 ,html: _('articles.setting.archiveGroupByYearTpl_desc')
-                ,cls: 'desc-under'
-
-            },{
-                xtype: 'combo-boolean'
-                ,name: 'setting_archivesIncludeTVs'
-                ,hiddenName: 'setting_archivesIncludeTVs'
-                ,id: 'articles-setting-archivesIncludeTVs'
-                ,fieldLabel: _('articles.setting.archivesIncludeTVs')
-                ,description: MODx.expandHelp ? '' : _('articles.setting.archivesIncludeTVs_desc')
-                ,anchor: '30%'
-                ,value: 1
-                ,listeners: oc
-            },{
-                xtype: MODx.expandHelp ? 'label' : 'hidden'
-                ,forId: 'articles-setting-archivesIncludeTVs'
-                ,html: _('articles.setting.archivesIncludeTVs_desc')
-                ,cls: 'desc-under'
-
-            },{
-                xtype: 'combo-boolean'
-                ,name: 'setting_archivesProcessTVs'
-                ,hiddenName: 'setting_archivesProcessTVs'
-                ,id: 'articles-setting-archivesProcessTVs'
-                ,fieldLabel: _('articles.setting.archivesProcessTVs')
-                ,description: MODx.expandHelp ? '' : _('articles.setting.archivesProcessTVs_desc')
-                ,anchor: '30%'
-                ,value: 0
-                ,listeners: oc
-            },{
-                xtype: MODx.expandHelp ? 'label' : 'hidden'
-                ,forId: 'articles-setting-archivesProcessTVs'
-                ,html: _('articles.setting.archivesProcessTVs_desc')
                 ,cls: 'desc-under'
 
             }]

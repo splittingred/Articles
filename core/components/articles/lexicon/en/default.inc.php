@@ -127,6 +127,10 @@ $_lang['articles.setting.sortBy'] = 'Sort Field';
 $_lang['articles.setting.sortBy_desc'] = 'The field to sort by on the main and archives listing pages.';
 $_lang['articles.setting.sortDir'] = 'Sort Direction';
 $_lang['articles.setting.sortDir_desc'] = 'The direction to sort by on the main and archives listing pages (DESC or ASC).';
+$_lang['articles.setting.archivesIncludeTVs'] = 'Include TVs in Listing';
+$_lang['articles.setting.archivesIncludeTVs_desc'] = 'If set to 1, will include TV values as options in the listing chunks.';
+$_lang['articles.setting.archivesProcessTVs'] = 'Process TVs in Listing';
+$_lang['articles.setting.archivesProcessTVs_desc'] = 'If set to 1, will process the TV values in the listing chunks.';
 
 /* template / archives settings */
 $_lang['articles.setting.articleTemplate'] = 'Article Template';
@@ -147,10 +151,6 @@ $_lang['articles.setting.archiveGroupByYear'] = 'Group By Year';
 $_lang['articles.setting.archiveGroupByYear_desc'] = 'If set to 1, will group archive results by year into a nested list. If set to 1, this will ignore the Archive By Month setting.';
 $_lang['articles.setting.archiveGroupByYearTpl'] = 'Group By Year Chunk';
 $_lang['articles.setting.archiveGroupByYearTpl_desc'] = 'If Group By Year is set to 1, the Chunk to use for the wrapper for the archive list grouping.';
-$_lang['articles.setting.archivesIncludeTVs'] = 'Include TVs in Listing';
-$_lang['articles.setting.archivesIncludeTVs_desc'] = 'If set to 1, will include TV values as options in the listing chunks for archives.';
-$_lang['articles.setting.archivesProcessTVs'] = 'Process TVs in Listing';
-$_lang['articles.setting.archivesProcessTVs_desc'] = 'If set to 1, will process the TV values in the listing chunks for archives.';
 
 /* Pagination */
 $_lang['articles.setting.articlesPerPage'] = 'Articles Per Page';
