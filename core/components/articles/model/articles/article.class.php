@@ -507,4 +507,27 @@ class ArticleUpdateProcessor extends modResourceUpdateProcessor {
             'resource' => array('contexts' => array($this->object->get('context_key'))),
         ));
     }
+
+    /**
+     * Override cleanup to send only back needed params
+     * @return array|string
+     */
+    public function cleanup() {
+        $this->object->removeLock();
+        $this->clearCache();
+
+        $returnArray = $this->object->get(array_diff(array_keys($this->object->_fields), array('content','ta','introtext','description','link_attributes','pagetitle','longtitle','menutitle','articles_container_settings')));
+        foreach ($returnArray as $k => $v) {
+            if (strpos($k,'tv') === 0) {
+                unset($returnArray[$k]);
+            }
+            if (strpos($k,'setting_') === 0) {
+                unset($returnArray[$k]);
+            }
+        }
+        $returnArray['class_key'] = $this->object->get('class_key');
+        $this->workingContext->prepare(true);
+        $returnArray['preview_url'] = $this->modx->makeUrl($this->object->get('id'), $this->object->get('context_key'), '', 'full');
+        return $this->success('',$returnArray);
+    }
 }
