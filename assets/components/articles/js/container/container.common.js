@@ -44,6 +44,7 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,allowNegative: false
                 ,allowDecimals: false
                 ,width: 120
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'articles-menuindex'
@@ -58,6 +59,7 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('articles.setting.sortBy_desc')
                 ,anchor: '100%'
                 ,value: 'publishedon'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'articles-setting-sortBy'
@@ -77,6 +79,7 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,forId: 'articles-setting-sortDir'
                 ,html: _('articles.setting.sortDir_desc')
                 ,cls: 'desc-under'
+                ,listeners: oc
 
             }]
         },{
@@ -95,6 +98,7 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,allowDecimals: false
                 ,width: 120
                 ,value: 10
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'articles-setting-articlesPerPage'
@@ -111,6 +115,7 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,allowDecimals: false
                 ,width: 120
                 ,value: 5
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'articles-setting-pageLimit'
@@ -125,6 +130,7 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('articles.setting.pageNavTpl_desc')
                 ,anchor: '100%'
                 ,value: '<li[[+classes]]><a[[+classes]][[+title]] href="[[+href]]">[[+pageNo]]</a></li>'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'articles-setting-pageNavTpl'
@@ -139,6 +145,7 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('articles.setting.pageActiveTpl_desc')
                 ,anchor: '100%'
                 ,value: '<li[[+activeClasses]]><a[[+activeClasses:default=` class="active"`]][[+title]] href="[[+href]]">[[+pageNo]]</a></li>'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'articles-setting-pageActiveTpl'
@@ -153,6 +160,7 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('articles.setting.pageFirstTpl_desc')
                 ,anchor: '100%'
                 ,value: '<li class="control"><a[[+classes]][[+title]] href="[[+href]]">First</a></li>'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'articles-setting-pageFirstTpl'
@@ -167,6 +175,7 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('articles.setting.pageLastTpl_desc')
                 ,anchor: '100%'
                 ,value: '<li class="control"><a[[+classes]][[+title]] href="[[+href]]">Last</a></li>'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'articles-setting-pageLastTpl'
@@ -181,6 +190,7 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('articles.setting.pagePrevTpl_desc')
                 ,anchor: '100%'
                 ,value: '<li class="control"><a[[+classes]][[+title]] href="[[+href]]">&lt;&lt;</a></li>'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'articles-setting-pagePrevTpl'
@@ -195,6 +205,7 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,description: MODx.expandHelp ? '' : _('articles.setting.pageNextTpl_desc')
                 ,anchor: '100%'
                 ,value: '<li class="control"><a[[+classes]][[+title]] href="[[+href]]">&gt;&gt;</a></li>'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'articles-setting-pageNextTpl'

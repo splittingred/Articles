@@ -2,6 +2,7 @@ Changelog for Articles.
 
 Articles 1.1.1
 ===============================
+- [#6303] Fix issue where some settings do not set dirty status for container form when changed
 - [#6324] Fix issue where import from MODX sets isfolder incorrectly
 
 Articles 1.1.0
