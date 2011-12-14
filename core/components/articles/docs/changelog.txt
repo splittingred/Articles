@@ -1,7 +1,8 @@
 Changelog for Articles.
 
-Articles 1.1.2/3
+Articles 1.1.2/3/4
 ===============================
+- Better handling of comment import and MODX tags in WordPress import
 - More WordPress import fixes with character encodings
 - [#6339] Fix import from WordPress because WordPress does not escape brackets properly from export WXR file
 

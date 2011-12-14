@@ -192,16 +192,20 @@ class ArticlesImportWordPress extends ArticlesImport {
 
     public function parseContent($string) {
         $string = (string)$string;
+        $string = html_entity_decode((string)$string,ENT_COMPAT);
         $string = str_replace(array(
             'Ò',
             'Ó',
             'É',
+            '[[',
+            ']]',
         ),array(
             '&#147;',
             '&#148;',
             '&#189;',
+            '&#91;&#91;',
+            '&#93;&#93;',
         ),$string);
-        $string = html_entity_decode((string)$string,ENT_COMPAT);
         return $string;
     }
 
@@ -274,24 +278,31 @@ class ArticlesImportWordPress extends ArticlesImport {
             $thread->save();
         }
 
+        /** @var SimpleXMLElement $wp */
+        $wp = $item->children('wp',true);
+
         $idMap = array();
-        foreach ($item->xpath('wp:comment') as $commentXml) {
+        /** @var SimpleXMLElement $commentXml */
+        foreach ($wp->comment as $commentXml) {
             $commentId = (int)$this->getXPath($commentXml,'wp:comment_id');
             $commentParent = (int)$this->getXPath($commentXml,'wp:comment_parent');
+
+            /** @var SimpleXMLElement $commentWp */
+            $commentWp = $commentXml->children('wp',true);
 
             /** @var quipComment $comment */
             $comment = $this->modx->newObject('quipComment');
             $comment->fromArray(array(
                 'thread' => $threadKey,
                 'parent' => array_key_exists($commentParent,$idMap) ? $idMap[$commentParent] : 0,
-                'author' => $this->matchCreator((string)$this->getXPath($commentXml,'wp:comment_author')),
-                'body' => (string)$this->getXPath($commentXml,'wp:comment_content'),
-                'createdon' => (string)$this->getXPath($commentXml,'wp:comment_date'),
-                'approved' => (boolean)$this->getXPath($commentXml,'wp:comment_approved'),
-                'name' => (string)$this->getXPath($commentXml,'wp:comment_author'),
-                'email' => (string)$this->getXPath($commentXml,'wp:comment_author_email'),
-                'website' => (string)$this->getXPath($commentXml,'wp:comment_author_url'),
-                'ip' => (string)$this->getXPath($commentXml,'wp:comment_author_IP'),
+                'author' => $this->matchCreator((string)$commentWp->comment_author),
+                'body' => $this->parseContent((string)$commentWp->comment_content),
+                'createdon' => (string)$commentWp->comment_date,
+                'approved' => (boolean)$commentWp->comment_approved,
+                'name' => (string)$commentWp->comment_author,
+                'email' => (string)$commentWp->comment_author_email,
+                'website' => (string)$commentWp->comment_author_url,
+                'ip' => (string)$commentWp->comment_author_IP,
                 'resource' => $article->get('id'),
                 'idprefix' => 'qcom',
             ),'',true);
