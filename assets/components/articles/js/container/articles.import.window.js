@@ -47,6 +47,11 @@ Articles.window.ArticlesImport = function(config) {
         }]
     });
     Articles.window.ArticlesImport.superclass.constructor.call(this,config);
+    this.on('activate',function() {
+        Ext.getCmp(this.activeOptions).hide();
+        Ext.getCmp('articles-options-MODX').show();
+        this.activeOptions = 'articles-options-MODX';
+    },this);
 };
 Ext.extend(Articles.window.ArticlesImport,MODx.Window,{
     activeOptions: 'articles-options-MODX'
