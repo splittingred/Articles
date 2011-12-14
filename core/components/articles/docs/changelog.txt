@@ -1,5 +1,9 @@
 Changelog for Articles.
 
+Articles 1.1.2
+===============================
+- [#6339] Fix import from WordPress because WordPress does not escape brackets properly from export WXR file
+
 Articles 1.1.1
 ===============================
 - [#6305] Rearrange TV processing advanced settings to address possible clarity issue

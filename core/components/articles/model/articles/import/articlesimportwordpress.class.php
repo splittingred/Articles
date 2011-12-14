@@ -82,10 +82,44 @@ class ArticlesImportWordPress extends ArticlesImport {
             $file = $file['tmp_name'];
         }
         $contents = file_get_contents($file);
-        $xml = @simplexml_load_string($contents,'SimpleXMLElement',LIBXML_NOCDATA);
+        /** Get rid of useless WP comments */
+        $contents = str_replace('<!--more-->','',$contents);
+        /** Fix improper <pre> placements */
+        $contents = str_replace('</pre>]]>','</pre> ]]>',$contents);
+        /** Fix stupid WordPress bug with ]] tags and ~ inside content. Escape your stuff next time, WordPress. GG kthxbai. */
+        $contents = preg_replace_callback('#\[\[\+(.*?)\]\]#si',array('ArticlesImportWordPress','parseMODXPlaceholders'),$contents);
+        $contents = preg_replace_callback('#\[\[\~(.*?)\]\]#si',array('ArticlesImportWordPress','parseMODXLinks'),$contents);
+        $contents = preg_replace_callback("#<!\[CDATA\[(.*?)\]\]>#si",array('ArticlesImportWordPress','parseCData'),$contents);
+        $xml = simplexml_load_string($contents,'ArticlesWordPressWxr');
         return $xml;
     }
 
+    public static function parseMODXPlaceholders($matches) {
+        return '&91;&91;+'.$matches[1].'&93;&93;';
+    }
+    public static function parseMODXLinks($matches) {
+        return '&91;&91;~'.$matches[1].'&93;&93;';
+    }
+    public static function parseCData($matches) {
+        $contents = $matches[0];
+        if (!empty($matches[1])) {
+            $contents = str_replace(array(
+                '[',
+                ']',
+                '~',
+                '>',
+                '<',
+            ),array(
+                '&#91;',
+                '&#93;',
+                '&#182;',
+                '&gt;',
+                '&lt;',
+            ),$matches[1]);
+            $contents = '<![CDATA['.$contents.']]>';
+        }
+        return $contents;
+    }
     /**
      * Create or select the container
      *
@@ -268,4 +302,8 @@ class ArticlesImportWordPress extends ArticlesImport {
         $article->setTVValue('articlestags',implode(',',$tags));
         return $tags;
     }
+}
+
+class ArticlesWordPressWxr extends SimpleXMLElement {
+
 }
