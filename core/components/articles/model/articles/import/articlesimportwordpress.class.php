@@ -90,6 +90,12 @@ class ArticlesImportWordPress extends ArticlesImport {
         $contents = preg_replace_callback('#\[\[\+(.*?)\]\]#si',array('ArticlesImportWordPress','parseMODXPlaceholders'),$contents);
         $contents = preg_replace_callback('#\[\[\~(.*?)\]\]#si',array('ArticlesImportWordPress','parseMODXLinks'),$contents);
         $contents = preg_replace_callback("#<!\[CDATA\[(.*?)\]\]>#si",array('ArticlesImportWordPress','parseCData'),$contents);
+        /* get rid of all the WP-specific special characters */
+        $contents = str_replace(array(
+            "\xe2\x80\x98", "\xe2\x80\x99", "\xe2\x80\x9c", "\xe2\x80\x9d", "\xe2\x80\x93", "\xe2\x80\x94", "\xe2\x80\xa6"
+        ),array(
+            "'", "'", '"', '"', '-', '--', '&#189;'
+        ),$contents);
         $xml = simplexml_load_string($contents,'ArticlesWordPressWxr');
         return $xml;
     }
@@ -149,23 +155,25 @@ class ArticlesImportWordPress extends ArticlesImport {
 
         $settings = $this->container->getContainerSettings();
         $creator = $this->matchCreator((string)$item->xpath('dc:creator'.'/text()'),1);
+        /** @var SimpleXMLElement $wp */
+        $wp = $item->children('wp',true);
 
         /** @var Article $article */
         $article = $this->modx->newObject('Article');
         $article->fromArray(array(
             'parent' => $this->container->get('id'),
             'articles_container' => $this->container->get('id'),
-            'pagetitle' => (string)$item->title,
-            'description' => (string)$item->description,
-            'alias' => (string)$this->getXPath($item,'wp:post_name'),
+            'pagetitle' => $this->parseContent((string)$item->title),
+            'description' => $this->parseContent((string)$item->description),
+            'alias' => $this->parseContent((string)$wp->post_name),
             'template' => $this->modx->getOption('articleTemplate',$settings,0),
             'published' => $this->parsePublished($item),
             'publishedon' => strtotime((string)$item->pubDate),
             'publishedby' => $creator,
             'createdby' => $creator,
-            'createdon' => strtotime((string)$this->getXPath($item,'wp:post_date')),
-            'content' => (string)$this->getXPath($item,'content:encoded'),
-            'introtext' => (string)$this->getXPath($item,'excerpt:encoded'),
+            'createdon' => strtotime((string)$wp->post_date),
+            'content' => $this->parseContent((string)$item->children('content',true)->encoded),
+            'introtext' => $this->parseContent((string)$item->children('excerpt',true)->encoded),
             'show_in_tree' => false,
             'class_key' => 'Article',
             'context_key' => $this->container->get('context_key'),
@@ -180,6 +188,21 @@ class ArticlesImportWordPress extends ArticlesImport {
         $this->importTags($article,$item);
         $this->importComments($article,$item);
         return $article;
+    }
+
+    public function parseContent($string) {
+        $string = (string)$string;
+        $string = str_replace(array(
+            'Ò',
+            'Ó',
+            'É',
+        ),array(
+            '&#147;',
+            '&#148;',
+            '&#189;',
+        ),$string);
+        $string = html_entity_decode((string)$string,ENT_COMPAT);
+        return $string;
     }
 
     /**
