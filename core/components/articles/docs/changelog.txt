@@ -1,5 +1,9 @@
 Changelog for Articles.
 
+Articles 1.1.5
+===============================
+- [#6342] Fix issue where container content was not persistent
+
 Articles 1.1.2/3/4
 ===============================
 - Better handling of comment import and MODX tags in WordPress import

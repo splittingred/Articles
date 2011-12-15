@@ -130,12 +130,14 @@ Ext.extend(Articles.panel.Container,MODx.panel.Resource,{
     ,getTemplateSettings: function(config) {
         return [{
             xtype: 'articles-tab-template-settings'
+            ,record: config.record || {}
         }];
     }
 
     ,getBlogSettings: function(config) {
         return [{
             xtype: 'articles-tab-advanced-settings'
+            ,record: config.record || {}
         }];
     }
 
@@ -196,28 +198,6 @@ Ext.extend(Articles.panel.Container,MODx.panel.Resource,{
 
         }];
     }
-
-    ,getContentField: function(config) {
-        return [{
-            id: 'modx-content-above'
-            ,border: false
-        },{
-            xtype: 'textarea'
-            ,name: 'ta'
-            ,id: 'ta'
-            ,fieldLabel: _('articles.content')
-            ,anchor: '100%'
-            ,height: 250
-            ,grow: false
-            ,value: (config.record.content || config.record.ta) || ''
-            ,border: false
-        },{
-            id: 'modx-content-below'
-            ,border: false
-        }];
-    }
-
-
 
     ,getMainRightFields: function(config) {
         config = config || {};

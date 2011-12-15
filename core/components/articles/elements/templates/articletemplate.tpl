@@ -11,7 +11,7 @@
 
 <div id="header-wrap">
   <div id="header" class="container_16">
-    <h1 id="logo-text"><a href="[[~[[*articles_container]]]]" title="">Articles</a></h1>
+    <h1 id="logo-text"><a href="[[~[[*parent]]]]" title="">Articles</a></h1>
     <p id="intro">Articles By Me</p>
     <!-- navigation -->
     <div id="nav">
@@ -40,9 +40,9 @@
 <h2 class="title"><a href="[[~[[*id]]]]">[[*pagetitle]]</a></h2>
 <p class="post-info">Posted on [[*publishedon:strtotime:date=`%b %d, %Y`]] |
 Tags: [[*articlestags:notempty=`
-  <span class="tags" style="float: left;">Tags: [[!tolinks? &useTagsFurl=`1` &items=`[[*articlestags]]` &target=`[[*articles_container]]`]]</span>
+  <span class="tags" style="float: left;">Tags: [[!tolinks? &useTagsFurl=`1` &items=`[[*articlestags]]` &target=`[[*parent]]`]]</span>
 `]]
-[[!+comments_enabled:is=`1`:then=` | <a href="[[~[[*id]]]]#comments" class="comments">Comments ([[!QuipCount? &thread=`article-b[[*articles_container]]-[[*id]]`]])</a>`]]
+[[!+comments_enabled:is=`1`:then=` | <a href="[[~[[*id]]]]#comments" class="comments">Comments ([[!QuipCount? &thread=`article-b[[*parent]]-[[*id]]`]])</a>`]]
 </p>
 <div class="entry">
 <p>[[*introtext]]</p>

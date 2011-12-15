@@ -104,12 +104,14 @@ Ext.extend(Articles.panel.Container,MODx.panel.Resource,{
     ,getTemplateSettings: function(config) {
         return [{
             xtype: 'articles-tab-template-settings'
+            ,record: config.record
         }];
     }
 
     ,getBlogSettings: function(config) {
         return [{
             xtype: 'articles-tab-advanced-settings'
+            ,record: config.record
         }];
     }
 

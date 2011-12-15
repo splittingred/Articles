@@ -1325,6 +1325,7 @@ Ext.extend(Articles.panel.ContainerTemplateSettings,MODx.Panel,{
                 action: 'getList'
                 ,combo: '1'
             }
+            ,value: config.record.template || MODx.config['articles.default_container_template']
         },{
             xtype: MODx.expandHelp ? 'label' : 'hidden'
             ,forId: 'modx-resource-template'
@@ -1349,6 +1350,7 @@ Ext.extend(Articles.panel.ContainerTemplateSettings,MODx.Panel,{
                 ,fieldLabel: _('articles.setting.articleTemplate')
                 ,description: MODx.expandHelp ? '' : _('articles.setting.articleTemplate_desc')
                 ,anchor: '100%'
+                ,value: config.record.setting_articleTemplate || MODx.config['articles.default_article_template']
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'articles-setting-articleTemplate'
@@ -1362,7 +1364,7 @@ Ext.extend(Articles.panel.ContainerTemplateSettings,MODx.Panel,{
                 ,fieldLabel: _('articles.setting.tplArticleRow')
                 ,description: MODx.expandHelp ? '' : _('articles.setting.tplArticleRow_desc')
                 ,anchor: '100%'
-                ,value: 'sample.ArticleRowTpl'
+                ,value: config.record.setting_tplArticleRow || 'sample.ArticleRowTpl'
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'articles-setting-tplArticleRow'
@@ -1386,7 +1388,7 @@ Ext.extend(Articles.panel.ContainerTemplateSettings,MODx.Panel,{
             ,height: 250
             ,grow: false
             ,border: false
-            ,value: "[[+articles]]\n\n[[+paging]]"
+            ,value: config.record && config.record.content ? config.record.content : "[[+articles]]\n\n[[+paging]]"
         },{
             id: 'modx-content-below'
             ,border: false
