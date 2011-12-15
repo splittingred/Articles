@@ -38,11 +38,12 @@
 <div id="main" class="grid_12">
 
 <h2 class="title"><a href="[[~[[*id]]]]">[[*pagetitle]]</a></h2>
-<p class="post-info">Posted on [[*publishedon:strtotime:date=`%b %d, %Y`]] |
-Tags: [[*articlestags:notempty=`
-  <span class="tags" style="float: left;">Tags: [[!tolinks? &useTagsFurl=`1` &items=`[[*articlestags]]` &target=`[[*parent]]`]]</span>
+<p class="post-info">
+    <span class="left">Posted on [[*publishedon:strtotime:date=`%b %d, %Y`]] by <a href="[[~[[*parent]]]]author/[[*publishedby:userinfo=`username`]]">[[*publishedby:userinfo=`username`]]</a></span>
+[[*articlestags:notempty=`
+  <span class="tags left">&nbsp;| Tags: [[!tolinks? &useTagsFurl=`1` &items=`[[*articlestags]]` &target=`[[*parent]]`]]</span>
 `]]
-[[!+comments_enabled:is=`1`:then=` | <a href="[[~[[*id]]]]#comments" class="comments">Comments ([[!QuipCount? &thread=`article-b[[*parent]]-[[*id]]`]])</a>`]]
+[[!+comments_enabled:is=`1`:then=`&nbsp;| <a href="[[~[[*id]]]]#comments" class="comments">Comments ([[!QuipCount? &thread=`article-b[[*parent]]-[[*id]]`]])</a>`]]
 </p>
 <div class="entry">
 <p>[[*introtext]]</p>

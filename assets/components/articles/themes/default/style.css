@@ -554,7 +554,8 @@ p.thumbs{ padding: 10px 0 0 10px; }
 	content: ".";
 }
 
-
+.left { float: left; }
+.right { float: right; }
 
 /* shaun */
 .social {
