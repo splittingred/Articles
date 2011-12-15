@@ -44,7 +44,7 @@ Ext.extend(Articles.panel.Container,MODx.panel.Resource,{
         });
         it.push({
             title: _('articles.template')
-            ,id: 'modx-articles-template'
+            ,id: 'articles-tab-template'
             ,cls: 'modx-resource-tab'
             ,layout: 'form'
             ,labelAlign: 'top'
@@ -60,7 +60,7 @@ Ext.extend(Articles.panel.Container,MODx.panel.Resource,{
         });
         it.push({
             title: _('articles.advanced_settings')
-            ,id: 'modx-articles-advanced-settings'
+            ,id: 'articles-tab-advanced-settings'
             ,cls: 'modx-resource-tab'
             ,labelAlign: 'top'
             ,labelSeparator: ''
@@ -70,6 +70,7 @@ Ext.extend(Articles.panel.Container,MODx.panel.Resource,{
         });
         it.push({
             title: _('articles.comments')
+            ,id: 'articles-tab-comments'
             ,autoHeight: true
             ,items: [{
                 html: _('articles.comments.intro_msg')

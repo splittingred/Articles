@@ -175,6 +175,7 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
         if (config.record.commentsEnabled) {
             it.push({
                 title: _('articles.comments')
+                ,id: 'articles-tab-comments'
                 ,autoHeight: true
                 ,items: [{
                     html: _('articles.comments.intro_msg')
@@ -303,6 +304,7 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
         return [{
             xtype: 'fieldset'
             ,title: _('articles.publishing_information')
+            ,id: 'articles-box-publishing-information'
             ,defaults: {
                 msgTarget: 'under'
             }
@@ -355,6 +357,7 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
         },{
             xtype: 'fieldset'
             ,title: _('articles.article_options')
+            ,id: 'articles-box-options'
             ,defaults: {
                 msgTarget: 'under'
             }

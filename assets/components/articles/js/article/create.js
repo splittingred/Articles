@@ -127,6 +127,7 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
         return [{
             xtype: 'fieldset'
             ,title: _('articles.publishing_information')
+            ,id: 'articles-box-publishing-information'
             ,defaults: {
                 msgTarget: 'under'
             }
@@ -179,7 +180,8 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
             ,border: false
         },{
             xtype: 'fieldset'
-            ,title: _('articles.post_options')
+            ,title: _('articles.article_options')
+            ,id: 'articles-box-options'
             ,defaults: {
                 msgTarget: 'under'
             }

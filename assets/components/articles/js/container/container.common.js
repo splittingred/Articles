@@ -8,10 +8,10 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
         ,'select':{fn:MODx.fireResourceFormChange}
     };
     Ext.applyIf(config,{
-        border: false
+        id: 'articles-panel-container-advanced-settings'
+        ,border: false
         ,plain: true
         ,deferredRender: false
-        ,id: 'modx-resource-vtabs'
         ,anchor: '97%'
         ,items: [{
             title: _('articles.settings_general')
@@ -1296,7 +1296,8 @@ Ext.reg('articles-tab-advanced-settings',Articles.panel.ContainerAdvancedSetting
 Articles.panel.ContainerTemplateSettings = function(config) {
     config = config || {};
     Ext.applyIf(config,{
-        layout: 'column'
+        id: 'articles-panel-container-template-settings'
+        ,layout: 'column'
         ,border: false
         ,anchor: '100%'
         ,defaults: {
