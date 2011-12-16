@@ -66,4 +66,12 @@ $chunks[5]->fromArray(array(
     'description' => 'The tpl wrapper for archives when grouped by year.',
     'snippet' => file_get_contents($sources['chunks'].'archivegroupbyyear.chunk.tpl'),
 ));
+
+$chunks[6]= $modx->newObject('modChunk');
+$chunks[6]->fromArray(array(
+    'id' => 6,
+    'name' => 'sample.ArticlesRssCategoryNode',
+    'description' => 'The tpl for each RSS category node for tagging.',
+    'snippet' => file_get_contents($sources['chunks'].'articlesrsscategorynode.chunk.tpl'),
+));
 return $chunks;

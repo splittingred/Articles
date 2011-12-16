@@ -28,7 +28,7 @@ set_time_limit(0);
 /* define package */
 define('PKG_NAME','Articles');
 define('PKG_NAME_LOWER',strtolower(PKG_NAME));
-define('PKG_VERSION','1.1.5');
+define('PKG_VERSION','1.2.0');
 define('PKG_RELEASE','pl');
 
 /* define sources */
@@ -132,6 +132,14 @@ if (is_array($chunks)) {
 } else { $modx->log(modX::LOG_LEVEL_FATAL,'Adding chunks failed.'); }
 $modx->log(modX::LOG_LEVEL_INFO,'Packaged in '.count($chunks).' chunks.'); flush();
 unset($chunks);
+
+/* add snippets */
+$snippets = include $sources['data'].'transport.snippets.php';
+if (is_array($snippets)) {
+    $category->addMany($snippets,'Snippets');
+} else { $modx->log(modX::LOG_LEVEL_FATAL,'Adding snippets failed.'); }
+$modx->log(modX::LOG_LEVEL_INFO,'Packaged in '.count($snippets).' snippets.'); flush();
+unset($snippets);
 
 /* add templates */
 $templates = include $sources['data'].'transport.templates.php';

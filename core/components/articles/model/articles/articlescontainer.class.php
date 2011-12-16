@@ -205,7 +205,7 @@ class ArticlesContainer extends modResource {
         $content = '[[!getResources?
           &cache=`0`
           &pageVarKey=`page`
-          &parents=`[[*id]]`
+          &parents=`'.$this->get('id').'`
           &where=`{"class_key":"Article","searchable":1}`
           &limit=`'.$this->xpdo->getOption('rssItems',$settings,10).'`
           &showHidden=`1`
