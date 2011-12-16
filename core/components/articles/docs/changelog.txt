@@ -2,6 +2,8 @@ Changelog for Articles.
 
 Articles 1.2.0
 ===============================
+- [#6385] Fix issue with Resource Groups tab not showing for individual Articles
+- [#6374] Fix issue where tags were not showing in RSS
 - [#6376] Fix date formatting for RSS pub date
 - [#6375] Properly send RSS headers (requires Revo 2.2-pl or later)
 
