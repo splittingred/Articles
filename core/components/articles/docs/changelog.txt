@@ -2,7 +2,8 @@ Changelog for Articles.
 
 Articles 1.2.0
 ===============================
-- Properly send RSS headers (requires Revo 2.2-pl or later)
+- [#6376] Fix date formatting for RSS pub date
+- [#6375] Properly send RSS headers (requires Revo 2.2-pl or later)
 
 Articles 1.1.5
 ===============================
