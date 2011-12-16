@@ -1,5 +1,9 @@
 Changelog for Articles.
 
+Articles 1.2.0
+===============================
+- Properly send RSS headers (requires Revo 2.2-pl or later)
+
 Articles 1.1.5
 ===============================
 - [#6345] Fix and improve article view in front-end for default template

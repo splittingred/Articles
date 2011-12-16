@@ -152,6 +152,7 @@ class ArticlesContainer extends modResource {
             $contentType = $this->xpdo->getObject('modContentType',array('mime_type' => 'application/rss+xml'));
             if ($contentType) {
                 $this->set('content_type',$contentType->get('id'));
+                $this->xpdo->response->contentType = $contentType;
             }
             $this->_content= $this->getRssCall();
             $maxIterations= intval($this->xpdo->getOption('parser_max_iterations',10));
