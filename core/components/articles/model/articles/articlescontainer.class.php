@@ -319,6 +319,8 @@ class ArticlesContainer extends modResource {
           &pageLastTpl=`'.$this->xpdo->getOption('pageLastTpl',$settings,'<li class="control"><a[[+classes]][[+title]] href="[[+href]]">Last</a></li>').'`
           &pagePrevTpl=`'.$this->xpdo->getOption('pagePrevTpl',$settings,'<li class="control"><a[[+classes]][[+title]] href="[[+href]]">&lt;&lt;</a></li>').'`
           &pageNextTpl=`'.$this->xpdo->getOption('pageNextTpl',$settings,'<li class="control"><a[[+classes]][[+title]] href="[[+href]]">&gt;&gt;</a></li>').'`
+
+          '.$this->xpdo->getOption('otherGetArchives',$settings,'').'
         ]]';
         $this->xpdo->setPlaceholder('articles',$output);
 

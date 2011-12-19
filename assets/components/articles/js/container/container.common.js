@@ -143,6 +143,21 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,html: _('articles.setting.includeTVsList_desc')
                 ,cls: 'desc-under'
 
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_otherGetArchives'
+                ,id: 'articles-setting-otherGetArchives'
+                ,fieldLabel: _('articles.setting.otherGetArchives')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.otherGetArchives_desc')
+                ,anchor: '100%'
+                ,value: ''
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-otherGetArchives'
+                ,html: _('articles.setting.otherGetArchives_desc')
+                ,cls: 'desc-under'
+
             }]
         },{
             title: _('articles.settings_pagination')

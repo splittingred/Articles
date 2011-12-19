@@ -2,6 +2,7 @@ Changelog for Articles.
 
 Articles 1.3.0
 ===============================
+- Add "Other Parameters" for listing snippet, which allows you to pass other properties to the getPage/getResources call
 - Add option to Require Authentication for commenting
 
 Articles 1.2.1

@@ -137,6 +137,8 @@ $_lang['articles.setting.archivesProcessTVs'] = 'Process TVs in Listing';
 $_lang['articles.setting.archivesProcessTVs_desc'] = 'If on, will process the TV values in the listing chunks.';
 $_lang['articles.setting.processTVsList'] = 'Process TVs List';
 $_lang['articles.setting.processTVsList_desc'] = 'An optional comma-delimited list of TemplateVar names to process explicitly. TemplateVars specified here must be included via Include TVs/Include TVs List.';
+$_lang['articles.setting.otherGetArchives'] = 'Other Listing Parameters';
+$_lang['articles.setting.otherGetArchives_desc'] = 'Any other properties you would like to add to the getResources/getPage call for the Articles listing page. Put them in MODX tag syntax, as if you were adding it to the tag call (eg, &property=`value`)';
 
 /* template / archives settings */
 $_lang['articles.setting.articleTemplate'] = 'Article Template';
