@@ -1,5 +1,9 @@
 Changelog for Articles.
 
+Articles 1.2.1
+===============================
+- [#6400] Fix issue where alias was not changed in articles when container's alias was changed
+
 Articles 1.2.0
 ===============================
 - [#6385] Fix issue with Resource Groups tab not showing for individual Articles

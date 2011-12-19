@@ -31,6 +31,7 @@ class ArticlesContainer extends modResource {
     public $allowListingInClassKeyDropdown = false;
     public $showInContextMenu = true;
     public $allowChildrenResources = false;
+    public $oldAlias = null;
     /**
      * Override modResource::__construct to ensure a few specific fields are forced to be set.
      * @param xPDO $xpdo
@@ -51,6 +52,51 @@ class ArticlesContainer extends modResource {
      */
     public static function getControllerPath(xPDO &$modx) {
         return $modx->getOption('articles.core_path',null,$modx->getOption('core_path').'components/articles/').'controllers/container/';
+    }
+
+    public function set($k, $v= null, $vType= '') {
+        $oldAlias = false;
+        if ($k == 'alias') {
+            $oldAlias = $this->get('alias');
+        }
+        $set = parent::set($k,$v,$vType);
+        if ($this->isDirty('alias') && !empty($oldAlias)) {
+            $this->oldAlias = $oldAlias;
+        }
+        return $set;
+    }
+
+    public function save($cacheFlag = null) {
+        $isNew = $this->isNew();
+        $saved = parent::save($cacheFlag);
+        if ($saved && !$isNew && !empty($this->oldAlias)) {
+            $newAlias = $this->get('alias');
+            $saved = $this->updateChildrenURIs($newAlias,$this->oldAlias);
+        }
+        return $saved;
+    }
+
+    /**
+     * Update all Articles URIs to reflect the new blog alias
+     *
+     * @param string $newAlias
+     * @param string $oldAlias
+     * @return bool
+     */
+    public function updateChildrenURIs($newAlias,$oldAlias) {
+        $useMultiByte = $this->getOption('use_multibyte',null,false) && function_exists('mb_strlen');
+        $encoding = $this->getOption('modx_charset',null,'UTF-8');
+        $oldAliasLength = ($useMultiByte ? mb_strlen($oldAlias,$encoding) : strlen($oldAlias)) + 1;
+        $uriField = $this->xpdo->escape('uri');
+
+        $sql = 'UPDATE '.$this->xpdo->getTableName('Article').'
+            SET '.$uriField.' = CONCAT("'.$newAlias.'",SUBSTRING('.$uriField.','.$oldAliasLength.'))
+            WHERE
+                '.$this->xpdo->escape('parent').' = '.$this->get('id').'
+            AND SUBSTRING('.$uriField.',1,'.$oldAliasLength.') = "'.$oldAlias.'/"';
+        $this->xpdo->log(xPDO::LOG_LEVEL_DEBUG,$sql);
+        $this->xpdo->exec($sql);
+        return true;
     }
 
     /**
