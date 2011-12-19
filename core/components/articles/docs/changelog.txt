@@ -1,5 +1,9 @@
 Changelog for Articles.
 
+Articles 1.3.0
+===============================
+- Add option to Require Authentication for commenting
+
 Articles 1.2.1
 ===============================
 - [#6400] Fix issue where alias was not changed in articles when container's alias was changed

@@ -123,6 +123,8 @@ class Article extends modResource {
      * @return string
      */
     public function getCommentsReplyCall(array $settings = array()) {
+        $requireAuth = $this->xpdo->getOption('commentsRequireAuth',$settings,0);
+        if ($requireAuth) $requireAuth = '&requireAuth=`1`';
         $call = '[[!QuipReply?
    &thread=`article-b'.$this->get('parent').'-'.$this->get('id').'`
 
@@ -131,7 +133,7 @@ class Article extends modResource {
    &tplPreview=`'.$this->xpdo->getOption('commentsTplPreview',$settings,'quipPreviewComment').'`
 
    &requirePreview=`'.$this->xpdo->getOption('commentsRequirePreview',$settings,0).'`
-   &zzrequireAuth=`'.$this->xpdo->getOption('commentsRequireAuth',$settings,0).'`
+   '.(!empty($requireAuth) ? $requireAuth : '').'
 
    &recaptcha=`'.$this->xpdo->getOption('commentsReCaptcha',$settings,0).'`
    &disableRecaptchaWhenLoggedIn=`'.$this->xpdo->getOption('commentsDisabledReCaptchaWhenLoggedIn',$settings,1).'`

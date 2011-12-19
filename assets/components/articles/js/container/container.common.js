@@ -917,7 +917,7 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 msgTarget: 'under'
             }
             ,items: [{
-                xtype: 'hidden' /* doesnt currently work */
+                xtype: 'combo-boolean'
                 ,name: 'setting_commentsRequireAuth'
                 ,hiddenName: 'setting_commentsRequireAuth'
                 ,id: 'articles-setting-commentsRequireAuth'
@@ -927,7 +927,7 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,value: 0
                 ,listeners: oc
             },{
-                xtype: MODx.expandHelp && false ? 'label' : 'hidden'
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'articles-setting-commentsRequireAuth'
                 ,html: _('articles.setting.commentsRequireAuth_desc')
                 ,cls: 'desc-under'
