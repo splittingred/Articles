@@ -9,3 +9,4 @@
   <ttl>120</ttl>
   [[+content]]
 </channel>
+</rss>
