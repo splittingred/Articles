@@ -69,8 +69,13 @@ class ArticlesNotificationTwitter extends ArticlesNotification {
         $tags = $this->article->getTVValue('articlestags');
         $tags = explode(',',$tags);
         $hashTags = array();
+        $tagLimit = $this->modx->getOption('notifyTwitterTagLimit',$this->config,3);
+        $badTagChars = array(' ','#','$','*','@','(',')','[',']','=','!','?',';',',','.');
+        $i = 1;
         foreach ($tags as $tag) {
-            $hashTags[] = '#'.trim(ltrim($tag,'#'));
+            if ($i > $tagLimit) break;
+            $hashTags[] = '#'.str_replace($badTagChars,'',strtolower(trim(ltrim($tag,'#'))));
+            $i++;
         }
         $hashTags = implode(' ',$hashTags);
 

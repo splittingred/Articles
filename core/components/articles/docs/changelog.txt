@@ -2,6 +2,7 @@ Changelog for Articles.
 
 Articles 1.4.0
 ===============================
+- Add limiter for number of hashtags that are tweeted
 - [#6457] Allow option of posting Article title/url/tags to Twitter on publish
 
 Articles 1.3.1

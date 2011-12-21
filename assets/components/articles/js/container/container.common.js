@@ -716,6 +716,23 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,cls: 'desc-under'
 
             },{
+                xtype: 'numberfield'
+                ,name: 'setting_notifyTwitterTagLimit'
+                ,id: 'articles-setting-notifyTwitterTagLimit'
+                ,fieldLabel: _('articles.setting.notifyTwitterTagLimit')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.notifyTwitterTagLimit_desc')
+                ,anchor: '30%'
+                ,value: 3
+                ,allowNegative: false
+                ,allowDecimals: false
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-notifyTwitterTagLimit'
+                ,html: _('articles.setting.notifyTwitterTagLimit_desc')
+                ,cls: 'desc-under'
+
+            },{
                 xtype: 'articles-combo-shorteners'
                 ,name: 'setting_shorteningService'
                 ,hiddenName: 'setting_shorteningService'
