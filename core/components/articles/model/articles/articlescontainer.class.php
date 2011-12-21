@@ -32,6 +32,8 @@ class ArticlesContainer extends modResource {
     public $showInContextMenu = true;
     public $allowChildrenResources = false;
     public $oldAlias = null;
+    public $salt = null;
+
     /**
      * Override modResource::__construct to ensure a few specific fields are forced to be set.
      * @param xPDO $xpdo
@@ -40,6 +42,7 @@ class ArticlesContainer extends modResource {
         parent :: __construct($xpdo);
         $this->set('class_key','Articles');
         $this->set('hide_children_in_tree',true);
+        $this->salt = $xpdo->getOption('articles.twitter.salt',null,'tw1tt3rs4uth4p1ish0rribl3');
     }
 
     /**
@@ -421,11 +424,57 @@ class ArticlesContainer extends modResource {
      */
     public function getContainerSettings() {
         $settings = $this->get('articles_container_settings');
-        $this->xpdo->setDebug(false);
         if (!empty($settings)) {
             $settings = is_array($settings) ? $settings : $this->xpdo->fromJSON($settings);
         }
         return !empty($settings) ? $settings : array();
+    }
+
+    /**
+     * Encrypt a string
+     * @param string $str
+     * @return string
+     */
+    public function encrypt($str) {
+        $result = '';
+        for($i=0; $i<strlen($str); $i++) {
+            $char = substr($str, $i, 1);
+            $keyChar = substr($this->salt, ($i % strlen($this->salt))-1, 1);
+            $char = chr(ord($char)+ord($keyChar));
+            $result .= $char;
+        }
+        return base64_encode($result);
+    }
+
+    /**
+     * Decrypt a string
+     * @param string $str
+     * @return string
+     */
+    public function decrypt($str) {
+        $result = '';
+        $str = base64_decode($str);
+        for($i=0; $i<strlen($str); $i++) {
+            $char = substr($str, $i, 1);
+            $keyChar = substr($this->salt, ($i % strlen($this->salt))-1, 1);
+            $char = chr(ord($char)-ord($keyChar));
+            $result.=$char;
+        }
+        return $result;
+    }
+
+    /**
+     * Get Twitter API keys necessary for posting
+     * @return array
+     */
+    public function getTwitterKeys() {
+        $settings = $this->getContainerSettings();
+        $key = !empty($settings['notifyTwitterConsumerKey']) ? $settings['notifyTwitterConsumerKey'] : 'lqTxfNnXdujbguuosYnhmsvXy6fL6Q==';
+        $secret = !empty($settings['notifyTwitterConsumerKeySecret']) ? $settings['notifyTwitterConsumerKeySecret'] : 'nczipN69mNvdau7s1offYpnM35Gi15yU4pfqu3TW4arr2ZfMprl1sZ7M';
+        return array(
+            'consumer_key' => $this->decrypt($key),
+            'consumer_key_secret' => $this->decrypt($secret),
+        );
     }
 }
 
@@ -435,6 +484,8 @@ class ArticlesContainer extends modResource {
  * @package articles
  */
 class ArticlesContainerCreateProcessor extends modResourceCreateProcessor {
+    /** @var ArticlesContainer $object */
+    public $object;
     /**
      * Override modResourceCreateProcessor::afterSave to provide custom functionality, saving the container settings to a
      * custom field in the manager
@@ -444,14 +495,35 @@ class ArticlesContainerCreateProcessor extends modResourceCreateProcessor {
     public function beforeSave() {
         $properties = $this->getProperties();
         $settings = $this->object->get('articles_container_settings');
+        $notificationServices = array();
         foreach ($properties as $k => $v) {
             if (substr($k,0,8) == 'setting_') {
                 $key = substr($k,8);
                 if ($v === 'false') $v = 0;
                 if ($v === 'true') $v = 1;
+
+                switch ($key) {
+                    case 'notifyTwitter':
+                        if ($v) $notificationServices[] = 'twitter';
+                        break;
+                    case 'notifyTwitterConsumerKey':
+                        if (!empty($v)) {
+                            $v = $this->object->encrypt($v);
+                        }
+                        break;
+                    case 'notifyTwitterConsumerKeySecret':
+                        if (!empty($v)) {
+                            $v = $this->object->encrypt($v);
+                        }
+                        break;
+                    case 'notifyFacebook':
+                        if ($v) $notificationServices[] = 'facebook';
+                        break;
+                }
                 $settings[$key] = $v;
             }
         }
+        $settings['notificationServices'] = implode(',',$notificationServices);
         $this->object->set('articles_container_settings',$settings);
 
         $this->object->set('class_key','ArticlesContainer');
@@ -532,6 +604,8 @@ class ArticlesContainerCreateProcessor extends modResourceCreateProcessor {
  * @package articles
  */
 class ArticlesContainerUpdateProcessor extends modResourceUpdateProcessor {
+    /** @var ArticlesContainer $object */
+    public $object;
     /**
      * Override modResourceUpdateProcessor::beforeSave to provide custom functionality, saving settings for the container
      * to a custom field in the DB
@@ -541,14 +615,35 @@ class ArticlesContainerUpdateProcessor extends modResourceUpdateProcessor {
     public function beforeSave() {
         $properties = $this->getProperties();
         $settings = $this->object->get('articles_container_settings');
+        $notificationServices = array();
         foreach ($properties as $k => $v) {
             if (substr($k,0,8) == 'setting_') {
                 $key = substr($k,8);
                 if ($v === 'false') $v = 0;
                 if ($v === 'true') $v = 1;
+
+                switch ($key) {
+                    case 'notifyTwitter':
+                        if ($v) $notificationServices[] = 'twitter';
+                        break;
+                    case 'notifyTwitterConsumerKey':
+                        if (!empty($v)) {
+                            $v = $this->object->encrypt($v);
+                        }
+                        break;
+                    case 'notifyTwitterConsumerKeySecret':
+                        if (!empty($v)) {
+                            $v = $this->object->encrypt($v);
+                        }
+                        break;
+                    case 'notifyFacebook':
+                        if ($v) $notificationServices[] = 'facebook';
+                        break;
+                }
                 $settings[$key] = $v;
             }
         }
+        $settings['notificationServices'] = implode(',',$notificationServices);
         $this->object->set('articles_container_settings',$settings);
         return parent::beforeSave();
     }

@@ -7,6 +7,7 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
         'change':{fn:MODx.fireResourceFormChange}
         ,'select':{fn:MODx.fireResourceFormChange}
     };
+    var twitterAuthedLexiconKey = config.record && !Ext.isEmpty(config.record.setting_notifyTwitterAccessToken) ? 'articles.setting.notifyTwitter_desc' : 'articles.setting.notifyTwitter_notyet_desc';
     Ext.applyIf(config,{
         id: 'articles-panel-container-advanced-settings'
         ,border: false
@@ -640,6 +641,94 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'articles-setting-latestPostsLimit'
                 ,html: _('articles.setting.latestPostsLimit_desc')
+                ,cls: 'desc-under'
+
+            }]
+        },{
+            title: _('articles.settings_notifications')
+            ,anchor: '100%'
+            ,defaults: {
+                msgTarget: 'under'
+            }
+            ,items: [{
+                xtype: 'combo-boolean'
+                ,name: 'setting_notifyTwitter'
+                ,hiddenName: 'setting_notifyTwitter'
+                ,id: 'articles-setting-notifyTwitter'
+                ,fieldLabel: _('articles.setting.notifyTwitter')
+                ,description: MODx.expandHelp ? '' : _(twitterAuthedLexiconKey,{
+                    authUrl: Articles.assets_url+'twitter.auth.php?container='+MODx.request.id
+                })
+                ,anchor: '30%'
+                ,value: false
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-notifyTwitter'
+                ,html: _(twitterAuthedLexiconKey,{
+                    authUrl: Articles.assets_url+'twitter.auth.php?container='+MODx.request.id
+                })
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'text-password'
+                ,name: 'setting_notifyTwitterConsumerKey'
+                ,id: 'articles-setting-notifyTwitterConsumerKey'
+                ,fieldLabel: _('articles.setting.notifyTwitterConsumerKey')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.notifyTwitterConsumerKey_desc')
+                ,anchor: '100%'
+                ,value: ''
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-notifyTwitterConsumerKey'
+                ,html: _('articles.setting.notifyTwitterConsumerKey_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'text-password'
+                ,name: 'setting_notifyTwitterConsumerKeySecret'
+                ,id: 'articles-setting-notifyTwitterConsumerKeySecret'
+                ,fieldLabel: _('articles.setting.notifyTwitterConsumerKeySecret')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.notifyTwitterConsumerKeySecret_desc')
+                ,anchor: '100%'
+                ,value: ''
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-notifyTwitterConsumerKeySecret'
+                ,html: _('articles.setting.notifyTwitterConsumerKeySecret_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_notifyTwitterTpl'
+                ,id: 'articles-setting-notifyTwitterTpl'
+                ,fieldLabel: _('articles.setting.notifyTwitterTpl')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.notifyTwitterTpl_desc')
+                ,anchor: '100%'
+                ,value: ''
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-notifyTwitterTpl'
+                ,html: _('articles.setting.notifyTwitterTpl_desc')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'articles-combo-shorteners'
+                ,name: 'setting_shorteningService'
+                ,hiddenName: 'setting_shorteningService'
+                ,id: 'articles-setting-shorteningService'
+                ,fieldLabel: _('articles.setting.shorteningService')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.shorteningService_desc')
+                ,anchor: '30%'
+                ,value: 'tinyurl'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-shorteningService'
+                ,html: _('articles.setting.shorteningService_desc')
                 ,cls: 'desc-under'
 
             }]
@@ -1412,3 +1501,25 @@ Ext.extend(Articles.panel.ContainerTemplateSettings,MODx.Panel,{
     }
 });
 Ext.reg('articles-tab-template-settings',Articles.panel.ContainerTemplateSettings);
+
+Articles.combo.Shorteners = function(config) {
+    config = config || {};
+    Ext.applyIf(config,{
+        store: new Ext.data.SimpleStore({
+            fields: ['d','v']
+            ,data: [[_('none'),''],['Tinyurl','tinyurl'],['Digg','digg'],['Isgd','isgd'],['Bit.ly','bitly']]
+        })
+        ,displayField: 'd'
+        ,valueField: 'v'
+        ,mode: 'local'
+        ,triggerAction: 'all'
+        ,editable: false
+        ,selectOnFocus: false
+        ,preventRender: true
+        ,forceSelection: true
+        ,enableKeyEvents: true
+    });
+    Articles.combo.Shorteners.superclass.constructor.call(this,config);
+};
+Ext.extend(Articles.combo.Shorteners,MODx.combo.ComboBox);
+Ext.reg('articles-combo-shorteners',Articles.combo.Shorteners);

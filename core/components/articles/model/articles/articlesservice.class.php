@@ -123,4 +123,5 @@ class ArticlesService {
         }
         return $chunk;
     }
+
 }

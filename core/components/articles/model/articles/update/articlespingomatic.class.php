@@ -22,9 +22,9 @@
 require_once (dirname(__FILE__).'/articlesnotifyservice.class.php');
 /**
  * @package articles
- * @subpackage notify
+ * @subpackage updateservices
  */
-class ArticlesPingomatic extends ArticlesNotifyService {
+class ArticlesPingomatic extends ArticlesUpdateService {
     public $ch;
 
     public function notify($title,$url) {

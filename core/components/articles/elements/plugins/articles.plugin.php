@@ -39,6 +39,7 @@ switch ($modx->event->name) {
         $resource =& $scriptProperties['resource'];
         if ($resource instanceof Article) {
             $resource->notifyUpdateServices();
+            $resource->sendNotifications();
         }
         break;
     case 'OnDocUnPublished':

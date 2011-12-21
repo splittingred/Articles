@@ -21,9 +21,9 @@
  */
 /**
  * @package articles
- * @subpackage notify
+ * @subpackage updateservices
  */
-abstract class ArticlesNotifyService {
+abstract class ArticlesUpdateService {
     /** @var modX $xpdo */
     public $modx;
     /** @var Article $article */

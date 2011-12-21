@@ -112,6 +112,7 @@ $_lang['articles.settings_comments_moderation'] = 'Security';
 $_lang['articles.settings_comments_other'] = 'Other';
 $_lang['articles.settings_general'] = 'General';
 $_lang['articles.settings_latest_posts'] = 'Latest Posts';
+$_lang['articles.settings_notifications'] = 'Notifications';
 $_lang['articles.settings_pagination'] = 'Pagination';
 $_lang['articles.settings_rss'] = 'RSS';
 $_lang['articles.settings_tagging'] = 'Tagging';
@@ -121,6 +122,7 @@ $_lang['articles.template'] = 'Template';
 $_lang['articles.template_desc'] = 'The Template that the main listing view uses.';
 $_lang['articles.tags'] = 'Tags';
 $_lang['articles.unpublished'] = 'Not Published';
+$_lang['none'] = 'None';
 
 /* General */
 $_lang['articles.setting.updateServicesEnabled'] = 'Enable Update Services';
@@ -212,6 +214,19 @@ $_lang['articles.setting.latestPostsTpl'] = 'Latest Articles Chunk';
 $_lang['articles.setting.latestPostsTpl_desc'] = 'The Chunk to use for each Latest Article.';
 $_lang['articles.setting.latestPostsLimit'] = 'Latest Articles to Show';
 $_lang['articles.setting.latestPostsLimit_desc'] = 'The number of latest Articles to show.';
+
+/* Notifications */
+$_lang['articles.setting.notifyTwitter'] = 'Send to Twitter';
+$_lang['articles.setting.notifyTwitter_desc'] = 'Automatically post link to Twitter when Article is published.';
+$_lang['articles.setting.notifyTwitter_notyet_desc'] = 'Automatically post link to Twitter when Article is published. <strong>Note: You must first visit <a href="[[+authUrl]]" target="_blank">the authentication page</a> to authenticate Articles to your Twitter account!</storng>';
+$_lang['articles.setting.notifyTwitterConsumerKey'] = 'Twitter Consumer Key';
+$_lang['articles.setting.notifyTwitterConsumerKey_desc'] = 'Optional. The Consumer Key for your Twitter account that maps to the Twitter app used for authentication. If not set, will use the MODX-Articles default. Override with your own Twitter App Consumer Key Secret for more security.';
+$_lang['articles.setting.notifyTwitterConsumerKeySecret'] = 'Secret Twitter Consumer Key';
+$_lang['articles.setting.notifyTwitterConsumerKeySecret_desc'] = 'Optional. The Secret Access Token for your Twitter that maps to the Twitter app used for authentication. If not set, will use the MODX-Articles default. Override with your own Twitter App Consumer Key Secret for more security.';
+$_lang['articles.setting.notifyTwitterTpl'] = 'Twitter Template';
+$_lang['articles.setting.notifyTwitterTpl_desc'] = 'The template that the message to Twitter will be sent as.';
+$_lang['articles.setting.shorteningService'] = 'URL Shortener';
+$_lang['articles.setting.shorteningService_desc'] = 'The service to use for shortening URLs. Set to None to not shorten URLs.';
 
 /* Latest Comments */
 $_lang['articles.setting.latestCommentsTpl'] = 'Latest Comments Chunk';

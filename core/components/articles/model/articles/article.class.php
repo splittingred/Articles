@@ -156,6 +156,27 @@ class Article extends modResource {
         return $call;
     }
 
+    public function sendNotifications() {
+        $success = false;
+        $settings = $this->getContainerSettings();
+        if (empty($settings['notificationServices'])) return $success;
+        $services = explode(',',$settings['notificationServices']);
+        $modelPath = $this->xpdo->getOption('articles.core_path',null,$this->xpdo->getOption('core_path').'components/articles/').'model/articles/';
+
+        foreach ($services as $service) {
+            $className = 'ArticlesNotification'.ucfirst(strtolower($service));
+            $classPath = $modelPath.'notification/'.strtolower($className).'.class.php';
+            if (file_exists($classPath)) {
+                require_once $classPath;
+                /** @var ArticlesNotification $notifier */
+                $notifier = new $className($this);
+                $url = $this->xpdo->makeUrl($this->get('id'),$this->get('context_key'),'','full');
+                $success = $notifier->send($this->get('pagetitle'),$url);
+            }
+        }
+        return $success;
+    }
+
     /**
      * Send any notification pings to notification services, such as Ping-O-Matic
      * @return boolean
@@ -181,12 +202,12 @@ class Article extends modResource {
     protected function getUpdateService() {
         $settings = $this->getContainerSettings();
         $modelPath = $this->xpdo->getOption('articles.core_path',null,$this->xpdo->getOption('core_path').'components/articles/').'model/articles/';
-        $notificationServiceClass = $this->getOption('notificationServiceClass',$settings,'ArticlesPingomatic');
-        $notificationServicePath = $this->getOption('notificationServicePath',$settings,$modelPath.'notify/articlespingomatic.class.php');
-        $included = include_once $notificationServicePath;
+        $updateServiceClass = $this->getOption('updateServiceClass',$settings,'ArticlesPingomatic');
+        $updateServicePath = $this->getOption('updateServicePath',$settings,$modelPath.'update/articlespingomatic.class.php');
+        $included = include_once $updateServicePath;
         $service = false;
         if ($included) {
-            $service = new $notificationServiceClass($this);
+            $service = new $updateServiceClass($this);
         }
         return $service;
     }
@@ -320,6 +341,7 @@ class ArticleCreateProcessor extends modResourceCreateProcessor {
         $this->clearContainerCache();
         if ($this->isPublishing) {
             $this->object->notifyUpdateServices();
+            $this->object->sendNotifications();
         }
         return $afterSave;
     }
@@ -492,6 +514,7 @@ class ArticleUpdateProcessor extends modResourceUpdateProcessor {
         $afterSave = parent::afterSave();
         if ($this->isPublishing) {
             $this->object->notifyUpdateServices();
+            $this->object->sendNotifications();
         }
         $this->clearContainerCache();
         return $afterSave;
