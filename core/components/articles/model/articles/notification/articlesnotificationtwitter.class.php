@@ -36,6 +36,7 @@ class ArticlesNotificationTwitter extends ArticlesNotification {
         $this->initialize();
         $url = $this->shorten($url);
         $message = $this->getMessage($title,$url);
+        return true;
         return $this->update($message);
     }
 
@@ -164,7 +165,10 @@ abstract class ArticlesTwitterShortener {
                     CURLOPT_URL => $requestUrl,
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_USERAGENT => $userAgent,
+                    CURLOPT_TIMEOUT => 30,
                 );
+                if (ini_get('open_basedir') == '' && ini_get('safe_mode' == 'Off')) $options[CURLOPT_FOLLOWLOCATION] = true;
+                $options[CURLOPT_RETURNTRANSFER] = true;
                 $this->prepareCurlOptions($options);
                 curl_setopt_array($ch, $options);
                 $response = curl_exec($ch);
@@ -193,6 +197,11 @@ abstract class ArticlesTwitterShortener {
     }
 }
 
+/**
+ * @package articles
+ * @subpackage twitter
+ * @deprecated Apparently bit.ly requires OAuth now; that's gonna be a pain to sort out; delaying for a further release.
+ */
 class ArticlesShortenerBitly extends ArticlesTwitterShortener {
     protected function getServiceUrl() {
         return $this->modx->getOption('articles.bitly.api_url',null,'http://api.bit.ly/shorten');
@@ -211,6 +220,7 @@ class ArticlesShortenerBitly extends ArticlesTwitterShortener {
     protected function parseResponse($response,$longUrl) {
         /** @var SimpleXmlElement $xml */
         $xml = simplexml_load_string($response);
+        $this->modx->log(modX::LOG_LEVEL_ERROR,print_r($xml,true));
         if ($xml->errorCode == 0) {
             $url = $xml->results->nodeKeyVal->shortUrl;
         } else {

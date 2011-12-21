@@ -1524,7 +1524,13 @@ Articles.combo.Shorteners = function(config) {
     Ext.applyIf(config,{
         store: new Ext.data.SimpleStore({
             fields: ['d','v']
-            ,data: [[_('none'),''],['Tinyurl','tinyurl'],['Digg','digg'],['Isgd','isgd'],['Bit.ly','bitly']]
+            ,data: [
+                [_('none'),'']
+                ,['Tinyurl','tinyurl']
+                ,['Digg','digg']
+                ,['Isgd','isgd']
+            /*    ,['Bit.ly','bitly'] */
+            ]
         })
         ,displayField: 'd'
         ,valueField: 'v'
