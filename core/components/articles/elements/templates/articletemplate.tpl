@@ -43,7 +43,7 @@
 [[*articlestags:notempty=`
   <span class="tags left">&nbsp;| Tags: [[!tolinks? &useTagsFurl=`1` &items=`[[*articlestags]]` &target=`[[*parent]]`]]</span>
 `]]
-[[!+comments_enabled:is=`1`:then=`&nbsp;| <a href="[[~[[*id]]]]#comments" class="comments">Comments ([[!QuipCount? &thread=`article-b[[*parent]]-[[*id]]`]])</a>`]]
+[[+comments_enabled:is=`1`:then=`&nbsp;| <a href="[[~[[*id]]]]#comments" class="comments">Comments ([[!QuipCount? &thread=`article-b[[*parent]]-[[*id]]`]])</a>`]]
 </p>
 <div class="entry">
 <p>[[*introtext]]</p>

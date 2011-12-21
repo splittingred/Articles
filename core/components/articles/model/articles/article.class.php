@@ -41,7 +41,6 @@ class Article extends modResource {
     }
 
     public function getContent(array $options = array()) {
-        $content = parent::getContent($options);
         if ($this->xpdo instanceof modX) {
             $settings = $this->getContainerSettings();
             if ($this->xpdo->getOption('commentsEnabled',$settings,true)) {
@@ -52,6 +51,7 @@ class Article extends modResource {
                 $this->xpdo->setPlaceholder('comments_enabled',0);
             }
         }
+        $content = parent::getContent($options);
         return $content;
     }
 
