@@ -1,5 +1,5 @@
 --------------------
-Articles - 1.0
+Articles - 1.4
 --------------------
 
 First Released: November 29th, 2011
