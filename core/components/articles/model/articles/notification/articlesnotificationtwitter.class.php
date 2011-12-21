@@ -36,7 +36,6 @@ class ArticlesNotificationTwitter extends ArticlesNotification {
         $this->initialize();
         $url = $this->shorten($url);
         $message = $this->getMessage($title,$url);
-        return true;
         return $this->update($message);
     }
 
