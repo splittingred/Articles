@@ -46,7 +46,17 @@ class Article extends modResource {
             if ($this->xpdo->getOption('commentsEnabled',$settings,true)) {
                 $this->getCommentsCall($settings);
                 $this->getCommentsReplyCall($settings);
+                $this->getCommentsCountCall($settings);
+                $this->getTagsCall($settings);
                 $this->xpdo->setPlaceholder('comments_enabled',1);
+                /** @var ArticlesContainer $container */
+                $container = $this->getOne('Container');
+                if ($container) {
+                    $container->getArchivistCall();
+                    $container->getLatestCommentsCall();
+                    $container->getLatestPostsCall();
+                    $container->getTagListerCall();
+                }
             } else {
                 $this->xpdo->setPlaceholder('comments_enabled',0);
             }
@@ -156,6 +166,29 @@ class Article extends modResource {
         return $call;
     }
 
+    /**
+     * @param array $settings
+     * @return string
+     */
+    public function getCommentsCountCall(array $settings = array()) {
+        $call = '[[!QuipCount? &thread=`article-b'.$this->get('parent').'-'.$this->get('id').'`]]';
+        $this->xpdo->setPlaceholder('comments_count',$call);
+        return $call;
+    }
+
+    /**
+     * @param array $settings
+     * @return string
+     */
+    public function getTagsCall(array $settings = array()) {
+        $call = '[[!tolinks? &useTagsFurl=`1` &items=`[[*articlestags]]` &target=`'.$this->get('parent').'`]]';
+        $this->xpdo->setPlaceholder('article_tags',$call);
+        return $call;
+    }
+
+    /**
+     * @return boolean
+     */
     public function sendNotifications() {
         $success = false;
         $settings = $this->getContainerSettings();

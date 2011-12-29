@@ -36,34 +36,85 @@
 
 <!-- main -->
 <div id="main" class="grid_12">
-
-<h2 class="title"><a href="[[~[[*id]]]]">[[*pagetitle]]</a></h2>
-<p class="post-info">
-    <span class="left">Posted on [[*publishedon:strtotime:date=`%b %d, %Y`]] by <a href="[[~[[*parent]]]]author/[[*publishedby:userinfo=`username`]]">[[*publishedby:userinfo=`username`]]</a></span>
+    <h2 class="title"><a href="[[~[[*id]]]]">[[*pagetitle]]</a></h2>
+    <p class="post-info">
+        <span class="left">Posted on [[*publishedon:strtotime:date=`%b %d, %Y`]] by <a href="[[~[[*parent]]]]author/[[*publishedby:userinfo=`username`]]">[[*publishedby:userinfo=`username`]]</a></span>
 [[*articlestags:notempty=`
-  <span class="tags left">&nbsp;| Tags: [[!tolinks? &useTagsFurl=`1` &items=`[[*articlestags]]` &target=`[[*parent]]`]]</span>
+        <span class="tags left">&nbsp;| Tags: [[+article_tags]]</span>
 `]]
-[[+comments_enabled:is=`1`:then=`&nbsp;| <a href="[[~[[*id]]]]#comments" class="comments">Comments ([[!QuipCount? &thread=`article-b[[*parent]]-[[*id]]`]])</a>`]]
-</p>
-<div class="entry">
-<p>[[*introtext]]</p>
+        [[+comments_enabled:is=`1`:then=`&nbsp;| <a href="[[~[[*id]]]]#comments" class="comments">Comments ([[+comments_count]])</a>`]]
+    </p>
+    <div class="entry">
+        <p>[[*introtext]]</p>
+        <hr />
+        [[*content]]
+    </div>
 
-<hr />
+    <hr />
 
-[[*content]]
-
+    <div class="post-comments" id="comments">
+        [[+comments]]
+        <br />
+        <h3>Add a Comment</h3>
+        [[+comments_form]]
+    </div>
 </div>
 
-<hr />
+<div id="left-columns" class="grid_4">
+  <div class="grid_4 alpha">
 
-<div class="post-comments" id="comments">
-[[+comments]]
-<br />
-<h3>Add a Comment</h3>
-[[+comments_form]]
+    <div class="sidemenu">
+      <h3>Latest Posts</h3>
+      <ul>
+      [[+latest_posts]]
+      </ul>
+    </div>
 
+    [[+comments_enabled:is=`1`:then=`
+    <div class="sidemenu">
+      <h3>Latest Comments</h3>
+      <ul>
+      [[+latest_comments]]
+      </ul>
+    </div>
+    `]]
+  </div>
+  <!-- end left-columns -->
 </div>
+<!-- contents end here -->
 
+
+</div></div>
+
+<!-- footer starts here -->
+<div id="footer-wrapper" class="container_12">
+
+  <div id="footer-content">
+    <div class="grid_4">
+<h3>Tags</h3>
+[[+tags]]
+    </div>
+    <div class="grid_4">
+  <h3>Archives</h3>
+  [[+archives]]
+    </div>
+  </div>
+  <div id="footer-bottom">
+   <p class="bottom-left">
+&nbsp; &copy; 2010-2012 Articles. all rights reserved.
+      &nbsp; &nbsp; powered by <a href="http://modx.com/">modx revolution</a>
+      &nbsp; &nbsp; <a href="http://www.bluewebtemplates.com/" title="Website Templates">website templates</a> by <a href="http://www.styleshout.com/">styleshout</a>
+      </p>
+
+      <p class="bottom-right" >
+        <a href="[[~1]]">Home</a> |
+        <a href="[[~1]]">Sitemap</a> |
+        <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> |
+             <a href="http://validator.w3.org/check/referer">XHTML</a>
+      </p>
+
+  </div>
+</div>
 
 </body>
 </html>

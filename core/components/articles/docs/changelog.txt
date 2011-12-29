@@ -2,6 +2,7 @@ Changelog for Articles.
 
 Articles 1.4.1
 ===============================
+- Add in container calls to each Article to allow sidebars
 - [#6471] Fix issue with MODX import when no TV value is set yet TV is set to import
 - [#6490] Fix missing <ul> in container template
 
