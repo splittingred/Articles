@@ -36,6 +36,10 @@ class ArticlesImportMODX extends ArticlesImport {
         if ($c === false) return $imported;
 
         $resources = $this->modx->getIterator('modResource',$c);
+        if (empty($resources)) {
+            $this->processor->addFieldError('parents','No resources found!');
+            return false;
+        }
         foreach ($resources as $resource) {
             $imported = $this->importResource($resource);
         }
@@ -110,6 +114,7 @@ class ArticlesImportMODX extends ArticlesImport {
         $where['id:!='] = array((int)$this->modx->getOption('site_start',null,1));
 
         $where['isfolder'] = false;
+        $where['class_key:!='] = 'Article';
         $c->where($where);
 
         if (!empty($this->config['modx-tagsField'])) {
@@ -139,7 +144,7 @@ class ArticlesImportMODX extends ArticlesImport {
             /** @var modTemplateVar $tv */
             $tv = $this->modx->getObject('modTemplateVar',$tagsField);
             if ($tv) {
-                $c->innerJoin('modTemplateVarResource','Tags',array(
+                $c->leftJoin('modTemplateVarResource','Tags',array(
                     'Tags.contentid = modResource.id',
                     'Tags.tmplvarid' => $tv->get('id'),
                 ));
