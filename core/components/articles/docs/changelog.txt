@@ -1,5 +1,9 @@
 Changelog for Articles.
 
+Articles 1.4.1
+===============================
+- [#6490] Fix missing <ul> in container template
+
 Articles 1.4.0
 ===============================
 - Add limiter for number of hashtags that are tweeted

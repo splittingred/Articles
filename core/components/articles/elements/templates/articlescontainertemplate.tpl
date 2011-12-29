@@ -15,7 +15,7 @@
     <p id="intro">Articles By Me</p>
     <!-- navigation -->
     <div id="nav">
-      <ul><li class="first"><a href="[[~[[*id]]]]" title="Home" >Home</a></li>
+      <ul><li class="first"><a href="[[~[[*id]]]]" title="Home" >Home</a></li></ul>
     </div>
     <div id="header-image"></div>
       <div id="search">
