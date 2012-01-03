@@ -34,4 +34,12 @@ $snippets[1]->fromArray(array(
     'description' => 'Utility snippet for Articles; splits strings by a delimiter and chunkifys the result.',
     'snippet' => file_get_contents($sources['snippets'].'snippet.articlesstringsplitter.php'),
 ));
+
+$snippets[2]= $modx->newObject('modChunk');
+$snippets[2]->fromArray(array(
+    'id' => 2,
+    'name' => 'Articles',
+    'description' => 'Displays Articles for a Container anywhere on your MODX site.',
+    'snippet' => file_get_contents($sources['snippets'].'snippet.articles.php'),
+));
 return $snippets;

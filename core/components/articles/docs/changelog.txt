@@ -2,6 +2,7 @@ Changelog for Articles.
 
 Articles 1.4.2
 ===============================
+- Add Articles snippet for easy displaying of articles anywhere on site
 - [#6534] Add confirmation for delete article in grid
 - [#6535] Fix issue with incorrect include reference for update services
 - [#6535] Fix issue with url generation for twitter posting on first save
