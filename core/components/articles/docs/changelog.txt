@@ -1,5 +1,9 @@
 Changelog for Articles.
 
+Articles 1.4.3
+===============================
+- Update tagLister to 1.1.5
+
 Articles 1.4.2
 ===============================
 - Add Articles snippet for easy displaying of articles anywhere on site

@@ -32,7 +32,7 @@ $subpackages = array(
     'getpage'        => 'getpage-1.2.2-pl',
     'getresources'   => 'getresources-1.4.2-pl',
     'quip'           => 'quip-2.1.3-pl',
-    'taglister'      => 'taglister-1.1.4-pl',
+    'taglister'      => 'taglister-1.1.5-pl',
 );
 $spAttr = array('vehicle_class' => 'xPDOTransportVehicle');
 
