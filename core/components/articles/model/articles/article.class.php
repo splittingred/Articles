@@ -196,6 +196,10 @@ class Article extends modResource {
         $services = explode(',',$settings['notificationServices']);
         $modelPath = $this->xpdo->getOption('articles.core_path',null,$this->xpdo->getOption('core_path').'components/articles/').'model/articles/';
 
+        /* get context to prepare url mapping */
+        $this->xpdo->getContext($this->get('context_key'));
+        $url = $this->xpdo->makeUrl($this->get('id'),$this->get('context_key'),'','full');
+
         foreach ($services as $service) {
             $className = 'ArticlesNotification'.ucfirst(strtolower($service));
             $classPath = $modelPath.'notification/'.strtolower($className).'.class.php';
@@ -203,7 +207,6 @@ class Article extends modResource {
                 require_once $classPath;
                 /** @var ArticlesNotification $notifier */
                 $notifier = new $className($this);
-                $url = $this->xpdo->makeUrl($this->get('id'),$this->get('context_key'),'','full');
                 $success = $notifier->send($this->get('pagetitle'),$url);
             }
         }
@@ -221,7 +224,7 @@ class Article extends modResource {
 
         $service = $this->getUpdateService();
         if ($service) {
-            /** @var ArticlesNotifyService $service */
+            /** @var ArticlesUpdateService $service */
             $url = $this->xpdo->makeUrl($this->get('id'),$this->get('context_key'),'','full');
             $success = $service->notify($this->get('pagetitle'),$url);
         }
