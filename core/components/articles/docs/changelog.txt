@@ -2,6 +2,7 @@ Changelog for Articles.
 
 Articles 1.4.2
 ===============================
+- [#6534] Add confirmation for delete article in grid
 - [#6535] Fix issue with incorrect include reference for update services
 - [#6535] Fix issue with url generation for twitter posting on first save
 - [#6542] Fix right-click edit article from grid issue

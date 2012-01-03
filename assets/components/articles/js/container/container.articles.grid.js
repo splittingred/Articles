@@ -231,8 +231,10 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
     }
 
     ,deleteArticle: function(btn,e) {
-        MODx.Ajax.request({
-            url: MODx.config.connectors_url+'resource/index.php'
+        MODx.msg.confirm({
+            title: _('articles.article_delete')
+            ,text: _('articles.article_delete_confirm')
+            ,url: MODx.config.connectors_url+'resource/index.php'
             ,params: {
                 action: 'delete'
                 ,id: this.menu.record.id
