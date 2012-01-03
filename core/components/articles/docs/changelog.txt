@@ -1,5 +1,9 @@
 Changelog for Articles.
 
+Articles 1.4.2
+===============================
+- [#6542] Fix right-click edit article from grid issue
+
 Articles 1.4.1
 ===============================
 - Add in container calls to each Article to allow sidebars

@@ -136,7 +136,7 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
 
         m.push({
            text: _('articles.article_edit')
-           ,handler: this.editPost
+           ,handler: this.editArticle
         });
         return m;
     }
