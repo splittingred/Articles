@@ -27,7 +27,7 @@
  */
 $snippets = array();
 
-$snippets[1]= $modx->newObject('modChunk');
+$snippets[1]= $modx->newObject('modSnippet');
 $snippets[1]->fromArray(array(
     'id' => 1,
     'name' => 'ArticlesStringSplitter',
@@ -35,7 +35,7 @@ $snippets[1]->fromArray(array(
     'snippet' => file_get_contents($sources['snippets'].'snippet.articlesstringsplitter.php'),
 ));
 
-$snippets[2]= $modx->newObject('modChunk');
+$snippets[2]= $modx->newObject('modSnippet');
 $snippets[2]->fromArray(array(
     'id' => 2,
     'name' => 'Articles',

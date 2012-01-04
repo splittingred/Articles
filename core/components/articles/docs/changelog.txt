@@ -2,6 +2,7 @@ Changelog for Articles.
 
 Articles 1.4.3
 ===============================
+- [#6553] Fix issue with build where snippets were set as chunks
 - Update tagLister to 1.1.5
 
 Articles 1.4.2
