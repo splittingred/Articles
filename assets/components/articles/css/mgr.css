@@ -12,6 +12,7 @@
   line-height:1;
   padding-right:10px;
   text-align:right;
+  margin-top: -4px;
 }
 .articles-grid-date .articles-grid-time {
   display:block;
@@ -38,14 +39,6 @@
 .articles-comments-col-header {
     margin-left:7px;
 }
-
-.main-column {
-  font-family:arial, Helvetica, sans-serif;
-  font-size:20px;
-  letter-spacing:-1px;
-  line-height:1;
-  margin:0 0 5px;
-}
 .main-column a {
   color:#485319;
   line-height:1;
@@ -61,17 +54,6 @@
 
 
 .articles-panel-spacer .x-panel-body { background: transparent !important; }
-
-.actions {
-  margin: 15px 0 0;
-  overflow:hidden;
-  position: relative;
-}
-.actions li {
-  float:left;
-  line-height:0.7;
-  margin-right:2px;
-}
 .actions a {
   -moz-border-radius:3px;
   -webkit-border-radius:3px;
