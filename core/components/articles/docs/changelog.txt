@@ -1,5 +1,9 @@
 Changelog for Articles.
 
+Articles 1.4.4
+===============================
+- Update Quip to 2.2.0-pl
+
 Articles 1.4.3
 ===============================
 - [#6553] Fix issue with build where snippets were set as chunks

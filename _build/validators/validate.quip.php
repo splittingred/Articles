@@ -35,7 +35,7 @@ if ($transport && $transport->xpdo) {
             $modx =& $transport->xpdo;
 
             /* define Quip version */
-            $newVersion = '2.1.3-pl';
+            $newVersion = '2.2.0-pl';
             $newVersionMajor = '2';
             $name = 'quip';
 
