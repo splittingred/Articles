@@ -38,6 +38,7 @@ Articles.grid.ContainerArticles = function(config) {
         },{
             header: _('articles.article_title')
             ,dataIndex: 'pagetitle'
+			,id: 'main'
             ,width: 200
             ,sortable: true
             ,renderer: {fn:this._renderPageTitle,scope:this}
