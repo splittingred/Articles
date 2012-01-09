@@ -142,7 +142,7 @@ $_lang['articles.setting.archivesProcessTVs_desc'] = 'If on, will process the TV
 $_lang['articles.setting.processTVsList'] = 'Process TVs List';
 $_lang['articles.setting.processTVsList_desc'] = 'An optional comma-delimited list of TemplateVar names to process explicitly. TemplateVars specified here must be included via Include TVs/Include TVs List.';
 $_lang['articles.setting.otherGetArchives'] = 'Other Listing Parameters';
-$_lang['articles.setting.otherGetArchives_desc'] = 'Any other properties you would like to add to the getResources/getPage call for the Articles listing page. Put them in MODX tag syntax, as if you were adding it to the tag call (eg, &property=`value`)';
+$_lang['articles.setting.otherGetArchives_desc'] = 'Any other properties you would like to add to the getResources/getPage call for the Articles listing page. Put them in MODX tag syntax, as if you were adding it to the tag call (eg, &property=`value`).';
 
 /* template / archives settings */
 $_lang['articles.setting.articleTemplate'] = 'Article Template';
@@ -177,7 +177,7 @@ $_lang['articles.setting.pageFirstTpl'] = 'Page First Tpl';
 $_lang['articles.setting.pageFirstTpl_desc'] = 'Content representing the first page navigation control.';
 $_lang['articles.setting.pageLastTpl'] = 'Page Last Tpl';
 $_lang['articles.setting.pageLastTpl_desc'] = 'Content representing the last page navigation control.';
-$_lang['articles.setting.pagePrevTpl'] = 'Page Prev';
+$_lang['articles.setting.pagePrevTpl'] = 'Page Prev Tpl';
 $_lang['articles.setting.pagePrevTpl_desc'] = 'Content representing the previous page navigation control.';
 $_lang['articles.setting.pageNextTpl'] = 'Page Next Tpl';
 $_lang['articles.setting.pageNextTpl_desc'] = 'Content representing the next page navigation control.';
@@ -220,14 +220,14 @@ $_lang['articles.setting.latestPostsLimit_desc'] = 'The number of latest Article
 /* Notifications */
 $_lang['articles.setting.notifyTwitter'] = 'Send to Twitter';
 $_lang['articles.setting.notifyTwitter_desc'] = 'Automatically post link to Twitter when Article is published.';
-$_lang['articles.setting.notifyTwitter_notyet_desc'] = 'Automatically post link to Twitter when Article is published. <strong>Note: You must first visit <a href="[[+authUrl]]" target="_blank">the authentication page</a> to authenticate Articles to your Twitter account!</storng>';
+$_lang['articles.setting.notifyTwitter_notyet_desc'] = 'Automatically post link to Twitter when Article is published. <strong>Note: You must first visit <a href="[[+authUrl]]" target="_blank">the authentication page</a> to authenticate Articles to your Twitter account!</strong>';
 $_lang['articles.setting.notifyTwitterConsumerKey'] = 'Twitter Consumer Key';
-$_lang['articles.setting.notifyTwitterConsumerKey_desc'] = 'Optional. The Consumer Key for your Twitter account that maps to the Twitter app used for authentication. If not set, will use the MODX-Articles default. Override with your own Twitter App Consumer Key Secret for more security.';
+$_lang['articles.setting.notifyTwitterConsumerKey_desc'] = 'Optional. The Consumer Key for your Twitter account that maps to the Twitter app used for authentication. If not set, will use the MODX-Articles default. Override with your own Twitter App Consumer Key for more security.';
 $_lang['articles.setting.notifyTwitterConsumerKeySecret'] = 'Secret Twitter Consumer Key';
 $_lang['articles.setting.notifyTwitterConsumerKeySecret_desc'] = 'Optional. The Secret Access Token for your Twitter that maps to the Twitter app used for authentication. If not set, will use the MODX-Articles default. Override with your own Twitter App Consumer Key Secret for more security.';
 $_lang['articles.setting.notifyTwitterTpl'] = 'Twitter Template';
 $_lang['articles.setting.notifyTwitterTpl_desc'] = 'The template that the message to Twitter will be sent as.';
-$_lang['articles.setting.notifyTwitterTagLimit'] = 'Twitter Template';
+$_lang['articles.setting.notifyTwitterTagLimit'] = 'Twitter Tag Limit';
 $_lang['articles.setting.notifyTwitterTagLimit_desc'] = 'The number of tags to be used when [[+hashtags]] is used in the tpl; this placeholder appends tags as hashtags to the Tweet.';
 $_lang['articles.setting.shorteningService'] = 'URL Shortener';
 $_lang['articles.setting.shorteningService_desc'] = 'The service to use for shortening URLs. Set to None to not shorten URLs.';
@@ -250,7 +250,7 @@ $_lang['articles.setting.commentsEnabled_desc'] = 'Whether or not to enable comm
 $_lang['articles.setting.commentsThreaded'] = 'Threaded Comments';
 $_lang['articles.setting.commentsThreaded_desc'] = 'Whether or not this thread can have threaded comments. Threaded comments allow users to comment on comments, increasing the level of indentation. Non-threaded comments allow users to comment only on the parent article, not on the comments.';
 $_lang['articles.setting.commentsReplyResourceId'] = 'Reply Resource ID';
-$_lang['articles.setting.commentsReplyResourceId_desc'] = 'The ID of the Resource where the QuipReply snippet is held, for replying to threaded comments. <b>This is required for threaded comments.</b>';
+$_lang['articles.setting.commentsReplyResourceId_desc'] = 'The ID of the Resource where the QuipReply snippet is held, for replying to threaded comments. <strong>This is required for threaded comments.</strong>';
 $_lang['articles.setting.commentsMaxDepth'] = 'Maximum Threading Depth';
 $_lang['articles.setting.commentsMaxDepth_desc'] = 'The maximum depth that replies can be made in a threaded comment thread.';
 $_lang['articles.setting.commentsTplComment'] = 'Comment Chunk';
