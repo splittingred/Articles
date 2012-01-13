@@ -59,7 +59,7 @@ $_lang['articles.container_description'] = 'Описание';
 $_lang['articles.container_description_desc'] = 'Краткое описание вашего контейнера статей.';
 $_lang['articles.container_menutitle_desc'] = 'Заголовок используется, когда показывается в навигационном меню.';
 $_lang['articles.container_new'] = 'Новый контейнер статей';
-$_lang['articles.container_publish'] = 'Publish Articles Container';
+$_lang['articles.container_publish'] = 'Опубликовать контейнер статей';
 $_lang['articles.container_settings'] = 'Настройки контейнера';
 $_lang['articles.container_title'] = 'Заголовок контейнера';
 $_lang['articles.container_title_desc'] = 'Заголовок вашего контейнера статей.';
@@ -73,12 +73,12 @@ $_lang['articles.import_blogger_file_desc'] = 'Выберите xml-файл Blo
 $_lang['articles.import_blogger_file_err_nf'] = 'Пожалуйста выберите XML-файл экспорта из Blogger.';
 $_lang['articles.import_blogger_file_server'] = 'XML-файл экспорта из Blogger на сервере';
 $_lang['articles.import_blogger_file_server_desc'] = 'Или, как вариант, укажите абсолютный путь к XML-файлу Blogger, который вы получили, когда вы делали экспорт из Blogger и который расположен на вашем сервере. Вы можете использовать {core_path}, {base_path} и {assets_path} в качестве переменных.';
-$_lang['articles.import_modx_change_template'] = 'Изменить шаблон контейнера';
-    $_lang['articles.import_modx_change_template_desc'] = 'If checked, will change the Template of the new Article to this Article Container\'s Template. Recommended to leave checked.';
-    $_lang['articles.import_modx_commentsThreadNameFormat'] = 'Quip Thread Name Format';
-    $_lang['articles.import_modx_commentsThreadNameFormat_desc'] = 'The name format (such as "blog-post-[[*id]]") that you set for the thread property for Quip. Use [[*id]] to replace with the imported Resource\'s ID. Leave blank to not import comments.';
-    $_lang['articles.import_modx_err_no_criteria'] = 'Please specify at least one limiting factor in the import criteria.';
-    $_lang['articles.import_modx_intro'] = 'This will import content, tags and comments from existing MODX Resources. Note that this does not import any content outside of the main content field, comments and the tags field.';
+$_lang['articles.import_modx_change_template'] = 'Изменять шаблон контейнера';
+$_lang['articles.import_modx_change_template_desc'] = 'Если выбрано, шаблон новой статьи будет изменен на шаблон этого контейнера статей. Рекомендуется оставить включенным.';
+$_lang['articles.import_modx_commentsThreadNameFormat'] = 'Формат имени ветки Quip';
+$_lang['articles.import_modx_commentsThreadNameFormat_desc'] = 'Определение формата (такого как "blog-post-[[*id]]") который вы устанавливаете в качестве свойства для блока комментариев. Используйте [[*id]] чтобы заменить на ID импортированных ресурсов. Не заполняйте, чтобы не импортировать комментарии.';
+$_lang['articles.import_modx_err_no_criteria'] = 'Укажите хотя бы одно ограничение в настройках импорта.';
+$_lang['articles.import_modx_intro'] = 'Будет импортировано содержание, теги и комментарии из существующих ресурсов MODx. Заметье, что любой другой контент, не из главного поля содержимого, комментариев и поля тегов не будет импортирован.';
 $_lang['articles.import_modx_hidemenu'] = 'Имопртировать скрытые ресурсы';
 $_lang['articles.import_modx_hidemenu_desc'] = 'Если выбрано, будут также импортированы ресурсы помеченые как "Не показывать в меню".';
 $_lang['articles.import_modx_parents'] = 'Родительский ресурс(ы)';
@@ -125,42 +125,42 @@ $_lang['articles.unpublished'] = 'Не опубликован';
 $_lang['none'] = 'Ничего';
 
 /* General */
-$_lang['articles.setting.updateServicesEnabled'] = 'Enable Update Services';
-$_lang['articles.setting.updateServicesEnabled_desc'] = 'If on, Articles will attempt to ping Ping-o-Matic whenever you publish an Article, to send out your article\'s title and URL to major search engines.';
-$_lang['articles.setting.sortBy'] = 'Sort Field';
-$_lang['articles.setting.sortBy_desc'] = 'The field to sort by on the main and archives listing pages.';
-$_lang['articles.setting.sortDir'] = 'Sort Direction';
-$_lang['articles.setting.sortDir_desc'] = 'The direction to sort by on the main and archives listing pages (DESC or ASC).';
-$_lang['articles.setting.archivesIncludeTVs'] = 'Include TVs in Listing';
-$_lang['articles.setting.archivesIncludeTVs_desc'] = 'If on, will include TV values as options in the listing chunks.';
-$_lang['articles.setting.includeTVsList'] = 'Include TVs List';
-$_lang['articles.setting.includeTVsList_desc'] = 'An optional comma-delimited list of TemplateVar names to include explicitly if Include TVs is on.';
-$_lang['articles.setting.archivesProcessTVs'] = 'Process TVs in Listing';
-$_lang['articles.setting.archivesProcessTVs_desc'] = 'If on, will process the TV values in the listing chunks.';
-$_lang['articles.setting.processTVsList'] = 'Process TVs List';
-$_lang['articles.setting.processTVsList_desc'] = 'An optional comma-delimited list of TemplateVar names to process explicitly. TemplateVars specified here must be included via Include TVs/Include TVs List.';
-$_lang['articles.setting.otherGetArchives'] = 'Other Listing Parameters';
-$_lang['articles.setting.otherGetArchives_desc'] = 'Any other properties you would like to add to the getResources/getPage call for the Articles listing page. Put them in MODX tag syntax, as if you were adding it to the tag call (eg, &property=`value`)';
+$_lang['articles.setting.updateServicesEnabled'] = 'Включить сервисы обновлений';
+$_lang['articles.setting.updateServicesEnabled_desc'] = 'Если включено, Статьи будут пытаться проверить Ping-o-Matic когда вы публикуете новое, и отправлять заголовок и ссылку в главные поисковые системы.';
+$_lang['articles.setting.sortBy'] = 'Поле для сортировки';
+$_lang['articles.setting.sortBy_desc'] = 'Поле для сортировки по основным и архивным статьям из списка статей.';
+$_lang['articles.setting.sortDir'] = 'Направление сортировки';
+$_lang['articles.setting.sortDir_desc'] = 'Направление для сортировки по основным и архивным статьям из списка статей (по убыванию или по возрастанию).';
+$_lang['articles.setting.archivesIncludeTVs'] = 'Включать TV-параметры при выводе списка';
+$_lang['articles.setting.archivesIncludeTVs_desc'] = 'Если включено, будут использоваться значения TV-параметров как опции в чанке элемента списка.';
+$_lang['articles.setting.includeTVsList'] = 'Включать список TV-параметров';
+$_lang['articles.setting.includeTVsList_desc'] = 'Задается явно дополнительный список имен TV-параметров, разделенных запятой, если включены TV-параметры.';
+$_lang['articles.setting.archivesProcessTVs'] = 'Обрабатывать TV-параметры при выводе списка';
+$_lang['articles.setting.archivesProcessTVs_desc'] = 'Если включено, будут обрабатываться значения TV-параметров в чанке элемента списка.';
+$_lang['articles.setting.processTVsList'] = 'Обрабатывать список TV-параметров';
+$_lang['articles.setting.processTVsList_desc'] = 'Задается явно дополнительный список имен TV-параметров, разделенных запятой. TV, указанные здесь должны быть включены с помощью Включить TV-парамеры/Включить список TV-параметров.';
+$_lang['articles.setting.otherGetArchives'] = 'Другие параметры списка';
+$_lang['articles.setting.otherGetArchives_desc'] = 'Любые другие свойства, которые бы вы хотели добавить к вызовам getResources/getPage для страницы со списком статей. Напишите его в синтаксисе MODx, так, как вызывали бы его обычно (например, &property=`value`)';
 
 /* template / archives settings */
-$_lang['articles.setting.articleTemplate'] = 'Article Template';
-$_lang['articles.setting.articleTemplate_desc'] = 'The default Template to use for Articles.';
-$_lang['articles.setting.tplArticleRow'] = 'Article Row Chunk';
-$_lang['articles.setting.tplArticleRow_desc'] = 'The Chunk to use when displaying Articles on the front page or archive pages.';
-$_lang['articles.setting.archiveByMonth'] = 'Archive By Month';
-$_lang['articles.setting.archiveByMonth_desc'] = 'Whether or not to archive by month or by year. Yes will archive by month.';
-$_lang['articles.setting.tplArchiveMonth'] = 'Archive Listing Chunk';
-$_lang['articles.setting.tplArchiveMonth_desc'] = 'The Chunk to use for each month/year row that is listed.';
-$_lang['articles.setting.archiveListingsLimit'] = 'Archive Listings to Show';
-$_lang['articles.setting.archiveListingsLimit_desc'] = 'The number of archive months/years to show.';
-$_lang['articles.setting.archiveCls'] = 'Archive CSS Class';
-$_lang['articles.setting.archiveCls_desc'] = 'A CSS class to apply to each archive listing.';
-$_lang['articles.setting.archiveAltCls'] = 'Archive Alternate CSS Class';
-$_lang['articles.setting.archiveAltCls_desc'] = 'A CSS class to apply to each alternate row for each archive listing.';
-$_lang['articles.setting.archiveGroupByYear'] = 'Group By Year';
-$_lang['articles.setting.archiveGroupByYear_desc'] = 'If set to 1, will group archive results by year into a nested list. If set to 1, this will ignore the Archive By Month setting.';
-$_lang['articles.setting.archiveGroupByYearTpl'] = 'Group By Year Chunk';
-$_lang['articles.setting.archiveGroupByYearTpl_desc'] = 'If Group By Year is set to 1, the Chunk to use for the wrapper for the archive list grouping.';
+$_lang['articles.setting.articleTemplate'] = 'Шаблон статей';
+$_lang['articles.setting.articleTemplate_desc'] = 'Шаблон по умолчанию, используемый для статей';
+$_lang['articles.setting.tplArticleRow'] = 'Чанк для одной статьм';
+$_lang['articles.setting.tplArticleRow_desc'] = 'Чанк, который используется, когда на обычной или архивной странице показывается статья.';
+$_lang['articles.setting.archiveByMonth'] = 'Архивировать по месяцам';
+$_lang['articles.setting.archiveByMonth_desc'] = 'Делать или не делать архив по месяцам и по годам. Да - будет по месяцам.';
+$_lang['articles.setting.tplArchiveMonth'] = 'Чанк для списка архива';
+$_lang['articles.setting.tplArchiveMonth_desc'] = 'Чанк, который используется для каждой строки месяца/года в списке.';
+$_lang['articles.setting.archiveListingsLimit'] = 'Показывать записей архива';
+$_lang['articles.setting.archiveListingsLimit_desc'] = 'Количество строк архива месяц/год для показа.';
+$_lang['articles.setting.archiveCls'] = 'CSS класс архива';
+$_lang['articles.setting.archiveCls_desc'] = 'CSS класс, который применяется к каждому элементу ахива.';
+$_lang['articles.setting.archiveAltCls'] = 'Альтернативный CSS класс архива';
+$_lang['articles.setting.archiveAltCls_desc'] = 'CSS класс, который применяется к каждой альтернативной строке архива.';
+$_lang['articles.setting.archiveGroupByYear'] = 'Группировать по году';
+$_lang['articles.setting.archiveGroupByYear_desc'] = 'Если установлено в 1 результаты архива будут сгрупированы по году во вложенных списках. Если установлено в 1, то будут игнорироваться настройки архивирования по месяцам.';
+$_lang['articles.setting.archiveGroupByYearTpl'] = 'Чанк для года';
+$_lang['articles.setting.archiveGroupByYearTpl_desc'] = 'Если Группировать по году установленно в 1, чанк, который используется в качестве обертки для сгруппированных частей архива.';
 
 /* Pagination */
 $_lang['articles.setting.articlesPerPage'] = 'Статей на страницу';
@@ -180,13 +180,13 @@ $_lang['articles.setting.pagePrevTpl_desc'] = 'Содержит представ
 $_lang['articles.setting.pageNextTpl'] = 'Шаблон следующей страницы';
 $_lang['articles.setting.pageNextTpl_desc'] = 'Содержит представление кнопки следующей страницы постраничной навигации.';
 $_lang['articles.setting.pageOffset'] = 'Смещение';
-    $_lang['articles.setting.pageOffset_desc'] = 'The offset, or record position to start at within the collection for rendering results for the current page; should be calculated based on page variable set in Page Var Key.';
-$_lang['articles.setting.pageVarKey'] = 'Переменная Ключ страницы';
-    $_lang['articles.setting.pageVarKey_desc'] = 'The key of a property that indicates the current page.';
-$_lang['articles.setting.pageTotalVar'] = 'Переменная Всего';
-    $_lang['articles.setting.pageTotalVar_desc'] = 'The key of a placeholder that must contain the total records in the limitable collection being paged.';
-$_lang['articles.setting.pageNavVar'] = 'Переменная Навигация';
-    $_lang['articles.setting.pageNavVar_desc'] = 'The key of a placeholder to be set with the paging navigation controls.';
+$_lang['articles.setting.pageOffset_desc'] = 'Смещение, или запись позиции, с которой начнется выборка результатов для текущей страницы; должна рассчитываться на основе переменной, указанной как Параметр текущей страницы.';
+$_lang['articles.setting.pageVarKey'] = 'Параметр текущей страницы';
+$_lang['articles.setting.pageVarKey_desc'] = 'Имя параметра, который показывает текущую страницу.';
+$_lang['articles.setting.pageTotalVar'] = 'Всего';
+$_lang['articles.setting.pageTotalVar_desc'] = 'Имя параметра плейсхолдера, который должен содержать общее количество записей в выборке, ограничиваемой постраничной навигацией.';
+$_lang['articles.setting.pageNavVar'] = 'Плейсхолдер постраничной навигации';
+$_lang['articles.setting.pageNavVar_desc'] = 'Имя плейсхолдера, который показывает кнопки постраничной навигации.';
 
 
 /* RSS settings */
@@ -247,7 +247,7 @@ $_lang['articles.setting.commentsEnabled'] = 'Разрешить коммент�
 $_lang['articles.setting.commentsEnabled_desc'] = 'Разрешить или нет комментарии.';
 $_lang['articles.setting.commentsThreaded'] = 'Древовидные комментарии';
 $_lang['articles.setting.commentsThreaded_desc'] = 'Разрешены либо нет древовидные комменатрии для страницы. Древовидные комментарии позволяют пользователям комментировать комментарии, повышая уровень вложенности. Не древовидные комментарии позволяют пользователям комментировать только статью, а не другие комментарии.';
-$_lang['articles.setting.commentsReplyResourceId'] = 'Reply Resource ID';
+$_lang['articles.setting.commentsReplyResourceId'] = 'ID ресурса для ответа';
 $_lang['articles.setting.commentsReplyResourceId_desc'] = 'ID ресурса где вызывается QuipReply сниппет, для ответа на древовидные комментарии. <b>Это обязательно для древовидных комментариев.</b>';
 $_lang['articles.setting.commentsMaxDepth'] = 'Максимальная глубина вложенности комментариев';
 $_lang['articles.setting.commentsMaxDepth_desc'] = 'Максимальная глубина вложенности, до которой может расти ветка древовидных комментариев.';
@@ -315,11 +315,11 @@ $_lang['articles.setting.'] = '';
 $_lang['articles.setting._desc'] = '';
 
 /* Settings */
-$_lang['setting_articles.default_container_template'] = 'Default Articles Container Template';
-$_lang['setting_articles.default_container_template_desc'] = 'The default Template to use when creating a new Articles Container';
+$_lang['setting_articles.default_container_template'] = 'Шаблон для контейнера статей по умолчанию';
+$_lang['setting_articles.default_container_template_desc'] = 'Шаблон по умолчанию, который используется когда создается новый контейнер статей';
 
-$_lang['setting_articles.default_article_template'] = 'Default Article Template';
-$_lang['setting_articles.default_article_template_desc'] = 'The default Template to use when creating a new Article when there is none specified on the Container itself.';
+$_lang['setting_articles.default_article_template'] = 'Шаблон для статьи по умолчанию';
+$_lang['setting_articles.default_article_template_desc'] = 'Шаблон по умолчанию, который используется когда создается новая статья и когда не указан, использует шаблон контейнера.';
 
-$_lang['setting_articles.container_ids'] = 'Articles FURL IDs';
-$_lang['setting_articles.container_ids_desc'] = 'A comma-separated list of container IDs in use for FURL routing. Best to leave this alone.';
+$_lang['setting_articles.container_ids'] = 'Идентификаторы дружественных URL статей';
+$_lang['setting_articles.container_ids_desc'] = 'Разделенный запятыми список идентификаторов ресурсов, которые используются для построения дружественных URL. Лучше оставить как есть';

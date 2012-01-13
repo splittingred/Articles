@@ -28,8 +28,8 @@ set_time_limit(0);
 /* define package */
 define('PKG_NAME','Articles');
 define('PKG_NAME_LOWER',strtolower(PKG_NAME));
-define('PKG_VERSION','1.4.1');
-define('PKG_RELEASE','ru5');
+define('PKG_VERSION','1.4.3');
+define('PKG_RELEASE','pl2');
 
 /* define sources */
 $root = dirname(dirname(__FILE__)).'/';
