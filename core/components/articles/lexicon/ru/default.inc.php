@@ -18,6 +18,9 @@
  * Place, Suite 330, Boston, MA 02111-1307 USA
  *
  * @package articles
+ *
+ * @language ru
+ * Articles translated to Russian by Ivan Klimchuk (Alroniks, ivan@klimchuk.com)
  */
 $_lang['articles.advanced_settings'] = 'Расширенные настройки';
 $_lang['articles.all'] = 'Все';
