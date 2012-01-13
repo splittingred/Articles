@@ -38,6 +38,7 @@ Articles.grid.ContainerArticles = function(config) {
         },{
             header: _('articles.article_title')
             ,dataIndex: 'pagetitle'
+			,id: 'main'
             ,width: 200
             ,sortable: true
             ,renderer: {fn:this._renderPageTitle,scope:this}
@@ -136,7 +137,7 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
 
         m.push({
            text: _('articles.article_edit')
-           ,handler: this.editPost
+           ,handler: this.editArticle
         });
         return m;
     }
@@ -231,8 +232,10 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
     }
 
     ,deleteArticle: function(btn,e) {
-        MODx.Ajax.request({
-            url: MODx.config.connectors_url+'resource/index.php'
+        MODx.msg.confirm({
+            title: _('articles.article_delete')
+            ,text: _('articles.article_delete_confirm')
+            ,url: MODx.config.connectors_url+'resource/index.php'
             ,params: {
                 action: 'delete'
                 ,id: this.menu.record.id

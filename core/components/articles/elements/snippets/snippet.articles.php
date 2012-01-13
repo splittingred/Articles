@@ -20,28 +20,30 @@
  * @package articles
  */
 /**
+ * Displays a list of posts for a container
+ *
  * @var modX $modx
  * @var array $scriptProperties
+ *
+ * @package articles
  */
-$string = $modx->getOption('string',$scriptProperties,'');
-$delimiter = $modx->getOption('delimiter',$scriptProperties,',');
-$tpl = $modx->getOption('tpl',$scriptProperties,'articlerssitem');
-$outputSeparator = $modx->getOption('outputSeparator',$scriptProperties,"\n");
-$outputSeparator = str_replace('\\n',"\n",$outputSeparator);
-$toPlaceholder = $modx->getOption('toPlaceholder',$scriptProperties,'');
+$modx->lexicon->load('articles:frontend');
 
-$items = explode($delimiter,$string);
-$items = array_unique($items);
-$list = array();
-foreach ($items as $item) {
-    $list[] = $modx->getChunk($tpl,array(
-        'item' => $item,
-    ));
-}
+$container = $modx->getOption('container',$scriptProperties,0);
+if (empty($container)) return '';
+/** @var ArticlesContainer $container */
+$container = $modx->getObject('ArticlesContainer',$container);
+if (empty($container)) return '';
 
-$output = implode($outputSeparator,$list);
-if (!empty($toPlaceholder)) {
-    $modx->setPlaceholder($toPlaceholder,$output);
-    return '';
+$container->getPostListingCall();
+$container->getArchivistCall();
+$container->getTagListerCall();
+$container->getLatestPostsCall();
+$settings = $container->getContainerSettings();
+if ($modx->getOption('commentsEnabled',$settings,true)) {
+    $container->getLatestCommentsCall();
+    $modx->setPlaceholder('comments_enabled',1);
+} else {
+    $modx->setPlaceholder('comments_enabled',0);
 }
-return $output;
+return '';

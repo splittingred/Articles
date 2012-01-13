@@ -19,7 +19,7 @@
  *
  * @package articles
  */
-require_once (dirname(__FILE__).'/articlesnotifyservice.class.php');
+require_once (dirname(__FILE__).'/articlesupdateservice.class.php');
 /**
  * @package articles
  * @subpackage updateservices

@@ -270,7 +270,7 @@ class ArticlesContainer extends modResource {
     }
     /**
      * Get the getPage and getArchives call to display listings of posts on the container.
-     * @return void
+     * @return string
      */
     public function getPostListingCall() {
         $settings = $this->getContainerSettings();
@@ -295,7 +295,7 @@ class ArticlesContainer extends modResource {
           &element=`getArchives`
           &makeArchive=`0`
           &cache=`1`
-          &parents=`[[*id]]`
+          &parents=`'.$this->get('id').'`
           &where=`'.$this->xpdo->toJSON($where).'`
           &showHidden=`1`
           &includeContent=`1`
@@ -334,6 +334,7 @@ class ArticlesContainer extends modResource {
 </ul>
 </div>
 `]]');
+        return $output;
     }
 
     /**

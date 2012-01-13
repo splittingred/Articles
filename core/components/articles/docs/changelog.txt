@@ -1,5 +1,22 @@
 Changelog for Articles.
 
+Articles 1.4.4
+===============================
+- Update Quip to 2.2.0-pl
+
+Articles 1.4.3
+===============================
+- [#6553] Fix issue with build where snippets were set as chunks
+- Update tagLister to 1.1.5
+
+Articles 1.4.2
+===============================
+- Add Articles snippet for easy displaying of articles anywhere on site
+- [#6534] Add confirmation for delete article in grid
+- [#6535] Fix issue with incorrect include reference for update services
+- [#6535] Fix issue with url generation for twitter posting on first save
+- [#6542] Fix right-click edit article from grid issue
+
 Articles 1.4.1
 ===============================
 - Add in container calls to each Article to allow sidebars
