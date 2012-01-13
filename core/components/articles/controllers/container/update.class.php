@@ -102,7 +102,7 @@ class ArticlesContainerUpdateManagerController extends ResourceUpdateManagerCont
      * @return void
      */
     public function prepareResource() {
-        $settings = $this->resource->get('articles_container_settings');
+        $settings = $this->resource->getProperties('articles');
         if (is_array($settings) && !empty($settings)) {
             foreach ($settings as $k => $v) {
                 $this->resourceArray['setting_'.$k] = $v;

@@ -38,9 +38,47 @@ if ($object->xpdo) {
 
             /** @var xPDOManager $manager */
             $manager = $modx->getManager();
-            $manager->addField('Article','articles_container');
-            $manager->addField('Article','articles_container_settings');
 
+            /** @var modSystemSetting $setting */
+            $setting = $modx->getObject('modSystemSetting',array('key' => 'articles.properties_migration'));
+            if (!$setting || $setting->get('value') == false) {
+                $c = $modx->newQuery('ArticlesContainer');
+                $c->select(array(
+                    'id',
+                    'articles_container_settings',
+                ));
+                $c->where(array(
+                    'class_key' => 'ArticlesContainer',
+                ));
+                $c->construct();
+                $sql = $c->toSql();
+                $stmt = $modx->query($sql);
+                if ($stmt) {
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        $settings = $row['articles_container_settings'];
+                        $settings = is_array($settings) ? $settings : $modx->fromJSON($settings);
+                        $settings = !empty($settings) ? $settings : array();
+                        /** @var modResource $resource */
+                        $resource = $modx->getObject('modResource',$row['id']);
+                        if ($resource) {
+                            $resource->setProperties($settings,'articles');
+                            $resource->save();
+                        }
+                    }
+                    $stmt->closeCursor();
+                }
+                $manager->removeField('Article','articles_container');
+                $manager->removeField('Article','articles_container_settings');
+                if (!$setting) {
+                    $setting = $modx->newObject('modSystemSetting');
+                    $setting->set('key','articles.properties_migration');
+                    $setting->set('xtype','combo-boolean');
+                    $setting->set('namespace','articles');
+                    $setting->set('area','system');
+                }
+                $setting->set('value',true);
+                $setting->save();
+            }
             break;
     }
 }

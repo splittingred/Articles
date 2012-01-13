@@ -189,7 +189,7 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                     ,items: [{
                         xtype: 'quip-grid-comments'
                         ,cls: 'quip-thread-grid'
-                        ,thread: 'article-b'+config.record.articles_container+'-'+config.record.id
+                        ,thread: 'article-b'+config.record['parent']+'-'+config.record.id
                         ,preventRender: true
                         ,width: '98%'
                         ,bodyStyle: 'padding: 0'

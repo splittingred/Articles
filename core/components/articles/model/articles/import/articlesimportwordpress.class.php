@@ -162,7 +162,6 @@ class ArticlesImportWordPress extends ArticlesImport {
         $article = $this->modx->newObject('Article');
         $article->fromArray(array(
             'parent' => $this->container->get('id'),
-            'articles_container' => $this->container->get('id'),
             'pagetitle' => $this->parseContent((string)$item->title),
             'description' => $this->parseContent((string)$item->description),
             'alias' => $this->parseContent((string)$wp->post_name),
@@ -179,7 +178,7 @@ class ArticlesImportWordPress extends ArticlesImport {
             'context_key' => $this->container->get('context_key'),
         ));
         $article->setArchiveUri();
-        $article->set('articles_container_settings',$settings);
+        $article->setProperties($settings,'articles');
 
         if (!$this->debug) {
             $article->save();

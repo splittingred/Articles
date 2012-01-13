@@ -82,7 +82,7 @@ class ArticleCreateManagerController extends ResourceCreateManagerController {
             'id' => $this->parent->get('id'),
         ));
         if ($container) {
-            $settings = $container->get('articles_container_settings');
+            $settings = $container->getProperties('articles');
             $this->resourceArray['template'] = $this->modx->getOption('articleTemplate',$settings,0);
         }
     }

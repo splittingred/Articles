@@ -45,7 +45,7 @@ $container = $modx->getObject('ArticlesContainer',$_REQUEST['container']);
 if (empty($container)) die('Container not found!');
 
 $keys = $container->getTwitterKeys();
-$settings = $container->get('articles_container_settings');
+$settings = $container->getProperties('articles');
 define('CONSUMER_KEY',$keys['consumer_key']);
 define('CONSUMER_SECRET',$keys['consumer_key_secret']);
 
@@ -68,12 +68,12 @@ if (empty($_REQUEST['oauth_token']) || empty($_REQUEST['oauth_verifier'])) {
     $connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET,$_REQUEST['oauth_token'],$_REQUEST['oauth_verifier']);
     $tokenCredentials = $connection->getAccessToken($_REQUEST['oauth_verifier']);
     if (empty($tokenCredentials) || empty($tokenCredentials['oauth_token'])) die('Error occurred while trying to get access token.');
-    $settings = $container->get('articles_container_settings');
+    $settings = $container->getProperties('articles');
     $settings['notifyTwitterAccessToken'] = $container->encrypt($tokenCredentials['oauth_token']);
     $settings['notifyTwitterAccessTokenSecret'] = $container->encrypt($tokenCredentials['oauth_token_secret']);
     $settings['notifyTwitterUsername'] = $tokenCredentials['screen_name'];
     $settings['notifyTwitterUserId'] = $tokenCredentials['user_id'];
-    $container->set('articles_container_settings',$settings);
+    $container->setProperties($settings,'articles');
     $container->save();
     echo '<script type="text/javascript">alert("Twitter authenticated!"); window.close();</script>';
     die();

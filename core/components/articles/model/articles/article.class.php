@@ -69,7 +69,7 @@ class Article extends modResource {
      * @return array
      */
     public function getContainerSettings() {
-        $settings = $this->get('articles_container_settings');
+        $settings = $this->getProperties('articles');
         /** @var ArticlesContainer $container */
         $container = $this->getOne('Container');
         if ($container) {
@@ -323,7 +323,6 @@ class ArticleCreateProcessor extends modResourceCreateProcessor {
         $this->setProperty('cacheable',true);
         $this->setProperty('clearCache',true);
         $this->setProperty('class_key','Article');
-        $this->unsetProperty('articles_container_settings');
         return parent::beforeSet();
     }
     
@@ -338,9 +337,6 @@ class ArticleCreateProcessor extends modResourceCreateProcessor {
 
         if (!$this->parentResource) {
             $this->parentResource = $this->object->getOne('Parent');
-            if ($this->parentResource) {
-                $this->object->set('articles_container',$this->parentResource->get('id'));
-            }
         }
 
         if ($this->object->get('published')) {
@@ -350,9 +346,9 @@ class ArticleCreateProcessor extends modResourceCreateProcessor {
         }
         
         /** @var ArticlesContainer $container */
-        $container = $this->modx->getObject('ArticlesContainer',$this->object->get('articles_container'));
+        $container = $this->modx->getObject('ArticlesContainer',$this->object->get('parent'));
         if ($container) {
-            $this->object->set('articles_container_settings',$container->get('articles_container_settings'));
+            $this->object->setProperties($container->getProperties('articles'),'articles');
         }
 
         $this->isPublishing = $this->object->isDirty('published') && $this->object->get('published');
@@ -367,7 +363,6 @@ class ArticleCreateProcessor extends modResourceCreateProcessor {
         if (!$this->parentResource) {
             return false;
         }
-        $this->object->set('articles_container',$this->parentResource->get('id'));
         return $this->object->setArchiveUri();
     }
 
@@ -458,7 +453,6 @@ class ArticleUpdateProcessor extends modResourceUpdateProcessor {
 
     public function beforeSet() {
         $this->setProperty('clearCache',true);
-        $this->unsetProperty('articles_container_settings');
         return parent::beforeSet();
     }
 
@@ -477,9 +471,9 @@ class ArticleUpdateProcessor extends modResourceUpdateProcessor {
         }
 
         /** @var ArticlesContainer $container */
-        $container = $this->modx->getObject('ArticlesContainer',$this->object->get('articles_container'));
+        $container = $this->modx->getObject('ArticlesContainer',$this->object->get('parent'));
         if ($container) {
-            $this->object->set('articles_container_settings',$container->get('articles_container_settings'));
+            $this->object->setProperties($container->getProperties('articles'),'articles');
         }
 
         $this->isPublishing = $this->object->isDirty('published') && $this->object->get('published');
@@ -541,7 +535,6 @@ class ArticleUpdateProcessor extends modResourceUpdateProcessor {
                 return false;
             }
         }
-        $this->object->set('articles_container',$this->parentResource->get('id'));
 
         return $this->object->setArchiveUri();
     }
@@ -577,7 +570,7 @@ class ArticleUpdateProcessor extends modResourceUpdateProcessor {
         $this->object->removeLock();
         $this->clearCache();
 
-        $returnArray = $this->object->get(array_diff(array_keys($this->object->_fields), array('content','ta','introtext','description','link_attributes','pagetitle','longtitle','menutitle','articles_container_settings')));
+        $returnArray = $this->object->get(array_diff(array_keys($this->object->_fields), array('content','ta','introtext','description','link_attributes','pagetitle','longtitle','menutitle','properties')));
         foreach ($returnArray as $k => $v) {
             if (strpos($k,'tv') === 0) {
                 unset($returnArray[$k]);

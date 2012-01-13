@@ -1,5 +1,9 @@
 Changelog for Articles.
 
+Articles 1.5.0
+===============================
+- Deprecate custom DB fields to use new properties field on modResource
+
 Articles 1.4.4
 ===============================
 - Update Quip to 2.2.0-pl

@@ -132,7 +132,6 @@ class ArticlesImportBlogger extends ArticlesImport {
 
         $article->fromArray(array(
             'parent' => $this->container->get('id'),
-            'articles_container' => $this->container->get('id'),
             'pagetitle' => (string)$entry->title,
             'description' => '',
             'template' => $this->modx->getOption('articleTemplate',$settings,0),
@@ -149,7 +148,7 @@ class ArticlesImportBlogger extends ArticlesImport {
             'class_key' => 'Article',
             'context_key' => $this->container->get('context_key'),
         ));
-        $article->set('articles_container_settings',$settings);
+        $article->setProperties($settings,'articles');
 
         if (!$this->debug) {
             $article->save();

@@ -424,7 +424,7 @@ class ArticlesContainer extends modResource {
      * @return array
      */
     public function getContainerSettings() {
-        $settings = $this->get('articles_container_settings');
+        $settings = $this->getProperties('articles');
         if (!empty($settings)) {
             $settings = is_array($settings) ? $settings : $this->xpdo->fromJSON($settings);
         }
@@ -495,7 +495,7 @@ class ArticlesContainerCreateProcessor extends modResourceCreateProcessor {
      */
     public function beforeSave() {
         $properties = $this->getProperties();
-        $settings = $this->object->get('articles_container_settings');
+        $settings = $this->object->getProperties('articles');
         $notificationServices = array();
         foreach ($properties as $k => $v) {
             if (substr($k,0,8) == 'setting_') {
@@ -525,7 +525,7 @@ class ArticlesContainerCreateProcessor extends modResourceCreateProcessor {
             }
         }
         $settings['notificationServices'] = implode(',',$notificationServices);
-        $this->object->set('articles_container_settings',$settings);
+        $this->object->setProperties($settings,'articles');
 
         $this->object->set('class_key','ArticlesContainer');
         $this->object->set('cacheable',true);
@@ -615,7 +615,7 @@ class ArticlesContainerUpdateProcessor extends modResourceUpdateProcessor {
      */
     public function beforeSave() {
         $properties = $this->getProperties();
-        $settings = $this->object->get('articles_container_settings');
+        $settings = $this->object->getProperties('articles');
         $notificationServices = array();
         foreach ($properties as $k => $v) {
             if (substr($k,0,8) == 'setting_') {
@@ -645,7 +645,7 @@ class ArticlesContainerUpdateProcessor extends modResourceUpdateProcessor {
             }
         }
         $settings['notificationServices'] = implode(',',$notificationServices);
-        $this->object->set('articles_container_settings',$settings);
+        $this->object->setProperties($settings,'articles');
         return parent::beforeSave();
     }
 
@@ -723,7 +723,7 @@ class ArticlesContainerUpdateProcessor extends modResourceUpdateProcessor {
         $this->object->removeLock();
         $this->clearCache();
 
-        $returnArray = $this->object->get(array_diff(array_keys($this->object->_fields), array('content','ta','introtext','description','link_attributes','pagetitle','longtitle','menutitle','articles_container_settings')));
+        $returnArray = $this->object->get(array_diff(array_keys($this->object->_fields), array('content','ta','introtext','description','link_attributes','pagetitle','longtitle','menutitle','properties')));
         foreach ($returnArray as $k => $v) {
             if (strpos($k,'tv') === 0) {
                 unset($returnArray[$k]);

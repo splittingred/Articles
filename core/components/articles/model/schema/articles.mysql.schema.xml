@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model package="Articles" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM">
     <object class="ArticlesContainer" extends="modResource">
-        <field key="articles_container_settings" dbtype="mediumtext" phptype="json" null="true" />
-
-        <composite alias="Articles" class="Article" local="id" foreign="articles_container" cardinality="many" owner="local" />
+        <composite alias="Articles" class="Article" local="id" foreign="parent" cardinality="many" owner="local" />
     </object>
     <object class="Article" extends="modResource">
-        <field key="articles_container" dbtype="int" precision="10" phptype="integer" null="false" default="0" index="index" />
-        <field key="articles_container_settings" dbtype="mediumtext" phptype="json" null="true" /><!-- just a copy of the ArticlesContainer settings stuff; cached here for speed -->
-
-        <index alias="articles_container" name="articles_container" primary="false" unique="false" type="BTREE">
-            <column key="articles_container" length="" collation="A" null="false" />
-        </index>
-
-        <aggregate alias="Container" class="ArticlesContainer" local="articles_container" foreign="id" cardinality="one" owner="foreign" />
+        <aggregate alias="Container" class="ArticlesContainer" local="parent" foreign="id" cardinality="one" owner="foreign" />
     </object>
 </model>

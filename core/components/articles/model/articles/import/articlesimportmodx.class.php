@@ -172,8 +172,8 @@ class ArticlesImportMODX extends ArticlesImport {
         $resource->set('cacheable',true);
         $resource->set('class_key','Article');
         $resource->set('parent',$this->container->get('id'));
-        $settings = $this->container->get('articles_container_settings');
-        $resource->set('articles_container_settings',$settings);
+        $settings = $this->container->getProperties('articles');
+        $resource->setProperties($settings,'articles');
 
         if (!empty($this->config['modx-change-template'])) {
             $resource->set('template',$this->container->get('template'));

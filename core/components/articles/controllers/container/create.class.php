@@ -78,7 +78,7 @@ class ArticlesContainerCreateManagerController extends ResourceCreateManagerCont
      * @return void
      */
     public function prepareResource() {
-        $settings = $this->resource->get('articles_container_settings');
+        $settings = $this->resource->getProperties('articles');
         if (empty($settings)) $settings = array();
         
         $defaultContainerTemplate = $this->modx->getOption('articles.default_container_template',$settings,false);
