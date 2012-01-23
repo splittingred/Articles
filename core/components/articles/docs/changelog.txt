@@ -1,5 +1,6 @@
 Changelog for Articles.
 
+- [#6626] Improve pub-date checking on WordPress import
 Articles 1.5.0
 ===============================
 - Deprecate custom DB fields to use new properties field on modResource
