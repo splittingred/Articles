@@ -125,7 +125,7 @@ $_lang['articles.settings_tagging'] = 'Tagging';
 $_lang['articles.statistics'] = 'Statistiken';
 $_lang['articles.status'] = 'Status';
 $_lang['articles.template'] = 'Template';
-$_lang['articles.template_desc'] = 'Das Template, das die Übersichtsseite verwendet.';  // main listing
+$_lang['articles.template_desc'] = 'Das Template für die Übersichtsseite.';  // main listing
 $_lang['articles.tags'] = 'Tags';
 $_lang['articles.unpublished'] = 'Nicht veröffentlicht';
 $_lang['none'] = 'Keiner';  // used for URL shortener
@@ -138,7 +138,7 @@ $_lang['articles.setting.sortBy_desc'] = 'Das Feld, nach dem auf den Haupt- und 
 $_lang['articles.setting.sortDir'] = 'Sortierrichtung';
 $_lang['articles.setting.sortDir_desc'] = 'Die Richtung, in die auf den Haupt- und Archiv-Übersichtsseiten sortiert wird (DESC oder ASC).';
 $_lang['articles.setting.archivesIncludeTVs'] = 'Template-Variablen in Übersicht anzeigen';
-$_lang['articles.setting.archivesIncludeTVs_desc'] = 'Wenn diese Option aktiviert ist, werden TV-Werte in den Übersichts-Chunks als Optionen einbezogen.';  // as options??? "als Optionen" oder "optional"?  // include = einbeziehen (?)
+$_lang['articles.setting.archivesIncludeTVs_desc'] = 'Wenn diese Option aktiviert ist, können Template-Variablen in den Chunks für die Übersichten verwendet werden.';  // as options??? "als Optionen" oder "optional"?  // include = einbeziehen (?)
 $_lang['articles.setting.includeTVsList'] = 'Liste einzubeziehender Template-Variablen';
 $_lang['articles.setting.includeTVsList_desc'] = 'Eine optionale, kommaseparierte Liste von Namen von Template-Variablen, die explizit einbezogen werden, wenn "Template-Variablen in Übersicht anzeigen" aktiviert ist.';  // include = einbeziehen (?)
 $_lang['articles.setting.archivesProcessTVs'] = 'Template-Variablen in Übersicht verarbeiten';
@@ -173,17 +173,17 @@ $_lang['articles.setting.articlesPerPage'] = 'Artikel pro Seite';
 $_lang['articles.setting.articlesPerPage_desc'] = 'Die Anzahl an Artikeln, die pro Seite angezeigt werden, wenn Postings aufgelistet werden.';
 $_lang['articles.setting.pageLimit'] = 'Seiten-Limit';
 $_lang['articles.setting.pageLimit_desc'] = 'Die maximale Anzahl an Seiten, die aufgelistet werden, wenn Seitennummern-Links angezeigt werden.';
-$_lang['articles.setting.pageNavTpl'] = 'Template für eine einzelne Seite';
+$_lang['articles.setting.pageNavTpl'] = 'Template für Navigationselement für eine einzelne Seite';
 $_lang['articles.setting.pageNavTpl_desc'] = 'Der Inhalt dieses Eingabefeldes repräsentiert das Navigationselement für eine einzelne Seite.';
-$_lang['articles.setting.pageActiveTpl'] = 'Template für die aktuelle Seite';
+$_lang['articles.setting.pageActiveTpl'] = 'Template für Navigationselement für die aktuelle Seite';
 $_lang['articles.setting.pageActiveTpl_desc'] = 'Der Inhalt dieses Eingabefeldes repräsentiert das Navigationselement für die aktuelle Seite.';
-$_lang['articles.setting.pageFirstTpl'] = 'Template für die erste Seite';
+$_lang['articles.setting.pageFirstTpl'] = 'Template für Navigationselement für die erste Seite';
 $_lang['articles.setting.pageFirstTpl_desc'] = 'Der Inhalt dieses Eingabefeldes repräsentiert das Navigationselement für die erste Seite.';
-$_lang['articles.setting.pageLastTpl'] = 'Template für die letzte Seite';
+$_lang['articles.setting.pageLastTpl'] = 'Template für Navigationselement für die letzte Seite';
 $_lang['articles.setting.pageLastTpl_desc'] = 'Der Inhalt dieses Eingabefeldes repräsentiert das Navigationselement für die letzte Seite.';
-$_lang['articles.setting.pagePrevTpl'] = 'Template für die vorhergehende Seite';
+$_lang['articles.setting.pagePrevTpl'] = 'Template für Navigationselement für die vorhergehende Seite';
 $_lang['articles.setting.pagePrevTpl_desc'] = 'Der Inhalt dieses Eingabefeldes repräsentiert das Navigationselement für die vorhergehende Seite.';
-$_lang['articles.setting.pageNextTpl'] = 'Template für die nachfolgende Seite';
+$_lang['articles.setting.pageNextTpl'] = 'Template für Navigationselement für die nachfolgende Seite';
 $_lang['articles.setting.pageNextTpl_desc'] = 'Der Inhalt dieses Eingabefeldes repräsentiert das Navigationselement für die nachfolgende Seite.';
 $_lang['articles.setting.pageOffset'] = 'Seiten-Offset';
 $_lang['articles.setting.pageOffset_desc'] = 'Der Offset (bzw. die Datensatz-Position), bei dem innerhalb der Sammlung begonnen wird, Ergebnisse für die aktuelle Seite auszugeben; sollte berechnet werden basierend auf der Variablen, die in der Einstellung "Variablen-Schlüssel der aktuellen Seite" festgelegt wird.';
@@ -192,7 +192,7 @@ $_lang['articles.setting.pageVarKey_desc'] = 'Der Schlüssel (Name) einer Eigens
 $_lang['articles.setting.pageTotalVar'] = 'Variable für die Gesamtanzahl';
 $_lang['articles.setting.pageTotalVar_desc'] = 'Der Schlüssel (Name) eines Platzhalters, der die Gesamtanzahl der Datensätze in der beschränkbaren Sammlung enthalten muss, für die Seitenzahlen-Links angezeigt werden.';  // ???
 $_lang['articles.setting.pageNavVar'] = 'Variable für die Seitennummern-Navigationselemente';
-$_lang['articles.setting.pageNavVar_desc'] = 'Der Schlüssel (Name) eines Platzhalters, der die Seitennummern-Navigationselemente enthalten soll.';
+$_lang['articles.setting.pageNavVar_desc'] = 'Der Schlüssel (Name) eines Platzhalters, der die Paginierungs-Navigationselemente enthalten soll.';
 
 
 /* RSS settings */
@@ -226,11 +226,11 @@ $_lang['articles.setting.notifyTwitter'] = 'An Twitter senden';
 $_lang['articles.setting.notifyTwitter_desc'] = 'Automatisch Link in Twitter posten, wenn der Artikel veröffentlicht wird.';
 $_lang['articles.setting.notifyTwitter_notyet_desc'] = 'Automatisch Link in Twitter posten, wenn der Artikel veröffentlicht wird. <strong>Hinweis: Sie müssen zuerst <a href="[[+authUrl]]" target="_blank">die Authentifizierungsseite</a> besuchen, um Articles für Ihren Twitter-Account zu authentifizieren!</strong>';
 $_lang['articles.setting.notifyTwitterConsumerKey'] = 'Twitter Consumer Key';
-$_lang['articles.setting.notifyTwitterConsumerKey_desc'] = 'Optional. Der Consumer Key für Ihren Twitter-Account, der auf die Twitter-Applikation gemappt wird, die für die Authentifizierung verwendet wird. Wenn dieses Eingabefeld leer gelassen wird, wird der Standardwert von MODX-Articles verwendet. Die Eingabe Ihres eigenen Twitter App Consumer Key erhöht die Sicherheit.';  // Secret???  // Revise after clarification by the author
+$_lang['articles.setting.notifyTwitterConsumerKey_desc'] = 'Optional. Der Consumer Key für Ihren Twitter-Account, mit dem sich MODX-Articles beim Zugriff auf Ihren Twitter-Account authentifiziert. Wenn dieses Feld leer gelassen wird, wird der Standardwert von MODX-Articles verwendet. Geben Sie einen eigenen Consumer Key ein, um die Sicherheit zu erhöhen';
 $_lang['articles.setting.notifyTwitterConsumerKeySecret'] = ' Twitter Consumer Secret';
-$_lang['articles.setting.notifyTwitterConsumerKeySecret_desc'] = 'Optional. Das geheime Zugriffs-Token für Ihren Twitter-Account, das auf die Twitter-App gemappt wird, die für die Authentifizierung verwendet wird. Wenn dieses Eingabefeld leer gelassen wird, wird der Standardwert von MODX-Articles verwendet. Die Eingabe Ihres eigenen Twitter App Consumer Secret erhöht die Sicherheit.';
+$_lang['articles.setting.notifyTwitterConsumerKeySecret_desc'] = 'Optional. Falls Sie einen eigenen Consumer Key verwenden, müssen Sie hier das entsprechende Consumer Secret eingeben. Wenn dieses Feld leer gelassen wird, wird der Standardwert von MODX-Articles verwendet. Die Eingabe Ihres eigenen Twitter App Consumer Secret erhöht die Sicherheit.';
 $_lang['articles.setting.notifyTwitterTpl'] = 'Twitter-Template';
-$_lang['articles.setting.notifyTwitterTpl_desc'] = 'Das Template, das angibt, wie die Nachricht an Twitter gesendet wird.';  // Revise after clarification by the author
+$_lang['articles.setting.notifyTwitterTpl_desc'] = 'Das Template, das verwendet wird, um die Ausgabe von Postings für Twitter zu formatieren.';
 $_lang['articles.setting.notifyTwitterTagLimit'] = 'Twitter-Tag-Limit';
 $_lang['articles.setting.notifyTwitterTagLimit_desc'] = 'Die Anzahl an Tags, die verwendet werden, wenn [[+hashtags]] im Template verwendet wird; dieser Platzhalter fügt dem Tweet Tags als Hashtags hinzu.';
 $_lang['articles.setting.shorteningService'] = 'Kurz-URL-Dienst';  // See http://de.wikipedia.org/wiki/Kurz-URL-Dienst
@@ -256,7 +256,7 @@ $_lang['articles.setting.commentsThreaded_desc'] = 'Gibt an, ob dieser Thread in
 $_lang['articles.setting.commentsReplyResourceId'] = 'Ressourcen-ID für Antworten auf Kommentare';
 $_lang['articles.setting.commentsReplyResourceId_desc'] = 'Die ID der Ressource, die das QuipReply-Snippet enthält, mittels dessen auf Kommentare in einem Unter-Thread geantwortet werden kann. <strong>Die Angabe dieser ID ist erforderlich für Kommentare mit Unter-Threads.</strong>';
 $_lang['articles.setting.commentsMaxDepth'] = 'Maximale Thread-Tiefe';
-$_lang['articles.setting.commentsMaxDepth_desc'] = 'Die maximale Tiefe, bis zu der Antworten in einem Thread mit Unter-Threads verschachtelt sein können.';  // dürfen?
+$_lang['articles.setting.commentsMaxDepth_desc'] = 'Die maximale Tiefe, bis zu der Antworten in einem Thread mit Unter-Threads verschachtelt sein dürfen.';
 $_lang['articles.setting.commentsTplComment'] = 'Kommentar-Chunk';
 $_lang['articles.setting.commentsTplComment_desc'] = 'Der Chunk, der für alle Kommentare genutzt wird.';
 $_lang['articles.setting.commentsTplCommentOptions'] = 'Kommentar-Optionen-Chunk';
