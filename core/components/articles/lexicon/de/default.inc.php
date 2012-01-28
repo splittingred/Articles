@@ -140,11 +140,11 @@ $_lang['articles.setting.sortDir_desc'] = 'Die Richtung, in die auf den Haupt- u
 $_lang['articles.setting.archivesIncludeTVs'] = 'Template-Variablen in Übersicht anzeigen';
 $_lang['articles.setting.archivesIncludeTVs_desc'] = 'Wenn diese Option aktiviert ist, können Template-Variablen in den Chunks für die Übersichten verwendet werden.';  // as options??? "als Optionen" oder "optional"?  // include = einbeziehen (?)
 $_lang['articles.setting.includeTVsList'] = 'Liste einzubeziehender Template-Variablen';
-$_lang['articles.setting.includeTVsList_desc'] = 'Eine optionale, kommaseparierte Liste von Namen von Template-Variablen, die explizit einbezogen werden, wenn "Template-Variablen in Übersicht anzeigen" aktiviert ist.';  // include = einbeziehen (?)
+$_lang['articles.setting.includeTVsList_desc'] = 'Eine optionale, kommaseparierte Liste von Namen von Template-Variablen, die explizit einbezogen werden, wenn "Template-Variablen in Übersicht anzeigen" aktiviert ist. Werden hier Template-Variablen eingetragen, so werden ausschließlich diese einbezogen, sonst alle.';
 $_lang['articles.setting.archivesProcessTVs'] = 'Template-Variablen in Übersicht verarbeiten';
 $_lang['articles.setting.archivesProcessTVs_desc'] = 'Wenn diese Option aktiviert ist, werden Template-Variablen in den Übersichts-Chunks verarbeitet.';
 $_lang['articles.setting.processTVsList'] = 'Liste zu verarbeitender Template-Variablen';
-$_lang['articles.setting.processTVsList_desc'] = 'Eine optionale, kommaseparierte Liste von Namen von Template-Variablen, die explizit verarbeitet werden. Template-Variablen, die hier angegeben werden, müssen mittels der Einstellungen "Template-Variablen in Übersicht anzeigen" und "Liste einzubeziehender Template-Variablen" einbezogen werden.';
+$_lang['articles.setting.processTVsList_desc'] = 'Eine optionale, kommaseparierte Liste von Namen von Template-Variablen, die explizit verarbeitet werden. Template-Variablen, die hier angegeben werden, müssen mittels der Einstellungen "Template-Variablen in Übersicht anzeigen" und "Liste einzubeziehender Template-Variablen" einbezogen werden. Werden hier Template-Variablen eingetragen, so werden ausschließlich diese verarbeitet, sonst alle.';
 $_lang['articles.setting.otherGetArchives'] = 'Andere Übersichts-Parameter';
 $_lang['articles.setting.otherGetArchives_desc'] = 'Alle anderen Eigenschaften, die Sie dem getResources-/getPage-Aufruf für die Articles-Übersichtsseite hinzufügen möchten. Verwenden Sie die MODX-Tag-Syntax, als ob Sie die Parameter zum Tag-Aufruf hinzufügen würden (z.B. &eigenschaft=`wert`).';
 
@@ -173,17 +173,17 @@ $_lang['articles.setting.articlesPerPage'] = 'Artikel pro Seite';
 $_lang['articles.setting.articlesPerPage_desc'] = 'Die Anzahl an Artikeln, die pro Seite angezeigt werden, wenn Postings aufgelistet werden.';
 $_lang['articles.setting.pageLimit'] = 'Seiten-Limit';
 $_lang['articles.setting.pageLimit_desc'] = 'Die maximale Anzahl an Seiten, die aufgelistet werden, wenn Seitennummern-Links angezeigt werden.';
-$_lang['articles.setting.pageNavTpl'] = 'Template für Navigationselement für eine einzelne Seite';
+$_lang['articles.setting.pageNavTpl'] = 'Template für Paginierungs-Link zu einer einzelnen Seite';
 $_lang['articles.setting.pageNavTpl_desc'] = 'Der Inhalt dieses Eingabefeldes repräsentiert das Navigationselement für eine einzelne Seite.';
-$_lang['articles.setting.pageActiveTpl'] = 'Template für Navigationselement für die aktuelle Seite';
+$_lang['articles.setting.pageActiveTpl'] = 'Template für Paginierungs-Link zur aktuellen Seite';
 $_lang['articles.setting.pageActiveTpl_desc'] = 'Der Inhalt dieses Eingabefeldes repräsentiert das Navigationselement für die aktuelle Seite.';
-$_lang['articles.setting.pageFirstTpl'] = 'Template für Navigationselement für die erste Seite';
+$_lang['articles.setting.pageFirstTpl'] = 'Template für Paginierungs-Link zur ersten Seite';
 $_lang['articles.setting.pageFirstTpl_desc'] = 'Der Inhalt dieses Eingabefeldes repräsentiert das Navigationselement für die erste Seite.';
-$_lang['articles.setting.pageLastTpl'] = 'Template für Navigationselement für die letzte Seite';
+$_lang['articles.setting.pageLastTpl'] = 'Template für Paginierungs-Link zur letzten Seite';
 $_lang['articles.setting.pageLastTpl_desc'] = 'Der Inhalt dieses Eingabefeldes repräsentiert das Navigationselement für die letzte Seite.';
-$_lang['articles.setting.pagePrevTpl'] = 'Template für Navigationselement für die vorhergehende Seite';
+$_lang['articles.setting.pagePrevTpl'] = 'Template für Paginierungs-Link zur vorhergehenden Seite';
 $_lang['articles.setting.pagePrevTpl_desc'] = 'Der Inhalt dieses Eingabefeldes repräsentiert das Navigationselement für die vorhergehende Seite.';
-$_lang['articles.setting.pageNextTpl'] = 'Template für Navigationselement für die nachfolgende Seite';
+$_lang['articles.setting.pageNextTpl'] = 'Template für Paginierungs-Link zur nachfolgenden Seite';
 $_lang['articles.setting.pageNextTpl_desc'] = 'Der Inhalt dieses Eingabefeldes repräsentiert das Navigationselement für die nachfolgende Seite.';
 $_lang['articles.setting.pageOffset'] = 'Seiten-Offset';
 $_lang['articles.setting.pageOffset_desc'] = 'Der Offset (bzw. die Datensatz-Position), bei dem innerhalb der Sammlung begonnen wird, Ergebnisse für die aktuelle Seite auszugeben; sollte berechnet werden basierend auf der Variablen, die in der Einstellung "Variablen-Schlüssel der aktuellen Seite" festgelegt wird.';
