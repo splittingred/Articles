@@ -204,7 +204,12 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
         location.href = 'index.php?a='+MODx.request.a+'&id='+this.menu.record.id;
     }
     ,createArticle: function(btn,e) {
-        location.href = 'index.php?a='+MODx.action['resource/create']+'&class_key=Article&parent='+MODx.request.id+'&context_key='+MODx.ctx;
+        var tpl = '';
+        var panel = Ext.getCmp('modx-panel-resource');
+        if (panel && panel.record) {
+            tpl = '&template=' + panel.record.articles_container_settings.articleTemplate
+        }
+        location.href = 'index.php?a='+MODx.action['resource/create']+'&class_key=Article&parent='+MODx.request.id+'&context_key='+MODx.ctx+tpl;
     }
     ,viewArticle: function(btn,e) {
         window.open(this.menu.record.data.preview_url);
