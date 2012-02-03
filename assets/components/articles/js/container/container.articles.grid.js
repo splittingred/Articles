@@ -204,7 +204,7 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
         location.href = 'index.php?a='+MODx.request.a+'&id='+this.menu.record.id;
     }
     ,createArticle: function(btn,e) {
-        location.href = 'index.php?a='+MODx.action['resource/create']+'&class_key=Article&parent='+MODx.request.id;
+        location.href = 'index.php?a='+MODx.action['resource/create']+'&class_key=Article&parent='+MODx.request.id+'&context_key='+MODx.ctx;
     }
     ,viewArticle: function(btn,e) {
         window.open(this.menu.record.data.preview_url);

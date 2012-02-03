@@ -1,5 +1,7 @@
 Changelog for Articles.
 
+- [#6966] Fix issue with non-web contexts
+
 Articles 1.4.4
 ===============================
 - Update Quip to 2.2.0-pl
