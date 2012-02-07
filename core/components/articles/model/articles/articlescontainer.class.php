@@ -270,9 +270,11 @@ class ArticlesContainer extends modResource {
     }
     /**
      * Get the getPage and getArchives call to display listings of posts on the container.
+     *
+     * @param string $placeholderPrefix
      * @return string
      */
-    public function getPostListingCall() {
+    public function getPostListingCall($placeholderPrefix = '') {
         $settings = $this->getContainerSettings();
         $where = array('class_key' => 'Article');
         if (!empty($_REQUEST['arc_user'])) {
@@ -325,9 +327,9 @@ class ArticlesContainer extends modResource {
 
           '.$this->xpdo->getOption('otherGetArchives',$settings,'').'
         ]]';
-        $this->xpdo->setPlaceholder('articles',$output);
+        $this->xpdo->setPlaceholder($placeholderPrefix.'articles',$output);
 
-        $this->xpdo->setPlaceholder('paging','[[!+page.nav:notempty=`
+        $this->xpdo->setPlaceholder($placeholderPrefix.'paging','[[!+page.nav:notempty=`
 <div class="paging">
 <ul class="pageList">
   [[!+page.nav]]
@@ -339,9 +341,11 @@ class ArticlesContainer extends modResource {
 
     /**
      * Get the Archivist call for displaying archives in month/year format.
+     *
+     * @param string $placeholderPrefix
      * @return void
      */
-    public function getArchivistCall() {
+    public function getArchivistCall($placeholderPrefix = '') {
         $settings = $this->getContainerSettings();
         $output = '[[Archivist?
             &tpl=`'.$this->xpdo->getOption('tplArchiveMonth',$settings,'row').'`
@@ -357,14 +361,16 @@ class ArticlesContainer extends modResource {
             &altCls=`'.$this->xpdo->getOption('archiveAltCls',$settings,'').'`
             &setLocale=`1`
         ]]';
-        $this->xpdo->setPlaceholder('archives',$output);
+        $this->xpdo->setPlaceholder($placeholderPrefix.'archives',$output);
     }
 
     /**
      * Get the tagLister call for displaying tag listings on the front-end.
+     *
+     * @param string $placeholderPrefix
      * @return string
      */
-    public function getTagListerCall() {
+    public function getTagListerCall($placeholderPrefix = '') {
         $settings = $this->getContainerSettings();
         $output = '[[tagLister?
             &tpl=`'.$this->xpdo->getOption('tplTagRow',$settings,'tag').'`
@@ -377,15 +383,17 @@ class ArticlesContainer extends modResource {
             &altCls=`'.$this->xpdo->getOption('tagsAltCls',$settings,'tl-tag-alt').'`
             &target=`'.$this->get('id').'`
         ]]';
-        $this->xpdo->setPlaceholder('tags',$output);
+        $this->xpdo->setPlaceholder($placeholderPrefix.'tags',$output);
         return $output;
     }
 
     /**
      * Get the call for the latest posts
+     *
+     * @param string $placeholderPrefix
      * @return string
      */
-    public function getLatestPostsCall() {
+    public function getLatestPostsCall($placeholderPrefix = '') {
         $settings = $this->getContainerSettings();
         $output = '[[getResources?
             &parents=`'.$this->get('id').'`
@@ -396,15 +404,17 @@ class ArticlesContainer extends modResource {
             &sortby=`publishedon`
             &where=`{"class_key":"Article"}`
         ]]';
-        $this->xpdo->setPlaceholder('latest_posts',$output);
+        $this->xpdo->setPlaceholder($placeholderPrefix.'latest_posts',$output);
         return $output;
     }
 
     /**
      * Get the call for the latest comments
+     *
+     * @param string $placeholderPrefix
      * @return string
      */
-    public function getLatestCommentsCall() {
+    public function getLatestCommentsCall($placeholderPrefix = '') {
         $settings = $this->getContainerSettings();
         $output = '[[!QuipLatestComments?
             &type=`family`
@@ -415,7 +425,7 @@ class ArticlesContainer extends modResource {
             &rowCss=`'.$this->xpdo->getOption('latestCommentsRowCss',$settings,'quip-latest-comment').'`
             &altRowCss=`'.$this->xpdo->getOption('latestCommentsAltRowCss',$settings,'quip-latest-comment-alt').'`
         ]]';
-        $this->xpdo->setPlaceholder('latest_comments',$output);
+        $this->xpdo->setPlaceholder($placeholderPrefix.'latest_comments',$output);
         return $output;
     }
 
@@ -723,11 +733,7 @@ class ArticlesContainerUpdateProcessor extends modResourceUpdateProcessor {
         $this->object->removeLock();
         $this->clearCache();
 
-<<<<<<< HEAD
-        $returnArray = $this->object->get(array_diff(array_keys($this->object->_fields), array('content','ta','introtext','description','link_attributes','pagetitle','longtitle','menutitle','properties')));
-=======
         $returnArray = $this->object->get(array_diff(array_keys($this->object->_fields), array('content','ta','introtext','description','link_attributes','pagetitle','longtitle','menutitle','articles_container_settings','properties')));
->>>>>>> beb4a56... [#6625] Add in longtitle for Container in General Settings
         foreach ($returnArray as $k => $v) {
             if (strpos($k,'tv') === 0) {
                 unset($returnArray[$k]);
