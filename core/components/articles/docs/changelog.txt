@@ -2,6 +2,7 @@ Changelog for Articles.
 
 Articles 1.4.4
 ===============================
+- [#6626] Improve pub-date checking on WordPress import
 - [#6601] Fix template variables tab showing when creating a new article
 - [#6966] Fix issue with non-web contexts
 - Update Quip to 2.2.0-pl

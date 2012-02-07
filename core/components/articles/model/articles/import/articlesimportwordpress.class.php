@@ -157,6 +157,10 @@ class ArticlesImportWordPress extends ArticlesImport {
         $creator = $this->matchCreator((string)$item->xpath('dc:creator'.'/text()'),1);
         /** @var SimpleXMLElement $wp */
         $wp = $item->children('wp',true);
+        $pubDate =  strtotime((string)$item->pubDate);
+        if (empty($pubDate)) {
+            $pubDate = strtotime((string)$wp->post_date);
+        }
 
         /** @var Article $article */
         $article = $this->modx->newObject('Article');
@@ -168,7 +172,7 @@ class ArticlesImportWordPress extends ArticlesImport {
             'alias' => $this->parseContent((string)$wp->post_name),
             'template' => $this->modx->getOption('articleTemplate',$settings,0),
             'published' => $this->parsePublished($item),
-            'publishedon' => strtotime((string)$item->pubDate),
+            'publishedon' => $pubDate,
             'publishedby' => $creator,
             'createdby' => $creator,
             'createdon' => strtotime((string)$wp->post_date),
