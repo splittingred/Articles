@@ -2,6 +2,7 @@ Changelog for Articles.
 
 Articles 1.4.4
 ===============================
+- [#6850] Enable multiple Articles snippet calls per page
 - [#6625] Add in longtitle for Container in General Settings
 - Fix issue where changing template settings did not activate save btn
 - Add German, Russian, Czech translations
