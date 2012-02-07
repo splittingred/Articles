@@ -54,6 +54,20 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
 
             },{
                 xtype: 'textfield'
+                ,name: 'longtitle'
+                ,id: 'articles-longtitle'
+                ,fieldLabel: _('resource_longtitle')
+                ,description: MODx.expandHelp ? '' : _('resource_longtitle_help')
+                ,anchor: '100%'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-longtitle'
+                ,html: _('resource_longtitle_help')
+                ,cls: 'desc-under'
+
+            },{
+                xtype: 'textfield'
                 ,name: 'setting_sortBy'
                 ,id: 'articles-setting-sortBy'
                 ,fieldLabel: _('articles.setting.sortBy')
@@ -1434,6 +1448,10 @@ Articles.panel.ContainerTemplateSettings = function(config) {
 };
 Ext.extend(Articles.panel.ContainerTemplateSettings,MODx.Panel,{
     getItems: function(config) {
+        var oc = {
+            'change':{fn:MODx.fireResourceFormChange}
+            ,'select':{fn:MODx.fireResourceFormChange}
+        };
         var flds = [];
         flds.push({
             xtype: 'modx-combo-template'
@@ -1448,6 +1466,7 @@ Ext.extend(Articles.panel.ContainerTemplateSettings,MODx.Panel,{
                 ,combo: '1'
             }
             ,value: config.record.template || MODx.config['articles.default_container_template']
+            ,listeners: oc
         },{
             xtype: MODx.expandHelp ? 'label' : 'hidden'
             ,forId: 'modx-resource-template'
@@ -1473,6 +1492,7 @@ Ext.extend(Articles.panel.ContainerTemplateSettings,MODx.Panel,{
                 ,description: MODx.expandHelp ? '' : _('articles.setting.articleTemplate_desc')
                 ,anchor: '100%'
                 ,value: config.record.setting_articleTemplate || MODx.config['articles.default_article_template']
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'articles-setting-articleTemplate'
@@ -1487,6 +1507,7 @@ Ext.extend(Articles.panel.ContainerTemplateSettings,MODx.Panel,{
                 ,description: MODx.expandHelp ? '' : _('articles.setting.tplArticleRow_desc')
                 ,anchor: '100%'
                 ,value: config.record.setting_tplArticleRow || 'sample.ArticleRowTpl'
+                ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'articles-setting-tplArticleRow'
