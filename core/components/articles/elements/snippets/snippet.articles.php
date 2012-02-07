@@ -35,15 +35,17 @@ if (empty($container)) return '';
 $container = $modx->getObject('ArticlesContainer',$container);
 if (empty($container)) return '';
 
-$container->getPostListingCall();
-$container->getArchivistCall();
-$container->getTagListerCall();
-$container->getLatestPostsCall();
+$placeholderPrefix = $this->getOption('placeholderPrefix',$scriptProperties,'');
+
+$container->getPostListingCall($placeholderPrefix);
+$container->getArchivistCall($placeholderPrefix);
+$container->getTagListerCall($placeholderPrefix);
+$container->getLatestPostsCall($placeholderPrefix);
 $settings = $container->getContainerSettings();
 if ($modx->getOption('commentsEnabled',$settings,true)) {
-    $container->getLatestCommentsCall();
-    $modx->setPlaceholder('comments_enabled',1);
+    $container->getLatestCommentsCall($placeholderPrefix);
+    $modx->setPlaceholder($placeholderPrefix.'comments_enabled',1);
 } else {
-    $modx->setPlaceholder('comments_enabled',0);
+    $modx->setPlaceholder($placeholderPrefix.'comments_enabled',0);
 }
 return '';
