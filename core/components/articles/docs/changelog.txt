@@ -6,6 +6,9 @@ Articles 1.5.0
 
 Articles 1.4.4
 ===============================
+- [#6625] Add in longtitle for Container in General Settings
+- Fix issue where changing template settings did not activate save btn
+- Add German, Russian, Czech translations
 - [#6626] Improve pub-date checking on WordPress import
 - [#6601] Fix template variables tab showing when creating a new article
 - [#6966] Fix issue with non-web contexts
