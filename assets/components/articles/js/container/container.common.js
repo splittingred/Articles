@@ -67,6 +67,22 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,cls: 'desc-under'
 
             },{
+                xtype: 'combo-boolean'
+                ,name: 'setting_articlesRichtext'
+                ,hiddenName: 'setting_articlesRichtext'
+                ,id: 'articles-richtext'
+                ,fieldLabel: _('resource_richtext')
+                ,description: MODx.expandHelp ? '' : _('resource_richtext_help')
+                ,width: 120
+                ,listeners: oc
+                ,value: 1
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-richtext'
+                ,html: _('resource_richtext_help')
+                ,cls: 'desc-under'
+
+            },{
                 xtype: 'textfield'
                 ,name: 'setting_sortBy'
                 ,id: 'articles-setting-sortBy'
