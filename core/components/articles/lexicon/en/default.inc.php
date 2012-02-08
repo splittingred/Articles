@@ -325,3 +325,6 @@ $_lang['setting_articles.default_article_template_desc'] = 'The default Template
 
 $_lang['setting_articles.container_ids'] = 'Articles FURL IDs';
 $_lang['setting_articles.container_ids_desc'] = 'A comma-separated list of container IDs in use for FURL routing. Best to leave this alone.';
+
+$_lang['setting_articles.default_article_sort_field'] = 'Default Sort Field for Articles In Manager';
+$_lang['setting_articles.default_article_sort_field_desc'] = 'The default sorting field for articles in the grid when editing a Container.';
