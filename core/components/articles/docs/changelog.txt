@@ -1,6 +1,6 @@
 Changelog for Articles.
 
-Articles 1.4.4
+Articles 1.4.5
 ===============================
 - [#6832],[#6697],[#6596] Remove 255 char limit from Article summary field, remove 100 char tags field limit
 
