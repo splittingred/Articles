@@ -35,7 +35,7 @@ if (empty($container)) return '';
 $container = $modx->getObject('ArticlesContainer',$container);
 if (empty($container)) return '';
 
-$placeholderPrefix = $this->getOption('placeholderPrefix',$scriptProperties,'');
+$placeholderPrefix = $modx->getOption('placeholderPrefix',$scriptProperties,'');
 
 $container->getPostListingCall($placeholderPrefix);
 $container->getArchivistCall($placeholderPrefix);
