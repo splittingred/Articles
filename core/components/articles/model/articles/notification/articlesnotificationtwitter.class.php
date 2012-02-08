@@ -53,7 +53,7 @@ class ArticlesNotificationTwitter extends ArticlesNotification {
     }
 
     public function getMessage($title,$url) {
-        $defaultTpl = '[[+pagetitle]] [[+link]] [[+hashtags]]';
+        $defaultTpl = '[[+title]] [[+url]] [[+hashtags]]';
         $defaultTplLength = strlen($defaultTpl);
         $tpl = $this->modx->getOption('notifyTwitterTpl',$this->config,$defaultTpl);
         $encoding = $this->modx->getOption('modx_charset',null,'UTF-8');
