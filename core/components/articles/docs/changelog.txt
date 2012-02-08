@@ -6,6 +6,7 @@ Articles 1.5.0
 
 Articles 1.4.4
 ===============================
+- [#7001] Fix issue where disabling comments prevented other placeholders from displaying
 - [#6980] Fix issue with fallback Twitter feed tpl
 - [#6850] Enable multiple Articles snippet calls per page
 - [#6625] Add in longtitle for Container in General Settings

@@ -47,18 +47,18 @@ class Article extends modResource {
                 $this->getCommentsCall($settings);
                 $this->getCommentsReplyCall($settings);
                 $this->getCommentsCountCall($settings);
-                $this->getTagsCall($settings);
                 $this->xpdo->setPlaceholder('comments_enabled',1);
-                /** @var ArticlesContainer $container */
-                $container = $this->getOne('Container');
-                if ($container) {
-                    $container->getArchivistCall();
-                    $container->getLatestCommentsCall();
-                    $container->getLatestPostsCall();
-                    $container->getTagListerCall();
-                }
             } else {
                 $this->xpdo->setPlaceholder('comments_enabled',0);
+            }
+            $this->getTagsCall($settings);
+            /** @var ArticlesContainer $container */
+            $container = $this->getOne('Container');
+            if ($container) {
+                $container->getArchivistCall();
+                $container->getLatestCommentsCall();
+                $container->getLatestPostsCall();
+                $container->getTagListerCall();
             }
         }
         $content = parent::getContent($options);
