@@ -89,7 +89,6 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
             ,description: '<b>[[*introtext]]</b><br />'+_('articles.article_summary')
             ,name: 'introtext'
             ,id: 'modx-resource-introtext'
-            ,maxLength: 255
             ,anchor: '100%'
             ,value: config.record.introtext || ''
 
@@ -213,7 +212,6 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                 ,description: _('articles.article_tags_help')
                 ,name: 'tags'
                 ,id: 'modx-resource-tags'
-                ,maxLength: 100
                 ,anchor: '100%'
                 ,value: config.record.tags || ''
 
