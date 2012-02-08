@@ -90,7 +90,6 @@ class ArticleUpdateManagerController extends ResourceUpdateManagerController {
 
     public function process(array $scriptProperties = array()) {
         $placeholders = parent::process($scriptProperties);
-        $this->resourceArray['richtext'] = 1;
         $this->getTagsTV();
 
         $settings = $this->resource->getContainerSettings();

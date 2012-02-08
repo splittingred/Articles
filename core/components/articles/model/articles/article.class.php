@@ -327,7 +327,7 @@ class ArticleCreateProcessor extends modResourceCreateProcessor {
     }
     
     /**
-     * Override modResourceUpdateProcessor::beforeSave to provide archiving
+     * Override modResourceCreateProcessor::beforeSave to provide archiving
      *
      * {@inheritDoc}
      * @return boolean
@@ -348,7 +348,9 @@ class ArticleCreateProcessor extends modResourceCreateProcessor {
         /** @var ArticlesContainer $container */
         $container = $this->modx->getObject('ArticlesContainer',$this->object->get('parent'));
         if ($container) {
-            $this->object->setProperties($container->getProperties('articles'),'articles');
+            $settings = $container->getProperties('articles');
+            $this->object->setProperties($settings,'articles');
+            $this->object->set('richtext',!isset($settings['articlesRichtext']) || !empty($settings['articlesRichtext']));
         }
 
         $this->isPublishing = $this->object->isDirty('published') && $this->object->get('published');

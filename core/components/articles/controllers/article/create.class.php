@@ -59,7 +59,9 @@ class ArticleCreateManagerController extends ResourceCreateManagerController {
         // ]]>
         </script>');
         /* load RTE */
-        $this->loadRichTextEditor();
+        if (!empty($this->resourceArray['richtext'])) {
+            $this->loadRichTextEditor();
+        }
     }
 
     public function getLanguageTopics() {
@@ -69,9 +71,7 @@ class ArticleCreateManagerController extends ResourceCreateManagerController {
 
     public function process(array $scriptProperties = array()) {
         $placeholders = parent::process($scriptProperties);
-        $this->resourceArray['richtext'] = 1;
         $this->resourceArray['published'] = 0;
-
         $this->getDefaultContainerSettings();
         return $placeholders;
     }
@@ -84,6 +84,7 @@ class ArticleCreateManagerController extends ResourceCreateManagerController {
         if ($container) {
             $settings = $container->getProperties('articles');
             $this->resourceArray['template'] = $this->modx->getOption('articleTemplate',$settings,0);
+            $this->resourceArray['richtext'] = $this->modx->getOption('articlesRichtext',$settings,1);
         }
     }
 }

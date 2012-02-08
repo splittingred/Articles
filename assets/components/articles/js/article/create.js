@@ -233,7 +233,7 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                 xtype: 'hidden'
                 ,name: 'richtext'
                 ,id: 'modx-resource-richtext'
-                ,value: true
+                ,value: config.record.richtext !== undefined ? parseInt(config.record.richtext) : true
 
             },{
                 xtype: 'hidden'

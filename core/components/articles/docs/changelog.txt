@@ -6,6 +6,7 @@ Articles 1.5.0
 
 Articles 1.4.4
 ===============================
+- [#6641] Add option to turn off richtext editing for Articles in a Container
 - [#6897] Add offset as option to latest posts display
 - [#6639] Add option to change default sorting for Articles in mgr container grid
 - [#7001] Fix issue where disabling comments prevented other placeholders from displaying
