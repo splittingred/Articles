@@ -657,6 +657,23 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,html: _('articles.setting.latestPostsLimit_desc')
                 ,cls: 'desc-under'
 
+            },{
+                xtype: 'numberfield'
+                ,name: 'setting_latestPostsOffset'
+                ,id: 'articles-setting-latestPostsOffset'
+                ,fieldLabel: _('articles.setting.latestPostsOffset')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.latestPostsOffset_desc')
+                ,width: 120
+                ,allowNegative: false
+                ,allowDecimals: false
+                ,value: 0
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-latestPostsOffset'
+                ,html: _('articles.setting.latestPostsOffset_desc')
+                ,cls: 'desc-under'
+
             }]
         },{
             title: _('articles.settings_notifications')

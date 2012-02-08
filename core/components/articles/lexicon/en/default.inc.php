@@ -216,6 +216,8 @@ $_lang['articles.setting.latestPostsTpl'] = 'Latest Articles Chunk';
 $_lang['articles.setting.latestPostsTpl_desc'] = 'The Chunk to use for each Latest Article.';
 $_lang['articles.setting.latestPostsLimit'] = 'Latest Articles to Show';
 $_lang['articles.setting.latestPostsLimit_desc'] = 'The number of latest Articles to show.';
+$_lang['articles.setting.latestPostsOffset'] = 'Latest Articles Offset';
+$_lang['articles.setting.latestPostsOffset_desc'] = 'The starting index of the listing of latest Articles.';
 
 /* Notifications */
 $_lang['articles.setting.notifyTwitter'] = 'Send to Twitter';
