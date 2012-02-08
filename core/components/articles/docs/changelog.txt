@@ -2,6 +2,7 @@ Changelog for Articles.
 
 Articles 1.4.4
 ===============================
+- [#6639] Add option to change default sorting for Articles in mgr container grid
 - [#7001] Fix issue where disabling comments prevented other placeholders from displaying
 - [#6980] Fix issue with fallback Twitter feed tpl
 - [#6850] Enable multiple Articles snippet calls per page

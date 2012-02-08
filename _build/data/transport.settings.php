@@ -49,6 +49,14 @@ $settings['articles.default_article_template']->fromArray(array(
     'namespace' => 'articles',
     'area' => 'site',
 ),'',true,true);
+$settings['articles.default_article_sort_field']= $modx->newObject('modSystemSetting');
+$settings['articles.default_article_sort_field']->fromArray(array(
+    'key' => 'articles.default_article_sort_field',
+    'value' => 'createdon',
+    'xtype' => 'textfield',
+    'namespace' => 'articles',
+    'area' => 'site',
+),'',true,true);
 
 
 return $settings;

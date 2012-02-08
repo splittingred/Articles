@@ -45,6 +45,7 @@ class ArticleGetListProcessor extends modObjectGetListProcessor {
             'namespace' => 'core',
             'controller' => 'resource/update',
         ));
+        $this->defaultSortField = $this->modx->getOption('articles.default_article_sort_field',null,'createdon');
 
         if ($this->getParentContainer()) {
             $settings = $this->container->getContainerSettings();
