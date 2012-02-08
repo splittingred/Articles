@@ -401,6 +401,7 @@ class ArticlesContainer extends modResource {
             &showHidden=`1`
             &tpl=`'.$this->xpdo->getOption('latestPostsTpl',$settings,'sample.ArticlesLatestPostTpl').'`
             &limit=`'.$this->xpdo->getOption('latestPostsLimit',$settings,5).'`
+            &offset=`'.$this->xpdo->getOption('latestPostsOffset',$settings,0).'`
             &sortby=`publishedon`
             &where=`{"class_key":"Article"}`
         ]]';
