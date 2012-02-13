@@ -57,6 +57,13 @@ $settings['articles.default_article_sort_field']->fromArray(array(
     'namespace' => 'articles',
     'area' => 'site',
 ),'',true,true);
-
+$settings['articles.article_show_longtitle']= $modx->newObject('modSystemSetting');
+$settings['articles.article_show_longtitle']->fromArray(array(
+    'key' => 'articles.article_show_longtitle',
+    'value' => false,
+    'xtype' => 'combo-boolean',
+    'namespace' => 'articles',
+    'area' => 'site',
+),'',true,true);
 
 return $settings;

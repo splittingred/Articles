@@ -2,6 +2,7 @@ Changelog for Articles.
 
 Articles 1.4.7
 ===============================
+- [#7069] Add articles.article_show_longtitle setting for toggling on/off the longtitle field when editing Articles
 - [#7057] Fix issue with RTEs and updating an Article
 
 Articles 1.4.6

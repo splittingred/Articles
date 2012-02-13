@@ -259,8 +259,21 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                     Ext.getCmp('modx-resource-header').getEl().update('<h2>'+title+'</h2>');
                 }}
             }
+        }];
 
-        },{
+        if (MODx.config['articles.article_show_longtitle']) {
+            mlf.push({
+                xtype: 'textfield'
+                ,fieldLabel: _('resource_longtitle')
+                ,description: '<b>[[*longtitle]]</b><br />'+_('resource_longtitle')
+                ,name: 'longtitle'
+                ,id: 'modx-resource-longtitle'
+                ,anchor: '100%'
+                ,value: config.record.longtitle || ''
+            });
+        }
+
+        mlf.push({
             xtype: 'textarea'
             ,fieldLabel: _('articles.article_summary')
             ,description: '<b>[[*introtext]]</b><br />'+_('articles.article_summary')
@@ -268,8 +281,8 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
             ,id: 'modx-resource-introtext'
             ,anchor: '100%'
             ,value: config.record.introtext || ''
+        });
 
-        }];
 
         var ct = this.getContentField(config);
         if (ct) {
