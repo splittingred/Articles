@@ -94,6 +94,7 @@ class ArticleUpdateManagerController extends ResourceUpdateManagerController {
 
         $settings = $this->resource->getContainerSettings();
         $this->resourceArray['commentsEnabled'] = $this->modx->getOption('commentsEnabled',$settings,true);
+        $this->resourceArray['richtext'] = $this->modx->getOption('articlesRichtext',$settings,1);
 
         return $placeholders;
     }

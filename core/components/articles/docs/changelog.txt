@@ -1,5 +1,9 @@
 Changelog for Articles.
 
+Articles 1.4.7
+===============================
+- [#7057] Fix issue with RTEs and updating an Article
+
 Articles 1.4.6
 ===============================
 - Fix issue with Articles snippet and $this reference
