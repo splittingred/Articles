@@ -220,6 +220,8 @@ $_lang['articles.setting.latestPostsTpl'] = 'Neueste-Artikel-Chunk';
 $_lang['articles.setting.latestPostsTpl_desc'] = 'Der Chunk, der für die jeweils neuesten Artikel genutzt wird.';
 $_lang['articles.setting.latestPostsLimit'] = 'Anzuzeigende neueste Artikel';
 $_lang['articles.setting.latestPostsLimit_desc'] = 'Die Anzahl der anzuzeigenden neuesten Artikel.';
+$_lang['articles.setting.latestPostsOffset'] = 'Start-Index für neueste Artikel';
+$_lang['articles.setting.latestPostsOffset_desc'] = 'Der Start-Index der Liste der neuesten Artikel.';
 
 /* Notifications */
 $_lang['articles.setting.notifyTwitter'] = 'An Twitter senden';
@@ -321,6 +323,9 @@ $_lang['articles.setting.'] = '';
 $_lang['articles.setting._desc'] = '';
 
 /* Settings */
+$_lang['setting_articles.article_show_longtitle'] = 'Feld für langen Titel anzeigen';
+$_lang['setting_articles.article_show_longtitle_desc'] = 'Setzen Sie diese Einstellung auf "Ja", wenn das Feld "Langer Titel" beim Bearbeiten eines Artikels eingeblendet werden soll.';
+
 $_lang['setting_articles.default_container_template'] = 'Standard-Artikel-Container-Template';
 $_lang['setting_articles.default_container_template_desc'] = 'Das Template, das standardmäßig verwendet wird, wenn ein neuer Artikel-Container erstellt wird.';
 
@@ -329,3 +334,6 @@ $_lang['setting_articles.default_article_template_desc'] = 'Das Template, das st
 
 $_lang['setting_articles.container_ids'] = 'Container-IDs für das Routing von suchmaschinenfreundlichen URLs';
 $_lang['setting_articles.container_ids_desc'] = 'Eine kommaseparierte Liste von Container-IDs, die für das Routing von suchmaschinenfreundlichen URLs verwendet werden. Es wird empfohlen, hier keine Änderungen vorzunehmen.';  // FURL routing
+
+$_lang['setting_articles.default_article_sort_field'] = 'Standard-Sortierfeld für Artikel im Manager';
+$_lang['setting_articles.default_article_sort_field_desc'] = 'Das Standard-Sortierfeld für die Artikel-Liste beim Bearbeiten eines Containers.';
