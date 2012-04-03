@@ -29,6 +29,7 @@ $_lang['articles.article_delete'] = 'Delete Article';
 $_lang['articles.article_delete_confirm'] = 'Are you sure you want to delete the selected Article?';
 $_lang['articles.article_delete_multiple'] = 'Delete Multiple Articles';
 $_lang['articles.article_delete_multiple_confirm'] = 'Are you sure you want to delete the selected Articles?';
+$_lang['articles.article_duplicate'] = 'Duplicate Article';
 $_lang['articles.article_edit'] = 'Edit Article';
 $_lang['articles.article_options'] = 'Article Options';
 $_lang['articles.article_publish'] = 'Publish';

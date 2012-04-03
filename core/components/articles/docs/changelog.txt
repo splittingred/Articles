@@ -2,6 +2,7 @@ Changelog for Articles.
 
 Articles 1.5.0
 ===============================
+- [#7419] Add ability to duplicate single Articles
 - [#7517] Add ability to duplicate Articles Container
 - Deprecate custom DB fields to use new properties field on modResource
 

@@ -139,6 +139,10 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
            text: _('articles.article_edit')
            ,handler: this.editArticle
         });
+        m.push({
+           text: _('articles.article_duplicate')
+           ,handler: this.duplicateArticle
+        });
         return m;
     }
     ,filterStatus: function(cb,nv,ov) {
@@ -213,6 +217,25 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
     }
     ,viewArticle: function(btn,e) {
         window.open(this.menu.record.data.preview_url);
+        return false;
+    }
+    ,duplicateArticle: function(btn,e) {
+        var r = {
+            resource: this.menu.record.id
+            ,is_folder: false
+            ,name: _('duplicate_of',{name: this.menu.record.pagetitle})
+        };
+        var w = MODx.load({
+            xtype: 'modx-window-resource-duplicate'
+            ,resource: this.menu.record.id
+            ,hasChildren: false
+            ,listeners: {
+                'success': {fn:function() {this.refresh();},scope:this}
+            }
+        });
+        w.config.hasChildren = false;
+        w.setValues(r);
+        w.show(e.target);
         return false;
     }
 
