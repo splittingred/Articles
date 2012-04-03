@@ -33,7 +33,10 @@ if ($object->xpdo) {
         case xPDOTransport::ACTION_UPGRADE:
             /** @var modX $modx */
             $modx =& $object->xpdo;
-            $modelPath = $modx->getOption('articles.core_path',null,$modx->getOption('core_path').'components/articles/').'model/';
+            $modelPath = $modx->getOption('articles.core_path');
+            if (empty($modelPath)) {
+                $modelPath = '[[++core_path]]components/articles/model/';
+            }
             if ($modx instanceof modX) {
                 $modx->addExtensionPackage('articles',$modelPath);
             }
