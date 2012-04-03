@@ -146,6 +146,10 @@ class ArticlesContainer extends modResource {
             'text' => $this->xpdo->lexicon('articles.articles_write_new'),
             'handler' => 'function(itm,e) { itm.classKey = "Article"; this.createResourceHere(itm,e); }',
         );
+        $menu[] = array(
+            'text' => $this->xpdo->lexicon('articles.container_duplicate'),
+            'handler' => 'function(itm,e) { itm.classKey = "ArticlesContainer"; this.duplicateResource(itm,e); }',
+        );
         $menu[] = '-';
         if ($this->get('published')) {
             $menu[] = array(
@@ -176,6 +180,7 @@ class ArticlesContainer extends modResource {
         );
 
         $node['menu'] = array('items' => $menu);
+        $node['hasChildren'] = true;
         return $node;
     }
 

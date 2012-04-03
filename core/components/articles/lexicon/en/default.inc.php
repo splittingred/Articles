@@ -59,6 +59,7 @@ $_lang['articles.container_create_here'] = 'Create Articles Here';
 $_lang['articles.container_delete'] = 'Delete Articles Container';
 $_lang['articles.container_description'] = 'Description';
 $_lang['articles.container_description_desc'] = 'A short description of your Articles container.';
+$_lang['articles.container_duplicate'] = 'Duplicate Articles Container';
 $_lang['articles.container_menutitle_desc'] = 'The title used when displayed in a navigation menu.';
 $_lang['articles.container_new'] = 'New Articles Container';
 $_lang['articles.container_publish'] = 'Publish Articles Container';
