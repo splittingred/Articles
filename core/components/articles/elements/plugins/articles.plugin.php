@@ -38,6 +38,14 @@ switch ($modx->event->name) {
         /** @var Article $resource */
         $resource =& $scriptProperties['resource'];
         if ($resource instanceof Article) {
+            $resource->setArchiveUri();
+            $resource->save();
+            $modx->cacheManager->refresh(array(
+                'db' => array(),
+                'auto_publish' => array('contexts' => array($resource->get('context_key'))),
+                'context_settings' => array('contexts' => array($resource->get('context_key'))),
+                'resource' => array('contexts' => array($resource->get('context_key'))),
+            ));
             $resource->notifyUpdateServices();
             $resource->sendNotifications();
         }
