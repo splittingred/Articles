@@ -129,3 +129,19 @@
     background-color: #fafafa !important;
     padding: 0 5px;
 }
+
+.articles-grid .article-id {
+    font-size: 11px;
+    font-weight: normal;
+    display: block;
+    margin-bottom: 3px;
+    padding-left: 5px;
+    float: left;
+    color: #aaa;
+}
+.articles-grid .main-column a {
+    float: left;
+}
+.articles-grid .article-title-column ul {
+    clear: both;
+}

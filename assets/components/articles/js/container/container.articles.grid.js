@@ -180,8 +180,8 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
         +'</tpl>',{
 			compiled: true
 		});
-        this.tplPageTitle = new Ext.XTemplate('<tpl for=".">'
-										    +'<h3 class="main-column"><a href="{action_edit}" title="Edit {pagetitle}">{pagetitle}</a></h3>'
+        this.tplPageTitle = new Ext.XTemplate('<tpl for="."><div class="article-title-column">'
+										    +'<h3 class="main-column"><a href="{action_edit}" title="Edit {pagetitle}">{pagetitle}</a><span class="article-id">({id})</span></h3>'
 												+'<tpl if="actions">'
 													+'<ul class="actions">'
 														+'<tpl for="actions">'
@@ -189,7 +189,7 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
 														+'</tpl>'
 													+'</ul>'
 												+'</tpl>'
-											+'</tpl>',{
+											+'</div></tpl>',{
 			compiled: true
 		});
     }
