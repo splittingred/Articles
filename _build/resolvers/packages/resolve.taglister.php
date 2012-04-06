@@ -9,7 +9,7 @@
  */
 $success= true;
 if ($transport && $transport->xpdo) {
-    $signature = 'taglister-1.1.6-pl';
+    $signature = 'taglister-1.1.7-pl';
     $modx =& $transport->xpdo;
     $modx->addPackage('modx.transport',$modx->getOption('core_path').'model/');
     
