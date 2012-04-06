@@ -1,9 +1,12 @@
 Changelog for Articles.
 
-Articles 1.5.0
+Articles 1.5.1
 ===============================
 - [#7559] Display ID of Article in articles grid
 - [#7550] Fix JS issue with Create New Article button
+
+Articles 1.5.0
+===============================
 - [#7313] Ensure that the archive URI is always set prior to notifications during a publishing event
 - [#7419] Add ability to duplicate single Articles
 - [#7517] Add ability to duplicate Articles Container
