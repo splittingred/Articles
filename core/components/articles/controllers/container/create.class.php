@@ -24,12 +24,15 @@ require_once $modx->getOption('manager_path',null,MODX_MANAGER_PATH).'controller
  * @package articles
  */
 class ArticlesContainerCreateManagerController extends ResourceCreateManagerController {
+    /** @var ArticlesContainer $resource */
+    public $resource;
     public function loadCustomCssJs() {
         $this->prepareResource();
         $managerUrl = $this->context->getOption('manager_url', MODX_MANAGER_URL, $this->modx->_userConfig);
         $articlesAssetsUrl = $this->modx->getOption('articles.assets_url',null,$this->modx->getOption('assets_url',null,MODX_ASSETS_URL).'components/articles/');
         $connectorUrl = $articlesAssetsUrl.'connector.php';
         $articlesJsUrl = $articlesAssetsUrl.'js/';
+        $this->resourceArray['articles_container_settings'] = $this->resource->getContainerSettings();
         $this->addJavascript($managerUrl.'assets/modext/util/datetime.js');
         $this->addJavascript($managerUrl.'assets/modext/widgets/element/modx.panel.tv.renders.js');
         $this->addJavascript($managerUrl.'assets/modext/widgets/resource/modx.grid.resource.security.js');
@@ -104,7 +107,6 @@ class ArticlesContainerCreateManagerController extends ResourceCreateManagerCont
         foreach ($settings as $k => $v) {
             $this->resourceArray['setting_'.$k] = $v;
         }
-
     }
     /**
      * Return the pagetitle

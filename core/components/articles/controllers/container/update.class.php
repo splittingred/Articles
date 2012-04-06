@@ -59,6 +59,7 @@ class ArticlesContainerUpdateManagerController extends ResourceUpdateManagerCont
         });
         </script>');
         $settings = $this->resource->getContainerSettings();
+        $this->resourceArray['articles_container_settings'] = $settings;
         
         $this->addHtml('
         <script type="text/javascript">
