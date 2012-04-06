@@ -2,6 +2,8 @@ Changelog for Articles.
 
 Articles 1.5.1
 ===============================
+- Update Quip to 2.3.0-pl
+- Update tagLister to 1.1.7-pl
 - [#7559] Display ID of Article in articles grid
 - [#7550] Fix JS issue with Create New Article button
 

@@ -9,7 +9,7 @@
  */
 $success= true;
 if ($transport && $transport->xpdo) {
-    $signature = 'quip-2.2.0-pl';
+    $signature = 'quip-2.3.0-pl';
     $modx =& $transport->xpdo;
     $modx->addPackage('modx.transport',$modx->getOption('core_path').'model/');
     
