@@ -145,6 +145,8 @@ $_lang['articles.setting.processTVsList'] = 'Process TVs List';
 $_lang['articles.setting.processTVsList_desc'] = 'An optional comma-delimited list of TemplateVar names to process explicitly. TemplateVars specified here must be included via Include TVs/Include TVs List.';
 $_lang['articles.setting.otherGetArchives'] = 'Other Listing Parameters';
 $_lang['articles.setting.otherGetArchives_desc'] = 'Any other properties you would like to add to the getResources/getPage call for the Articles listing page. Put them in MODX tag syntax, as if you were adding it to the tag call (eg, &property=`value`).';
+$_lang['articles.setting.articlefURL'] = 'URL-Structure for Articles'; 
+$_lang['articles.setting.articlefURL_desc'] = '%Y = year, 4 digits, %m = month (with leading zeros), %d = day (with leading zeros), %alias = Article Alias, %id = Article ID, %ext = File extension (e.g. html)';
 
 /* template / archives settings */
 $_lang['articles.setting.articleTemplate'] = 'Article Template';
