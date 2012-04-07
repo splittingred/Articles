@@ -189,6 +189,20 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,html: _('articles.setting.otherGetArchives_desc')
                 ,cls: 'desc-under'
 
+            },{
+				xtype: 'textfield'
+                ,name: 'setting_articlefURL'
+                ,id: 'articles-setting-articlefURL'
+                ,fieldLabel: _('articles.setting.articlefURL')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.articlefURL_desc')
+                ,anchor: '100%'
+                ,value: '%Y/%m/%d/%alias/'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-articlefURL'
+                ,html: _('articles.setting.articlefURL_desc')
+                ,cls: 'desc-under'
             }]
         },{
             title: _('articles.settings_pagination')
