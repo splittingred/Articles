@@ -1,7 +1,8 @@
 Changelog for Articles.
 
-Articles 1.5.2
+Articles 1.6.0
 ===============================
+- [#6373] Add ability to control the structure of the URLs generated for articles
 - [#7560] Fix issue with Quip during installs
 - [#7544] Fix issues with friendly_urls setting
 

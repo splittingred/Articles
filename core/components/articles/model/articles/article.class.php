@@ -256,6 +256,8 @@ class Article extends modResource {
             return false;
         }
 
+        $settings = $container->getContainerSettings();
+
         $date = $this->get('published') ? $this->get('publishedon') : $this->get('createdon');
         $year = date('Y',strtotime($date));
         $month = date('m',strtotime($date));
@@ -265,9 +267,25 @@ class Article extends modResource {
         if (empty($containerUri)) {
             $containerUri = $container->get('alias');
         }
-        $uri = rtrim($containerUri,'/').'/'.$year.'/'.$month.'/'.$day.'/'.$this->get('alias');
 
-        $this->set('uri',rtrim($uri,'/').'/');
+        $furlTemplate = $this->xpdo->getOption('articleUriTemplate',$settings,'%Y/%m/%d/%alias/');
+        $furlTemplate = str_replace('%Y', $year, $furlTemplate);
+        $furlTemplate = str_replace('%m', $month, $furlTemplate);
+        $furlTemplate = str_replace('%d', $day, $furlTemplate);
+        $furlTemplate = str_replace('%alias', $this->get('alias'), $furlTemplate);
+
+        /** @var modContentType $contentType */
+        $contentType = $this->xpdo->getObject('modContentType', '');
+        if ($contentType) {
+            $extension = ltrim($contentType->getExtension(), '.');
+            $furlTemplate = str_replace('%ext', $extension, $furlTemplate);
+        }
+
+        $furlTemplate = str_replace('%id', $this->get('id'), $furlTemplate);
+
+        $uri = rtrim($containerUri,'/') .'/'. rtrim($furlTemplate);
+
+        $this->set('uri',$uri);
         $this->set('uri_override',true);
         return $this->get('uri');
     }
@@ -582,7 +600,7 @@ class ArticleUpdateProcessor extends modResourceUpdateProcessor {
      */
     public function beforeSave() {
         $afterSave = parent::beforeSave();
-        if ($this->object->get('published')) {
+        if ($this->object->get('published') && ($this->object->isDirty('alias') || $this->object->isDirty('published'))) {
             if (!$this->setArchiveUri()) {
                 $this->modx->log(modX::LOG_LEVEL_ERROR,'Failed to set date URI.');
             }
