@@ -255,6 +255,7 @@ class Article extends modResource {
             $this->xpdo->log(xPDO::LOG_LEVEL_ERROR,'[Articles] Could not find Container to set Article URI from.');
             return false;
         }
+		$settings = $container->getContainerSettings();
 
         $date = $this->get('published') ? $this->get('publishedon') : $this->get('createdon');
         $year = date('Y',strtotime($date));
@@ -265,9 +266,23 @@ class Article extends modResource {
         if (empty($containerUri)) {
             $containerUri = $container->get('alias');
         }
-        $uri = rtrim($containerUri,'/').'/'.$year.'/'.$month.'/'.$day.'/'.$this->get('alias');
 
-        $this->set('uri',rtrim($uri,'/').'/');
+        //$uri = rtrim($containerUri,'/').'/'.$year.'/'.$month.'/'.$day.'/'.$this->get('alias');
+        $furlTemplate = $this->xpdo->getOption('articlefURL',$settings,'%Y/%m/%d/%alias/');
+        $furlTemplate = str_replace('%Y', $year, $furlTemplate);
+        $furlTemplate = str_replace('%m', $month, $furlTemplate);
+        $furlTemplate = str_replace('%d', $day, $furlTemplate);
+        $furlTemplate = str_replace('%alias', $this->get('alias'), $furlTemplate);
+        
+        $contentType = $this->xpdo->getObject('modContentType', '');
+        $extension = ltrim($contentType->getExtension(), '.');
+        $furlTemplate = str_replace('%ext', $extension, $furlTemplate);
+        
+        $furlTemplate = str_replace('%id', $this->get('id'), $furlTemplate);
+        
+        $uri = rtrim($containerUri,'/') .'/'. rtrim($furlTemplate);
+        
+        $this->set('uri',$uri);
         $this->set('uri_override',true);
         return $this->get('uri');
     }

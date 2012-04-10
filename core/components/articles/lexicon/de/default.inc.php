@@ -147,6 +147,8 @@ $_lang['articles.setting.processTVsList'] = 'Liste zu verarbeitender Template-Va
 $_lang['articles.setting.processTVsList_desc'] = 'Eine optionale, kommaseparierte Liste von Namen von Template-Variablen, die explizit verarbeitet werden. Template-Variablen, die hier angegeben werden, müssen mittels der Einstellungen "Template-Variablen in Übersicht anzeigen" und "Liste einzubeziehender Template-Variablen" einbezogen werden. Werden hier Template-Variablen eingetragen, so werden ausschließlich diese verarbeitet, sonst alle.';
 $_lang['articles.setting.otherGetArchives'] = 'Andere Übersichts-Parameter';
 $_lang['articles.setting.otherGetArchives_desc'] = 'Alle anderen Eigenschaften, die Sie dem getResources-/getPage-Aufruf für die Articles-Übersichtsseite hinzufügen möchten. Verwenden Sie die MODX-Tag-Syntax, als ob Sie die Parameter zum Tag-Aufruf hinzufügen würden (z.B. &eigenschaft=`wert`).';
+$_lang['articles.setting.articlefURL'] = 'URL-Struktur für Artikel'; 
+$_lang['articles.setting.articlefURL_desc'] = '%Y = vierstellige Jahreszahl, %m = Monat (mit führender Null), %d = Tag (mit führender Null), %alias = Alias des Artikels, %id = ID des Artikels, %ext = Dateierweiterung (z.B. html)';
 
 /* template / archives settings */
 $_lang['articles.setting.articleTemplate'] = 'Artikel-Template';
