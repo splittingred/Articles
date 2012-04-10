@@ -321,6 +321,9 @@ $_lang['articles.setting.'] = '';
 $_lang['articles.setting._desc'] = '';
 
 /* Settings */
+$_lang['setting_articles.article_show_longtitle'] = 'Show Long Title Field';
+$_lang['setting_articles.article_show_longtitle_desc'] = 'Set this option to "Yes" if you want the field "Long Title" to be displayed when editing an article.';
+
 $_lang['setting_articles.default_container_template'] = 'Default Articles Container Template';
 $_lang['setting_articles.default_container_template_desc'] = 'The default Template to use when creating a new Articles Container';
 
