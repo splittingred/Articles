@@ -361,7 +361,7 @@ class ArticlesContainer extends modResource {
             &useMonth=`'.$this->xpdo->getOption('archiveByMonth',$settings,1).'`
             &groupByYear=`'.$this->xpdo->getOption('archiveGroupByYear',$settings,0).'`
             &groupByYearTpl=`'.$this->xpdo->getOption('archiveGroupByYearTpl',$settings,'sample.ArchiveGroupByYear').'`
-            &useFurls=`'.$this->xpdo->getOption('archiveWithFurls',$settings,1).'`
+            &useFurls=`'.$this->xpdo->getOption('archiveWithFurls', $settings, $this->xpdo->getOption('friendly_urls', null, false)).'`
             &cls=`'.$this->xpdo->getOption('archiveCls',$settings,'').'`
             &altCls=`'.$this->xpdo->getOption('archiveAltCls',$settings,'').'`
             &setLocale=`1`
@@ -382,7 +382,7 @@ class ArticlesContainer extends modResource {
             &tv=`articlestags`
             &parents=`'.$this->get('id').'`
             &tvDelimiter=`,`
-            &useTagFurl=`1`
+            &useTagFurl=`'.$this->xpdo->getOption('friendly_urls', null, false). '`
             &limit=`'.$this->xpdo->getOption('tagsLimit',$settings,10).'`
             &cls=`'.$this->xpdo->getOption('tagsCls',$settings,'tl-tag').'`
             &altCls=`'.$this->xpdo->getOption('tagsAltCls',$settings,'tl-tag-alt').'`

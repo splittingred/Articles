@@ -3,6 +3,7 @@ Changelog for Articles.
 Articles 1.5.2
 ===============================
 - [#7560] Fix issue with Quip during installs
+- [#7544] Fix issues with friendly_urls setting
 
 Articles 1.5.1
 ===============================
