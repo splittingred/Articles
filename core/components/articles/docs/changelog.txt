@@ -1,5 +1,10 @@
 Changelog for Articles.
 
+Articles 1.6.1
+===============================
+- Update Quip to 2.3.1-pl
+- Update Archivist to 1.2.3-pl
+
 Articles 1.6.0
 ===============================
 - [#6373] Add ability to control the structure of the URLs generated for articles
