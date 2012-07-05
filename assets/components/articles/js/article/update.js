@@ -128,18 +128,19 @@ Ext.extend(Articles.page.UpdateArticle,MODx.page.UpdateResource,{
     }
     
     ,cancel: function(btn,e) {
+        var updatePage = MODx.action ? MODx.action['resource/update'] : 'resource/update';
         var fp = Ext.getCmp(this.config.formpanel);
         if (fp && fp.isDirty()) {
             Ext.Msg.confirm(_('warning'),_('resource_cancel_dirty_confirm'),function(e) {
                 if (e == 'yes') {
                     MODx.releaseLock(MODx.request.id);
                     MODx.sleep(400);
-                    location.href = 'index.php?a='+MODx.action['resource/update']+'&id='+this.config.record['parent'];
+                    location.href = 'index.php?a='+updatePage+'&id='+this.config.record['parent'];
                 }
             },this);
         } else {
             MODx.releaseLock(MODx.request.id);
-            location.href = 'index.php?a='+MODx.action['resource/update']+'&id='+this.config.record['parent'];
+            location.href = 'index.php?a='+updatePage+'&id='+this.config.record['parent'];
         }
     }
 });

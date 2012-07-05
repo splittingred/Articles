@@ -6,6 +6,7 @@ Articles 1.6.2
 - Fix issues with package management for subpackages when zips are not found
 - Update German/Dutch translations
 - Update getResources to 1.5.0-pl
+- Future-proofing for MODX 2.3
 
 Articles 1.6.1
 ===============================
