@@ -210,10 +210,11 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
     ,createArticle: function(btn,e) {
         var tpl = '';
         var panel = Ext.getCmp('modx-panel-resource');
+        var createPage = MODx.action ? MODx.action['resource/create'] : 'resource/create';
         if (panel && panel.record) {
             tpl = '&template=' + panel.record.articles_container_settings.articleTemplate
         }
-        location.href = 'index.php?a='+MODx.action['resource/create']+'&class_key=Article&parent='+MODx.request.id+'&context_key='+MODx.ctx+tpl;
+        location.href = 'index.php?a='+createPage+'&class_key=Article&parent='+MODx.request.id+'&context_key='+MODx.ctx+tpl;
     }
     ,viewArticle: function(btn,e) {
         window.open(this.menu.record.data.preview_url);
