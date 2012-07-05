@@ -363,6 +363,21 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                 ,dateWidth: 120
                 ,timeWidth: 120
                 ,value: config.record.unpub_date
+            },{
+                xtype: MODx.config.publish_document ? 'modx-combo-user' : 'hidden'
+                ,fieldLabel: _('resource_createdby')
+                ,description: '<b>[[*createdby]]</b><br />'+_('resource_createdby_help')
+                ,name: 'created_by'
+                ,hiddenName: 'createdby'
+                ,id: 'modx-resource-createdby'
+                ,allowBlank: true
+                ,baseParams: {
+                    action: 'getList'
+                    ,combo: '1'
+                    ,limit: 0
+                }
+                ,width: 300
+                ,value: config.record.createdby
             }]
         },{
             html: '<hr />'
