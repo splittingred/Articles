@@ -33,6 +33,7 @@ $_lang['articles.article_delete'] = 'Artikel löschen';
 $_lang['articles.article_delete_confirm'] = 'Sind Sie sicher, dass Sie den ausgewählten Artikel löschen möchten?';
 $_lang['articles.article_delete_multiple'] = 'Mehrere Artikel löschen';
 $_lang['articles.article_delete_multiple_confirm'] = 'Sind Sie sicher, dass Sie die ausgewählten Artikel löschen möchten?';
+$_lang['articles.article_duplicate'] = 'Artikel duplizieren';
 $_lang['articles.article_edit'] = 'Artikel bearbeiten';
 $_lang['articles.article_options'] = 'Artikel-Optionen';
 $_lang['articles.article_publish'] = 'Veröffentlichen';
@@ -63,6 +64,7 @@ $_lang['articles.container_create_here'] = 'Artikel hier erstellen';
 $_lang['articles.container_delete'] = 'Artikel-Container löschen';
 $_lang['articles.container_description'] = 'Beschreibung';
 $_lang['articles.container_description_desc'] = 'Eine kurze Beschreibung Ihres Artikel-Containers.';
+$_lang['articles.container_duplicate'] = 'Artikel-Container duplizieren';
 $_lang['articles.container_menutitle_desc'] = 'Der Titel, der für die Darstellung in einem Navigationsmenü genutzt wird.';
 $_lang['articles.container_new'] = 'Neuer Artikel-Container';
 $_lang['articles.container_publish'] = 'Artikel-Container veröffentlichen';
@@ -147,8 +149,8 @@ $_lang['articles.setting.processTVsList'] = 'Liste zu verarbeitender Template-Va
 $_lang['articles.setting.processTVsList_desc'] = 'Eine optionale, kommaseparierte Liste von Namen von Template-Variablen, die explizit verarbeitet werden. Template-Variablen, die hier angegeben werden, müssen mittels der Einstellungen "Template-Variablen in Übersicht anzeigen" und "Liste einzubeziehender Template-Variablen" einbezogen werden. Werden hier Template-Variablen eingetragen, so werden ausschließlich diese verarbeitet, sonst alle.';
 $_lang['articles.setting.otherGetArchives'] = 'Andere Übersichts-Parameter';
 $_lang['articles.setting.otherGetArchives_desc'] = 'Alle anderen Eigenschaften, die Sie dem getResources-/getPage-Aufruf für die Articles-Übersichtsseite hinzufügen möchten. Verwenden Sie die MODX-Tag-Syntax, als ob Sie die Parameter zum Tag-Aufruf hinzufügen würden (z.B. &eigenschaft=`wert`).';
-$_lang['articles.setting.articlefURL'] = 'URL-Struktur für Artikel'; 
-$_lang['articles.setting.articlefURL_desc'] = '%Y = vierstellige Jahreszahl, %m = Monat (mit führender Null), %d = Tag (mit führender Null), %alias = Alias des Artikels, %id = ID des Artikels, %ext = Dateierweiterung (z.B. html)';
+$_lang['articles.setting.articleUriTemplate'] = 'Articles-URL-Format';
+$_lang['articles.setting.articleUriTemplate_desc'] = '%Y = Jahr (4-stellig), %m = Monat (mit führenden Nullen), %d = Tag (mit führenden Nullen), %alias = Artikel-Alias, %id = Artikel-ID, %ext = Dateiendung (z.B. html). <b>Hinweis</b>: Änderungen an dieser Einstellung wirken sich nur auf *neue* Artikel aus, es sei denn, Sie ändern den Alias oder ziehen alte Artikel zurück und veröffentlichen sie erneut, wodurch ihre URLs im neuen Format neu generiert werden.';
 
 /* template / archives settings */
 $_lang['articles.setting.articleTemplate'] = 'Artikel-Template';
@@ -222,6 +224,8 @@ $_lang['articles.setting.latestPostsTpl'] = 'Neueste-Artikel-Chunk';
 $_lang['articles.setting.latestPostsTpl_desc'] = 'Der Chunk, der für die jeweils neuesten Artikel genutzt wird.';
 $_lang['articles.setting.latestPostsLimit'] = 'Anzuzeigende neueste Artikel';
 $_lang['articles.setting.latestPostsLimit_desc'] = 'Die Anzahl der anzuzeigenden neuesten Artikel.';
+$_lang['articles.setting.latestPostsOffset'] = 'Start-Index für neueste Artikel';
+$_lang['articles.setting.latestPostsOffset_desc'] = 'Der Start-Index der Liste der neuesten Artikel.';
 
 /* Notifications */
 $_lang['articles.setting.notifyTwitter'] = 'An Twitter senden';
@@ -323,6 +327,9 @@ $_lang['articles.setting.'] = '';
 $_lang['articles.setting._desc'] = '';
 
 /* Settings */
+$_lang['setting_articles.article_show_longtitle'] = 'Feld für langen Titel anzeigen';
+$_lang['setting_articles.article_show_longtitle_desc'] = 'Setzen Sie diese Einstellung auf "Ja", wenn das Feld "Langer Titel" beim Bearbeiten eines Artikels eingeblendet werden soll.';
+
 $_lang['setting_articles.default_container_template'] = 'Standard-Artikel-Container-Template';
 $_lang['setting_articles.default_container_template_desc'] = 'Das Template, das standardmäßig verwendet wird, wenn ein neuer Artikel-Container erstellt wird.';
 
@@ -331,3 +338,6 @@ $_lang['setting_articles.default_article_template_desc'] = 'Das Template, das st
 
 $_lang['setting_articles.container_ids'] = 'Container-IDs für das Routing von suchmaschinenfreundlichen URLs';
 $_lang['setting_articles.container_ids_desc'] = 'Eine kommaseparierte Liste von Container-IDs, die für das Routing von suchmaschinenfreundlichen URLs verwendet werden. Es wird empfohlen, hier keine Änderungen vorzunehmen.';  // FURL routing
+
+$_lang['setting_articles.default_article_sort_field'] = 'Standard-Sortierfeld für Artikel im Manager';
+$_lang['setting_articles.default_article_sort_field_desc'] = 'Das Standard-Sortierfeld für die Artikel-Liste beim Bearbeiten eines Containers.';

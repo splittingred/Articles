@@ -118,6 +118,7 @@ Ext.extend(Articles.panel.Container,MODx.panel.Resource,{
 
     ,getMainLeftFields: function(config) {
         config = config || {record:{}};
+        var createPage = MODx.action ? MODx.action['resource/create'] : 'resource/create';
         return [{
             xtype: 'textfield'
             ,fieldLabel: _('articles.container_title')+'<span class="required">*</span>'
@@ -130,7 +131,7 @@ Ext.extend(Articles.panel.Container,MODx.panel.Resource,{
             ,enableKeyEvents: true
             ,listeners: {
                 'keyup': {scope:this,fn:function(f,e) {
-                    var titlePrefix = MODx.request.a == MODx.action['resource/create'] ? _('new_document') : _('document');
+                    var titlePrefix = MODx.request.a == createPage ? _('new_document') : _('document');
                     var title = Ext.util.Format.stripTags(f.getValue());
                     Ext.getCmp('modx-resource-header').getEl().update('<h2>'+title+'</h2>');
                 }}

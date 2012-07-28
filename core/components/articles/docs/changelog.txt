@@ -1,5 +1,26 @@
 Changelog for Articles.
 
+Articles 1.6.2
+===============================
+- Fix RSS item URLs for sites with non-root site URLs
+- Fix issues with package management for subpackages when zips are not found
+- [#8194] Add ability to change createdby for Articles for users with publish ability
+- Update German/Dutch translations
+- Update getPage to 1.2.3-pl
+- Update getResources to 1.5.0-pl
+- Future-proofing for MODX 2.3
+
+Articles 1.6.1
+===============================
+- Update Quip to 2.3.1-pl
+- Update Archivist to 1.2.3-pl
+
+Articles 1.6.0
+===============================
+- [#6373] Add ability to control the structure of the URLs generated for articles
+- [#7560] Fix issue with Quip during installs
+- [#7544] Fix issues with friendly_urls setting
+
 Articles 1.5.1
 ===============================
 - Update Quip to 2.3.0-pl

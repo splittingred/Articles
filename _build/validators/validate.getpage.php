@@ -35,7 +35,7 @@ if ($transport && $transport->xpdo) {
             $modx =& $transport->xpdo;
 
             /* define getPage version */
-            $newVersion = '1.2.2-pl';
+            $newVersion = '1.2.3-pl';
             $newVersionMajor = '1';
             $name = 'getpage';
 

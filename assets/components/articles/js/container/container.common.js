@@ -190,19 +190,20 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,cls: 'desc-under'
 
             },{
-				xtype: 'textfield'
-                ,name: 'setting_articlefURL'
-                ,id: 'articles-setting-articlefURL'
-                ,fieldLabel: _('articles.setting.articlefURL')
-                ,description: MODx.expandHelp ? '' : _('articles.setting.articlefURL_desc')
+                xtype: 'textfield'
+                ,name: 'setting_articleUriTemplate'
+                ,id: 'articles-setting-articleUriTemplate'
+                ,fieldLabel: _('articles.setting.articleUriTemplate')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.articleUriTemplate_desc')
                 ,anchor: '100%'
                 ,value: '%Y/%m/%d/%alias/'
                 ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
-                ,forId: 'articles-setting-articlefURL'
-                ,html: _('articles.setting.articlefURL_desc')
+                ,forId: 'articles-setting-articleUriTemplate'
+                ,html: _('articles.setting.articleUriTemplate_desc')
                 ,cls: 'desc-under'
+
             }]
         },{
             title: _('articles.settings_pagination')

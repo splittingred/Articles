@@ -9,7 +9,7 @@
  */
 $success= true;
 if ($transport && $transport->xpdo) {
-    $signature = 'getresources-1.4.2-pl';
+    $signature = 'getresources-1.5.0-pl';
     $modx =& $transport->xpdo;
     $modx->addPackage('modx.transport',$modx->getOption('core_path').'model/');
     
@@ -32,7 +32,7 @@ if ($transport && $transport->xpdo) {
                 'workspace' => 1,
                 'provider' => 1,
                 'disabled' => false,
-                'source' => $signature.'.transport.zip',
+                'source' => $transport->signature . '/' . $this->payload['class'] . '/' . $this->payload['signature'] . '/' . $signature.'.transport.zip',
                 'manifest' => null,
                 'package_name' => $sig[0],
                 'version_major' => $versionSignature[0],

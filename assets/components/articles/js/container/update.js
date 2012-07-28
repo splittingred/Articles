@@ -5,9 +5,9 @@ Articles.page.UpdateContainer = function(config) {
     Ext.applyIf(config,{
         panelXType: 'articles-panel-container'
         ,actions: {
-            'new': MODx.action['resource/create']
-            ,edit: MODx.action['resource/update']
-            ,preview: MODx.action['resource/preview']
+            'new': MODx.action ? MODx.action['resource/create'] : 'resource/create'
+            ,edit: MODx.action ? MODx.action['resource/update'] : 'resource/update'
+            ,preview: MODx.action ? MODx.action['resource/preview'] : 'resource/preview'
         }
     });
     config.canDuplicate = false;

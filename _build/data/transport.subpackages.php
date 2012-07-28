@@ -28,10 +28,10 @@
  * @package articles
  */
 $subpackages = array(
-    'archivist'      => 'archivist-1.2.2-pl',
-    'getpage'        => 'getpage-1.2.2-pl',
-    'getresources'   => 'getresources-1.4.2-pl',
-    'quip'           => 'quip-2.2.0-pl',
+    'archivist'      => 'archivist-1.2.3-pl',
+    'getpage'        => 'getpage-1.2.3-pl',
+    'getresources'   => 'getresources-1.5.0-pl',
+    'quip'           => 'quip-2.3.1-pl',
     'taglister'      => 'taglister-1.1.7-pl',
 );
 $spAttr = array('vehicle_class' => 'xPDOTransportVehicle');
