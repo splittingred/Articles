@@ -222,6 +222,7 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                 ,baseParams: {
                     action: 'getList'
                     ,combo: '1'
+					,limit: '0'
                 }
             },{
                 xtype: 'textfield'
