@@ -63,7 +63,8 @@ class ArticlesRouter {
             }
         }
         if (!$resourceId) return false;
-
+        $container = $this->modx->getObject('ArticlesContainer', $resourceId);
+        
         /* figure out archiving */
         $params = explode('/', $search);
         if (count($params) < 1) return false;
@@ -71,17 +72,18 @@ class ArticlesRouter {
         /* tag handling! */
         if ($params[0] == 'tags') {
             $_GET['tag'] = $params[1];
+        /* RSS Calls */
+        } else if($container !== NULL && $container->isRss()) {
+            $this->modx->sendForward($resourceId);
         /* author based */
         } else if ($params[0] == 'user' || $params[0] == 'author') {
             $_GET[$prefix.'author'] = $params[1];
-
         /* numeric "archives/1234" */
         } else if ($params[0] == 'archives' && !empty($params[1])) {
             $resourceId = intval(trim(trim($params[1]),'/'));
             if (!empty($resourceId)) {
                 $this->modx->sendForward($resourceId);
             }
-
         /* normal yyyy/mm/dd or yyyy/mm */
         } else {
             /* set Archivist parameters for date-based archives */
