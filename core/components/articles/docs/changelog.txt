@@ -2,6 +2,7 @@ Changelog for Articles.
 
 Articles 1.6.3
 ===============================
+- Update Quip to 2.3.2-pl
 - Update Archivist to 1.2.4-pl
 - [#8443] Add Other properties setting for Latest Posts widget
 
