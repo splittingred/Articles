@@ -1,5 +1,9 @@
 Changelog for Articles.
 
+Articles 1.6.3
+===============================
+- [#8443] Add Other properties setting for Latest Posts widget
+
 Articles 1.6.2
 ===============================
 - Fix RSS item URLs for sites with non-root site URLs
