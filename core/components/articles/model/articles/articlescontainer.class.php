@@ -241,8 +241,11 @@ class ArticlesContainer extends modResource {
         $feedAppendage = $this->xpdo->getOption('rssAlias',$settings,'feed.rss,rss');
         $feedAppendage = explode(',',$feedAppendage);
         $fullUri = $this->xpdo->context->getOption('base_url',null,MODX_BASE_URL).$this->get('uri');
-        if (strpos($_SERVER['REQUEST_URI'],$fullUri) === 0 && strlen($fullUri) != strlen($_SERVER['REQUEST_URI'])) {
-            $appendage = rtrim(str_replace($fullUri,'',$_SERVER['REQUEST_URI']),'/');
+
+        $hasQuery = strpos($_SERVER['REQUEST_URI'],'?');
+        $requestUri = !empty($hasQuery) ? substr($_SERVER['REQUEST_URI'],0,$hasQuery) : $_SERVER['REQUEST_URI'];
+        if (strpos($requestUri,$fullUri) === 0 && strlen($fullUri) != strlen($requestUri)) {
+            $appendage = rtrim(str_replace($fullUri,'',$requestUri),'/');
             if (in_array($appendage,$feedAppendage)) {
                 $isRss = true;
             }
@@ -256,8 +259,7 @@ class ArticlesContainer extends modResource {
      */
     public function getRssCall() {
         $settings = $this->getContainerSettings();
-        $content = '[[!getResources?
-          &cache=`0`
+        $content = '[[!getArchives?
           &pageVarKey=`page`
           &parents=`'.$this->get('id').'`
           &where=`{"class_key":"Article","searchable":1}`
@@ -265,6 +267,14 @@ class ArticlesContainer extends modResource {
           &showHidden=`1`
           &includeContent=`1`
           &includeTVs=`1`
+          &processTVs=`1`
+          &sortby=`'.$this->xpdo->getOption('sortBy',$settings,'publishedon').'`
+          &sortdir=`'.$this->xpdo->getOption('sortDir',$settings,'DESC').'`
+
+          &tagKey=`articlestags`
+          &tagSearchType=`contains`
+          &makeArchive=`0`
+          &cache=`0`
           &tpl=`'.$this->xpdo->getOption('tplRssItem',$settings,'sample.ArticlesRssItem').'`
         ]]';
         $content = $this->xpdo->getChunk($this->xpdo->getOption('tplRssFeed',$settings,'sample.ArticlesRss'),array(
