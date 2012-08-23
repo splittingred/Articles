@@ -222,6 +222,8 @@ $_lang['articles.setting.latestPostsLimit'] = 'Latest Articles to Show';
 $_lang['articles.setting.latestPostsLimit_desc'] = 'The number of latest Articles to show.';
 $_lang['articles.setting.latestPostsOffset'] = 'Latest Articles Offset';
 $_lang['articles.setting.latestPostsOffset_desc'] = 'The starting index of the listing of latest Articles.';
+$_lang['articles.setting.otherLatestPosts'] = 'Other Listing Parameters';
+$_lang['articles.setting.otherLatestPosts_desc'] = 'Any other properties you would like to add to the getResources/getPage call for the Latest Posts widget. Put them in MODX tag syntax, as if you were adding it to the tag call (eg, &property=`value`).';
 
 /* Notifications */
 $_lang['articles.setting.notifyTwitter'] = 'Send to Twitter';

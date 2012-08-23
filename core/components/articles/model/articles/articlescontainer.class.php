@@ -409,6 +409,7 @@ class ArticlesContainer extends modResource {
             &offset=`'.$this->xpdo->getOption('latestPostsOffset',$settings,0).'`
             &sortby=`publishedon`
             &where=`{"class_key":"Article"}`
+          '.$this->xpdo->getOption('otherLatestPosts',$settings,'').'
         ]]';
         $this->xpdo->setPlaceholder($placeholderPrefix.'latest_posts',$output);
         return $output;

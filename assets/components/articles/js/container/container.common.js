@@ -705,6 +705,21 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,html: _('articles.setting.latestPostsOffset_desc')
                 ,cls: 'desc-under'
 
+            },{
+                xtype: 'textfield'
+                ,name: 'setting_otherLatestPosts'
+                ,id: 'articles-setting-otherLatestPosts'
+                ,fieldLabel: _('articles.setting.otherLatestPosts')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.otherLatestPosts_desc')
+                ,anchor: '100%'
+                ,value: ''
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-latestPostsOffset'
+                ,html: _('articles.setting.latestPostsOffset_desc')
+                ,cls: 'desc-under'
+
             }]
         },{
             title: _('articles.settings_notifications')
