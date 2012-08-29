@@ -52,29 +52,29 @@ class ArticlesRouter {
         /* get resource to redirect to */
         $resourceId = false;
         $prefix = 'arc_';
-    	$startPageResId = false;
-		$startPagePrefix = '';
-		$startPageId = $this->modx->getOption('site_start');
+        $startPageResId = false;
+        $startPagePrefix = '';
+	$startPageId = $this->modx->getOption('site_start');
         foreach ($containerIds as $archive) {
             $archive = explode(':',$archive);
             $archiveId = $archive[0];
             $alias = array_search($archiveId,$this->modx->aliasMap);
-			if ($alias && ($startPageId == $archiveId)) {
+            if ($alias && ($startPageId == $archiveId)) {
                 $startPageResId = $archiveId;
                 if (isset($archive[1])) $startPagePrefix = $archive[1];
-			}
+            }
             if ($alias && strpos($search,$alias) !== false) {
                 $search = str_replace($alias,'',$search);
                 $resourceId = $archiveId;
                 if (isset($archive[1])) $prefix = $archive[1];
             }
         }
-		if (!$resourceId) {
-		  if ($startPageResId) {
-            $resourceId = $startPageResId;
-		    $prefix = $startPagePrefix;
-		  } else return false;
-		}
+        if (!$resourceId) {
+            if ($startPageResId) {
+              $resourceId = $startPageResId;
+              $prefix = $startPagePrefix;
+            } else return false;
+	}
 
         /* figure out archiving */
         $params = explode('/', $search);
@@ -97,17 +97,16 @@ class ArticlesRouter {
         /* normal yyyy/mm/dd or yyyy/mm */
         } else {
             /* set Archivist parameters for date-based archives */
-			$pyear = $params[0];
-			$pmonth = 1;
-			$pday = 1;
-			if (isset($params[1])) $pmonth = $params[1];
-			if (isset($params[2])) $pday = $params[2];
-			if (checkdate($pmonth, $pday, $pyear)) {
+            $pyear = $params[0];
+            $pmonth = 1;
+            $pday = 1;
+            if (isset($params[1])) $pmonth = $params[1];
+            if (isset($params[2])) $pday = $params[2];
+            if (checkdate($pmonth, $pday, $pyear)) {
                 $_GET[$prefix.'year'] = $params[0];
                 if (isset($params[1])) $_GET[$prefix.'month'] = $params[1];
                 if (isset($params[2])) $_GET[$prefix.'day'] = $params[2];
-				$result = true;
-			} else return false;
+            } else return false;
         }
 
         /* forward */
