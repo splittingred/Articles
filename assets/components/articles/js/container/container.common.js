@@ -1107,6 +1107,22 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,html: _('articles.setting.commentsAltRowCss_desc')
                 ,cls: 'desc-under'
 
+            }
+			,{
+                xtype: 'textfield'
+                ,name: 'setting_commentsSortDir'
+                ,id: 'articles-setting-commentsSortDir'
+                ,fieldLabel: _('articles.setting.commentsSortDir')
+                ,description: MODx.expandHelp ? '' : _('articles.setting.commentsSortDir_desc')
+                ,anchor: '100%'
+                ,value: 'DESC'
+                ,listeners: oc
+            },{
+                xtype: MODx.expandHelp ? 'label' : 'hidden'
+                ,forId: 'articles-setting-commentsSortDir'
+                ,html: _('articles.setting.commentsSortDir_desc')
+                ,cls: 'desc-under'
+
             }]
         },{
             title: ' &#8212; '+_('articles.settings_comments_moderation')

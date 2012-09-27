@@ -123,6 +123,7 @@ class Article extends modResource {
    &gravatarSize=`'.$this->xpdo->getOption('commentsGravatarSize',$settings,50).'`
 
    &limit=`'.$this->xpdo->getOption('commentsLimit',$settings,0).'`
+   &sortDir=`'.$this->xpdo->getOption('commentsSortDir',$settings,0).'`
 ]]';
         $this->xpdo->setPlaceholder('comments',$call);
         return $call;
