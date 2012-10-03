@@ -1115,7 +1115,7 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,fieldLabel: _('articles.setting.commentsSortDir')
                 ,description: MODx.expandHelp ? '' : _('articles.setting.commentsSortDir_desc')
                 ,anchor: '100%'
-                ,value: 'DESC'
+                ,value: 'ASC'
                 ,listeners: oc
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
