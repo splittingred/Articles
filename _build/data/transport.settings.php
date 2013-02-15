@@ -65,5 +65,21 @@ $settings['articles.article_show_longtitle']->fromArray(array(
     'namespace' => 'articles',
     'area' => 'site',
 ),'',true,true);
+$settings['articles.mgr_date_format']= $modx->newObject('modSystemSetting');
+$settings['articles.mgr_date_format']->fromArray(array(
+    'key' => 'articles.mgr_date_format',
+    'value' => '%b %d',
+    'xtype' => 'textfield',
+    'namespace' => 'articles',
+    'area' => 'site',
+),'',true,true);
+$settings['articles.mgr_time_format']= $modx->newObject('modSystemSetting');
+$settings['articles.mgr_time_format']->fromArray(array(
+    'key' => 'articles.mgr_time_format',
+    'value' => '%H:%I %p',
+    'xtype' => 'textfield',
+    'namespace' => 'articles',
+    'area' => 'site',
+),'',true,true);
 
 return $settings;
