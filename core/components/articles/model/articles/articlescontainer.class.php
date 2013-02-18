@@ -126,6 +126,7 @@ class ArticlesContainer extends modResource {
     }
 
     /**
+     * This runs each time the tree is drawn.
      * @param array $node
      * @return array
      */
@@ -133,6 +134,22 @@ class ArticlesContainer extends modResource {
         $this->xpdo->lexicon->load('articles:default');
         $menu = array();
         $idNote = $this->xpdo->hasPermission('tree_show_resource_ids') ? ' <span dir="ltr">('.$this->id.')</span>' : '';
+        // Template ID should 1st default to the container settings for articleTemplate,
+        // then to system settings for articles.default_article_template.
+        // getContainerSettings() is not in scope here.
+		
+		// System Default
+		$template_id = $this->getOption('articles.default_article_template'); 
+		// Attempt to override for this container
+		$container = $this->xpdo->getObject('modResource', $this->id); 
+		if ($container) {
+			$props = $container->get('properties');
+			if ($props) {
+				if (isset($props['articles']['articleTemplate']) && !empty($props['articles']['articleTemplate'])) {
+					$template_id = $props['articles']['articleTemplate'];
+				}
+			}
+		}
         $menu[] = array(
             'text' => '<b>'.$this->get('pagetitle').'</b>'.$idNote,
             'handler' => 'Ext.emptyFn',
@@ -144,7 +161,18 @@ class ArticlesContainer extends modResource {
         );
         $menu[] = array(
             'text' => $this->xpdo->lexicon('articles.articles_write_new'),
-            'handler' => 'function(itm,e) { itm.classKey = "Article"; this.createResourceHere(itm,e); }',
+            'handler' => "function(itm,e) { 
+				var at = this.cm.activeNode.attributes;
+		        var p = itm.usePk ? itm.usePk : at.pk;
+	
+	            Ext.getCmp('modx-resource-tree').loadAction(
+	                'a='+MODx.action['resource/create']
+	                + '&class_key='+itm.classKey
+	                + '&parent='+p
+	                + '&template=".$template_id."'
+	                + (at.ctx ? '&context_key='+at.ctx : '')
+                );
+        	}",
         );
         $menu[] = array(
             'text' => $this->xpdo->lexicon('articles.container_duplicate'),
