@@ -1,5 +1,9 @@
 Changelog for Articles.
 
+Articles 1.6.4
+===============================
+- [#9508] System Settings added for controlling date and time format for list view in manager.
+
 Articles 1.6.3
 ===============================
 - Enable tag filtering in RSS
