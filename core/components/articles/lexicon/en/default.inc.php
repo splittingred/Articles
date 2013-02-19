@@ -277,6 +277,8 @@ $_lang['articles.setting.commentsUseCss'] = 'Use Quip CSS';
 $_lang['articles.setting.commentsUseCss_desc'] = 'Provide a basic CSS template for the presentation.';
 $_lang['articles.setting.commentsAltRowCss'] = 'Alternate Row CSS Class';
 $_lang['articles.setting.commentsAltRowCss_desc'] = 'The CSS class to put on alternating comments.';
+$_lang['articles.setting.commentsSortDir'] = 'Comment Sort Direction';
+$_lang['articles.setting.commentsSortDir_desc'] = 'The direction to sort comments (DESC or ASC).';
 $_lang['articles.setting.commentsNameField'] = 'Name Field';
 $_lang['articles.setting.commentsNameField_desc'] = 'The field to use for the author name of each comment. Recommended values are "name" or "username".';
 $_lang['articles.setting.commentsShowAnonymousName'] = 'Show Anonymous Name';
@@ -320,7 +322,7 @@ $_lang['articles.setting.commentsGravatar_desc'] = 'Whether or not to show Grava
 $_lang['articles.setting.commentsGravatarIcon'] = 'Gravatar Icon Style';
 $_lang['articles.setting.commentsGravatarIcon_desc'] = 'The type of Gravatar icon to use for a user without a Gravatar.';
 $_lang['articles.setting.commentsGravatarSize'] = 'Gravatar Icon Size';
-$_lang['articles.setting.commentsGravatarSize_desc'] = 'The size in pixels of the Gravatar.';
+$_lang['articles.setting.commentsGravatarSize_desc'] = 'The size in pixels of the Gravatar. Default is 50.';
 $_lang['articles.setting.'] = '';
 $_lang['articles.setting._desc'] = '';
 
@@ -329,13 +331,19 @@ $_lang['setting_articles.article_show_longtitle'] = 'Show Long Title Field';
 $_lang['setting_articles.article_show_longtitle_desc'] = 'Set this option to "Yes" if you want the field "Long Title" to be displayed when editing an article.';
 
 $_lang['setting_articles.default_container_template'] = 'Default Articles Container Template';
-$_lang['setting_articles.default_container_template_desc'] = 'The default Template to use when creating a new Articles Container';
+$_lang['setting_articles.default_container_template_desc'] = 'The default Template (ID) to use when creating a new Articles Container';
 
 $_lang['setting_articles.default_article_template'] = 'Default Article Template';
-$_lang['setting_articles.default_article_template_desc'] = 'The default Template to use when creating a new Article when there is none specified on the Container itself.';
+$_lang['setting_articles.default_article_template_desc'] = 'The default Template (ID) to use when creating a new Article when there is none specified on the Container itself.';
 
 $_lang['setting_articles.container_ids'] = 'Articles FURL IDs';
 $_lang['setting_articles.container_ids_desc'] = 'A comma-separated list of container IDs in use for FURL routing. Best to leave this alone.';
 
 $_lang['setting_articles.default_article_sort_field'] = 'Default Sort Field for Articles In Manager';
-$_lang['setting_articles.default_article_sort_field_desc'] = 'The default sorting field for articles in the grid when editing a Container.';
+$_lang['setting_articles.default_article_sort_field_desc'] = 'The default sorting field for articles in the grid when editing a Container. This field must be a column in the site_content table. TVs not allowed.';
+
+$_lang['setting_articles.mgr_date_format'] = 'Manager Date Format';
+$_lang['setting_articles.mgr_date_format_desc'] = 'Date format displayed inside an article container when listing articles inside the manager.';
+
+$_lang['setting_articles.mgr_time_format'] = 'Manager Time Format';
+$_lang['setting_articles.mgr_time_format_desc'] = 'Time format displayed inside an article container when listing articles inside the manager.';
