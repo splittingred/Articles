@@ -441,6 +441,7 @@ class ArticlesContainer extends modResource {
         $output = '[[getResources?
             &parents=`'.$this->get('id').'`
             &hideContainers=`1`
+            &includeContent=`1`
             &showHidden=`1`
             &tpl=`'.$this->xpdo->getOption('latestPostsTpl',$settings,'sample.ArticlesLatestPostTpl').'`
             &limit=`'.$this->xpdo->getOption('latestPostsLimit',$settings,5).'`
