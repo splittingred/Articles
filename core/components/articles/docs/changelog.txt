@@ -2,6 +2,7 @@ Changelog for Articles.
 
 Articles 1.6.5
 ===============================
+- Add in includeContent param to getResources call in post listing if introtext is empty
 - Fix wrong signature after getResources update to 1.6.0-pl
 - Add Italian translation
 - Use MODX.loadPage instead of direct location changes
