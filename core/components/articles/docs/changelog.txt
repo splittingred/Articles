@@ -1,5 +1,9 @@
 Changelog for Articles.
 
+Articles 1.6.5
+===============================
+- Use MODX.loadPage instead of direct location changes
+
 Articles 1.6.4
 ===============================
 - Update getResources to 1.6.0-pl
