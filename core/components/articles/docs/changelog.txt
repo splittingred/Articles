@@ -6,6 +6,7 @@ Articles 1.6.5
 - Fix wrong signature after getResources update to 1.6.0-pl
 - Add Italian translation
 - Use MODX.loadPage instead of direct location changes
+- [#8344] Fixed Template combos only show ID and not name with many templates
 
 Articles 1.6.4
 ===============================
