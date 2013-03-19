@@ -135,12 +135,12 @@ Ext.extend(Articles.page.UpdateArticle,MODx.page.UpdateResource,{
                 if (e == 'yes') {
                     MODx.releaseLock(MODx.request.id);
                     MODx.sleep(400);
-                    location.href = 'index.php?a='+updatePage+'&id='+this.config.record['parent'];
+                    MODx.loadPage(updatePage, 'id='+this.config.record['parent']);
                 }
             },this);
         } else {
             MODx.releaseLock(MODx.request.id);
-            location.href = 'index.php?a='+updatePage+'&id='+this.config.record['parent'];
+            MODx.loadPage(updatePage, 'id='+this.config.record['parent']);
         }
     }
 });
@@ -400,6 +400,7 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                 ,baseParams: {
                     action: 'getList'
                     ,combo: '1'
+					,limit: '0'
                 }
             },{
                 xtype: 'textfield'
