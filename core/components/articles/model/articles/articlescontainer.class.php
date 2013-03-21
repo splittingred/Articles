@@ -440,7 +440,7 @@ class ArticlesContainer extends modResource {
         $settings = $this->getContainerSettings();
         $output = '[[getResources?
             &parents=`'.$this->get('id').'`
-			&depth=`0`
+            &depth=`0`
             &hideContainers=`1`
             &includeContent=`1`
             &showHidden=`1`
