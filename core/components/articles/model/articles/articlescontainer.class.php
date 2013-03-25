@@ -167,7 +167,7 @@ class ArticlesContainer extends modResource {
 	
 	            Ext.getCmp('modx-resource-tree').loadAction(
 	                'a='+MODx.action['resource/create']
-	                + '&class_key='+itm.classKey
+	                + '&class_key='+((itm.classKey) ? itm.classKey : 'Article')
 	                + '&parent='+p
 	                + '&template=".$template_id."'
 	                + (at.ctx ? '&context_key='+at.ctx : '')
