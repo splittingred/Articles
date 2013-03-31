@@ -31,6 +31,7 @@ $_lang['articles.article_delete_multiple'] = 'Verwijder Meerdere Artikelen';
 $_lang['articles.article_delete_multiple_confirm'] = 'Ben je er zeker van de geselecteerde artikelen te willen verwijderen?';
 $_lang['articles.article_edit'] = 'Wijzig Artikel';
 $_lang['articles.article_options'] = 'Artikel Opties';
+$_lang['articles.article_edit_options'] = 'Bewerkingsopties';
 $_lang['articles.article_publish'] = 'Publiceer';
 $_lang['articles.article_selected_delete'] = 'Verwijder geselecteerd';
 $_lang['articles.article_selected_undelete'] = 'Herstel geselecteerd';
@@ -129,6 +130,7 @@ $_lang['none'] = 'Geen';
 /* General */
 $_lang['articles.setting.updateServicesEnabled'] = 'Enable Update Services';
 $_lang['articles.setting.updateServicesEnabled_desc'] = 'If on, Articles will attempt to ping Ping-o-Matic whenever you publish an Artikel, to send out your Artikel\'s title and URL to major search engines.';
+$_lang['articles.setting.richtext_desc'] = 'Zodra de regels zijn gecreëerd, kunnen de afzonderlijke artikelen negeren deze waarde.';
 $_lang['articles.setting.sortBy'] = 'Sort Field';
 $_lang['articles.setting.sortBy_desc'] = 'The field to sort by on the main and archives listing pages.';
 $_lang['articles.setting.sortDir'] = 'Sort Direction';

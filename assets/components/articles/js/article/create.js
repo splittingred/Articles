@@ -186,7 +186,8 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                 ,timeWidth: 120
                 ,value: config.record.unpub_date
             },{
-                xtype: MODx.config.publish_document ? 'modx-combo-user' : 'hidden'
+                xtype: MODx.config.publish_document ? 'modx-combo-user' : 'hidden' 
+                 //xtype: 'hidden'
                 ,fieldLabel: _('resource_createdby')
                 ,description: '<b>[[*createdby]]</b><br />'+_('resource_createdby_help')
                 ,name: 'created_by'
@@ -200,6 +201,14 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                 }
                 ,width: 300
                 ,value: config.record.createdby || MODx.user.id
+            },{
+                xtype: 'xcheckbox'
+                ,name: 'clearCache'  
+                ,fieldLabel:_('clear_cache')
+                ,description:_('clear_cache_on_save')
+                ,id: 'modx-resource-clearcache'
+                ,value: 1
+                ,checked:true
             }]
         },{
             html: '<hr />'
@@ -257,12 +266,6 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
 
             },{
                 xtype: 'hidden'
-                ,name: 'richtext'
-                ,id: 'modx-resource-richtext'
-                ,value: config.record.richtext !== undefined ? parseInt(config.record.richtext) : true
-
-            },{
-                xtype: 'hidden'
                 ,name: 'hidemenu'
                 ,id: 'modx-resource-hidemenu'
                 ,value: config.record.hidemenu
@@ -272,7 +275,26 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                 ,name: 'class_key'
                 ,value: 'Article'
             }]
-        }]
+        }/*,{
+            html: '<hr />'
+            ,border: false
+        },{
+            xtype: 'fieldset'
+            ,title: 'yall'
+            ,id: 'articles-edit-options'
+            ,defaults: {
+                msgTarget: 'under'
+            }
+            ,items: [{
+                xtype: 'xcheckbox'
+                ,name: 'richtext'
+                ,fieldLabel:_('resource_richtext')
+                ,description:_('resource_richtext_help')
+                ,id: 'modx-resource-richtext'
+                ,value:config.record.richtext !== undefined ? parseInt(config.record.richtext) : true
+                ,checked:config.record.richtext  
+            }]   
+        }*/]
     }
 
 });
