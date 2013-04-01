@@ -167,7 +167,7 @@ class ArticlesContainer extends modResource {
 	
 	            Ext.getCmp('modx-resource-tree').loadAction(
 	                'a='+MODx.action['resource/create']
-	                + '&class_key='+itm.classKey
+	                + '&class_key='+((itm.classKey) ? itm.classKey : 'Article')
 	                + '&parent='+p
 	                + '&template=".$template_id."'
 	                + (at.ctx ? '&context_key='+at.ctx : '')
@@ -440,6 +440,7 @@ class ArticlesContainer extends modResource {
         $settings = $this->getContainerSettings();
         $output = '[[getResources?
             &parents=`'.$this->get('id').'`
+            &depth=`0`
             &hideContainers=`1`
             &includeContent=`1`
             &showHidden=`1`

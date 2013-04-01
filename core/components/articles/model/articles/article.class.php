@@ -33,7 +33,7 @@ class Article extends modResource {
         parent :: __construct($xpdo);
         $this->set('class_key','Article');
         $this->set('show_in_tree',false);
-        $this->set('richtext',true);
+        //$this->set('richtext',true);
         $this->set('searchable',true);
     }
     public static function getControllerPath(xPDO &$modx) {
@@ -259,7 +259,8 @@ class Article extends modResource {
 
         $settings = $container->getContainerSettings();
 
-        $date = $this->get('published') ? $this->get('publishedon') : $this->get('createdon');
+        if($this->get('pub_date')) $date = $this->get('pub_date');
+        else $date = $this->get('published') ? $this->get('publishedon') : $this->get('createdon');
         $year = date('Y',strtotime($date));
         $month = date('m',strtotime($date));
         $day = date('d',strtotime($date));
@@ -453,14 +454,14 @@ class ArticleCreateProcessor extends modResourceCreateProcessor {
 
     public function beforeSet() {
         $this->setProperty('searchable',true);
-        $this->setProperty('richtext',true);
+        //$this->setProperty('richtext',true);
         $this->setProperty('isfolder',false);
         $this->setProperty('cacheable',true);
-        $this->setProperty('clearCache',true);
+        //$this->setProperty('clearCache',true);
         $this->setProperty('class_key','Article');
         return parent::beforeSet();
     }
-    
+
     /**
      * Override modResourceCreateProcessor::beforeSave to provide archiving
      *
@@ -474,18 +475,18 @@ class ArticleCreateProcessor extends modResourceCreateProcessor {
             $this->parentResource = $this->object->getOne('Parent');
         }
 
-        if ($this->object->get('published')) {
+        if ($this->object->get('published') || $this->object->get('pub_date')) {
             if (!$this->setArchiveUri()) {
                 $this->modx->log(modX::LOG_LEVEL_ERROR,'Failed to set URI for new Article.');
             }
         }
-        
+
         /** @var ArticlesContainer $container */
         $container = $this->modx->getObject('ArticlesContainer',$this->object->get('parent'));
         if ($container) {
             $settings = $container->getProperties('articles');
             $this->object->setProperties($settings,'articles');
-            $this->object->set('richtext',!isset($settings['articlesRichtext']) || !empty($settings['articlesRichtext']));
+            //$this->object->set('richtext',!isset($settings['articlesRichtext']) || !empty($settings['articlesRichtext']));
         }
 
         $this->isPublishing = $this->object->isDirty('published') && $this->object->get('published');
@@ -506,7 +507,7 @@ class ArticleCreateProcessor extends modResourceCreateProcessor {
     public function afterSave() {
         $afterSave = parent::afterSave();
         $this->saveTemplateVariables();
-        $this->clearContainerCache();
+        if($this->object->get('clearCache')) $this->clearContainerCache();
         if ($this->isPublishing) {
             $this->object->notifyUpdateServices();
             $this->object->sendNotifications();
@@ -526,7 +527,7 @@ class ArticleCreateProcessor extends modResourceCreateProcessor {
             'resource' => array('contexts' => array($this->object->get('context_key'))),
         ));
     }
-    
+
     /**
      * Extend the saveTemplateVariables method and provide handling for the 'tags' type to store in a hidden TV
      * @return array|mixed
@@ -589,26 +590,39 @@ class ArticleUpdateProcessor extends modResourceUpdateProcessor {
     public $isPublishing = false;
 
     public function beforeSet() {
-        $this->setProperty('clearCache',true);
+        //$this->setProperty('clearCache',true);
         return parent::beforeSet();
     }
 
     /**
      * Override modResourceUpdateProcessor::beforeSave to provide archiving
-     * 
+     *
      * {@inheritDoc}
      * @return boolean
      */
     public function beforeSave() {
         $afterSave = parent::beforeSave();
+        $container = $this->modx->getObject('ArticlesContainer',$this->object->get('parent'));
+
         if ($this->object->get('published') && ($this->object->isDirty('alias') || $this->object->isDirty('published'))) {
             if (!$this->setArchiveUri()) {
                 $this->modx->log(modX::LOG_LEVEL_ERROR,'Failed to set date URI.');
             }
+        } else if (($this->object->get('pub_date') && $this->object->isDirty('pub_date')) || $this->object->isDirty('pub_date')) {
+            if (!$this->setArchiveUri()) {
+                $this->modx->log(modX::LOG_LEVEL_ERROR,'Failed to set date URI pub_date.');
+            }
+        } else if(!$this->object->get('published') && !$this->object->get('pub_date')) { // we need to always do this because the url may have been set previously by pub_date
+	        $containerUri = $container->get('uri');
+	        if (empty($containerUri)) {
+	            $containerUri = $container->get('alias');
+	        }
+	        $uri = rtrim($containerUri,'/') .'/'. rtrim($this->object->get('alias'));
+	        $this->object->set('uri',$uri);
+	        $this->object->set('uri_override',true);
         }
 
         /** @var ArticlesContainer $container */
-        $container = $this->modx->getObject('ArticlesContainer',$this->object->get('parent'));
         if ($container) {
             $this->object->setProperties($container->getProperties('articles'),'articles');
         }
@@ -682,7 +696,7 @@ class ArticleUpdateProcessor extends modResourceUpdateProcessor {
             $this->object->notifyUpdateServices();
             $this->object->sendNotifications();
         }
-        $this->clearContainerCache();
+        if($this->object->get('clearCache')) $this->clearContainerCache();
         return $afterSave;
     }
 

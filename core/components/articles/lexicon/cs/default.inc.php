@@ -18,7 +18,7 @@
  * Place, Suite 330, Boston, MA 02111-1307 USA
  *
  * @package articles
- * 
+ *
  * @language cs
  * Articles translated to Czech by Jan Peca (theboxer, pecajan@gmail.com)
  */
@@ -34,6 +34,7 @@ $_lang['articles.article_delete_multiple'] = 'Odstranit více článků';
 $_lang['articles.article_delete_multiple_confirm'] = 'Opravdu chcete odstranit vybrané články?';
 $_lang['articles.article_edit'] = 'Upravit čláenk';
 $_lang['articles.article_options'] = 'Nastavení článku';
+$_lang['articles.article_edit_options'] = 'Možnosti úprav';
 $_lang['articles.article_publish'] = 'Publikovat';
 $_lang['articles.article_selected_delete'] = 'Odstranit označené';
 $_lang['articles.article_selected_undelete'] = 'Obnovit označené';
@@ -132,6 +133,7 @@ $_lang['none'] = 'Žádný';
 /* Obecné */
 $_lang['articles.setting.updateServicesEnabled'] = 'Povolit oznamování službám';
 $_lang['articles.setting.updateServicesEnabled_desc'] = 'Pokud je povoleno, články se pokusí použít službu Ping-o-Matic k rozeslání titulku a URL hlavním vyhledávačům, pokaždé, když přidáte článek.';
+$_lang['articles.setting.richtext_desc'] = 'Po vytvoření, jednotlivé články mohou přepsat tuto hodnotu.';
 $_lang['articles.setting.sortBy'] = 'Řadit podle';
 $_lang['articles.setting.sortBy_desc'] = 'Pole, podle kterého se budou řadit články na hlavní stránce a v archivu.';
 $_lang['articles.setting.sortDir'] = 'Směr řazení';

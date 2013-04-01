@@ -32,6 +32,7 @@ $_lang['articles.article_delete_multiple_confirm'] = 'Sei sicuro di voler elimin
 $_lang['articles.article_duplicate'] = 'Duplica articolo';
 $_lang['articles.article_edit'] = 'Modifica articolo';
 $_lang['articles.article_options'] = 'Opzioni articolo';
+$_lang['articles.article_edit_options'] = 'Le opzioni di modifica';
 $_lang['articles.article_publish'] = 'Pubblica';
 $_lang['articles.article_selected_delete'] = 'Elimina selezioati';
 $_lang['articles.article_selected_undelete'] = 'Ripristina selezionati';
@@ -131,6 +132,7 @@ $_lang['none'] = 'Nessuno';
 /* General */
 $_lang['articles.setting.updateServicesEnabled'] = 'Abilita Servizi di Aggiornamento';
 $_lang['articles.setting.updateServicesEnabled_desc'] = 'Se attivo, Articles tenter&agrave; di eseguire il ping Ping-o-Matic ogni volta che si pubblica un articolo, per inviare il titolo del tuo articolo e la URL ai principali motori di ricerca.';
+$_lang['articles.setting.richtext_desc'] = 'Una volta creato, singoli articoli possono eseguire l\'override di questo valore.';
 $_lang['articles.setting.sortBy'] = 'Campo ordinamento';
 $_lang['articles.setting.sortBy_desc'] = 'Il campo secondo cui ordinare nella vista principale e nelle pagine con gli archivi.';
 $_lang['articles.setting.sortDir'] = 'Direzione ordinamento';

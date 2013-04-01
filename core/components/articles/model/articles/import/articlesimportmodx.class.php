@@ -176,7 +176,7 @@ class ArticlesImportMODX extends ArticlesImport {
         $resource->setProperties($settings,'articles');
 
         if (!empty($this->config['modx-change-template'])) {
-            $resource->set('template',$this->container->get('template'));
+            $resource->set('template',$settings['articleTemplate']);
         }
 
         $this->setResourceUri($resource);

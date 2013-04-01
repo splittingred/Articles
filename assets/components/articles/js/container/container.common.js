@@ -72,14 +72,14 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,hiddenName: 'setting_articlesRichtext'
                 ,id: 'articles-richtext'
                 ,fieldLabel: _('resource_richtext')
-                ,description: MODx.expandHelp ? '' : _('resource_richtext_help')
+                ,description: MODx.expandHelp ? '' : _('resource_richtext_help') + ' ' + _('articles.setting.richtext_desc')
                 ,width: 120
                 ,listeners: oc
                 ,value: 1
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'articles-richtext'
-                ,html: _('resource_richtext_help')
+                ,html: _('resource_richtext_help') + ' ' + _('articles.setting.richtext_desc')
                 ,cls: 'desc-under'
 
             },{

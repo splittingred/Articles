@@ -36,6 +36,7 @@ $_lang['articles.article_delete_multiple_confirm'] = 'Sind Sie sicher, dass Sie 
 $_lang['articles.article_duplicate'] = 'Artikel duplizieren';
 $_lang['articles.article_edit'] = 'Artikel bearbeiten';
 $_lang['articles.article_options'] = 'Artikel-Optionen';
+$_lang['articles.article_edit_options'] = 'Bearbeitungs-Optionen';
 $_lang['articles.article_publish'] = 'Veröffentlichen';
 $_lang['articles.article_selected_delete'] = 'Ausgewählte löschen';
 $_lang['articles.article_selected_undelete'] = 'Ausgewählte wiederherstellen';
@@ -135,6 +136,7 @@ $_lang['none'] = 'Keiner';  // used for URL shortener
 /* General */
 $_lang['articles.setting.updateServicesEnabled'] = 'Update-Dienste aktivieren';
 $_lang['articles.setting.updateServicesEnabled_desc'] = 'Wenn diese Option aktiviert ist, versucht Articles, Ping-o-Matic anzupingen, wann immer Sie einen Artikel veröffentlichen, um den Titel und die URL Ihres Artikels an die großen Suchmaschinen zu übermitteln.';
+$_lang['articles.setting.richtext_desc'] = 'Sobald erstellt, hat die entsprechende Einstellung individueller Artikel Vorrang vor diesem Wert.';
 $_lang['articles.setting.sortBy'] = 'Sortierfeld';
 $_lang['articles.setting.sortBy_desc'] = 'Das Feld, nach dem auf den Haupt- und Archiv-Übersichtsseiten sortiert wird.';
 $_lang['articles.setting.sortDir'] = 'Sortierrichtung';

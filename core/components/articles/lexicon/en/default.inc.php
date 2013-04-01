@@ -32,6 +32,7 @@ $_lang['articles.article_delete_multiple_confirm'] = 'Are you sure you want to d
 $_lang['articles.article_duplicate'] = 'Duplicate Article';
 $_lang['articles.article_edit'] = 'Edit Article';
 $_lang['articles.article_options'] = 'Article Options';
+$_lang['articles.article_edit_options'] = 'Editing Options';
 $_lang['articles.article_publish'] = 'Publish';
 $_lang['articles.article_selected_delete'] = 'Delete Selected';
 $_lang['articles.article_selected_undelete'] = 'Undelete Selected';
@@ -131,6 +132,7 @@ $_lang['none'] = 'None';
 /* General */
 $_lang['articles.setting.updateServicesEnabled'] = 'Enable Update Services';
 $_lang['articles.setting.updateServicesEnabled_desc'] = 'If on, Articles will attempt to ping Ping-o-Matic whenever you publish an Article, to send out your article\'s title and URL to major search engines.';
+$_lang['articles.setting.richtext_desc'] = 'Once created, individual Articles can override this value.';
 $_lang['articles.setting.sortBy'] = 'Sort Field';
 $_lang['articles.setting.sortBy_desc'] = 'The field to sort by on the main and archives listing pages.';
 $_lang['articles.setting.sortDir'] = 'Sort Direction';

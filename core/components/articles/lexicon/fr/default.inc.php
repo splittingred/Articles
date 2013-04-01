@@ -32,6 +32,7 @@ $_lang['articles.article_delete_multiple_confirm'] = 'Êtes-vous sûr de vouloir
 $_lang['articles.article_duplicate'] = 'Dupliquer l\'Article';
 $_lang['articles.article_edit'] = 'Éditer l\'Article';
 $_lang['articles.article_options'] = 'Options d\'Article';
+$_lang['articles.article_edit_options'] = 'Édition des options';
 $_lang['articles.article_publish'] = 'Publier';
 $_lang['articles.article_selected_delete'] = 'Supprimer la sélection';
 $_lang['articles.article_selected_undelete'] = 'Restaurer la sélection';
@@ -131,6 +132,7 @@ $_lang['none'] = 'Aucun';
 /* General */
 $_lang['articles.setting.updateServicesEnabled'] = 'Services d\'Update';
 $_lang['articles.setting.updateServicesEnabled_desc'] = 'Activez cette option pour qu\'Articles notifie Ping-o-Matic lorsqu\'un Article est publié, afin d\'envoyer le titre et l\'URL de votre Article aux principaux moteurs de recherche.';
+$_lang['articles.setting.richtext_desc'] = 'Une fois que créés, les différents articles peuvent dépasser cette valeur.';
 $_lang['articles.setting.sortBy'] = 'Champ de classement';
 $_lang['articles.setting.sortBy_desc'] = 'Le champ à utiliser pour classer les Articles dans les pages principales et d\'archives.';
 $_lang['articles.setting.sortDir'] = 'Direction de classement';
