@@ -55,11 +55,13 @@ class ArticlesRouter {
         foreach ($containerIds as $archive) {
             $archive = explode(':',$archive);
             $archiveId = $archive[0];
-            $alias = array_search($archiveId,$this->modx->aliasMap);
-            if ($alias && strpos($search,$alias) !== false) {
-                $search = str_replace($alias,'',$search);
-                $resourceId = $archiveId;
-                if (isset($archive[1])) $prefix = $archive[1];
+            if(is_array($this->modx->aliasMap)) {
+                $alias = array_search($archiveId,$this->modx->aliasMap);
+                if ($alias && strpos($search,$alias) !== false) {
+                    $search = str_replace($alias,'',$search);
+                    $resourceId = $archiveId;
+                    if (isset($archive[1])) $prefix = $archive[1];
+                }
             }
         }
         if (!$resourceId) return false;
