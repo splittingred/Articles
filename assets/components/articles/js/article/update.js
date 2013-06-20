@@ -419,16 +419,39 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                 ,maxLength: 100
                 ,anchor: '100%'
                 ,value: config.record.alias || ''
-
             },{
-                xtype: 'textfield'
+                xtype: 'superboxselect'
                 ,fieldLabel: _('articles.article_tags')
                 ,description: _('articles.article_tags_help')
                 ,name: 'tags'
                 ,id: 'modx-resource-tags'
                 ,anchor: '100%'
+                ,mode:'local'
+                ,editable:true
+                ,store: new Ext.data.SimpleStore({
+                    fields: ['v']
+                    ,data: [config.record.tags.split(',')]
+                })
                 ,value: config.record.tags || ''
-
+                ,displayField: 'v'
+                ,valueField: 'v'
+                ,typeahead:true
+                ,triggerAction:'all'
+                ,selectOnFocus:true
+                ,allowAddNewData: true
+                ,listeners:{
+                    'select': {fn:MODx.fireResourceFormChange, scope:this}
+                    ,'beforeadditem': {fn:MODx.fireResourceFormChange, scope:this}
+                    ,'newitem': {fn:function(bs,v,f) {
+                        console.log(v);
+                        console.log(config.record.tags);
+                        bs.addNewItem({"v": v});
+                        MODx.fireResourceFormChange();
+                        return true;
+                    },scope:this}
+                    ,'beforeremoveitem': {fn:MODx.fireResourceFormChange, scope:this}
+                    ,'clear': {fn:MODx.fireResourceFormChange, scope:this}
+                }
             },{
                 xtype: 'hidden'
                 ,name: 'menutitle'
