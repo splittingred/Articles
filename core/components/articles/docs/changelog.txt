@@ -1,5 +1,18 @@
 Changelog for Articles.
 
+Articles 1.6.6
+===============================
+- Set depth to 0 when looking for Article Container children
+- added Clear Cache checkbox to Article Publishing Information panel
+- Fixed right click Articel Container > Write New links bug
+- Fix default template on Article Import (from MODX Resources)
+- removed Rich Text setting from Article Container
+- added 'Editing Options' panel with Rich Text option
+- Rich Text is now managed on the Article level
+- Add check to only search the alias map if it's an array
+- Lexicon updates
+- Updated Quip to 2.3.3-pl
+
 Articles 1.6.5
 ===============================
 - Add in includeContent param to getResources call in post listing if introtext is empty
