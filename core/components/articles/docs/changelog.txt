@@ -4,7 +4,7 @@ Articles 1.6.6
 ===============================
 - Set depth to 0 when looking for Article Container children
 - added Clear Cache checkbox to Article Publishing Information panel
-- Fixed right click Articel Container > Write New links bug
+- Fixed right click Article Container > Write New links bug
 - Fix default template on Article Import (from MODX Resources)
 - removed Rich Text setting from Article Container
 - added 'Editing Options' panel with Rich Text option
