@@ -204,8 +204,8 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
             },{
                 xtype: 'xcheckbox'
                 ,name: 'clearCache'  
-                ,fieldLabel:_('clear_cache')
-                ,description:_('clear_cache_on_save')
+                ,fieldLabel:_('resource_syncsite')
+                ,description:_('resource_syncsite_help')
                 ,id: 'modx-resource-clearcache'
                 ,value: 1
                 ,checked:true
