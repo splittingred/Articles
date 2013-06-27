@@ -1,5 +1,9 @@
 Changelog for Articles.
 
+Articles 1.6.7
+===============================
+ - Fix Empty Checkbox being unticked on Article Save (Issue 8)
+
 Articles 1.6.6
 ===============================
 - Set depth to 0 when looking for Article Container children
