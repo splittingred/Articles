@@ -454,10 +454,10 @@ class ArticleCreateProcessor extends modResourceCreateProcessor {
 
     public function beforeSet() {
         $this->setProperty('searchable',true);
-        //$this->setProperty('richtext',true);
+        $this->setProperty('richtext',true);
         $this->setProperty('isfolder',false);
         $this->setProperty('cacheable',true);
-        //$this->setProperty('clearCache',true);
+        $this->setProperty('clearCache',true);
         $this->setProperty('class_key','Article');
         return parent::beforeSet();
     }
@@ -590,7 +590,7 @@ class ArticleUpdateProcessor extends modResourceUpdateProcessor {
     public $isPublishing = false;
 
     public function beforeSet() {
-        //$this->setProperty('clearCache',true);
+        $this->setProperty('clearCache',true);
         return parent::beforeSet();
     }
 
