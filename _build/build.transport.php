@@ -28,7 +28,7 @@ set_time_limit(0);
 /* define package */
 define('PKG_NAME','Articles');
 define('PKG_NAME_LOWER',strtolower(PKG_NAME));
-define('PKG_VERSION','1.6.7');
+define('PKG_VERSION','1.6.8');
 define('PKG_RELEASE','pl');
 
 /* define sources */

@@ -1,5 +1,9 @@
 Changelog for Articles.
 
+Articles 1.6.8
+===============================
+ - Fix Broken Preview URLs after initial save (Issue 9)
+
 Articles 1.6.7
 ===============================
  - Fix Empty Checkbox being unticked on Article Save (Issue 8)
