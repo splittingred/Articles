@@ -613,11 +613,11 @@ class ArticleUpdateProcessor extends modResourceUpdateProcessor {
                 $this->modx->log(modX::LOG_LEVEL_ERROR,'Failed to set date URI pub_date.');
             }
         } else if(!$this->object->get('published') && !$this->object->get('pub_date')) { // we need to always do this because the url may have been set previously by pub_date
-	        $containerUri = $container->get('uri');
+	        /*$containerUri = $container->get('uri');
 	        if (empty($containerUri)) {
 	            $containerUri = $container->get('alias');
-	        }
-	        $uri = rtrim($containerUri,'/') .'/'. rtrim($this->object->get('alias'));
+	        }*/
+	        $uri = rtrim($this->object->get('alias'));
 	        $this->object->set('uri',$uri);
 	        $this->object->set('uri_override',true);
         }
