@@ -24,13 +24,23 @@ if ($transport && $transport->xpdo) {
             /** @var modTransportPackage $package */
             $package = $modx->newObject('transport.modTransportPackage');
             $package->set('signature',$signature);
+
+            /* make silly assumptions */
+            $provider = 1;
+
+            /* little more effort */
+            $defaultProvider = $modx->getObject('transport.modTransportProvider', array('name' => 'modx.com'));
+
+            if ($defaultProvider) $provider = $defaultProvider->get('id');
+            else $modx->logManagerAction('package_install','transport.modTransportPackage','Unable to find modx.com provider, setting to 1');
+            
             $package->fromArray(array(
                 'created' => date('Y-m-d h:i:s'),
                 'updated' => date('Y-m-d h:i:s'),
                 'installed' => strftime('%Y-%m-%d %H:%M:%S'),
                 'state' => 1,
                 'workspace' => 1,
-                'provider' => 1,
+                'provider' => $provider,
                 'disabled' => false,
                 'source' => $transport->signature . '/' . $this->payload['class'] . '/' . $this->payload['signature'] . '/' . $signature.'.transport.zip',
                 'manifest' => null,
