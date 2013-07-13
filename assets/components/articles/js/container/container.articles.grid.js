@@ -126,7 +126,7 @@ Articles.grid.ContainerArticles = function(config) {
     Articles.grid.ContainerArticles.superclass.constructor.call(this,config);
     this._makeTemplates();
     this.on('rowclick',MODx.fireResourceFormChange);
-    this.on('click', this.onClick, this);
+    this.on('click', this.handleButtons, this);
 };
 Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
     getMenu: function() {
@@ -397,7 +397,7 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
     }
 
 
-	,onClick: function(e){
+	,handleButtons: function(e){
 		var t = e.getTarget();
 		var elm = t.className.split(' ')[0];
 		if(elm == 'controlBtn') {
