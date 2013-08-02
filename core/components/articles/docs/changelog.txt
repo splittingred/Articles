@@ -1,5 +1,12 @@
 Changelog for Articles.
 
+Articles 1.6.9
+===============================
+ - #14 Ensure modx.com Package Provider is always correct when installing subpackages - thanks to Bob Ray
+ - #16 Fix post to Twitter - thanks to mintnl
+ - #7 Fix No RTE on Create w/ TinyMCE
+ - Fixed sorting articles in grid - thanks to TheBoxer
+
 Articles 1.6.8
 ===============================
  - Fix Broken Preview URLs after initial save (Issue 9)
