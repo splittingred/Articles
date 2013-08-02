@@ -231,7 +231,7 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                 ,baseParams: {
                     action: 'getList'
                     ,combo: '1'
-					,limit: '0'
+                    ,limit: '0'
                 }
             },{
                 xtype: 'textfield'
@@ -275,12 +275,10 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                 ,name: 'class_key'
                 ,value: 'Article'
             }]
-        }/*,{
-            html: '<hr />'
-            ,border: false
         },{
             xtype: 'fieldset'
-            ,title: 'yall'
+            ,style:{'display':'none'}
+            ,title: _('articles.article_edit_options')
             ,id: 'articles-edit-options'
             ,defaults: {
                 msgTarget: 'under'
@@ -294,7 +292,7 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                 ,value:config.record.richtext !== undefined ? parseInt(config.record.richtext) : true
                 ,checked:config.record.richtext  
             }]   
-        }*/]
+        }]
     }
 
 });

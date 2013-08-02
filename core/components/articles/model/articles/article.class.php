@@ -486,7 +486,7 @@ class ArticleCreateProcessor extends modResourceCreateProcessor {
         if ($container) {
             $settings = $container->getProperties('articles');
             $this->object->setProperties($settings,'articles');
-            //$this->object->set('richtext',!isset($settings['articlesRichtext']) || !empty($settings['articlesRichtext']));
+            $this->object->set('richtext',!isset($settings['articlesRichtext']) || !empty($settings['articlesRichtext']));
         }
 
         $this->isPublishing = $this->object->isDirty('published') && $this->object->get('published');
