@@ -8,7 +8,6 @@ class ArticleExtrasGetTagsProcessor extends modObjectGetListProcessor {
 
 
     public function process() {
-        $this->modx->chromephp->log($this->getProperties());
         $container = $this->getProperty('container', false);
         if(!$container){
             return false;
@@ -19,7 +18,7 @@ class ArticleExtrasGetTagsProcessor extends modObjectGetListProcessor {
             return false;
         }
 
-        $articles = $parent->getMany('Children');
+        $articles = $parent->getMany('Children',array('deleted' => 0));
         $articleIDs = array();
         foreach($articles as $article){
             $articleIDs[] = $article->id;
