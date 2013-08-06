@@ -124,4 +124,8 @@ class ArticlesService {
         return $chunk;
     }
 
+    public static function arrayUnique($arr){
+        return array_keys(array_flip($arr));
+    }
+
 }
