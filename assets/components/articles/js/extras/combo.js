@@ -54,11 +54,6 @@ Articles.combo.Tag = function(config, getStore) {
         }
     });
 
-    this.on('change',function(this, newValue, oldValue){
-        console.log('change');
-        MODx.fireResourceFormChange();
-    });
-
     this.config = config;
     return this;
 };
