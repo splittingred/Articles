@@ -1,5 +1,9 @@
 Changelog for Articles.
 
+Articles 1.6.10
+===============================
+ - #14 Type ahead for tags (superboxselect thanks to TheBoxer)
+
 Articles 1.6.9
 ===============================
  - #14 Ensure modx.com Package Provider is always correct when installing subpackages - thanks to Bob Ray
