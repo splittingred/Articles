@@ -45,6 +45,15 @@ Articles.combo.Tag = function(config, getStore) {
         bs.addNewItem(newObj);
     });
 
+    this.on('blur', function(combo){
+        if(combo.lastQuery){
+            var newObj = {
+                tag: combo.lastQuery
+            };
+            combo.addNewItem(newObj);
+        }
+    });
+
     this.config = config;
     return this;
 };
