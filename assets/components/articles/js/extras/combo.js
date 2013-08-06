@@ -11,6 +11,8 @@ Articles.combo.Tag = function(config, getStore) {
         ,addNewDataOnBlur : true
         ,itemDelimiterKey: 188
         ,triggerAction: 'all'
+        ,typeAheadDelay: 50
+        ,minChars: 1
         ,typeAhead: true
         ,editable: true
         ,forceSelection: false
