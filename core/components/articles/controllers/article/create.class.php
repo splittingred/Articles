@@ -37,6 +37,7 @@ class ArticleCreateManagerController extends ResourceCreateManagerController {
         $this->addJavascript($mgrUrl.'assets/modext/widgets/resource/modx.panel.resource.js');
         $this->addJavascript($mgrUrl.'assets/modext/sections/resource/create.js');
         $this->addJavascript($articlesJsUrl.'articles.js');
+        $this->addJavascript($articlesJsUrl.'extras/combo.js');
         $this->addLastJavascript($articlesJsUrl.'article/create.js');
         $this->addHtml('
         <script type="text/javascript">

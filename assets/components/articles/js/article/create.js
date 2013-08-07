@@ -244,12 +244,16 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                 ,value: config.record.alias || ''
 
             },{
-                xtype: 'textfield'
+                xtype: 'articles-combo-tag'
                 ,fieldLabel: _('articles.article_tags')
                 ,description: _('articles.article_tags_help')
                 ,name: 'tags'
                 ,id: 'modx-resource-tags'
                 ,anchor: '100%'
+                ,baseParams: {
+                    action: 'extras/gettags'
+                    ,container: config.record['parent']
+                }
                 ,value: config.record.tags || ''
 
             },{
@@ -295,5 +299,13 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
         }]
     }
 
+    ,beforeSubmit: function(o) {
+        var d = {};
+
+        var tags = Ext.getCmp('modx-resource-tags');
+        if(tags) {d.tags = tags.getValue()}
+
+        Ext.apply(o.form.baseParams,d);
+    }
 });
 Ext.reg('modx-panel-article',Articles.panel.Article);
