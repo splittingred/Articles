@@ -51,7 +51,6 @@ Articles.combo.Tag = function(config, getStore) {
     });
 
     this.on('blur', function(combo){
-        console.log(combo);
         if(combo.lastQuery){
             var newObj = {
                 tag: combo.lastQuery
