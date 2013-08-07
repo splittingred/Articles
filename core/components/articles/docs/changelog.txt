@@ -1,8 +1,8 @@
 Changelog for Articles.
 
-Articles 1.6.10
+Articles 1.7.0
 ===============================
- - #14 Type ahead for tags (superboxselect thanks to TheBoxer)
+ - #14 Long anticipated type ahead for tags (uses superboxselect thanks to TheBoxer)
 
 Articles 1.6.9
 ===============================
