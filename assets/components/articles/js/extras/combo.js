@@ -47,6 +47,7 @@ Articles.combo.Tag = function(config, getStore) {
 
     this.on('removeitem', function(combo){
         combo.lastQuery = '';
+        MODx.fireResourceFormChange();
     });
 
     this.on('blur', function(combo){
