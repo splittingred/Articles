@@ -8,7 +8,7 @@ Articles.combo.Tag = function(config, getStore) {
         ,fields: ['tag']
         ,mode: 'remote'
         ,allowAddNewData: true
-        ,addNewDataOnBlur : true
+        ,addNewDataOnBlur : false
         ,itemDelimiterKey: 188
         ,triggerAction: 'all'
         ,typeAheadDelay: 50
