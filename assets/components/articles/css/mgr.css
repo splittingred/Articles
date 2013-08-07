@@ -145,3 +145,7 @@
 .articles-grid .article-title-column ul {
     clear: both;
 }
+
+.ext-strict .x-form-field-trigger-wrap .x-form-text, .ext-strict .x-small-editor .x-form-field-trigger-wrap .x-form-text {
+text-shadow:none !important;
+}
