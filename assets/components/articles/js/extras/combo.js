@@ -45,7 +45,12 @@ Articles.combo.Tag = function(config, getStore) {
         bs.addNewItem(newObj);
     });
 
+    this.on('removeitem', function(combo){
+        combo.lastQuery = '';
+    });
+
     this.on('blur', function(combo){
+        console.log(combo);
         if(combo.lastQuery){
             var newObj = {
                 tag: combo.lastQuery
