@@ -1,5 +1,10 @@
 Changelog for Articles.
 
+Articles 1.7.1
+===============================
+ - #20 Improve RTE on Create Stability
+ - #24 Fix pasting predefined comma separated tags in tags field
+
 Articles 1.7.0
 ===============================
  - #14 Long anticipated type ahead for tags (uses superboxselect thanks to TheBoxer)
