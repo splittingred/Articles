@@ -39,10 +39,14 @@ Articles.combo.Tag = function(config, getStore) {
     Articles.combo.Tag.superclass.constructor.call(this,config);
 
     this.on('newitem', function(bs,v,f){
-        var newObj = {
-            tag: v
-        };
-        bs.addNewItem(newObj);
+        v = v.split(',');
+        Ext.each(v, function(item){
+            item = item.replace(/^\s+|\s+$/g, '');
+            var newObj = {
+                tag: item
+            };
+            bs.addNewItem(newObj);
+        });
     });
 
     this.on('removeitem', function(combo){
@@ -52,10 +56,14 @@ Articles.combo.Tag = function(config, getStore) {
 
     this.on('blur', function(combo){
         if(combo.lastQuery){
-            var newObj = {
-                tag: combo.lastQuery
-            };
-            combo.addNewItem(newObj);
+            var v = combo.lastQuery.split(',');
+            Ext.each(v, function(item){
+                item = item.replace(/^\s+|\s+$/g, '');
+                var newObj = {
+                    tag: item
+                };
+                combo.addNewItem(newObj);
+            });
         }
     });
 

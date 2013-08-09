@@ -135,6 +135,7 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
 
     ,getMainRightFields: function(config) {
         config = config || {};
+		config.record.richtext = (config.record.richtext !== undefined ? parseInt(config.record.richtext) : 1); // don't ask me why
         return [{
             xtype: 'fieldset'
             ,title: _('articles.publishing_information')
