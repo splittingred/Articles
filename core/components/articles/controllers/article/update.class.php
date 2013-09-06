@@ -41,8 +41,9 @@ class ArticleUpdateManagerController extends ResourceUpdateManagerController {
         $this->addJavascript($managerUrl.'assets/modext/sections/resource/update.js');
         $this->addJavascript($articlesJsUrl.'articles.js');
         $this->addJavascript($articlesJsUrl.'extras/combo.js');
+        $this->addJavascript($articlesJsUrl.'extras/tagfield.js');
 
-        $this->addCss($quipAssetsUrl.'css/mgr.css');
+        $this->addLastCss($quipAssetsUrl.'css/mgr.css');
         $this->addJavascript($quipAssetsUrl.'js/quip.js');
         $this->addJavascript($quipAssetsUrl.'js/widgets/comments.grid.js');
         $this->addHtml('<script type="text/javascript">
