@@ -129,6 +129,7 @@ $_lang['articles.template_desc'] = 'The Template that the main listing view uses
 $_lang['articles.tags'] = 'Tagy';
 $_lang['articles.unpublished'] = 'Nepublikováno';
 $_lang['none'] = 'Žádný';
+$_lang['articles.loading'] = 'Načítání';
 
 /* Obecné */
 $_lang['articles.setting.updateServicesEnabled'] = 'Povolit oznamování službám';

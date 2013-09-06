@@ -327,6 +327,7 @@ $_lang['articles.setting.commentsGravatarSize'] = 'Gravatar Icon Size';
 $_lang['articles.setting.commentsGravatarSize_desc'] = 'The size in pixels of the Gravatar. Default is 50.';
 $_lang['articles.setting.'] = '';
 $_lang['articles.setting._desc'] = '';
+$_lang['articles.loading'] = 'Loading';
 
 /* Settings */
 $_lang['setting_articles.article_show_longtitle'] = 'Show Long Title Field';

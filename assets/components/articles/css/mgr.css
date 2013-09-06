@@ -149,3 +149,71 @@
 .ext-strict .x-form-field-trigger-wrap .x-form-text, .ext-strict .x-small-editor .x-form-field-trigger-wrap .x-form-text {
 text-shadow:none !important;
 }
+
+.bxr-field-tags .bxr-field-wrapper {
+    margin-bottom:8px;
+    padding-right:47px;
+    position:relative;
+}
+
+.bxr-field-tags .bxr-field-wrapper:before, .bxr-field-tags .bxr-field-wrapper:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden;
+}
+
+.bxr-field-tags .bxr-field-wrapper:after { clear: both; }
+
+.bxr-field-tags {
+    width:auto !important;
+}
+
+.bxr-field-tags .x-form-field-wrap {
+    background:none;
+}
+
+.bxr-field-tags input.x-form-text.x-form-field {
+    width: 100% !important;
+    height:100% !important;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    font-weight:normal;
+}
+
+.bxr-field-tags button {
+    margin:0 0 0 4px;
+    padding:0 8px;
+    height:32px;
+    float:left;
+    color:#53595f;
+    font:bold 11px tahoma, verdana, helvetica, sans-serif;
+    border-color:#D5D5D5;
+    position:absolute;
+    top:0;
+    right:0;
+}
+
+.bxr-field-tags .x-btn:focus {
+    border-color:#668f16;
+}
+
+.bxr-field-tags .x-form-field-wrap {
+    width: 100% !important;
+    min-width:120px;
+    float:left;
+}
+
+.bxr-field-tags .inserted-tags {
+    margin-top:3px;
+}
+
+.bxr-field-tags .inserted-tags li {
+    float:left;
+    margin:0 4px 4px 0;
+}
+
+.bxr-field-tags .inserted-tags li:last-of-type {
+    margin-right:0;
+}
