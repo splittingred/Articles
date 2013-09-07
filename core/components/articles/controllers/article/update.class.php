@@ -43,7 +43,7 @@ class ArticleUpdateManagerController extends ResourceUpdateManagerController {
         $this->addJavascript($articlesJsUrl.'extras/combo.js');
         $this->addJavascript($articlesJsUrl.'extras/tagfield.js');
 
-        $this->addLastCss($quipAssetsUrl.'css/mgr.css');
+        $this->addCss($quipAssetsUrl.'css/mgr.css');
         $this->addJavascript($quipAssetsUrl.'js/quip.js');
         $this->addJavascript($quipAssetsUrl.'js/widgets/comments.grid.js');
         $this->addHtml('<script type="text/javascript">
