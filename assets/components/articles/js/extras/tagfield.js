@@ -1,7 +1,7 @@
 Articles.extra.Tags = function(config) {
     config = config || {};
     Ext.apply(config,{
-        ignoreCase: true
+        ignoreCase: false
         ,valueField: 'tag'
         ,displayField: 'tag'
         ,minChars: 3
