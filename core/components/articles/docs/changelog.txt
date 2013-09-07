@@ -1,5 +1,9 @@
 Changelog for Articles.
 
+Articles 1.7.2
+===============================
+ - Rebuilt tagging component. Thanks to Jan Peca (TheBoxer)
+
 Articles 1.7.1
 ===============================
  - #20 Improve RTE on Create Stability
