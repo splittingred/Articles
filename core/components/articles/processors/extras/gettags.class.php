@@ -48,7 +48,7 @@ class ArticleExtrasGetTagsProcessor extends modObjectGetListProcessor {
         }
 
         $tags = ArticlesService::arrayUnique($tags);
-
+        sort($tags);
         $returnArray = array();
         foreach($tags as $tag){
             $returnArray[] = array($tag);
