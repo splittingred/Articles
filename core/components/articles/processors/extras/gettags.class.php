@@ -31,16 +31,6 @@ class ArticleExtrasGetTagsProcessor extends modObjectGetListProcessor {
 
         $c = $this->modx->newQuery('modTemplateVarResource');
 
-        $valuesQuery = (boolean)$this->getProperty('valuesqry', false);
-        if(!$valuesQuery){
-            $query = $this->getProperty('query', '');
-            if($query){
-                $c->where(array(
-                               'value:LIKE' => '%' . $query . '%',
-                          ));
-            }
-        }
-
         $c->where(array(
                        'tmplvarid' => $templateVariable->id,
                        'contentid:IN' => $articleIDs
@@ -58,18 +48,13 @@ class ArticleExtrasGetTagsProcessor extends modObjectGetListProcessor {
         }
 
         $tags = ArticlesService::arrayUnique($tags);
-
+        sort($tags);
         $returnArray = array();
         foreach($tags as $tag){
-            if(!$valuesQuery){
-                if($query){
-                    if (strpos($tag, $query) === FALSE) continue;
-                }
-            }
-            $returnArray[] = array('tag' => $tag);
+            $returnArray[] = array($tag);
         }
 
-        return $this->outputArray($returnArray, count($returnArray));
+        return $this->success('', $returnArray);
     }
 
 }

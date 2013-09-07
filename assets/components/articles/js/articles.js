@@ -3,7 +3,7 @@ var Articles = function(config) {
     Articles.superclass.constructor.call(this,config);
 };
 Ext.extend(Articles,Ext.Component,{
-    page:{},window:{},grid:{},tree:{},panel:{},combo:{},config: {},view: {}
+    page:{},window:{},grid:{},tree:{},panel:{},combo:{},config: {},view: {},extra: {}
     ,connector_url: ''
 });
 Ext.reg('Articles',Articles);

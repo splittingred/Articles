@@ -421,18 +421,23 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                 ,value: config.record.alias || ''
 
             },{
-                xtype: 'articles-combo-tag'
+                xtype: 'bxr-field-tags'
                 ,fieldLabel: _('articles.article_tags')
                 ,description: _('articles.article_tags_help')
-                ,name: 'tags_fake'
+                ,name: 'fake_tags'
                 ,id: 'modx-resource-tags'
                 ,anchor: '100%'
-                ,baseParams: {
-                    action: 'extras/gettags'
-                    ,container: config.record['parent']
+                ,listeners: {
+                    removeitem: function(){
+                        MODx.fireResourceFormChange();
+                    }
+                    ,additem: function(){
+                        MODx.fireResourceFormChange();
+                    }
+                    ,select: function(){
+                        MODx.fireResourceFormChange();
+                    }
                 }
-                ,value: config.record.tags || ''
-
             },{
                 xtype: 'hidden'
                 ,name: 'menutitle'
@@ -476,13 +481,62 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
         }]
     }
 
+    ,setup: function(){
+        Articles.panel.Article.superclass.setup.call(this);
+
+        var tagField = this.find('xtype', 'bxr-field-tags');
+
+        if(tagField.length > 0){
+            tagField = tagField[0];
+
+            tagField.disable();
+            var currentValue = tagField.getValue();
+            tagField.setFieldValue(_('articles.loading') + '...');
+            if(currentValue == '') {
+                tagField.setValue(this.config.record.tags);
+            }
+
+            MODx.Ajax.request({
+                url: Articles.connector_url
+                ,params: {
+                    action: 'extras/gettags'
+                    ,container: this.config.record['parent']
+                }
+                ,listeners: {
+                    'success':{fn:function(r){
+                        tagField.store = new Ext.data.ArrayStore({
+                            autoDestroy: true,
+                            storeId: 'autoCompleteStore',
+                            idIndex: 0,
+                            fields: ['tag'],
+                            data: r.object
+                        });
+
+                        tagField.setFieldValue();
+                        tagField.enable();
+
+                    },scope:this}
+                }
+            });
+        }
+    }
+
     ,beforeSubmit: function(o) {
         var d = {};
 
-        var tags = Ext.getCmp('modx-resource-tags');
+        var tags = this.find('xtype', 'bxr-field-tags')[0];
         if(tags) {d.tags = tags.getValue()}
 
         Ext.apply(o.form.baseParams,d);
+    }
+
+    ,success: function(o) {
+        Articles.panel.Article.superclass.success.call(this, o);
+
+        var tags = this.find('xtype', 'bxr-field-tags')[0];
+        if(tags) {
+            tags.setValue(o.result.object.tags);
+        }
     }
 });
 Ext.reg('modx-panel-article',Articles.panel.Article);

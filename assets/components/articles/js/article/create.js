@@ -245,18 +245,12 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                 ,value: config.record.alias || ''
 
             },{
-                xtype: 'articles-combo-tag'
+                xtype: 'bxr-field-tags'
                 ,fieldLabel: _('articles.article_tags')
                 ,description: _('articles.article_tags_help')
-                ,name: 'tags'
+                ,name: 'fake_tags'
                 ,id: 'modx-resource-tags'
                 ,anchor: '100%'
-                ,baseParams: {
-                    action: 'extras/gettags'
-                    ,container: config.record['parent']
-                }
-                ,value: config.record.tags || ''
-
             },{
                 xtype: 'hidden'
                 ,name: 'menutitle'
@@ -300,10 +294,47 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
         }]
     }
 
+    ,setup: function(){
+        Articles.panel.Article.superclass.setup.call(this);
+
+        var tagField = this.find('xtype', 'bxr-field-tags');
+
+        if(tagField.length > 0){
+            tagField = tagField[0];
+
+            tagField.disable();
+            tagField.setFieldValue(_('bxr.loading') + '...');
+            tagField.setValue(this.config.record.tags);
+
+            MODx.Ajax.request({
+                url: Articles.connector_url
+                ,params: {
+                    action: 'extras/gettags'
+                    ,container: this.config.record['parent']
+                }
+                ,listeners: {
+                    'success':{fn:function(r){
+                        tagField.store = new Ext.data.ArrayStore({
+                            autoDestroy: true,
+                            storeId: 'autoCompleteStore',
+                            idIndex: 0,
+                            fields: ['tag'],
+                            data: r.object
+                        });
+
+                        tagField.setFieldValue();
+                        tagField.enable();
+
+                    },scope:this}
+                }
+            });
+        }
+    }
+
     ,beforeSubmit: function(o) {
         var d = {};
 
-        var tags = Ext.getCmp('modx-resource-tags');
+        var tags = this.find('xtype', 'bxr-field-tags')[0];
         if(tags) {d.tags = tags.getValue()}
 
         Ext.apply(o.form.baseParams,d);

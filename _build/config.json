@@ -1,0 +1,103 @@
+{
+    "name": "Articles"
+    ,"lowCaseName": "articles"
+    ,"description": ""
+    ,"author": "Shaun McCormick"
+    ,"version": "1.7.2"
+    ,"package":{
+        "elements": {
+            "plugins": [{
+                "name": "ArticlesPlugin"
+                ,"file": "articles.plugin.php"
+                ,"events": ["OnPageNotFound", "OnManagerPageInit", "OnDocPublished", "OnDocUnPublished"]
+            }]
+            ,"chunks": [{
+                "name": "sample.ArticlesLatestPostTpl"
+                ,"file": "articleslatestpost.chunk.tpl"
+            },{
+                "name": "sample.ArticleRowTpl"
+                ,"file": "articlerow.chunk.tpl"
+            },{
+                "name": "sample.ArticlesRss"
+                ,"file": "articlesrss.chunk.tpl"
+            },{
+                "name": "sample.ArticlesRssItem"
+                ,"file": "articlesrssitem.chunk.tpl"
+            },{
+                "name": "sample.ArchiveGroupByYear"
+                ,"file": "archivegroupbyyear.chunk.tpl"
+            },{
+                "name": "sample.ArticlesRssCategoryNode"
+                ,"file": "articlesrsscategorynode.chunk.tpl"
+            }]
+            ,"snippets": [{
+                "name": "ArticlesStringSplitter"
+                ,"file": "snippet.articlesstringsplitter.php"
+            },{
+                "name": "Articles"
+                ,"file": "snippet.articles.php"
+            }]
+            ,"templates": [{
+                "name": "sample.ArticlesContainerTemplate"
+                ,"file": "articlescontainertemplate.tpl"
+            },{
+                "name": "sample.ArticleTemplate"
+                ,"file": "articletemplate.tpl"
+            }]
+            ,"tvs": [{
+                "caption": "articlestags"
+                ,"name": "articlestags"
+                ,"type": "hidden"
+                ,"description": ""
+                ,"templates": ["sample.ArticlesContainerTemplate", "sample.ArticleTemplate"]
+            }]
+        }
+        ,"systemSettings": [{
+            "key": "container_ids"
+            ,"type": "textfield"
+            ,"area": "furls"
+            ,"value": ""
+        },{
+            "key": "default_container_template"
+            ,"type": "modx-combo-template"
+            ,"area": "site"
+            ,"value": "0"
+        },{
+            "key": "default_article_template"
+            ,"type": "modx-combo-template"
+            ,"area": "site"
+            ,"value": "0"
+        },{
+            "key": "default_article_sort_field"
+            ,"type": "textfield"
+            ,"area": "site"
+            ,"value": "createdon"
+        },{
+            "key": "article_show_longtitle"
+            ,"type": "combo-boolean"
+            ,"area": "site"
+            ,"value": "false"
+        },{
+            "key": "mgr_date_format"
+            ,"type": "textfield"
+            ,"area": "site"
+            ,"value": "%b %d"
+        },{
+            "key": "mgr_time_format"
+            ,"type": "textfield"
+            ,"area": "site"
+            ,"value": "%H:%I %p"
+        },{
+            "key": "container_ids"
+            ,"type": "textfield"
+            ,"area": "furls"
+            ,"value": ""
+        },{
+            "key": "container_ids"
+            ,"type": "textfield"
+            ,"area": "furls"
+            ,"value": ""
+        }]
+    }
+    ,"extensionPackage": {}
+}
