@@ -715,7 +715,7 @@ class ArticlesContainerUpdateProcessor extends modResourceUpdateProcessor {
         $this->addContainerId();
         $this->removeFromArchivistIds();
         $this->setProperty('clearCache',true);
-        $this->object->set('isfolder',true);
+        //$this->object->set('isfolder',true);
         return parent::afterSave();
     }
 
