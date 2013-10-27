@@ -221,7 +221,15 @@ Ext.extend(Articles.panel.Container,MODx.panel.Resource,{
             ,id: 'modx-resource-hidemenu'
             ,inputValue: 1
             ,checked: parseInt(config.record.hidemenu) || false
-
+        },{
+            xtype: 'xcheckbox'
+            ,boxLabel: _('resource_folder')
+            ,hideLabel: true
+            ,description: '<b>[[*isfolder]]</b><br />'+_('resource_folder_help')
+            ,name: 'isfolder'
+            ,id: 'modx-resource-isfolder'
+            ,inputValue: 1
+            ,checked: parseInt(config.record.isfolder) || true
         },{
             xtype: 'xcheckbox'
             ,boxLabel: _('resource_published')

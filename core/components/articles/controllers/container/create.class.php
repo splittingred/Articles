@@ -33,6 +33,7 @@ class ArticlesContainerCreateManagerController extends ResourceCreateManagerCont
         $connectorUrl = $articlesAssetsUrl.'connector.php';
         $articlesJsUrl = $articlesAssetsUrl.'js/';
         $this->resourceArray['articles_container_settings'] = $this->resource->getContainerSettings();
+        $this->resourceArray['isfolder'] = true;
         $this->addJavascript($managerUrl.'assets/modext/util/datetime.js');
         $this->addJavascript($managerUrl.'assets/modext/widgets/element/modx.panel.tv.renders.js');
         $this->addJavascript($managerUrl.'assets/modext/widgets/resource/modx.grid.resource.security.js');
