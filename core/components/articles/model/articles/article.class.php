@@ -182,7 +182,7 @@ class Article extends modResource {
      * @return string
      */
     public function getTagsCall(array $settings = array()) {
-        $call = '[[!tolinks? &useTagsFurl=`1` &items=`[[*articlestags]]` &target=`'.$this->get('parent').'`]]';
+        $call = '[[!tolinks? &useTagsFurl=`[[++friendly_urls]]` &items=`[[*articlestags]]` &target=`'.$this->get('parent').'`]]';
         $this->xpdo->setPlaceholder('article_tags',$call);
         return $call;
     }
