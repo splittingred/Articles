@@ -23,7 +23,7 @@
  * Articles translated to Czech by Jan Peca (theboxer, pecajan@gmail.com)
  * 
  */
-$_lang['articles.comments'] = 'Komentáøe';
+$_lang['articles.comments'] = 'KomentÃ¡Å™e';
 $_lang['articles.posted_by'] = 'Zaslal';
-$_lang['articles.read_more'] = 'Èíst více';
+$_lang['articles.read_more'] = 'ÄŒÃ­st vÃ­ce';
 $_lang['articles.tags'] = 'Tagy';
