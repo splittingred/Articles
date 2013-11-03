@@ -320,8 +320,8 @@ class ArticlesContainer extends modResource {
     public function getPostListingCall($placeholderPrefix = '') {
         $settings = $this->getContainerSettings();
         $where = array('class_key' => 'Article');
-        if (!empty($_REQUEST['arc_user'])) {
-            $userPk = $this->xpdo->sanitizeString($_REQUEST['arc_user']);
+        if (!empty($_REQUEST['arc_author'])) {
+            $userPk = $this->xpdo->sanitizeString($_REQUEST['arc_author']);
             if (intval($userPk) == 0) {
                 /** @var modUser $user */
                 $user = $this->xpdo->getObject('modUser',array('username' => $userPk));
