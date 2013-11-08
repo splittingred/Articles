@@ -1,9 +1,17 @@
 <?php
 /**
- * @package Articles
+ * @package articles
  */
 $xpdo_meta_map['Article']= array (
-  'package' => 'Articles',
+  'package' => 'articles',
+  'version' => '1.1',
+  'extends' => 'modResource',
+  'fields' => 
+  array (
+  ),
+  'fieldMeta' => 
+  array (
+  ),
   'aggregates' => 
   array (
     'Container' => 
