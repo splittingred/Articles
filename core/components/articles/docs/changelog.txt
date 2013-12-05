@@ -1,5 +1,9 @@
 Changelog for Articles.
 
+Articles 1.7.3
+===============================
+ - Change package name from Articles to articles for xPDO compatibility
+
 Articles 1.7.2
 ===============================
  - Rebuilt tagging component. Thanks to Jan Peca (TheBoxer)
