@@ -28,13 +28,12 @@ set_time_limit(0);
 /* define package */
 define('PKG_NAME','Articles');
 define('PKG_NAME_LOWER',strtolower(PKG_NAME));
-define('PKG_VERSION','1.7.3');
-define('PKG_RELEASE','pl');
+define('PKG_VERSION','1.7.4');
+define('PKG_RELEASE','dev');
 
 /* define sources */
 $root = dirname(dirname(__FILE__)).'/';
 $sources = array(
-    'root' => $root,
     'root' => $root,
     'build' => $root .'_build/',
     'resolvers' => $root . '_build/resolvers/',
