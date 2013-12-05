@@ -1,5 +1,7 @@
 Changelog for Articles.
 
+ - Add support for disabled cache_alias_map
+
 Articles 1.7.3
 ===============================
  - Change package name from Articles to articles for xPDO compatibility

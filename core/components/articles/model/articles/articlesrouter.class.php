@@ -54,27 +54,32 @@ class ArticlesRouter {
         $prefix = 'arc_';
         $startPageResId = false;
         $startPagePrefix = '';
-	$startPageId = $this->modx->getOption('site_start');
+        $startPageId = $this->modx->getOption('site_start');
         foreach ($containerIds as $archive) {
+            if (empty($archive)) continue;
             $archive = explode(':',$archive);
             $archiveId = $archive[0];
-            if (is_array($this->modx->aliasMap) && ($startPageId == $archiveId)) {
-                $alias = array_search($archiveId,$this->modx->aliasMap);
+            if (method_exists($this->modx->context, 'getResourceURI')) {
+                $alias = $this->modx->context->getResourceURI($archiveId);
+            } else {
+                $alias = is_array($this->modx->aliasMap) ? array_search($archiveId, $this->modx->aliasMap) : '';
+            }
+            if ($alias && $startPageId == $archiveId) {
                 $startPageResId = $archiveId;
                 if (isset($archive[1])) $startPagePrefix = $archive[1];
             }
-            if ($alias && strpos($search,$alias) !== false) {
-                $search = str_replace($alias,'',$search);
+            if ($alias && strpos($search, $alias) === 0) {
+                $search = substr($search, strlen($alias));
                 $resourceId = $archiveId;
                 if (isset($archive[1])) $prefix = $archive[1];
             }
         }
         if (!$resourceId) {
             if ($startPageResId) {
-              $resourceId = $startPageResId;
-              $prefix = $startPagePrefix;
+                $resourceId = $startPageResId;
+                $prefix = $startPagePrefix;
             } else return false;
-	}
+        }
 
         /* figure out archiving */
         $params = explode('/', $search);
