@@ -1,5 +1,7 @@
 Changelog for Articles.
 
+Articles 1.7.4
+===============================
  - Add support for disabled cache_alias_map
 
 Articles 1.7.3
