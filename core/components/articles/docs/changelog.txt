@@ -1,5 +1,9 @@
 Changelog for Articles.
 
+Articles 1.7.5
+===============================
+ - #54 Fix RSS Feeds (Revert PR #15,#25) 
+
 Articles 1.7.4
 ===============================
  - Add support for disabled cache_alias_map
