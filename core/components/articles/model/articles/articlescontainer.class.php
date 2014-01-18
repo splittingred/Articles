@@ -322,7 +322,7 @@ class ArticlesContainer extends modResource {
         $where = array('class_key' => 'Article');
         if (!empty($_REQUEST['arc_author'])) {
             $userPk = $this->xpdo->sanitizeString($_REQUEST['arc_author']);
-            if (function_exists(filter_var)) {
+            if (function_exists('filter_var')) {
                 $userPkNum = filter_var($userPk,FILTER_VALIDATE_INT);
             } else { $userPkNum = intval($userPk); }
             if ($userPkNum == 0) {
