@@ -372,13 +372,7 @@ class ArticlesContainer extends modResource {
         ]]';
         $this->xpdo->setPlaceholder($placeholderPrefix.'articles',$output);
 
-        $this->xpdo->setPlaceholder($placeholderPrefix.'paging','[[!+page.nav:notempty=`
-<div class="paging">
-<ul class="pageList">
-  [[!+page.nav]]
-</ul>
-</div>
-`]]');
+        $this->xpdo->setPlaceholder($placeholderPrefix.'paging','[[!+page.nav]]');
         return $output;
     }
 

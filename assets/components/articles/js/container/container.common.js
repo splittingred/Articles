@@ -1616,7 +1616,7 @@ Ext.extend(Articles.panel.ContainerTemplateSettings,MODx.Panel,{
             ,height: 250
             ,grow: false
             ,border: false
-            ,value: config.record && config.record.content ? config.record.content : "[[+articles]]\n\n[[+paging]]"
+            ,value: config.record && config.record.content ? config.record.content : "[[+articles]]\n\n[[!+page.nav:notempty=`\n<div class='paging'>\n\t<ul class='pageList'>\n\t\t[[+paging]]\n\t</ul>\n</div>\n`]]"
         },{
             id: 'modx-content-below'
             ,border: false
