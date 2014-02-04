@@ -125,7 +125,7 @@ Articles.grid.ContainerArticles = function(config) {
     });
     Articles.grid.ContainerArticles.superclass.constructor.call(this,config);
     this._makeTemplates();
-    this.on('rowclick',MODx.fireResourceFormChange);
+    //this.on('rowclick',MODx.fireResourceFormChange);
     this.on('click', this.handleButtons, this);
 };
 Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
