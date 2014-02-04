@@ -1,5 +1,13 @@
 Changelog for Articles.
 
+Articles 1.7.6
+===============================
+ - #50 Conditionally load classes in controller
+ - #68 Fix False Positive on Confirm Navigation warning
+ - #64 Remove static html code from page.nav placeholder
+ - #62 Allow number at start of tag to be treated still as tag (@jasonbird)
+ - Update getResources to 1.6.1
+
 Articles 1.7.5
 ===============================
  - #54 Fix RSS Feeds (Revert PR #15,#25) 
