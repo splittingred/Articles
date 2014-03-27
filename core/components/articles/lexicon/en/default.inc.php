@@ -132,6 +132,7 @@ $_lang['none'] = 'None';
 /* General */
 $_lang['articles.setting.updateServicesEnabled'] = 'Enable Update Services';
 $_lang['articles.setting.updateServicesEnabled_desc'] = 'If on, Articles will attempt to ping Ping-o-Matic whenever you publish an Article, to send out your article\'s title and URL to major search engines.';
+$_lang['articles.setting.published_desc'] = 'Default published status for new articles.';
 $_lang['articles.setting.richtext_desc'] = 'Once created, individual Articles can override this value.';
 $_lang['articles.setting.sortBy'] = 'Sort Field';
 $_lang['articles.setting.sortBy_desc'] = 'The field to sort by on the main and archives listing pages.';
