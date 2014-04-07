@@ -98,12 +98,24 @@ class ArticlesRouter {
 
              if(is_numeric($params[0])) {
                  $_REQUEST[$prefix.'year'] = $_GET[$prefix.'year'] = $params[0];
-                 if (isset($params[1])) $_REQUEST[$prefix.'month'] = $_GET[$prefix.'month'] = $params[1];
-                 if (isset($params[2])) $_REQUEST[$prefix.'day'] = $_GET[$prefix.'day'] = $params[2];
+                 if (isset($params[1]) && is_numeric($params[1])) {
+                     $_REQUEST[$prefix.'month'] = $_GET[$prefix.'month'] = $params[1];
+                 } else if(isset($params[1])) {
+                     // Display the default 404 page if "month" is not a number
+                     $this->modx->sendForward($this->modx->getOption('error_page'), 'HTTP/1.1 404 Not Found');
+                 }
+                 if (isset($params[2]) && is_numeric($params[2])) {
+                     $_REQUEST[$prefix.'day'] = $_GET[$prefix.'day'] = $params[2];
+                 } else if(isset($params[2])) {
+                     // Display the default 404 page if "day" is not a number
+                     $this->modx->sendForward($this->modx->getOption('error_page'), 'HTTP/1.1 404 Not Found');
+
+                 }
              } else {
                 // Display the default 404 page if nothing found
                 $this->modx->sendForward($this->modx->getOption('error_page'), 'HTTP/1.1 404 Not Found');
              }
+
         }
 
         /* forward */
