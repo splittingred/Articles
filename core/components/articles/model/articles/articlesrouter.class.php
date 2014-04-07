@@ -96,9 +96,14 @@ class ArticlesRouter {
         } else {
             /* set Archivist parameters for date-based archives */
 
-            $_REQUEST[$prefix.'year'] = $_GET[$prefix.'year'] = $params[0];
-            if (isset($params[1])) $_REQUEST[$prefix.'month'] = $_GET[$prefix.'month'] = $params[1];
-            if (isset($params[2])) $_REQUEST[$prefix.'day'] = $_GET[$prefix.'day'] = $params[2];
+             if(is_numeric($params[0])) {
+                 $_REQUEST[$prefix.'year'] = $_GET[$prefix.'year'] = $params[0];
+                 if (isset($params[1])) $_REQUEST[$prefix.'month'] = $_GET[$prefix.'month'] = $params[1];
+                 if (isset($params[2])) $_REQUEST[$prefix.'day'] = $_GET[$prefix.'day'] = $params[2];
+             } else {
+                // Display the default 404 page if nothing found
+                $this->modx->sendForward($this->modx->getOption('error_page'), 'HTTP/1.1 404 Not Found');
+             }
         }
 
         /* forward */
