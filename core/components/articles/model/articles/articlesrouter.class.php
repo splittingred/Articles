@@ -18,6 +18,8 @@
  * Place, Suite 330, Boston, MA 02111-1307 USA
  *
  * @package articles
+ * 
+ * File updated for 1.7.6
  */
 class ArticlesRouter {
     /** @var modX $modx */
@@ -54,38 +56,43 @@ class ArticlesRouter {
         $prefix = 'arc_';
         $startPageResId = false;
         $startPagePrefix = '';
-	$startPageId = $this->modx->getOption('site_start');
+        $startPageId = $this->modx->getOption('site_start');
         foreach ($containerIds as $archive) {
+	        if (empty($archive)) continue;
             $archive = explode(':',$archive);
             $archiveId = $archive[0];
-            $alias = array_search($archiveId,$this->modx->aliasMap);
-            if ($alias && ($startPageId == $archiveId)) {
+
+            if (method_exists($this->modx->context, 'getResourceURI')) {
+                 $alias = $this->modx->context->getResourceURI($archiveId);
+             } else {
+                 $alias = is_array($this->modx->aliasMap) ? array_search($archiveId, $this->modx->aliasMap) : '';
+             }
+            if ($alias && $startPageId == $archiveId) {
                 $startPageResId = $archiveId;
                 if (isset($archive[1])) $startPagePrefix = $archive[1];
             }
-            if ($alias && strpos($search,$alias) !== false) {
-                $search = str_replace($alias,'',$search);
+            if ($alias && strpos($search, $alias) === 0) {
+                $search = substr($search, strlen($alias));
                 $resourceId = $archiveId;
                 if (isset($archive[1])) $prefix = $archive[1];
             }
         }
-        if (!$resourceId) {
-            if ($startPageResId) {
-              $resourceId = $startPageResId;
-              $prefix = $startPagePrefix;
-            } else return false;
-	}
-
+		if (!$resourceId) {
+		  if ($startPageResId) {
+            $resourceId = $startPageResId;
+		    $prefix = $startPagePrefix;
+		  } else return false;
+		}
         /* figure out archiving */
         $params = explode('/', $search);
         if (count($params) < 1) return false;
 
         /* tag handling! */
         if ($params[0] == 'tags') {
-            $_GET['tag'] = $params[1];
+            $_REQUEST[$prefix.'author'] = $_GET['tag'] = urldecode($params[1]);
         /* author based */
         } else if ($params[0] == 'user' || $params[0] == 'author') {
-            $_GET[$prefix.'author'] = $params[1];
+            $_REQUEST[$prefix.'author'] = $_GET[$prefix.'author'] = urldecode($params[1]);
 
         /* numeric "archives/1234" */
         } else if ($params[0] == 'archives' && !empty($params[1])) {
@@ -97,16 +104,17 @@ class ArticlesRouter {
         /* normal yyyy/mm/dd or yyyy/mm */
         } else {
             /* set Archivist parameters for date-based archives */
-            $pyear = $params[0];
-            $pmonth = 1;
-            $pday = 1;
-            if (isset($params[1])) $pmonth = $params[1];
-            if (isset($params[2])) $pday = $params[2];
-            if (checkdate($pmonth, $pday, $pyear)) {
-                $_GET[$prefix.'year'] = $params[0];
-                if (isset($params[1])) $_GET[$prefix.'month'] = $params[1];
-                if (isset($params[2])) $_GET[$prefix.'day'] = $params[2];
-            } else return false;
+			$pyear = $params[0];
+			$pmonth = 1;
+			$pday = 1;
+			if (isset($params[1])) $pmonth = $params[1];
+			if (isset($params[2])) $pday = $params[2];
+			if (checkdate($pmonth, $pday, $pyear)) {
+                $_REQUEST[$prefix.'year'] = $_GET[$prefix.'year'] = $params[0];
+                if (isset($params[1])) $_REQUEST[$prefix.'month'] = $_GET[$prefix.'month'] = $params[1];
+                if (isset($params[2])) $_REQUEST[$prefix.'day'] = $_GET[$prefix.'day'] = $params[2];
+				$result = true;
+			} else return false;
         }
 
         /* forward */
