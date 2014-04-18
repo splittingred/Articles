@@ -154,7 +154,7 @@ $_lang['articles.setting.otherGetArchives_desc'] = 'Alle anderen Eigenschaften, 
 $_lang['articles.setting.articleUriTemplate'] = 'Articles-URL-Format';
 $_lang['articles.setting.articleUriTemplate_desc'] = '%Y = Jahr (4-stellig), %m = Monat (mit führenden Nullen), %d = Tag (mit führenden Nullen), %alias = Artikel-Alias, %id = Artikel-ID, %ext = Dateiendung (z.B. html). <b>Hinweis</b>: Änderungen an dieser Einstellung wirken sich nur auf *neue* Artikel aus, es sei denn, Sie ändern den Alias oder ziehen alte Artikel zurück und veröffentlichen sie erneut, wodurch ihre URLs im neuen Format neu generiert werden.';
 
-/* template / archives settings */
+/* Template / archives settings */
 $_lang['articles.setting.articleTemplate'] = 'Artikel-Template';
 $_lang['articles.setting.articleTemplate_desc'] = 'Das Template, das standardmäßig für Artikel verwendet wird.';
 $_lang['articles.setting.tplArticleRow'] = 'Artikel-Zeilen-Chunk';
@@ -205,7 +205,7 @@ $_lang['articles.setting.pageNavVar_desc'] = 'Der Schlüssel (Name) eines Platzh
 $_lang['articles.setting.rssAlias'] = 'RSS-Alias (Permalink)';
 $_lang['articles.setting.rssAlias_desc'] = 'Der Alias (Permalink) für den RSS-Feed, der an die Articles-Container-URL angehängt wird.';
 $_lang['articles.setting.rssItems'] = 'Anzahl der RSS-Elemente';
-$_lang['articles.setting.rssItems_desc'] = 'Die Anzahl der RSS-Elemente, die im RSS-Feed angezeigt werden sollen.';
+$_lang['articles.setting.rssItems_desc'] = 'Die Anzahl der RSS-Elemente, die im RSS-Feed angezeigt werden sollen. Geben Sie 0 ein für unbegrenzt viele Elemente.';
 $_lang['articles.setting.tplRssFeed'] = 'RSS-Feed-Chunk';
 $_lang['articles.setting.tplRssFeed_desc'] = 'Der Chunk, der für das RSS-Feed-Template verwendet wird.';
 $_lang['articles.setting.tplRssItem'] = 'RSS-Element-Chunk';
@@ -228,6 +228,8 @@ $_lang['articles.setting.latestPostsLimit'] = 'Anzuzeigende neueste Artikel';
 $_lang['articles.setting.latestPostsLimit_desc'] = 'Die Anzahl der anzuzeigenden neuesten Artikel.';
 $_lang['articles.setting.latestPostsOffset'] = 'Start-Index für neueste Artikel';
 $_lang['articles.setting.latestPostsOffset_desc'] = 'Der Start-Index der Liste der neuesten Artikel.';
+$_lang['articles.setting.otherLatestPosts'] = 'Andere Listen-Parameter';
+$_lang['articles.setting.otherLatestPosts_desc'] = 'Alle anderen Eigenschaften, die Sie dem getResources-/getPage-Aufruf für das "Neueste Artikel"-Widget hinzufügen möchten. Verwenden Sie dafür MODX-Tag-Syntax, als ob Sie sie zu dem Snippet-Aufruf hinzufügen würden (z.B. &eigenschaft=`wert`).';
 
 /* Notifications */
 $_lang['articles.setting.notifyTwitter'] = 'An Twitter senden';
@@ -326,22 +328,29 @@ $_lang['articles.setting.commentsGravatar_desc'] = 'Gibt an, ob Gravatar-Icons i
 $_lang['articles.setting.commentsGravatarIcon'] = 'Gravatar-Icon-Stil';
 $_lang['articles.setting.commentsGravatarIcon_desc'] = 'Der Gravatar-Icon-Typ, der für Benutzer ohne Gravatar genutzt wird.';
 $_lang['articles.setting.commentsGravatarSize'] = 'Gravatar-Icon-Größe';
-$_lang['articles.setting.commentsGravatarSize_desc'] = 'Die Größe des Gravatars in Pixeln.';
+$_lang['articles.setting.commentsGravatarSize_desc'] = 'Die Größe des Gravatars in Pixeln. Der Standardwert ist 50.';
 $_lang['articles.setting.'] = '';
 $_lang['articles.setting._desc'] = '';
+$_lang['articles.loading'] = 'Lade';
 
 /* Settings */
 $_lang['setting_articles.article_show_longtitle'] = 'Feld für langen Titel anzeigen';
 $_lang['setting_articles.article_show_longtitle_desc'] = 'Setzen Sie diese Einstellung auf "Ja", wenn das Feld "Langer Titel" beim Bearbeiten eines Artikels eingeblendet werden soll.';
 
 $_lang['setting_articles.default_container_template'] = 'Standard-Artikel-Container-Template';
-$_lang['setting_articles.default_container_template_desc'] = 'Das Template, das standardmäßig verwendet wird, wenn ein neuer Artikel-Container erstellt wird.';
+$_lang['setting_articles.default_container_template_desc'] = 'Das Template (ID), das standardmäßig verwendet wird, wenn ein neuer Artikel-Container erstellt wird.';
 
 $_lang['setting_articles.default_article_template'] = 'Standard-Artikel-Template';
-$_lang['setting_articles.default_article_template_desc'] = 'Das Template, das standardmäßig verwendet wird, wenn ein neuer Artikel erstellt wird und im Container selbst kein Template angegeben ist.';
+$_lang['setting_articles.default_article_template_desc'] = 'Das Template (ID), das standardmäßig verwendet wird, wenn ein neuer Artikel erstellt wird und im Container selbst kein Template angegeben ist.';
 
 $_lang['setting_articles.container_ids'] = 'Container-IDs für das Routing von suchmaschinenfreundlichen URLs';
 $_lang['setting_articles.container_ids_desc'] = 'Eine kommaseparierte Liste von Container-IDs, die für das Routing von suchmaschinenfreundlichen URLs verwendet werden. Es wird empfohlen, hier keine Änderungen vorzunehmen.';  // FURL routing
 
 $_lang['setting_articles.default_article_sort_field'] = 'Standard-Sortierfeld für Artikel im Manager';
 $_lang['setting_articles.default_article_sort_field_desc'] = 'Das Standard-Sortierfeld für die Artikel-Liste beim Bearbeiten eines Containers.';
+
+$_lang['setting_articles.mgr_date_format'] = 'Manager-Datumsformat';
+$_lang['setting_articles.mgr_date_format_desc'] = 'Datumsformat, das innerhalb eines Artikel-Containers angezeigt wird, wenn Artikel im Manager aufgelistet werden.';
+
+$_lang['setting_articles.mgr_time_format'] = 'Manager-Zeitformat';
+$_lang['setting_articles.mgr_time_format_desc'] = 'Zeitformat, das innerhalb eines Artikel-Containers angezeigt wird, wenn Artikel im Manager aufgelistet werden.';
