@@ -1540,11 +1540,6 @@ Ext.extend(Articles.panel.ContainerTemplateSettings,MODx.Panel,{
             ,id: 'modx-resource-template'
             ,anchor: '100%'
             ,editable: false
-            ,baseParams: {
-                action: 'getList'
-                ,combo: '1'
-				,limit: '0'
-            }
             ,value: config.record.template || MODx.config['articles.default_container_template']
             ,listeners: oc
         },{
@@ -1573,11 +1568,6 @@ Ext.extend(Articles.panel.ContainerTemplateSettings,MODx.Panel,{
                 ,anchor: '100%'
                 ,value: config.record.setting_articleTemplate || MODx.config['articles.default_article_template']
                 ,listeners: oc
-				,baseParams: {
-					action: 'getList'
-					,combo: '1'
-					,limit: 0
-				}
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'articles-setting-articleTemplate'

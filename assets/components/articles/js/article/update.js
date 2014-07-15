@@ -69,9 +69,9 @@ Ext.extend(Articles.page.UpdateArticle,MODx.page.UpdateResource,{
 
     ,publishArticle: function(btn,e) {
         MODx.Ajax.request({
-            url: MODx.config.connectors_url+'resource/index.php'
+            url: (MODx.config.connector_url) ? MODx.config.connector_url : MODx.config.connectors_url+'resource/index.php'
             ,params: {
-                action: 'publish'
+                action: (MODx.config.connector_url) ? 'resource/publish' : 'publish'
                 ,id: MODx.request.id
             }
             ,listeners: {
@@ -99,9 +99,9 @@ Ext.extend(Articles.page.UpdateArticle,MODx.page.UpdateResource,{
 
     ,unpublishArticle: function(btn,e) {
         MODx.Ajax.request({
-            url: MODx.config.connectors_url+'resource/index.php'
+            url: (MODx.config.connector_url) ? MODx.config.connector_url : MODx.config.connectors_url+'resource/index.php'
             ,params: {
-                action: 'unpublish'
+                action: (MODx.config.connector_url) ? 'resource/unpublish' : 'unpublish'
                 ,id: MODx.request.id
             }
             ,listeners: {
@@ -305,6 +305,7 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
             ,height: 400
             ,grow: false
             ,value: (config.record.content || config.record.ta) || ''
+            ,itemCls: 'contentblocks_replacement'
         },{
             id: 'modx-content-below'
             ,border: false
@@ -371,11 +372,6 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                 ,hiddenName: 'createdby'
                 ,id: 'modx-resource-createdby'
                 ,allowBlank: true
-                ,baseParams: {
-                    action: 'getList'
-                    ,combo: '1'
-                    ,limit: 0
-                }
                 ,width: 300
                 ,value: config.record.createdby
             },{
@@ -405,11 +401,6 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                 ,id: 'modx-resource-template'
                 ,anchor: '100%'
                 ,editable: false
-                ,baseParams: {
-                    action: 'getList'
-                    ,combo: '1'
-					,limit: '0'
-                }
             },{
                 xtype: 'textfield'
                 ,fieldLabel: _('articles.article_alias')
