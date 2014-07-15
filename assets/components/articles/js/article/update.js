@@ -305,6 +305,7 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
             ,height: 400
             ,grow: false
             ,value: (config.record.content || config.record.ta) || ''
+            ,itemCls: 'contentblocks_replacement'
         },{
             id: 'modx-content-below'
             ,border: false
