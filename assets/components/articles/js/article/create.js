@@ -195,11 +195,6 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                 ,hiddenName: 'createdby'
                 ,id: 'modx-resource-createdby'
                 ,allowBlank: true
-                ,baseParams: {
-                    action: 'getList'
-                    ,combo: '1'
-                    ,limit: 0
-                }
                 ,width: 300
                 ,value: config.record.createdby || MODx.user.id
             },{
@@ -229,11 +224,6 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                 ,id: 'modx-resource-template'
                 ,anchor: '100%'
                 ,editable: false
-                ,baseParams: {
-                    action: 'getList'
-                    ,combo: '1'
-                    ,limit: '0'
-                }
             },{
                 xtype: 'textfield'
                 ,fieldLabel: _('articles.article_alias')

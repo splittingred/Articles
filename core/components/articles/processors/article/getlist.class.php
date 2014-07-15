@@ -31,7 +31,7 @@ class ArticleGetListProcessor extends modObjectGetListProcessor {
     public $objectType = 'article';
     public $languageTopics = array('resource','articles:default');
 
-    /** @var modAction $editAction */
+    /** @var int|string $editAction */
     public $editAction;
     /** @var modTemplateVar $tvTags */
     public $tvTags;
@@ -41,10 +41,16 @@ class ArticleGetListProcessor extends modObjectGetListProcessor {
     public $commentsEnabled = false;
 
     public function initialize() {
-        $this->editAction = $this->modx->getObject('modAction',array(
+        $action = $this->modx->getObject('modAction',array(
             'namespace' => 'core',
             'controller' => 'resource/update',
         ));
+        if ($action) {
+            $this->editAction = $action->get('id');
+        }
+        else {
+            $this->editAction = 'resource/update';
+        }
         $this->defaultSortField = $this->modx->getOption('articles.default_article_sort_field',null,'createdon');
 
         if ($this->getParentContainer()) {
@@ -185,7 +191,7 @@ class ArticleGetListProcessor extends modObjectGetListProcessor {
             $resourceArray['publishedon_time'] = strftime($this->modx->getOption('articles.mgr_time_format',null,'%H:%I %p'),$publishedon);
             $resourceArray['publishedon'] = strftime('%b %d, %Y %H:%I %p',$publishedon);
         }
-        $resourceArray['action_edit'] = '?a='.$this->editAction->get('id').'&action=post/update&id='.$resourceArray['id'];
+        $resourceArray['action_edit'] = '?a='.$this->editAction.'&action=post/update&id='.$resourceArray['id'];
         if (!array_key_exists('comments',$resourceArray)) $resourceArray['comments'] = 0;
 
         $this->modx->getContext($resourceArray['context_key']);
