@@ -3,6 +3,7 @@ Changelog for Articles.
 Articles 1.7.7
 ===============================
 - #90 Fix Articles in Revolution 2.3
+- #87 Implement compatibility for ContentBlocks (v1.1)
 
 Articles 1.7.6
 ===============================
