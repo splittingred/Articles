@@ -15,7 +15,7 @@ Ext.extend(Articles.page.UpdateArticle,MODx.page.UpdateResource,{
         var btns = [];
         if (cfg.canSave == 1) {
             btns.push({
-                process: 'update'
+                process: (MODx.config.connector_url) ? 'resource/update' : 'update'
                 ,text: _('save')
                 ,method: 'remote'
                 ,checkDirty: cfg.richtext || MODx.request.activeSave == 1 ? false : true
