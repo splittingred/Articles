@@ -17,6 +17,7 @@ Ext.extend(Articles.page.UpdateArticle,MODx.page.UpdateResource,{
             btns.push({
                 process: (MODx.config.connector_url) ? 'resource/update' : 'update'
                 ,text: _('save')
+                ,cls: 'primary-button'
                 ,method: 'remote'
                 ,checkDirty: cfg.richtext || MODx.request.activeSave == 1 ? false : true
                 ,keys: [{
