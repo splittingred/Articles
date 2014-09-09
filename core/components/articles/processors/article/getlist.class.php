@@ -235,9 +235,9 @@ class ArticleGetListProcessor extends modObjectGetListProcessor {
     }
 
     public function ellipsis($string,$length = 300) {
-        if (strlen($string) > $length) {
-            $string = substr($string,0,$length).'...';
-        }
+	    if (mb_strlen($string) > $length) {
+		    $string = mb_substr($string,0,$length,$this->modx->config['charset']).'...';
+	    }
         return $string;
     }
 }
