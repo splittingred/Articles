@@ -63,6 +63,7 @@ Articles.grid.ContainerArticles = function(config) {
         }]
         ,tbar: [{
             text: _('articles.article_create')
+            ,cls: 'primary-button'
             ,handler: this.createArticle
             ,scope: this
         },{
@@ -100,6 +101,7 @@ Articles.grid.ContainerArticles = function(config) {
             xtype: 'textfield'
             ,name: 'search'
             ,id: 'articles-article-search'
+            ,cls: 'x-form-filter'
             ,emptyText: _('search_ellipsis')
             ,listeners: {
                 'change': {fn: this.search, scope: this}
@@ -117,6 +119,7 @@ Articles.grid.ContainerArticles = function(config) {
         },{
             xtype: 'button'
             ,id: 'modx-filter-clear'
+            ,cls: 'x-form-filter-clear'
             ,text: _('filter_clear')
             ,listeners: {
                 'click': {fn: this.clearFilter, scope: this}
