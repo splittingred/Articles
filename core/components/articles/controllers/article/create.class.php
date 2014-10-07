@@ -75,7 +75,6 @@ class ArticleCreateManagerController extends ResourceCreateManagerController {
 
     public function process(array $scriptProperties = array()) {
         $placeholders = parent::process($scriptProperties);
-        $this->resourceArray['published'] = 0;
         $this->getDefaultContainerSettings();
         return $placeholders;
     }
@@ -89,6 +88,7 @@ class ArticleCreateManagerController extends ResourceCreateManagerController {
             $settings = $container->getProperties('articles');
             $this->resourceArray['template'] = $this->modx->getOption('articleTemplate',$settings,0);
             $this->resourceArray['richtext'] = $this->modx->getOption('articlesRichtext',$settings,1);
+            $this->resourceArray['published'] = $this->modx->getOption('articlesPublished',$settings,$this->modx->getOption('publish_default', null, 0));
         }
     }
 }

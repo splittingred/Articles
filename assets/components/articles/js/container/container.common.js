@@ -68,6 +68,16 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
 
             },{
                 xtype: 'combo-boolean'
+                ,name: 'setting_articlesPublished'
+                ,hiddenName: 'setting_articlesPublished'
+                ,id: 'articles-published'
+                ,fieldLabel: _('resource_published')
+                ,description: MODx.expandHelp ? '' : _('resource_published_help') + ' ' + _('articles.setting.published_desc')
+                ,width: 120
+                ,listeners: oc
+                ,value: MODx.config.publish_default
+            },{
+                xtype: 'combo-boolean'
                 ,name: 'setting_articlesRichtext'
                 ,hiddenName: 'setting_articlesRichtext'
                 ,id: 'articles-richtext'
