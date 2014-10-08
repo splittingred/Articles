@@ -1,5 +1,7 @@
 Changelog for Articles.
 
+Articles 1.7.9
+===============================
 - Add setting for default published status of new article
 - Updated getlist to be multibyte safe and article update getButtons override change
 - 2.3 Fixes

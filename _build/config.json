@@ -3,7 +3,7 @@
     ,"lowCaseName": "articles"
     ,"description": ""
     ,"author": "Shaun McCormick"
-    ,"version": "1.7.2"
+    ,"version": "1.7.9"
     ,"package":{
         "elements": {
             "plugins": [{
