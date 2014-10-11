@@ -441,6 +441,10 @@ class ArticlesContainer extends modResource {
             &hideContainers=`1`
             &includeContent=`1`
             &showHidden=`1`
+	    &includeTVs=`'.$this->xpdo->getOption('archivesIncludeTVs',$settings,0).'`
+	    &includeTVsList=`'.$this->xpdo->getOption('includeTVsList',$settings,'').'`
+	    &processTVs=`'.$this->xpdo->getOption('archivesProcessTVs',$settings,0).'`
+	    &processTVsList=`'.$this->xpdo->getOption('processTVsList',$settings,'').'`            
             &tpl=`'.$this->xpdo->getOption('latestPostsTpl',$settings,'sample.ArticlesLatestPostTpl').'`
             &limit=`'.$this->xpdo->getOption('latestPostsLimit',$settings,5).'`
             &offset=`'.$this->xpdo->getOption('latestPostsOffset',$settings,0).'`
