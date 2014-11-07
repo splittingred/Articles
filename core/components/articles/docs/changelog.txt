@@ -1,5 +1,7 @@
 Changelog for Articles.
 
+- Fixed showing TVs below content
+
 Articles 1.7.9
 ===============================
 - Add setting for default published status of new article
