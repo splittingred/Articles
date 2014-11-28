@@ -68,6 +68,16 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
 
             },{
                 xtype: 'combo-boolean'
+                ,name: 'setting_articlesPublished'
+                ,hiddenName: 'setting_articlesPublished'
+                ,id: 'articles-published'
+                ,fieldLabel: _('resource_published')
+                ,description: MODx.expandHelp ? '' : _('resource_published_help') + ' ' + _('articles.setting.published_desc')
+                ,width: 120
+                ,listeners: oc
+                ,value: MODx.config.publish_default
+            },{
+                xtype: 'combo-boolean'
                 ,name: 'setting_articlesRichtext'
                 ,hiddenName: 'setting_articlesRichtext'
                 ,id: 'articles-richtext'
@@ -1540,11 +1550,6 @@ Ext.extend(Articles.panel.ContainerTemplateSettings,MODx.Panel,{
             ,id: 'modx-resource-template'
             ,anchor: '100%'
             ,editable: false
-            ,baseParams: {
-                action: 'getList'
-                ,combo: '1'
-				,limit: '0'
-            }
             ,value: config.record.template || MODx.config['articles.default_container_template']
             ,listeners: oc
         },{
@@ -1573,11 +1578,6 @@ Ext.extend(Articles.panel.ContainerTemplateSettings,MODx.Panel,{
                 ,anchor: '100%'
                 ,value: config.record.setting_articleTemplate || MODx.config['articles.default_article_template']
                 ,listeners: oc
-				,baseParams: {
-					action: 'getList'
-					,combo: '1'
-					,limit: 0
-				}
             },{
                 xtype: MODx.expandHelp ? 'label' : 'hidden'
                 ,forId: 'articles-setting-articleTemplate'
@@ -1616,7 +1616,7 @@ Ext.extend(Articles.panel.ContainerTemplateSettings,MODx.Panel,{
             ,height: 250
             ,grow: false
             ,border: false
-            ,value: config.record && config.record.content ? config.record.content : "[[+articles]]\n\n[[+paging]]"
+            ,value: config.record && config.record.content ? config.record.content : "[[+articles]]\n\n[[!+page.nav:notempty=`\n<div class='paging'>\n\t<ul class='pageList'>\n\t\t[[+paging]]\n\t</ul>\n</div>\n`]]"
         },{
             id: 'modx-content-below'
             ,border: false

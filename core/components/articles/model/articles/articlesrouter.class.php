@@ -53,15 +53,23 @@ class ArticlesRouter {
         $resourceId = false;
         $prefix = 'arc_';
         foreach ($containerIds as $archive) {
+	        if (empty($archive)) continue;
             $archive = explode(':',$archive);
             $archiveId = $archive[0];
-            if(is_array($this->modx->aliasMap)) {
-                $alias = array_search($archiveId,$this->modx->aliasMap);
-                if ($alias && strpos($search,$alias) !== false) {
-                    $search = str_replace($alias,'',$search);
-                    $resourceId = $archiveId;
-                    if (isset($archive[1])) $prefix = $archive[1];
-                }
+
+            if (method_exists($this->modx->context, 'getResourceURI')) {
+                 $alias = $this->modx->context->getResourceURI($archiveId);
+             } else {
+                 $alias = is_array($this->modx->aliasMap) ? array_search($archiveId, $this->modx->aliasMap) : '';
+             }
+            if ($alias && $startPageId == $archiveId) {
+                $startPageResId = $archiveId;
+                if (isset($archive[1])) $startPagePrefix = $archive[1];
+            }
+            if ($alias && strpos($search, $alias) === 0) {
+                $search = substr($search, strlen($alias));
+                $resourceId = $archiveId;
+                if (isset($archive[1])) $prefix = $archive[1];
             }
         }
         if (!$resourceId) return false;
@@ -72,10 +80,10 @@ class ArticlesRouter {
 
         /* tag handling! */
         if ($params[0] == 'tags') {
-            $_GET['tag'] = $params[1];
+            $_REQUEST[$prefix.'author'] = $_GET['tag'] = urldecode($params[1]);
         /* author based */
         } else if ($params[0] == 'user' || $params[0] == 'author') {
-            $_GET[$prefix.'author'] = $params[1];
+            $_REQUEST[$prefix.'author'] = $_GET[$prefix.'author'] = urldecode($params[1]);
 
         /* numeric "archives/1234" */
         } else if ($params[0] == 'archives' && !empty($params[1])) {
@@ -87,9 +95,27 @@ class ArticlesRouter {
         /* normal yyyy/mm/dd or yyyy/mm */
         } else {
             /* set Archivist parameters for date-based archives */
-            $_GET[$prefix.'year'] = $params[0];
-            if (isset($params[1])) $_GET[$prefix.'month'] = $params[1];
-            if (isset($params[2])) $_GET[$prefix.'day'] = $params[2];
+
+             if(is_numeric($params[0])) {
+                 $_REQUEST[$prefix.'year'] = $_GET[$prefix.'year'] = $params[0];
+                 if (isset($params[1]) && is_numeric($params[1])) {
+                     $_REQUEST[$prefix.'month'] = $_GET[$prefix.'month'] = $params[1];
+                 } else if(isset($params[1])) {
+                     // Display the default 404 page if "month" is not a number
+                     $this->modx->sendForward($this->modx->getOption('error_page'), 'HTTP/1.1 404 Not Found');
+                 }
+                 if (isset($params[2]) && is_numeric($params[2])) {
+                     $_REQUEST[$prefix.'day'] = $_GET[$prefix.'day'] = $params[2];
+                 } else if(isset($params[2])) {
+                     // Display the default 404 page if "day" is not a number
+                     $this->modx->sendForward($this->modx->getOption('error_page'), 'HTTP/1.1 404 Not Found');
+
+                 }
+             } else {
+                // Display the default 404 page if nothing found
+                $this->modx->sendForward($this->modx->getOption('error_page'), 'HTTP/1.1 404 Not Found');
+             }
+
         }
 
         /* forward */

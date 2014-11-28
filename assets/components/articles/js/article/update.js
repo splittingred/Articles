@@ -10,13 +10,20 @@ Articles.page.UpdateArticle = function(config) {
     Articles.page.UpdateArticle.superclass.constructor.call(this,config);
 };
 Ext.extend(Articles.page.UpdateArticle,MODx.page.UpdateResource,{
-
-    getButtons: function(cfg) {
+	doesButtonExist: function(btnArray, lexiconKey) {
+		var exists = false;
+		btnArray.map(function(item) {
+			if(lexiconKey == item.text) exists = true;
+		});
+		return exists;
+	}
+    ,getButtons: function(cfg) {
         var btns = [];
-        if (cfg.canSave == 1) {
+        if (cfg.canSave == 1 && !this.doesButtonExist(btns, _('save'))) {
             btns.push({
-                process: 'update'
+                process: (MODx.config.connector_url) ? 'resource/update' : 'update'
                 ,text: _('save')
+                ,cls: 'primary-button'
                 ,method: 'remote'
                 ,checkDirty: cfg.richtext || MODx.request.activeSave == 1 ? false : true
                 ,keys: [{
@@ -25,7 +32,7 @@ Ext.extend(Articles.page.UpdateArticle,MODx.page.UpdateResource,{
                 }]
             });
             btns.push('-');
-        } else if (cfg.locked) {
+        } else if (cfg.locked && !this.doesButtonExist(btns, _('locked'))) {
             btns.push({
                 text: cfg.lockedText || _('locked')
                 ,handler: Ext.emptyFn
@@ -33,45 +40,61 @@ Ext.extend(Articles.page.UpdateArticle,MODx.page.UpdateResource,{
             });
             btns.push('-');
         }
-        btns.push({
-            text: _('articles.article_publish')
-            ,id: 'modx-article-publish'
-            ,hidden: cfg.record.published ? true : false
-            ,handler: this.publishArticle
-        });
-        btns.push({
-            text: _('articles.article_unpublish')
-            ,id: 'modx-article-unpublish'
-            ,hidden: cfg.record.published ? false : true
-            ,handler: this.unpublishArticle
-        });
-        btns.push('-');
-        btns.push({
-            process: 'preview'
-            ,text: _('view')
-            ,handler: this.preview
-            ,scope: this
-        });
-        btns.push('-');
-        btns.push({
-            process: 'cancel'
-            ,text: _('cancel')
-            ,handler: this.cancel
-            ,scope: this
-        });
-        btns.push('-');
-        btns.push({
-            text: _('help_ex')
-            ,handler: MODx.loadHelpPane
-        });
-        return btns;
+	    if(cfg.publish_document && !this.doesButtonExist(btns, _('articles.article_publish'))) {
+	        btns.push({
+	            text: _('articles.article_publish')
+	            ,id: 'modx-article-publish'
+	            ,hidden: cfg.record.published ? true : false
+	            ,handler: this.publishArticle
+	        });
+	        btns.push({
+	            text: _('articles.article_unpublish')
+	            ,id: 'modx-article-unpublish'
+	            ,hidden: cfg.record.published ? false : true
+	            ,handler: this.unpublishArticle
+	        });
+		    btns.push('-');
+	    }
+		if(!this.doesButtonExist(btns, _('view'))) {
+	        btns.push({
+	            process: 'preview'
+	            ,text: _('view')
+	            ,handler: this.preview
+	            ,scope: this
+	        });
+	        btns.push('-');
+		}
+		if(!this.doesButtonExist(btns, _('cancel'))) {
+	        btns.push({
+	            process: 'cancel'
+	            ,text: _('cancel')
+	            ,handler: this.cancel
+	            ,scope: this
+	        });
+	        btns.push('-');
+		}
+		if(!this.doesButtonExist(btns, _('help_ex'))) {
+	        btns.push({
+	            text: _('help_ex')
+	            ,handler: MODx.loadHelpPane
+	        });
+		}
+
+		// remove duplicate spacings
+		for(var i=0; i<=(btns.length - 1); i++) {
+			var item = btns[i];
+			if(item != '-') continue;
+			if(btns[i+1] == '-' || (btns[i+1] && btns[i+1].hidden == true)) btns.splice(i,1);
+		}
+
+		return btns;
     }
 
     ,publishArticle: function(btn,e) {
         MODx.Ajax.request({
-            url: MODx.config.connectors_url+'resource/index.php'
+            url: (MODx.config.connector_url) ? MODx.config.connector_url : MODx.config.connectors_url+'resource/index.php'
             ,params: {
-                action: 'publish'
+                action: (MODx.config.connector_url) ? 'resource/publish' : 'publish'
                 ,id: MODx.request.id
             }
             ,listeners: {
@@ -99,9 +122,9 @@ Ext.extend(Articles.page.UpdateArticle,MODx.page.UpdateResource,{
 
     ,unpublishArticle: function(btn,e) {
         MODx.Ajax.request({
-            url: MODx.config.connectors_url+'resource/index.php'
+            url: (MODx.config.connector_url) ? MODx.config.connector_url : MODx.config.connectors_url+'resource/index.php'
             ,params: {
-                action: 'unpublish'
+                action: (MODx.config.connector_url) ? 'resource/unpublish' : 'unpublish'
                 ,id: MODx.request.id
             }
             ,listeners: {
@@ -305,6 +328,7 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
             ,height: 400
             ,grow: false
             ,value: (config.record.content || config.record.ta) || ''
+            ,itemCls: 'contentblocks_replacement'
         },{
             id: 'modx-content-below'
             ,border: false
@@ -371,11 +395,6 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                 ,hiddenName: 'createdby'
                 ,id: 'modx-resource-createdby'
                 ,allowBlank: true
-                ,baseParams: {
-                    action: 'getList'
-                    ,combo: '1'
-                    ,limit: 0
-                }
                 ,width: 300
                 ,value: config.record.createdby
             },{
@@ -405,11 +424,6 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                 ,id: 'modx-resource-template'
                 ,anchor: '100%'
                 ,editable: false
-                ,baseParams: {
-                    action: 'getList'
-                    ,combo: '1'
-					,limit: '0'
-                }
             },{
                 xtype: 'textfield'
                 ,fieldLabel: _('articles.article_alias')

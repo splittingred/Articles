@@ -63,6 +63,7 @@ Articles.grid.ContainerArticles = function(config) {
         }]
         ,tbar: [{
             text: _('articles.article_create')
+            ,cls: 'primary-button'
             ,handler: this.createArticle
             ,scope: this
         },{
@@ -100,6 +101,7 @@ Articles.grid.ContainerArticles = function(config) {
             xtype: 'textfield'
             ,name: 'search'
             ,id: 'articles-article-search'
+            ,cls: 'x-form-filter'
             ,emptyText: _('search_ellipsis')
             ,listeners: {
                 'change': {fn: this.search, scope: this}
@@ -117,6 +119,7 @@ Articles.grid.ContainerArticles = function(config) {
         },{
             xtype: 'button'
             ,id: 'modx-filter-clear'
+            ,cls: 'x-form-filter-clear'
             ,text: _('filter_clear')
             ,listeners: {
                 'click': {fn: this.clearFilter, scope: this}
@@ -125,7 +128,7 @@ Articles.grid.ContainerArticles = function(config) {
     });
     Articles.grid.ContainerArticles.superclass.constructor.call(this,config);
     this._makeTemplates();
-    this.on('rowclick',MODx.fireResourceFormChange);
+    //this.on('rowclick',MODx.fireResourceFormChange);
     this.on('click', this.handleButtons, this);
 };
 Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
@@ -264,9 +267,9 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
         MODx.msg.confirm({
             title: _('articles.article_delete')
             ,text: _('articles.article_delete_confirm')
-            ,url: MODx.config.connectors_url+'resource/index.php'
+            ,url: (MODx.config.connector_url) ? MODx.config.connector_url : MODx.config.connectors_url+'resource/index.php'
             ,params: {
-                action: 'delete'
+                action: (MODx.config.connector_url) ? 'resource/delete' : 'delete'
                 ,id: this.menu.record.id
             }
             ,listeners: {
@@ -319,9 +322,9 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
 
     ,undeleteArticle: function(btn,e) {
         MODx.Ajax.request({
-            url: MODx.config.connectors_url+'resource/index.php'
+            url: (MODx.config.connector_url) ? MODx.config.connector_url : MODx.config.connectors_url+'resource/index.php'
             ,params: {
-                action: 'undelete'
+                action: (MODx.config.connector_url) ? 'resource/undelete' : 'undelete'
                 ,id: this.menu.record.id
             }
             ,listeners: {
@@ -372,9 +375,9 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
 
     ,publishArticle: function(btn,e) {
         MODx.Ajax.request({
-            url: MODx.config.connectors_url+'resource/index.php'
+            url: (MODx.config.connector_url) ? MODx.config.connector_url : MODx.config.connectors_url+'resource/index.php'
             ,params: {
-                action: 'publish'
+                action: (MODx.config.connector_url) ? 'resource/publish' : 'publish'
                 ,id: this.menu.record.id
             }
             ,listeners: {
@@ -385,9 +388,9 @@ Ext.extend(Articles.grid.ContainerArticles,MODx.grid.Grid,{
 
     ,unpublishArticle: function(btn,e) {
         MODx.Ajax.request({
-            url: MODx.config.connectors_url+'resource/index.php'
+            url: (MODx.config.connector_url) ? MODx.config.connector_url : MODx.config.connectors_url+'resource/index.php'
             ,params: {
-                action: 'unpublish'
+                action: (MODx.config.connector_url) ? 'resource/unpublish' : 'unpublish'
                 ,id: this.menu.record.id
             }
             ,listeners: {

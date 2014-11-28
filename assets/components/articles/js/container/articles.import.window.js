@@ -5,9 +5,9 @@ Articles.window.ArticlesImport = function(config) {
     Ext.applyIf(config,{
         title: _('articles.articles_import')
         ,id: this.ident
-        ,height: 150
-        ,width: '75%'
-        ,minWidth: 650
+        // ,height: 150
+        // ,width: '75%'
+        ,width: 600
         ,url: Articles.connector_url
         ,action: 'container/import'
         ,fileUpload: true
@@ -81,12 +81,13 @@ Articles.panel.ImportOptionsWordPress = function(config) {
             msgTarget: 'under'
         }
         ,items: [{
-            xtype: 'textfield'
-            ,inputType: 'file'
+            xtype: (MODx.config.connector_url) ? 'fileuploadfield' : 'textfield' // check for 2.3
+            ,buttonText: _('upload.buttons.upload')
             ,name: 'wp-file'
             ,fieldLabel: _('articles.import_wp_file')
+            ,inputType: (MODx.config.connector_url) ? 'text' : 'file' // check for 2.3
             ,id: this.ident+'-wp-file'
-            ,anchor: '98%'
+            ,anchor: (MODx.config.connector_url) ? '100%' : '98%' // check for 2.3
         },{
             xtype: MODx.expandHelp ? 'label' : 'hidden'
             ,forId: this.ident+'-wp-file'
@@ -98,7 +99,7 @@ Articles.panel.ImportOptionsWordPress = function(config) {
             ,fieldLabel: _('articles.import_wp_file_server')
             ,description: MODx.expandHelp ? '' : _('articles.import_wp_file_server')
             ,id: this.ident+'-wp-file-server'
-            ,anchor: '98%'
+            ,anchor: (MODx.config.connector_url) ? '100%' : '98%' // check for 2.3
             ,value: '{core_path}import/'
         },{
             xtype: MODx.expandHelp ? 'label' : 'hidden'
@@ -264,12 +265,13 @@ Articles.panel.ImportOptionsBlogger = function(config) {
             msgTarget: 'under'
         }
         ,items: [{
-            xtype: 'textfield'
-            ,inputType: 'file'
+            xtype: (MODx.config.connector_url) ? 'fileuploadfield' : 'textfield' // check for 2.3
+            ,buttonText: _('upload.buttons.upload')
             ,name: 'blogger-file'
             ,fieldLabel: _('articles.import_blogger_file')
+            ,inputType: (MODx.config.connector_url) ? 'text' : 'file' // check for 2.3
             ,id: this.ident+'-blogger-file'
-            ,anchor: '98%'
+            ,anchor: (MODx.config.connector_url) ? '100%' : '98%' // check for 2.3
         },{
             xtype: MODx.expandHelp ? 'label' : 'hidden'
             ,forId: this.ident+'-blogger-file'
@@ -281,7 +283,7 @@ Articles.panel.ImportOptionsBlogger = function(config) {
             ,fieldLabel: _('articles.import_blogger_file_server')
             ,description: MODx.expandHelp ? '' : _('articles.import_blogger_file_server')
             ,id: this.ident+'-blogger-file-server'
-            ,anchor: '98%'
+            ,anchor: (MODx.config.connector_url) ? '100%' : '98%' // check for 2.3
             ,value: '{core_path}import/'
         },{
             xtype: MODx.expandHelp ? 'label' : 'hidden'

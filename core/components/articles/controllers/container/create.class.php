@@ -19,7 +19,9 @@
  *
  * @package articles
  */
-require_once $modx->getOption('manager_path',null,MODX_MANAGER_PATH).'controllers/default/resource/create.class.php';
+if(!class_exists('ResourceCreateManagerController')) {
+    require_once $modx->getOption('manager_path',null,MODX_MANAGER_PATH).'controllers/'.$modx->getOption('manager_theme',null,'default').'/resource/create.class.php';
+}
 /**
  * @package articles
  */
@@ -33,6 +35,7 @@ class ArticlesContainerCreateManagerController extends ResourceCreateManagerCont
         $connectorUrl = $articlesAssetsUrl.'connector.php';
         $articlesJsUrl = $articlesAssetsUrl.'js/';
         $this->resourceArray['articles_container_settings'] = $this->resource->getContainerSettings();
+        $this->resourceArray['isfolder'] = true;
         $this->addJavascript($managerUrl.'assets/modext/util/datetime.js');
         $this->addJavascript($managerUrl.'assets/modext/widgets/element/modx.panel.tv.renders.js');
         $this->addJavascript($managerUrl.'assets/modext/widgets/resource/modx.grid.resource.security.js');
