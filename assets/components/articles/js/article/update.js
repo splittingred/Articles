@@ -18,7 +18,7 @@ Ext.extend(Articles.page.UpdateArticle,MODx.page.UpdateResource,{
 		return exists;
 	}
     ,getButtons: function(cfg) {
-        var btns = MODx.page.UpdateResource.prototype.getButtons(cfg); //[];
+        var btns = [];
         if (cfg.canSave == 1 && !this.doesButtonExist(btns, _('save'))) {
             btns.push({
                 process: (MODx.config.connector_url) ? 'resource/update' : 'update'

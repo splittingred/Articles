@@ -1,5 +1,6 @@
 Changelog for Articles.
 
+- Fixes View and Close buttons
 - Updated getPage to 1.2.4
 - Fixed showing TVs below content
 
