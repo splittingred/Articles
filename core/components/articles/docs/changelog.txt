@@ -1,5 +1,8 @@
 Changelog for Articles.
 
+
+Articles 1.7.10
+===============================
 - Fixes bug: TVs were not getting parsed into Latest Articles Chunk
 - Fixes View and Close buttons
 - Updated getPage to 1.2.4
