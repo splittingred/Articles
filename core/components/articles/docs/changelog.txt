@@ -1,5 +1,6 @@
 Changelog for Articles.
 
+- Updated getPage to 1.2.4
 - Fixed showing TVs below content
 
 Articles 1.7.9
