@@ -11,15 +11,17 @@ Articles.page.UpdateArticle = function(config) {
 };
 Ext.extend(Articles.page.UpdateArticle,MODx.page.UpdateResource,{
 	doesButtonExist: function(btnArray, lexiconKey) {
-		var exists = false;
+		var exists = false, _k = 0;
 		btnArray.map(function(item) {
-			if(lexiconKey == item.text) exists = true;
+			if(lexiconKey == item.text) exists = _k;
+			_k++;
 		});
 		return exists;
 	}
     ,getButtons: function(cfg) {
-        var btns = [];
-        if (cfg.canSave == 1 && !this.doesButtonExist(btns, _('save'))) {
+		var btns = MODx.page.UpdateResource.prototype.getButtons(cfg); //[];
+
+        if (cfg.canSave == 1 && this.doesButtonExist(btns, _('save') === false)) {
             btns.push({
                 process: (MODx.config.connector_url) ? 'resource/update' : 'update'
                 ,text: _('save')
@@ -55,24 +57,35 @@ Ext.extend(Articles.page.UpdateArticle,MODx.page.UpdateResource,{
 	        });
 		    btns.push('-');
 	    }
-		if(!this.doesButtonExist(btns, _('view'))) {
-	        btns.push({
-	            process: 'preview'
-	            ,text: _('view')
-	            ,handler: this.preview
-	            ,scope: this
-	        });
-	        btns.push('-');
+
+		var _view = {
+			process: 'preview'
+			,text: _('view')
+			,handler: this.preview
+			,scope: this
+		}, _idx = this.doesButtonExist(btns, _('view'));
+
+		if(!_idx) {
+			btns.push(_view);
+			btns.push('-');
+		} else {
+			btns.splice(_idx,1, _view);
 		}
-		if(!this.doesButtonExist(btns, _('cancel'))) {
-	        btns.push({
-	            process: 'cancel'
-	            ,text: _('cancel')
-	            ,handler: this.cancel
-	            ,scope: this
-	        });
-	        btns.push('-');
+
+		var _cnl = {
+			process: 'cancel'
+			,text: _('cancel')
+			,handler: this.cancel
+			,scope: this
+		}, _idx = this.doesButtonExist(btns, _('cancel'));
+
+		if(!_idx) {
+			btns.push(_cnl);
+			btns.push('-');
+		} else {
+			btns.splice(_idx,1, _cnl);
 		}
+
 		if(!this.doesButtonExist(btns, _('help_ex'))) {
 	        btns.push({
 	            text: _('help_ex')
