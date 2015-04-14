@@ -1,5 +1,7 @@
 Changelog for Articles.
 
+Articles 1.7.11
+===============================
 - Updated view/close buttons to work correctly with the overriding
 
 Articles 1.7.10
