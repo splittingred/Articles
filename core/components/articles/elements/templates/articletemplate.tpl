@@ -1,120 +1,161 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-<title>Articles - [[*pagetitle]]</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<link rel="stylesheet" type="text/css" href="[[++articles.assets_url:default=`[[++base_url]]assets/components/articles/`]]themes/default/style.css" />
-<base href="[[++site_url]]" />
-</head>
-<body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<div id="header-wrap">
-  <div id="header" class="container_16">
-    <h1 id="logo-text"><a href="[[~[[*parent]]]]" title="">Articles</a></h1>
-    <p id="intro">Articles By Me</p>
-    <!-- navigation -->
-    <div id="nav">
-      <ul><li class="first"><a href="[[~[[*id]]]]" title="Home" >Home</a></li>
-    </div>
-    <div id="header-image"></div>
-      <div id="search">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+	<style>
+		/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+}
 
-<form id="quick-search" action="search-results.html" method="get">
-<p>
-  <label for="qsearch">Search:</label>
-  <input class="tbox" id="qsearch" type="text" name="search" value="" title="Start typing and hit ENTER" />
-  <input class="btn" alt="Search" type="image" title="Search" src="[[++articles.assets_url:default=`assets/components/articles/`]]themes/default/images/search.gif" />
-</p>
-</form>
-</div>
-      <!-- header ends here -->
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+  padding: 60px 15px 0;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+code {
+  font-size: 80%;
+}
+
+
+	</style>
+
+
+    <title>[[*pagetitle]]</title>
+    <base href="[[++site_url]]" />
+  </head>
+  <body>
+	  
+<!-- Navigation Start -->	  
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+<div class="container">	
+  <a class="navbar-brand" href="#">Articles</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="https://modx.com">Modx <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Articles
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="https://modx.com/extras/package/articles">Download</a>
+          <a class="dropdown-item" href="https://github.com/modxcms/Articles">Github</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="https://docs.modx.com/extras/revo/articles">Docs</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>  
+</nav>
+<!-- End -->	  
+
+<!-- Start -->	 
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">[[*pagetitle]]</h1>
+    <p class="lead">[[*introtext]]</p>
+    <hr class="my-4">
+	<p>Posted on [[*publishedon:strtotime:date=`%b %d, %Y`]] by <a href="[[~[[*parent]]]]author/[[*publishedby:userinfo=`username`]]">[[*publishedby:userinfo=`username`]]</a>. [[*articlestags:notempty=` &nbsp;| Tags: [[+article_tags]]. `]] [[+comments_enabled:is=`1`:then=`&nbsp;| <a href="[[~[[*id]]]]#comments" class="comments">Comments ([[+comments_count]])</a>`]].</p>
   </div>
 </div>
-<!-- content starts -->
-<div id="content-outer"><div id="content-wrapper" class="container_16">
+<!-- End -->  
+	  
+<!-- Article Body Start -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-8">
+			[[*content]]
+		</div>
+		<div class="col-md-4">
 
-<!-- main -->
-<div id="main" class="grid_12">
-    <h2 class="title"><a href="[[~[[*id]]]]">[[*pagetitle]]</a></h2>
-    <p class="post-info">
-        <span class="left">Posted on [[*publishedon:strtotime:date=`%b %d, %Y`]] by <a href="[[~[[*parent]]]]author/[[*publishedby:userinfo=`username`]]">[[*publishedby:userinfo=`username`]]</a></span>
-[[*articlestags:notempty=`
-        <span class="tags left">&nbsp;| Tags: [[+article_tags]]</span>
+
+		<h3>Latest Posts</h3>
+			<ul class="nav flex-column">
+				[[+latest_posts]]
+			</ul>
+
+
+[[+comments_enabled:is=`1`:then=`
+<hr>
+
+		<h3>Latest Comments</h3>
+			<ul class="nav flex-column">
+				[[+latest_comments]]
+		</ul>
 `]]
-        [[+comments_enabled:is=`1`:then=`&nbsp;| <a href="[[~[[*id]]]]#comments" class="comments">Comments ([[+comments_count]])</a>`]]
-    </p>
-    <div class="entry">
-        <p>[[*introtext]]</p>
-        <hr />
-        [[*content]]
-    </div>
 
-    <hr />
+		</div>
+	</div>
+</div>
+<!-- End --> 
 
+<div class="container">
+<hr>
+</div>	  
+
+<!-- Comments Start -->
+<div class="container">
     <div class="post-comments" id="comments">
         [[+comments]]
         <br />
         <h3>Add a Comment</h3>
         [[+comments_form]]
     </div>
-</div>
-
-<div id="left-columns" class="grid_4">
-  <div class="grid_4 alpha">
-
-    <div class="sidemenu">
-      <h3>Latest Posts</h3>
-      <ul>
-      [[+latest_posts]]
-      </ul>
-    </div>
-
-    [[+comments_enabled:is=`1`:then=`
-    <div class="sidemenu">
-      <h3>Latest Comments</h3>
-      <ul>
-      [[+latest_comments]]
-      </ul>
-    </div>
-    `]]
-  </div>
-  <!-- end left-columns -->
-</div>
-<!-- contents end here -->
+</div>    
+<!-- End --> 
 
 
-</div></div>
 
-<!-- footer starts here -->
-<div id="footer-wrapper" class="container_12">
+<!-- Footer Start -->
 
-  <div id="footer-content">
-    <div class="grid_4">
-<h3>Tags</h3>
-[[+tags]]
-    </div>
-    <div class="grid_4">
-  <h3>Archives</h3>
-  [[+archives]]
-    </div>
-  </div>
-  <div id="footer-bottom">
-   <p class="bottom-left">
-&nbsp; &copy; 2010-2012 Articles. all rights reserved.
-      &nbsp; &nbsp; powered by <a href="http://modx.com/">modx revolution</a>
-      &nbsp; &nbsp; <a href="http://www.bluewebtemplates.com/" title="Website Templates">website templates</a> by <a href="http://www.styleshout.com/">styleshout</a>
-      </p>
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">Articles for Modx. Powered by Bootstrap 4. Theme by Carlo (Original-Websites.com)</span>
+      </div>
+    </footer>
+<!-- End --> 	  
 
-      <p class="bottom-right" >
-        <a href="[[~1]]">Home</a> |
-        <a href="[[~1]]">Sitemap</a> |
-        <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> |
-             <a href="http://validator.w3.org/check/referer">XHTML</a>
-      </p>
-
-  </div>
-</div>
-
-</body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
 </html>
