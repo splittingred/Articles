@@ -1,6 +1,8 @@
 Changelog for Articles.
 
 Articles 1.7.12
+===============================
+- Fixes a bug where the setting `Group By Year Chunk` had no effect [#122]
 - Update French translations [#121]
 
 Articles 1.7.11
