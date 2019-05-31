@@ -67,6 +67,15 @@ Articles.panel.ContainerAdvancedSettings = function(config) {
                 ,cls: 'desc-under'
 
             },{
+                xtype: 'textarea'
+                ,fieldLabel: _('resource_summary')
+                ,description: '<b>[[*introtext]]</b><br />'+_('resource_summary_help')
+                ,name: 'introtext'
+                ,id: 'modx-resource-introtext'
+                ,grow: true
+                ,anchor: '100%'
+                ,value: config.record.introtext || ''
+            },{
                 xtype: 'combo-boolean'
                 ,name: 'setting_articlesPublished'
                 ,hiddenName: 'setting_articlesPublished'
