@@ -74,6 +74,12 @@ class ArticlesRouter {
         }
         if (!$resourceId) return false;
 
+        $articlesContainer = $this->modx->getObject('ArticlesContainer', $resourceId);
+        if ($articlesContainer instanceof ArticlesContainer && $articlesContainer->isRSS()) {
+            $this->modx->sendForward($resourceId);
+            return true;
+        }
+
         /* figure out archiving */
         $params = explode('/', $search);
         if (count($params) < 1) return false;
