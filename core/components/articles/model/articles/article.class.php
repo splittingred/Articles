@@ -54,7 +54,7 @@ class Article extends modResource {
             $this->getTagsCall($settings);
             /** @var ArticlesContainer $container */
             $container = $this->getOne('Container');
-            if ($container) {
+            if ($container instanceof ArticlesContainer) {
                 $container->getArchivistCall();
                 $container->getLatestCommentsCall();
                 $container->getLatestPostsCall();
