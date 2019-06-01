@@ -14,7 +14,24 @@ Articles.page.UpdateContainer = function(config) {
     config.canDelete = false;
     Articles.page.UpdateContainer.superclass.constructor.call(this,config);
 };
-Ext.extend(Articles.page.UpdateContainer,MODx.page.UpdateResource);
+Ext.extend(Articles.page.UpdateContainer,MODx.page.UpdateResource,{
+    cancel: function(btn,e) {
+        var fp = Ext.getCmp(this.config.formpanel);
+        if (fp && fp.warnUnsavedChanges) {
+            Ext.Msg.confirm(_('warning'),_('resource_cancel_dirty_confirm'),function(e) {
+                if (e == 'yes') {
+                    fp.warnUnsavedChanges = false;
+                    MODx.releaseLock(MODx.request.id);
+                    MODx.sleep(400);
+                    MODx.loadPage('?');
+                }
+            },this);
+        } else {
+            MODx.releaseLock(MODx.request.id);
+            MODx.loadPage('?');
+        }
+    }
+});
 Ext.reg('articles-page-container-update',Articles.page.UpdateContainer);
 
 
