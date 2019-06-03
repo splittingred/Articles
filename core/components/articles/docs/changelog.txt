@@ -1,5 +1,59 @@
 Changelog for Articles.
 
+Articles 1.7.12
+===============================
+- Fixes an issue where the Articles RSS URL would return the error page
+- Warn users about unsaved changes only if there are actual unsaved changes
+- Adds the possibility to set the summary (introtext) for the Articles container [#142]
+- Fixes a bug where the setting `Group By Year Chunk` had no effect [#122]
+- Update French translations [#121]
+
+Articles 1.7.11
+===============================
+- Updated view/close buttons to work correctly with the overriding
+
+Articles 1.7.10
+===============================
+- Fixes bug: TVs were not getting parsed into Latest Articles Chunk
+- Fixes View and Close buttons
+- Updated getPage to 1.2.4
+- Fixed showing TVs below content
+
+Articles 1.7.9
+===============================
+- Add setting for default published status of new article
+- Updated getlist to be multibyte safe and article update getButtons override change
+- 2.3 Fixes
+
+Articles 1.7.8
+===============================
+- #92 Fix Articles save on update in Revolution 2.3
+
+Articles 1.7.7
+===============================
+- #90 Fix Articles in Revolution 2.3
+- #87 Implement compatibility for ContentBlocks (v1.1)
+
+Articles 1.7.6
+===============================
+ - #50 Conditionally load classes in controller
+ - #68 Fix False Positive on Confirm Navigation warning
+ - #64 Remove static html code from page.nav placeholder
+ - #62 Allow number at start of tag to be treated still as tag (@jasonbird)
+ - Update getResources to 1.6.1
+
+Articles 1.7.5
+===============================
+ - #54 Fix RSS Feeds (Revert PR #15,#25) 
+
+Articles 1.7.4
+===============================
+ - Add support for disabled cache_alias_map
+
+Articles 1.7.3
+===============================
+ - Change package name from Articles to articles for xPDO compatibility
+
 Articles 1.7.2
 ===============================
  - Rebuilt tagging component. Thanks to Jan Peca (TheBoxer)

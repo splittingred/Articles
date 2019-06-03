@@ -11,7 +11,7 @@ a Blog, News section, or Events section) on your site, complete with a custom UI
 It automatically handles URL archiving, RSS feeds, comments, tags and more.
 
 Please read the official documentation at:
-http://rtfm.modx.com/display/ADDON/Articles
+https://docs.modx.org/current/en/extras/articles
 
 Thanks for using Articles!
 Shaun McCormick

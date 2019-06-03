@@ -199,7 +199,7 @@ $_lang['articles.setting.pageNavVar_desc'] = 'La clé de placeholder qui contien
 
 /* RSS settings */
 $_lang['articles.setting.rssAlias'] = 'Alias RSS (Permalink)';
-$_lang['articles.setting.rssAlias_desc'] = 'L\'alias (permalink) u flux RSS, ajouté après l\'URL du Container Articles.';
+$_lang['articles.setting.rssAlias_desc'] = 'L\'alias (permalink) du flux RSS, ajouté après l\'URL du Container Articles.';
 $_lang['articles.setting.rssItems'] = 'Nombre d\'entrées RSS';
 $_lang['articles.setting.rssItems_desc'] = 'Le nombre d\'entrées à afficher dans le flux RSS.';
 $_lang['articles.setting.tplRssFeed'] = 'Chunk de flux RSS';

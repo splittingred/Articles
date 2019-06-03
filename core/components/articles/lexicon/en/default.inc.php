@@ -132,6 +132,7 @@ $_lang['none'] = 'None';
 /* General */
 $_lang['articles.setting.updateServicesEnabled'] = 'Enable Update Services';
 $_lang['articles.setting.updateServicesEnabled_desc'] = 'If on, Articles will attempt to ping Ping-o-Matic whenever you publish an Article, to send out your article\'s title and URL to major search engines.';
+$_lang['articles.setting.published_desc'] = 'Default published status for new articles.';
 $_lang['articles.setting.richtext_desc'] = 'Once created, individual Articles can override this value.';
 $_lang['articles.setting.sortBy'] = 'Sort Field';
 $_lang['articles.setting.sortBy_desc'] = 'The field to sort by on the main and archives listing pages.';
@@ -201,7 +202,7 @@ $_lang['articles.setting.pageNavVar_desc'] = 'The key of a placeholder to be set
 $_lang['articles.setting.rssAlias'] = 'RSS Alias (Permalink)';
 $_lang['articles.setting.rssAlias_desc'] = 'The alias (permalink) for the RSS feed, appended to the Articles Container URL.';
 $_lang['articles.setting.rssItems'] = 'Number of RSS Items';
-$_lang['articles.setting.rssItems_desc'] = 'The number of RSS items to show on the RSS feed.';
+$_lang['articles.setting.rssItems_desc'] = 'The number of RSS items to show on the RSS feed. Set to 0 for unlimited.';
 $_lang['articles.setting.tplRssFeed'] = 'RSS Feed Chunk';
 $_lang['articles.setting.tplRssFeed_desc'] = 'The Chunk to use for the RSS Feed template.';
 $_lang['articles.setting.tplRssItem'] = 'RSS Item Chunk';

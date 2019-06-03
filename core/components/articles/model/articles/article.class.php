@@ -54,7 +54,7 @@ class Article extends modResource {
             $this->getTagsCall($settings);
             /** @var ArticlesContainer $container */
             $container = $this->getOne('Container');
-            if ($container) {
+            if ($container instanceof ArticlesContainer) {
                 $container->getArchivistCall();
                 $container->getLatestCommentsCall();
                 $container->getLatestPostsCall();
@@ -72,9 +72,9 @@ class Article extends modResource {
         $settings = $this->getProperties('articles');
         /** @var ArticlesContainer $container */
         $container = $this->getOne('Container');
-        if ($container) {
-            $settings = $container->getContainerSettings();
-        }
+		if(method_exists($container, 'getContainerSettings')) {
+			$settings = $container->getContainerSettings();
+		}
         return is_array($settings) ? $settings : array();
     }
 
@@ -182,7 +182,7 @@ class Article extends modResource {
      * @return string
      */
     public function getTagsCall(array $settings = array()) {
-        $call = '[[!tolinks? &useTagsFurl=`1` &items=`[[*articlestags]]` &target=`'.$this->get('parent').'`]]';
+        $call = '[[!tolinks? &useTagsFurl=`[[++friendly_urls]]` &items=`[[*articlestags]]` &target=`'.$this->get('parent').'`]]';
         $this->xpdo->setPlaceholder('article_tags',$call);
         return $call;
     }
@@ -257,7 +257,9 @@ class Article extends modResource {
             return false;
         }
 
-        $settings = $container->getContainerSettings();
+	    if(method_exists($container, 'getContainerSettings')) {
+		    $settings = $container->getContainerSettings();
+	    }
 
         if($this->get('pub_date')) $date = $this->get('pub_date');
         else $date = $this->get('published') ? $this->get('publishedon') : $this->get('createdon');

@@ -137,7 +137,7 @@ Ext.extend(Articles.extra.Tags,Ext.form.ComboBox,{
 
         this.el.parent().wrap({
             tag: 'div'
-            ,class: 'bxr-field-tags'
+            ,class: 'bxr-field-tags x-superboxselect' // x-superboxselect class needed to correctly display the tag remove button/cross
         });
 
         this.el.parent().wrap({

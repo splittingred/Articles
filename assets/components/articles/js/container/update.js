@@ -14,7 +14,24 @@ Articles.page.UpdateContainer = function(config) {
     config.canDelete = false;
     Articles.page.UpdateContainer.superclass.constructor.call(this,config);
 };
-Ext.extend(Articles.page.UpdateContainer,MODx.page.UpdateResource);
+Ext.extend(Articles.page.UpdateContainer,MODx.page.UpdateResource,{
+    cancel: function(btn,e) {
+        var fp = Ext.getCmp(this.config.formpanel);
+        if (fp && fp.warnUnsavedChanges) {
+            Ext.Msg.confirm(_('warning'),_('resource_cancel_dirty_confirm'),function(e) {
+                if (e == 'yes') {
+                    fp.warnUnsavedChanges = false;
+                    MODx.releaseLock(MODx.request.id);
+                    MODx.sleep(400);
+                    MODx.loadPage('?');
+                }
+            },this);
+        } else {
+            MODx.releaseLock(MODx.request.id);
+            MODx.loadPage('?');
+        }
+    }
+});
 Ext.reg('articles-page-container-update',Articles.page.UpdateContainer);
 
 
@@ -115,7 +132,7 @@ Ext.extend(Articles.panel.Container,MODx.panel.Resource,{
         }
         if (MODx.config.tvs_below_content == 1) {
             var tvs = this.getTemplateVariablesPanel(config);
-            tvs.style = 'margin-top: 10px';
+            tvs.style = 'margin-top: 10px;visibility: visible';
             its.push(tvs);
         }
         return its;
@@ -241,7 +258,15 @@ Ext.extend(Articles.panel.Container,MODx.panel.Resource,{
             ,id: 'modx-resource-hidemenu'
             ,inputValue: 1
             ,checked: parseInt(config.record.hidemenu) || false
-
+        },{
+            xtype: 'xcheckbox'
+            ,boxLabel: _('resource_folder')
+            ,hideLabel: true
+            ,description: '<b>[[*isfolder]]</b><br />'+_('resource_folder_help')
+            ,name: 'isfolder'
+            ,id: 'modx-resource-isfolder'
+            ,inputValue: 1
+            ,checked: parseInt(config.record.isfolder) || false
         },{
             xtype: 'xcheckbox'
             ,boxLabel: _('resource_published')

@@ -19,7 +19,9 @@
  *
  * @package articles
  */
-require_once $modx->getOption('manager_path',null,MODX_MANAGER_PATH).'controllers/default/resource/create.class.php';
+if(!class_exists('ResourceCreateManagerController')) {
+    require_once $modx->getOption('manager_path',null,MODX_MANAGER_PATH).'controllers/'.$modx->getOption('manager_theme',null,'default').'/resource/create.class.php';
+}
 /**
  * @package articles
  */
@@ -73,7 +75,6 @@ class ArticleCreateManagerController extends ResourceCreateManagerController {
 
     public function process(array $scriptProperties = array()) {
         $placeholders = parent::process($scriptProperties);
-        $this->resourceArray['published'] = 0;
         $this->getDefaultContainerSettings();
         return $placeholders;
     }
@@ -87,6 +88,7 @@ class ArticleCreateManagerController extends ResourceCreateManagerController {
             $settings = $container->getProperties('articles');
             $this->resourceArray['template'] = $this->modx->getOption('articleTemplate',$settings,0);
             $this->resourceArray['richtext'] = $this->modx->getOption('articlesRichtext',$settings,1);
+            $this->resourceArray['published'] = $this->modx->getOption('articlesPublished',$settings,$this->modx->getOption('publish_default', null, 0));
         }
     }
 }

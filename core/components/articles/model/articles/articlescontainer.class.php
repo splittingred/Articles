@@ -320,9 +320,12 @@ class ArticlesContainer extends modResource {
     public function getPostListingCall($placeholderPrefix = '') {
         $settings = $this->getContainerSettings();
         $where = array('class_key' => 'Article');
-        if (!empty($_REQUEST['arc_user'])) {
-            $userPk = $this->xpdo->sanitizeString($_REQUEST['arc_user']);
-            if (intval($userPk) == 0) {
+        if (!empty($_REQUEST['arc_author'])) {
+            $userPk = $this->xpdo->sanitizeString($_REQUEST['arc_author']);
+            if (function_exists('filter_var')) {
+                $userPkNum = filter_var($userPk,FILTER_VALIDATE_INT);
+            } else { $userPkNum = intval($userPk); }
+            if ($userPkNum == 0) {
                 /** @var modUser $user */
                 $user = $this->xpdo->getObject('modUser',array('username' => $userPk));
                 if ($user) {
@@ -372,13 +375,7 @@ class ArticlesContainer extends modResource {
         ]]';
         $this->xpdo->setPlaceholder($placeholderPrefix.'articles',$output);
 
-        $this->xpdo->setPlaceholder($placeholderPrefix.'paging','[[!+page.nav:notempty=`
-<div class="paging">
-<ul class="pageList">
-  [[!+page.nav]]
-</ul>
-</div>
-`]]');
+        $this->xpdo->setPlaceholder($placeholderPrefix.'paging','[[!+page.nav]]');
         return $output;
     }
 
@@ -398,7 +395,7 @@ class ArticlesContainer extends modResource {
             &limit=`'.$this->xpdo->getOption('archiveListingsLimit',$settings,10).'`
             &useMonth=`'.$this->xpdo->getOption('archiveByMonth',$settings,1).'`
             &groupByYear=`'.$this->xpdo->getOption('archiveGroupByYear',$settings,0).'`
-            &groupByYearTpl=`'.$this->xpdo->getOption('archiveGroupByYearTpl',$settings,'sample.ArchiveGroupByYear').'`
+            &yearGroupTpl=`'.$this->xpdo->getOption('archiveGroupByYearTpl',$settings,'sample.ArchiveGroupByYear').'`
             &useFurls=`'.$this->xpdo->getOption('archiveWithFurls', $settings, $this->xpdo->getOption('friendly_urls', null, false)).'`
             &cls=`'.$this->xpdo->getOption('archiveCls',$settings,'').'`
             &altCls=`'.$this->xpdo->getOption('archiveAltCls',$settings,'').'`
@@ -444,6 +441,10 @@ class ArticlesContainer extends modResource {
             &hideContainers=`1`
             &includeContent=`1`
             &showHidden=`1`
+	    &includeTVs=`'.$this->xpdo->getOption('archivesIncludeTVs',$settings,0).'`
+	    &includeTVsList=`'.$this->xpdo->getOption('includeTVsList',$settings,'').'`
+	    &processTVs=`'.$this->xpdo->getOption('archivesProcessTVs',$settings,0).'`
+	    &processTVsList=`'.$this->xpdo->getOption('processTVsList',$settings,'').'`            
             &tpl=`'.$this->xpdo->getOption('latestPostsTpl',$settings,'sample.ArticlesLatestPostTpl').'`
             &limit=`'.$this->xpdo->getOption('latestPostsLimit',$settings,5).'`
             &offset=`'.$this->xpdo->getOption('latestPostsOffset',$settings,0).'`
@@ -715,7 +716,7 @@ class ArticlesContainerUpdateProcessor extends modResourceUpdateProcessor {
         $this->addContainerId();
         $this->removeFromArchivistIds();
         $this->setProperty('clearCache',true);
-        $this->object->set('isfolder',true);
+        //$this->object->set('isfolder',true);
         return parent::afterSave();
     }
 

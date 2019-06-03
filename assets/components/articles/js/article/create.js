@@ -58,7 +58,7 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
 
         if (MODx.config.tvs_below_content == 1) {
             var tvs = this.getTemplateVariablesPanel(config);
-            tvs.style = 'margin-top: 10px';
+            tvs.style = 'margin-top: 10px;visibility: visible';
             its.push(tvs);
         }
         return its;
@@ -126,6 +126,7 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
             ,height: 400
             ,grow: false
             ,value: (config.record.content || config.record.ta) || ''
+            ,itemCls: 'contentblocks_replacement'
         },{
             id: 'modx-content-below'
             ,border: false
@@ -195,11 +196,6 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                 ,hiddenName: 'createdby'
                 ,id: 'modx-resource-createdby'
                 ,allowBlank: true
-                ,baseParams: {
-                    action: 'getList'
-                    ,combo: '1'
-                    ,limit: 0
-                }
                 ,width: 300
                 ,value: config.record.createdby || MODx.user.id
             },{
@@ -229,11 +225,6 @@ Ext.extend(Articles.panel.Article,MODx.panel.Resource,{
                 ,id: 'modx-resource-template'
                 ,anchor: '100%'
                 ,editable: false
-                ,baseParams: {
-                    action: 'getList'
-                    ,combo: '1'
-                    ,limit: '0'
-                }
             },{
                 xtype: 'textfield'
                 ,fieldLabel: _('articles.article_alias')
